@@ -1,0 +1,92 @@
+QUERY: how much do they charge?
+
+RESPONSE: Unfortunately, the text does not provide information about the cost of services provided by Whole Home Control, LLC. To get an accurate answer to this question, you should contact the company directly at 1.917.257.0117 or contact@wholehomecontrol.com.
+
+========================================================
+
+QUERY: make a bulleted list of services they provide
+
+RESPONSE: Whole Home Control provides the following services: 
+- Home Networking/ WiFi
+- Smart Lighting
+- HVAC (Heating and Air Conditioning)
+- Video/ Distributed Video/ Home Theater
+- Audio/ Distributed Audio
+- Motorized Shades
+- Surveillance 
+- Design-Build
+- Design
+- Consulting
+
+========================================================
+
+QUERY: make a bulleted list of services they provide
+
+RESPONSE: Whole Home Control provides the following services: 
+-Design-build 
+-Design 
+-Consulting 
+-Home networking/WiFi 
+-Smart lighting 
+-HVAC 
+-Video/distributed video/home theater 
+-Audio/distributed audio 
+-Motorized shades 
+-Surveillance
+
+========================================================
+
+QUERY: make a bulleted list of services they provide
+
+RESPONSE: Whole Home Control provides the following services: 
+- Design-Build 
+- Design 
+- Consulting 
+- Home Networking/WiFi 
+- Smart Lighting 
+- HVAC (Heating and Air Conditioning) 
+- Video/Distributed Video/Home Theater 
+- Audio/Distributed Audio 
+- Motorized Shades 
+- Surveillance 
+- Structured Wiring Plan 
+- Device Location Plan
+
+========================================================
+
+QUERY: describe this company
+
+RESPONSE: Whole Home Control is a boutique home technology integrator serving the high end residential market in NYC and surrounding areas. They specialize in home networking, smart lighting, HVAC, video/distributed video/home theater, audio/distributed audio, motorized shades and surveillance. They offer design-build, design, and consulting services to help their clients maximize the usefulness of their home. The company was founded in 2008 by Cliff Rosen, a technology veteran with more than 20 years experience.
+
+========================================================
+
+QUERY: describe this company
+
+RESPONSE: Whole Home Control is a boutique home technology integrator serving the high end residential market in NYC and surrounding areas. They offer design-build, design, and consulting services for home technology applications such as home networking/WiFi, smart lighting, HVAC, video/distributed video/home theater, audio/distributed audio, motorized shades, and surveillance. Whole Home Control was founded in 2008 by Cliff Rosen, a technology veteran with more than 20 years experience designing and building technology solutions.
+
+========================================================
+
+QUERY: data.query
+
+RESPONSE: This question is not contained within the text. However, Whole Home Control provides design-build, design, and consulting services for home technology projects. You can contact them for more information.
+
+========================================================
+
+QUERY: data.query
+
+RESPONSE: This text does not contain an answer to your question. However, Whole Home Control offers design-build and design services that could help you with your query. You can find more information about these services on their website.
+
+========================================================
+
+QUERY: data.query
+
+RESPONSE: This information is not contained within the text provided. However, Whole Home Control offers design-build and design services for home technology projects. You can learn more about these services by visiting their website and contacting them directly.
+
+========================================================
+
+QUERY: where is the business located
+
+RESPONSE: Whole Home Control is located in New York City and Long Island.
+
+========================================================
+

@@ -1,6 +1,6 @@
 import pinecone
 import openai
-from openai.embeddings_utils import get_embedding, cosine_similarity
+from openai.embeddings_utils import get_embedding
 from . import db
 from . import secrets
 
@@ -10,6 +10,7 @@ MODEL = "text-embedding-ada-002"
 INDEX_NAME = "whc-site"
 TEMPERATURE=.5
 TOP_K=4
+
 pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
 index = pinecone.Index(INDEX_NAME)
 
@@ -23,7 +24,7 @@ def ge(text):
 print("initing openai")
 openai.api_key = OPENAI_API_KEY
 
-def getDocidsFromIndex(query_embedding):
+def get_chunks_from_embedding(query_embedding):
     print("getting matches")
     matches = index.query(
         top_k=TOP_K,
@@ -31,25 +32,26 @@ def getDocidsFromIndex(query_embedding):
         include_metadata=True,
         vector=query_embedding).matches
     print('length:', len(matches))
-    res = [int(matches[i].id) for i in range(len(matches))]
+    res = {matches[i].id : {"id" : int(matches[i].id), "score" : matches[i].score} for i in range(len(matches))}
     return res
 
-def getChunksFromIds(ids):
+def add_text_to_chunks(chunks):
+    ids = list(chunks.keys())
     conn = db.getConnection()
     cur = db.getDocumentChunksFromIds(conn, ids)
-    res = []
-    for doc_chunk_id, chunk_text in cur: 
+    for doc_chunk_id, chunk_text in cur:
         print(f"id: {doc_chunk_id}, title: {chunk_text[:20]}")
-        res.append(chunk_text)
+        chunks[str(doc_chunk_id)]["text"] = chunk_text
     db.closeConnection(conn)
-    return res
 
-def createPrompt(question, chunks):
+def create_prompt(question, chunks):
+    ids = list(chunks.keys())
+    chunks_text_arr = [chunks[str(id)]["text"] for id in ids]
     header = """Answer the question as truthfully as possible using the provided context, and if the answer is not contained within the text below, try to make a helpful suggestion if possible.  \n\nContext:\n"""
-    prompt = header + "".join(chunks) + "\n\n Q: " + question + "\n A:"
+    prompt = header + "".join(chunks_text_arr) + "\n\n Q: " + question + "\n A:"
     return prompt
 
-def queryModel(prompt):
+def query_model(prompt):
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=prompt,
@@ -83,23 +85,22 @@ def get_answer(query):
     query_embedding = ge(query)
 
     print("getting chunks ids")
-    ids = getDocidsFromIndex(query_embedding)
-    print("chunk ids are: ", ids)
+    chunks = get_chunks_from_embedding(query_embedding)
 
     print("getting chunks from ids")
-    chunks = getChunksFromIds(ids)
-    print("creating prompt")
+    add_text_to_chunks(chunks)
+    print("chunks: ", chunks)
 
-    prompt = createPrompt(query, chunks)
+    print("creating prompt")
+    prompt = create_prompt(query, chunks)
     #print(prompt)
 
     print("querying model")
-    response = queryModel(prompt)
+    response = query_model(prompt)
 
-    print("response", response)
-    logResult(query, response)
+    #print("response", response)
+    #logResult(query, response)
 
-    return {"answer" :response}
+    return {"answer": response, "chunks": chunks}
 
-#writeChunksToSingleFile()
-#print("get_answer()")
+

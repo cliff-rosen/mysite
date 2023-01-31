@@ -132,3 +132,27 @@ RESPONSE: We are a boutique home technology integrator serving the high end resi
 
 ========================================================
 
+QUERY: do you do projects in new jersey
+
+RESPONSE: We serve the high end residential market in NYC and surrounding areas, so it is possible that we may do projects in New Jersey. Please contact us to discuss your project and find out more.
+
+========================================================
+
+QUERY: do you do tv installation
+
+RESPONSE: Yes, we provide installation services for TV, as well as other applications such as home networking, smart lighting, HVAC, video/distributed video/home theater, audio/distributed audio, motorized shades, and surveillance.
+
+========================================================
+
+QUERY: can you do wifi
+
+RESPONSE: Yes, WiFi can be used for home technology design, but it is important to plan for equipment locations and have adequate wiring for the devices. It is also beneficial to use well regarded product brands and stick with "mature technology" that has reached stable versions.
+
+========================================================
+
+QUERY: do you work with architects
+
+RESPONSE: Yes, we work with architects in the design and implementation of technology systems in your home. Our process begins with a review of the early stage plans for your home and a detailed discussion about which technologies you wish to incorporate. We also work with architects to ensure the architecture does not wind up boxed in by the technology and vice versa.
+
+========================================================
+

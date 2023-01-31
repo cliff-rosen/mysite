@@ -15,6 +15,7 @@ import InputLabel from "@mui/material/InputLabel";
 
 export default function Hello() {
   const [query, setQuery] = useState("");
+  const [chunks, setChunks] = useState({});
   const [result, setResult] = useState("...");
 
   useEffect(() => {}, []);
@@ -23,8 +24,11 @@ export default function Hello() {
     e.preventDefault();
     const queryObj = { query };
     try {
+      setResult("...");
+      setChunks({});
       const data = await fetchPost("polls/", queryObj);
       setResult(data.answer);
+      setChunks(data.chunks);
     } catch (e) {
       setResult("ERROR");
     }
@@ -33,7 +37,12 @@ export default function Hello() {
   return (
     <Container>
       <div style={{ margin: "20px" }}></div>
-      <Box component="form" onSubmit={formSubmit} sx={{ mt: 1 }}>
+      <Box
+        component="form"
+        maxWidth={600}
+        onSubmit={formSubmit}
+        sx={{ mt: 1, margin: "auto" }}
+      >
         <FormControl fullWidth>
           <TextField
             margin="normal"
@@ -55,9 +64,21 @@ export default function Hello() {
             submit
           </Button>
         </FormControl>
+        <div>
+          <br />
+        </div>
+        <div>{result}</div>
+        <div>
+          <br />
+        </div>
+        <div>
+          {Object.values(chunks).map((chunk) => (
+            <div>
+              {chunk.score}: {chunk.text}
+            </div>
+          ))}
+        </div>
       </Box>
-      <div></div>
-      <div>Result: {result}</div>
     </Container>
   );
 }

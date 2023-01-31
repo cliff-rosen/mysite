@@ -6,6 +6,10 @@ from . import answer
 
 from django.middleware.csrf import get_token
 
+def x(request):
+    print("request", request)
+    return HttpResponse("hello")
+    
 def get_csrf_token(request):
     res = {"token": get_token(request)}
     return JsonResponse(res)

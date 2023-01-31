@@ -71,13 +71,20 @@ export default function Hello() {
         <div>
           <br />
         </div>
-        <div>
-          {Object.values(chunks).map((chunk) => (
-            <div>
-              {chunk.score}: {chunk.text}
+        {Object.values(chunks)
+          .sort((a, b) => b.score - a.score)
+          .map((chunk) => (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                border: "solid",
+              }}
+            >
+              <div style={{ padding: 5 }}>{chunk.score.toFixed(3)}</div>
+              <div> {chunk.text}</div>
             </div>
           ))}
-        </div>
       </Box>
     </Container>
   );

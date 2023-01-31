@@ -22,8 +22,12 @@ export default function Hello() {
   const formSubmit = async (e) => {
     e.preventDefault();
     const queryObj = { query };
-    const data = await fetchPost("polls", queryObj);
-    setResult(data.answer);
+    try {
+      const data = await fetchPost("polls/", queryObj);
+      setResult(data.answer);
+    } catch (e) {
+      setResult("ERROR");
+    }
   };
 
   return (
@@ -42,8 +46,17 @@ export default function Hello() {
             variant="outlined"
             required
           />
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            style={{ marginTop: 20 }}
+          >
+            submit
+          </Button>
         </FormControl>
       </Box>
+      <div></div>
       <div>Result: {result}</div>
     </Container>
   );

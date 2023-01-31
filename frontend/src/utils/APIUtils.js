@@ -3,11 +3,10 @@ import { config } from "../conf";
 
 export const BASE_API_URL = config.url.API_URL;
 
-function getHeaders() {
+function getHeaders(token) {
   const headers = {
+    "X-CSRFToken": token,
     "Content-Type": "application/json",
-    "X-CSRFToken":
-      "0b1riaUVD6w8SkOQ629PWIE6thLjgj3ySvj5FyRr7kcga7w3P8sUwwE2FizkqgZy",
   };
 
   /*
@@ -16,8 +15,8 @@ function getHeaders() {
   if (authProperty !== "") {
     headers["Authorization"] = authProperty;
   }
-  return headers;
   */
+  return headers;
 }
 
 /*
@@ -28,13 +27,13 @@ function getHeaders() {
         fetch doesn't return parsable json
         parsed json includes "error" property
 */
-async function doFetch(method, endpoint, body) {
+async function doFetch(method, endpoint, body, token) {
   if (method !== "GET" && method !== "POST" && method !== "PUT") {
     console.log("doFetch called with invalid method:", method);
     throw new Error("doFetch called with invalid method:" + method);
   }
 
-  const headers = getHeaders();
+  const headers = getHeaders(token);
   const options = {
     method,
     headers,
@@ -64,7 +63,9 @@ export async function fetchGet(endpoint) {
 
 export async function fetchPost(endpoint, body) {
   console.log("fetchPost", endpoint);
-  return doFetch("POST", endpoint, body);
+  const token = await fetchGet("polls/get_token");
+  console.log("token", token);
+  return doFetch("POST", endpoint, body, token.token);
 }
 
 export async function fetchPut(endpoint, body) {

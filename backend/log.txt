@@ -96,3 +96,33 @@ RESPONSE: Whole Home Control is located in New York City and Long Island.
 
 ========================================================
 
+QUERY: when did business form
+
+RESPONSE: Whole Home Control was founded in 2008 by Cliff Rosen.
+
+========================================================
+
+QUERY: when did business form
+
+RESPONSE: Whole Home Control was founded in 2008 by Cliff Rosen.
+
+========================================================
+
+QUERY: when did business form
+
+RESPONSE: Whole Home Control was founded in 2008 by Cliff Rosen.
+
+========================================================
+
+QUERY: asdf
+
+RESPONSE: It looks like this blog does not contain the answer to your question. Perhaps you could try contacting Whole Home Control, LLC directly for more information.
+
+========================================================
+
+QUERY: where is this business located
+
+RESPONSE: Whole Home Control is located in New York City and Long Island.
+
+========================================================
+

@@ -2,9 +2,10 @@ import pinecone
 import openai
 from openai.embeddings_utils import get_embedding, cosine_similarity
 from . import db
+from . import secrets
 
 PINECONE_API_KEY = "7484d7df-d798-4b27-90c7-0f0164e6744d"
-OPENAI_API_KEY = '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'
+OPENAI_API_KEY = secrets.OPENAI_API_KEY
 MODEL = "text-embedding-ada-002"
 INDEX_NAME = "whc-site"
 TEMPERATURE=.5

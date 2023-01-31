@@ -3,9 +3,8 @@ import { config } from "../conf";
 
 export const BASE_API_URL = config.url.API_URL;
 
-function getHeaders(token) {
+function getHeaders() {
   const headers = {
-    "X-CSRFToken": token,
     "Content-Type": "application/json",
   };
 
@@ -27,13 +26,13 @@ function getHeaders(token) {
         fetch doesn't return parsable json
         parsed json includes "error" property
 */
-async function doFetch(method, endpoint, body, token) {
+async function doFetch(method, endpoint, body) {
   if (method !== "GET" && method !== "POST" && method !== "PUT") {
     console.log("doFetch called with invalid method:", method);
     throw new Error("doFetch called with invalid method:" + method);
   }
 
-  const headers = getHeaders(token);
+  const headers = getHeaders();
   const options = {
     method,
     headers,
@@ -63,9 +62,7 @@ export async function fetchGet(endpoint) {
 
 export async function fetchPost(endpoint, body) {
   console.log("fetchPost", endpoint);
-  const token = await fetchGet("polls/get_token");
-  console.log("token", token);
-  return doFetch("POST", endpoint, body, token.token);
+  return doFetch("POST", endpoint, body);
 }
 
 export async function fetchPut(endpoint, body) {

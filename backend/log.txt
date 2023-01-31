@@ -126,3 +126,9 @@ RESPONSE: Whole Home Control is located in New York City and Long Island.
 
 ========================================================
 
+QUERY: do you do projects in new jersey
+
+RESPONSE: We are a boutique home technology integrator serving the high end residential market in NYC and surrounding areas. We do not explicitly state that we do projects in New Jersey, however it is possible that we may be able to assist you depending on the scope of the project. Please contact us at contact@wholehomecontrol.com to discuss further.
+
+========================================================
+

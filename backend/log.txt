@@ -90,3 +90,9 @@ RESPONSE: Whole Home Control is located in New York City and Long Island.
 
 ========================================================
 
+QUERY: where is the business located
+
+RESPONSE: Whole Home Control is located in New York City and Long Island.
+
+========================================================
+

@@ -4,7 +4,7 @@ from openai.embeddings_utils import get_embedding, cosine_similarity
 from . import db
 
 PINECONE_API_KEY = "7484d7df-d798-4b27-90c7-0f0164e6744d"
-OPENAI_API_KEY = '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'
+OPENAI_API_KEY = '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'
 MODEL = "text-embedding-ada-002"
 INDEX_NAME = "whc-site"
 TEMPERATURE=.5

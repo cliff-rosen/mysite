@@ -2,4 +2,4 @@
 
 secrets.js
 secrets.conf
-local_secrets.py
+local_secrets.*

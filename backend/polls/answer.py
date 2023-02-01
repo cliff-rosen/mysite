@@ -9,7 +9,7 @@ PINECONE_API_KEY = "7484d7df-d798-4b27-90c7-0f0164e6744d"
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
 MODEL = "text-embedding-ada-002"
 INDEX_NAME = "main-index"
-TEMPERATURE=0
+TEMPERATURE=.4
 TOP_K=10
 MAX_WORD_COUNT = 2500
 
@@ -78,15 +78,15 @@ def create_prompt(question, chunks):
     chunks_text_arr = [chunks[str(id)]["text"] for id in ids]
     context = [{"context_id": str(id), "context": chunks[str(id)]["text"]} for id in ids]
     header = """
-        You are customer service representative for a company.
-        The below question is from a potential customer.
-        Answer the question as truthfully as possible using the provided context.  
+        You are a chatbot working as a customer service representative for a company.
+        The following question is from a potential customer.
+        Answer the question as truthfully as possible using only the provided context and no other information.  
         Use only the provided context to answer the questions.
         If you are note certain of the answer, say "I don't know."
         \n\nContext:\n"""
-    prompt = header + "".join(chunks_text_arr) + "\n\n Q: " + question + "\n A:"
-
-    header = """
+    prompt = header + "".join(chunks_text_arr) + "\n\n Question: " + question + "\n A:"
+    """
+    header = ""
         You are customer service representative for a company.
         The below question is from a potential customer.
         Answer the question as truthfully as possible using the provided context array.  
@@ -99,8 +99,9 @@ def create_prompt(question, chunks):
             response: <ANSWER>, 
             used_context_ids: [id1, id2, ...]
         }
-        \n\nContext:\n"""
+        \n\nContext:\n""
     prompt = header + json.dumps(context) + "\n\n Q: " + question + "\n A:"
+    """
     return prompt
 
 def query_model(prompt):

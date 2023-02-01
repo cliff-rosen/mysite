@@ -15,7 +15,7 @@ pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
 index = pinecone.Index(INDEX_NAME)
 
 def upsert_index(doc_id, doc_chunk_id, vector_str):
-    id_str = str(id)
+    id_str = str(doc_chunk_id)
     vector_obj = json.loads(vector_str)
     metadata = {'domain_id': domain_id, "doc_id": doc_id, "doc_chunk_id": doc_chunk_id}
     upsert_response = index.upsert(vectors=[(id_str, vector_obj, metadata)])

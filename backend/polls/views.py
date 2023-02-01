@@ -8,8 +8,8 @@ from django.middleware.csrf import get_token
 from django.conf import settings
 
 def x(request):
-    print(settings.BASE_DIR)
-    print("request", request)
+    res = answer.ge("hello")
+    print(res)
     return HttpResponse("hello")
 
 def get_csrf_token(request):

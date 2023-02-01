@@ -83,6 +83,20 @@ export default function Hello() {
             <img src="/waves.gif" style={{ height: 75, width: 250 }} />
           </div>
         )}
+        <div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              border: "solid",
+            }}
+          >
+            <div style={{ flexGrow: 0, padding: 5 }}>SCR</div>
+            <div style={{ flexGrow: 0, padding: 5 }}>ID</div>
+            <div style={{ flexGrow: 1, padding: 5 }}> CHUNK TEXT</div>
+          </div>
+        </div>
+
         {Object.values(chunks)
           .sort((a, b) => b.score - a.score)
           .map((chunk, i) => (
@@ -94,8 +108,13 @@ export default function Hello() {
                   border: "solid",
                 }}
               >
-                <div style={{ padding: 5 }}>{chunk.score.toFixed(3)}</div>
-                <div> {chunk.text}</div>
+                <div style={{ flexGrow: 0, padding: 5 }}>
+                  {chunk.score.toFixed(3)}
+                </div>
+                <div style={{ flexGrow: 0, padding: 5 }}>
+                  {chunk.metadata.doc_chunk_id}
+                </div>
+                <div style={{ flexGrow: 1, padding: 5 }}> {chunk.text}</div>
               </div>
               <div style={{ textAlign: "center" }}>
                 {i + 1 === chunksUsedcount ? <div>UNUSED CHUNKS</div> : ""}

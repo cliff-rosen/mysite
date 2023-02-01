@@ -2,39 +2,44 @@ import pinecone
 import openai
 from openai.embeddings_utils import get_embedding
 from db import local_db as db
-from . import secrets
+from . import local_secrets as secrets
 
 PINECONE_API_KEY = "7484d7df-d798-4b27-90c7-0f0164e6744d"
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
 MODEL = "text-embedding-ada-002"
-INDEX_NAME = "whc-site"
-TEMPERATURE=.5
+INDEX_NAME = "main-index"
+TEMPERATURE=.9
 TOP_K=10
 MAX_WORD_COUNT = 2500
+
+DOMAIN_ID = 1
 
 pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
 index = pinecone.Index(INDEX_NAME)
 
+print("initing openai")
+openai.api_key = OPENAI_API_KEY
+
 def ge(text):
+    print(OPENAI_API_KEY)
     embedding_model = MODEL
     return get_embedding(
         text,
         engine=embedding_model
     )
 
-print("initing openai")
-openai.api_key = OPENAI_API_KEY
-
-def get_chunks_from_embedding(query_embedding):
+def get_chunks_from_embedding(domain_id, query_embedding):
     print("getting matches")
     matches = index.query(
         top_k=TOP_K,
         include_values=True,
         include_metadata=True,
-        vector=query_embedding).matches
+        vector=query_embedding,
+           filter={'domain_id': DOMAIN_ID}).matches
     print('length:', len(matches))
+    print("id", matches[0].id, "meta", matches[0].metadata)
     #matches = sorted(matches, key = lambda match: match.score, reverse = True)
-    res = {matches[i].id : {"id" : int(matches[i].id), "score" : matches[i].score} for i in range(len(matches))}
+    res = {matches[i].id : {"id" : int(matches[i].id), "score" : matches[i].score, "metadata": matches[i].metadata} for i in range(len(matches))}
     return res
 
 def get_chunks_with_text(chunks):
@@ -89,7 +94,7 @@ def get_answer(query):
     query_embedding = ge(query)
 
     print("getting chunks ids")
-    chunks = get_chunks_from_embedding(query_embedding)
+    chunks = get_chunks_from_embedding(DOMAIN_ID, query_embedding)
 
     print("getting chunk text from ids")
     chunks_with_text = get_chunks_with_text(chunks)

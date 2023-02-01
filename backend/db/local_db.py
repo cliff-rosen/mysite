@@ -45,6 +45,12 @@ def get_all_document_chunks(conn, domain_id):
         """, (domain_id,)) 
     return cur
 
+def get_document_chunks_from_ids(conn, ids):
+    format_strings = ','.join(['%s'] * len(ids))
+    cur = conn.cursor() 
+    cur.execute("SELECT doc_chunk_id, chunk_text FROM document_chunk WHERE doc_chunk_id in (%s)" % format_strings, tuple(ids)) 
+    return cur
+
 def updateDocumentChunkEmbedding(conn, doc_chunk_id, embedding):
     json_data = json.dumps(embedding)
     cur = conn.cursor()
@@ -59,11 +65,6 @@ def getDocumentsFromIds(conn, ids):
     cur.execute("SELECT doc_id, doc_title FROM document WHERE doc_id in (%s)" % format_strings, tuple(ids)) 
     return cur
 
-def get_document_chunks_from_ids(conn, ids):
-    format_strings = ','.join(['%s'] * len(ids))
-    cur = conn.cursor() 
-    cur.execute("SELECT doc_chunk_id, chunk_text FROM document_chunk WHERE doc_chunk_id in (%s)" % format_strings, tuple(ids)) 
-    return cur
 
 def testInsert():
     conn = getConnection()

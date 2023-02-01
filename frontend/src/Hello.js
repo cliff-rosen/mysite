@@ -17,7 +17,7 @@ export default function Hello() {
   const [query, setQuery] = useState("");
   const [chunks, setChunks] = useState({});
   const [chunksUsedcount, setChunksUsedCount] = useState(0);
-  const [result, setResult] = useState("...");
+  const [result, setResult] = useState("-");
 
   useEffect(() => {}, []);
 
@@ -25,7 +25,7 @@ export default function Hello() {
     e.preventDefault();
     const queryObj = { query };
     try {
-      setResult("...");
+      setResult(null);
       setChunks({});
       setChunksUsedCount(0);
       const data = await fetchPost("polls/", queryObj);
@@ -42,7 +42,7 @@ export default function Hello() {
       <div style={{ margin: "20px" }}></div>
       <Box
         component="form"
-        maxWidth={600}
+        maxWidth={800}
         onSubmit={formSubmit}
         sx={{ mt: 1, margin: "auto" }}
       >
@@ -70,11 +70,19 @@ export default function Hello() {
         <div>
           <br />
         </div>
-        <div>{result}</div>
-        <div>
-          <br />
-        </div>
-        <div>Chunks used: {chunksUsedcount}</div>
+        {result ? (
+          <div>
+            <div>{result}</div>{" "}
+            <div>
+              <br />
+            </div>
+            <div>Chunks used: {chunksUsedcount}</div>
+          </div>
+        ) : (
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <img src="/waves.gif" style={{ height: 150, width: 150 }} />
+          </div>
+        )}
         {Object.values(chunks)
           .sort((a, b) => b.score - a.score)
           .map((chunk, i) => (

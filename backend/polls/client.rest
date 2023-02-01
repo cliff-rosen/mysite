@@ -3,16 +3,21 @@ GET http://127.0.0.1:8000/polls/x
 accept: application/json
 
 ###
+GET http://127.0.0.1:8000/polls/get_domains
+accept: application/json
+
+###
 
 GET http://127.0.0.1:8000/polls/get_token
 accept: application/json
 
 ###
 
-POST http://127.0.0.1:8000/polls/
+POST http://127.0.0.1:8000/polls/answer
 accept: application/json
 X-CSRFToken: 0b1riaUVD6w8SkOQ629PWIE6thLjgj3ySvj5FyRr7kcga7w3P8sUwwE2FizkqgZy
 
 {
-    "query": "how much do you charge"
+    "domain_id": 1,
+    "query": "are you open on saturdays"
 }

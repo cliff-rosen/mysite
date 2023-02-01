@@ -51,6 +51,11 @@ def get_document_chunks_from_ids(conn, ids):
     cur.execute("SELECT doc_chunk_id, chunk_text FROM document_chunk WHERE doc_chunk_id in (%s)" % format_strings, tuple(ids)) 
     return cur
 
+def get_domains(conn):
+    cur = conn.cursor() 
+    cur.execute("SELECT domain_id, domain_desc FROM domain") 
+    return cur
+
 def updateDocumentChunkEmbedding(conn, doc_chunk_id, embedding):
     json_data = json.dumps(embedding)
     cur = conn.cursor()

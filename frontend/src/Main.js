@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { fetchPost } from "./utils/APIUtils";
+import { fetchGet, fetchPost } from "./utils/APIUtils";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Alert from "@mui/material/Alert";
@@ -13,22 +13,31 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 
-export default function Hello() {
+export default function Main() {
+  const [domains, setDomains] = useState([]);
+  const [domain, setDomain] = useState(0);
   const [query, setQuery] = useState("");
   const [chunks, setChunks] = useState({});
   const [chunksUsedcount, setChunksUsedCount] = useState(0);
   const [result, setResult] = useState("-");
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const getOptions = async () => {
+      const d = await fetchGet("get_domains");
+      setDomains(d);
+    };
+
+    getOptions();
+  }, []);
 
   const formSubmit = async (e) => {
     e.preventDefault();
-    const queryObj = { query };
+    const queryObj = { domain_id: domain, query };
     try {
       setResult(null);
       setChunks({});
       setChunksUsedCount(0);
-      const data = await fetchPost("polls/", queryObj);
+      const data = await fetchPost("answer", queryObj);
       setResult(data.answer);
       setChunks(data.chunks);
       setChunksUsedCount(data.chunks_used_count);
@@ -47,6 +56,20 @@ export default function Hello() {
         sx={{ mt: 1, margin: "auto" }}
       >
         <FormControl fullWidth>
+          <InputLabel>Domain</InputLabel>
+          <Select
+            value={domain}
+            label="Domain"
+            onChange={(e) => {
+              setDomain(e.target.value);
+            }}
+          >
+            {domains.map((d) => (
+              <MenuItem key={d.domain_id} value={d.domain_id}>
+                {d.domain_desc}
+              </MenuItem>
+            ))}
+          </Select>
           <TextField
             margin="normal"
             fullWidth

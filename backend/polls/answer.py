@@ -13,7 +13,7 @@ TEMPERATURE=.4
 TOP_K=10
 MAX_WORD_COUNT = 2500
 
-DOMAIN_ID = 1
+#DOMAIN_ID = 1
 
 pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
 index = pinecone.Index(INDEX_NAME)
@@ -36,11 +36,14 @@ def get_chunks_from_embedding(domain_id, query_embedding):
         include_values=True,
         include_metadata=True,
         vector=query_embedding,
-           filter={'domain_id': DOMAIN_ID}).matches
+           filter={'domain_id': domain_id}).matches
     print('length:', len(matches))
-    print("id", matches[0].id, "meta", matches[0].metadata)
+    #print("id", matches[0].id, "meta", matches[0].metadata)
     #matches = sorted(matches, key = lambda match: match.score, reverse = True)
-    res = {matches[i].id : {"id" : int(matches[i].id), "score" : matches[i].score, "metadata": matches[i].metadata} for i in range(len(matches))}
+    if len(matches) > 0:
+        res = {matches[i].id : {"id" : int(matches[i].id), "score" : matches[i].score, "metadata": matches[i].metadata} for i in range(len(matches))}
+    else:
+        res = {}
     return res
 
 def get_chunks_with_text(chunks):
@@ -71,7 +74,6 @@ def get_chunks_with_text(chunks):
 
     print('word count', word_count)
     return chunks_with_text
-
 
 def create_prompt(question, chunks):
     ids = list(chunks.keys())
@@ -113,13 +115,15 @@ def query_model(prompt):
     )
     return response["choices"][0]["text"].strip(" \n")
 
-def get_answer(query):
+def get_answer(domain_id, query):
 
     print("getting query embedding")
     query_embedding = ge(query)
 
     print("getting chunks ids")
-    chunks = get_chunks_from_embedding(DOMAIN_ID, query_embedding)
+    chunks = get_chunks_from_embedding(domain_id, query_embedding)
+    if not chunks:
+        return {"answer": "no data", "chunks": {}, "chunks_used_count": 0 }
 
     print("getting chunk text from ids")
     chunks_with_text = get_chunks_with_text(chunks)

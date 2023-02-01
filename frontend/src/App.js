@@ -1,7 +1,7 @@
-import Hello from "./Hello";
+import Main from "./Main";
 
 function App() {
-  return <Hello />;
+  return <Main />;
 }
 
 export default App;

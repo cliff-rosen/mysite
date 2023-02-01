@@ -29,16 +29,21 @@ def get_all_documents(conn, domain_id):
     cur.execute("SELECT doc_id, domain_id, doc_uri, doc_title, doc_text FROM document WHERE domain_id = ?", (domain_id,)) 
     return cur
 
-def getAllDocumentChunks(conn):
-    cur = conn.cursor() 
-    cur.execute("SELECT * FROM document_chunk") 
-    return cur
-
 def insert_document_chunk(conn, doc_id, chunk_text, chunk_embedding):
     json_data = json.dumps(chunk_embedding)
     cur = conn.cursor() 
     cur.execute("INSERT INTO document_chunk (doc_id, chunk_text, chunk_embedding) VALUES (?, ?, ?)", (doc_id, chunk_text, json_data)) 
     conn.commit() 
+
+def get_all_document_chunks(conn, domain_id):
+    cur = conn.cursor() 
+    cur.execute("""
+        SELECT d.doc_id, dc.doc_chunk_id, dc.chunk_embedding
+        FROM document_chunk dc
+        JOIN document d ON dc.doc_id = d.doc_id
+        WHERE d.domain_id = ?
+        """, (domain_id,)) 
+    return cur
 
 def updateDocumentChunkEmbedding(conn, doc_chunk_id, embedding):
     json_data = json.dumps(embedding)

@@ -23,14 +23,14 @@ For each document
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
 openai.api_key = OPENAI_API_KEY
 
-def ge(text):
+def get_openai_embedding(text):
     embedding_model = "text-embedding-ada-002"
     return get_embedding(
         text,
         engine="text-embedding-ada-002"
     )
 
-def get_all_docs():
+def get_all_docs_from_domain(domain_id):
     return db.get_all_documents(conn, domain_id)
 
 def get_chunks_from_text(text, r):
@@ -52,27 +52,26 @@ def get_chunks_from_text(text, r):
     return chunks
 
 # runtime settings
-domain_id = 2
+domain_id = 3
 
 # init
 conn = db.get_connection()
 
 # one to one creation of chunks with embeddings
-# FIX ME: this should instead break docs into chunks
 # FIX ME: should be upsertChunk() and not insertChunk()
-rows = get_all_docs().fetchall()
+rows = get_all_docs_from_domain(domain_id).fetchall()
 for row in rows:
     doc_id = row[0]
     uri = row[2]
     print("*********************************")
     print(uri)
     chunks = get_chunks_from_text(row[4], True)
-    for chunk in chunks[:5]:
-        clean_chunk = re.sub('\s+', ' ', chunk)
-        print(clean_chunk[:50])
+    for chunk in chunks:
+        #clean_chunk = re.sub('\s+', ' ', chunk)
+        print(doc_id, chunk[:50])
         print("----------------------")
-        embedding = ge(clean_chunk)
-        db.insert_document_chunk(conn, doc_id, clean_chunk, embedding)
+        embedding = get_openai_embedding(chunk)
+        db.insert_document_chunk(conn, doc_id, chunk, embedding)
 
 # cleanup
 db.close_connection(conn)

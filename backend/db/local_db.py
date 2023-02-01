@@ -35,7 +35,7 @@ def insert_document_chunk(conn, doc_id, chunk_text, chunk_embedding):
     cur.execute("INSERT INTO document_chunk (doc_id, chunk_text, chunk_embedding) VALUES (?, ?, ?)", (doc_id, chunk_text, json_data)) 
     conn.commit() 
 
-def get_all_document_chunks(conn, domain_id):
+def get_document_chunks(conn, domain_id):
     cur = conn.cursor() 
     cur.execute("""
         SELECT d.doc_id, dc.doc_chunk_id, dc.chunk_embedding

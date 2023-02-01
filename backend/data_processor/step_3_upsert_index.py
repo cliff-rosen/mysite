@@ -20,7 +20,7 @@ def upsert_index(doc_id, doc_chunk_id, vector_str):
 
 def run():
     conn = db.get_connection()
-    rows = db.get_all_document_chunks(conn, domain_id).fetchall()
+    rows = db.get_document_chunks(conn, domain_id).fetchall()
     for row in rows:
         print("upserting: ", row[1], row[2][:20])
         upsert_index(row[0], row[1], row[2])
@@ -31,7 +31,7 @@ def fetch():
     print(res['vectors']['3']['metadata'])
 
 # runtime settings
-domain_id = 2
+domain_id = 3
 
 print(index.describe_index_stats())
-run()
+#run()

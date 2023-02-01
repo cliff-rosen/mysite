@@ -36,10 +36,10 @@ def spider(url):
     # Extract page text and save it to db
     page_text = ""
     for main in soup.find_all('main'):
-        page_text = page_text + main.get_text() + "\n\n-----\n\n"
+        page_text = page_text + main.get_text("\n") + "\n\n-----\n\n"
 
-    #save_text(url, page_text)
-    write_text_to_file(url, page_text)
+    write_text_to_db(url, page_text)
+    #write_text_to_file(url, page_text)
 
     # Extract all the links on the page
     links = soup.find_all('a')
@@ -48,11 +48,11 @@ def spider(url):
         if link_is_good(link_url):
             if not link_url.startswith("http"):
                 link_url = initial_url + link_url
-            #spider(link_url)
+            spider(link_url)
         #else:
         #    print("rejected: ", link_url)
 
-def save_text(uri, text):
+def write_text_to_db(uri, text):
     print("saving: ", uri)
     #text = re.sub('\s+', ' ', text)
     db.insert_document(conn, domain_id, uri, "", text)
@@ -62,7 +62,7 @@ def save_text(uri, text):
 def write_text_to_file(uri, page_text):
     with open(file_name, "a") as file:
         file.writelines(uri + "\n\n")
-        file.writelines(page_text + "\n\n")
+        #file.writelines(page_text + "\n\n")
         file.writelines(page_text.encode(encoding='ASCII',errors='ignore').decode() + "\n\n")
         #file.writelines(re.sub('\s+', ' ', page_text) + "\n\n")
 
@@ -70,8 +70,8 @@ def write_text_to_file(uri, page_text):
 # configure job
 domain_id = 3
 initial_url = 'https://everplans.com'
-initial_url = 'https://www.everplans.com/health-organization'
-initial_url = 'https://www.everplans.com/topics'
+#initial_url = 'https://www.everplans.com/health-organization'
+#initial_url = 'https://www.everplans.com/topics'
 file_name = "page.txt"
 
 # init

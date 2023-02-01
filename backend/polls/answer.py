@@ -1,7 +1,7 @@
 import pinecone
 import openai
 from openai.embeddings_utils import get_embedding
-from . import db
+from db import local_db as db
 from . import secrets
 
 PINECONE_API_KEY = "7484d7df-d798-4b27-90c7-0f0164e6744d"
@@ -44,14 +44,14 @@ def get_chunks_with_text(chunks):
 
     # add text property to chunks
     ids = list(chunks.keys())
-    conn = db.getConnection()
-    cur = db.getDocumentChunksFromIds(conn, ids)
+    conn = db.get_connection()
+    cur = db.get_document_chunks_from_ids(conn, ids)
     for doc_chunk_id, chunk_text in cur:
         print(f"id: {doc_chunk_id}, title: {chunk_text[:20]}")
         words_in_chunk = len(chunk_text.split())
         print("words", words_in_chunk)
         chunks[str(doc_chunk_id)]["text"] = chunk_text
-    db.closeConnection(conn)
+    db.close_connection(conn)
 
     # add chunks to chunks_with_text until word_count grows too large
     for id, chunk in sorted(chunks.items(), key=lambda item: item[1]["score"], reverse = True):

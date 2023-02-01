@@ -67,11 +67,11 @@ export default function Hello() {
             submit
           </Button>
         </FormControl>
-        <div>
-          <br />
-        </div>
         {result ? (
           <div>
+            <div>
+              <br />
+            </div>
             <div>{result}</div>{" "}
             <div>
               <br />
@@ -80,7 +80,7 @@ export default function Hello() {
           </div>
         ) : (
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <img src="/waves.gif" style={{ height: 150, width: 150 }} />
+            <img src="/waves.gif" style={{ height: 75, width: 250 }} />
           </div>
         )}
         {Object.values(chunks)

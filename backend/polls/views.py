@@ -5,7 +5,10 @@ import json
 from . import answer
 from django.middleware.csrf import get_token
 
+from django.conf import settings
+
 def x(request):
+    print(settings.BASE_DIR)
     print("request", request)
     return HttpResponse("hello")
 

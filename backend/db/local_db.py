@@ -1,7 +1,15 @@
 import mariadb
 import json
 
-def getConnection():
+"""
+domain: domain_id, domain_desc
+document: doc_id, domain_id, doc_uri, doc_text
+document_chunk: doc_chunk_id, doc_id, chunk_text, chunk_embedding
+index: doc_chunk_id, embedding, metadata {sub_index: <SUB_INDEX>}
+"""
+
+
+def get_connection():
     conn = mariadb.connect(
         user="nodejs",
         password="db",
@@ -9,18 +17,18 @@ def getConnection():
         database="doc")
     return conn
 
-def closeConnection(conn):
+def close_connection(conn):
     conn.close()
+
+def insert_document(conn, domain_id, doc_uri, doc_title, doc_text):
+    cur = conn.cursor() 
+    cur.execute("INSERT INTO document (domain_id, doc_uri, doc_title, doc_text) VALUES (?, ?, ?, ?)", (domain_id, doc_uri, doc_title, doc_text)) 
+    conn.commit() 
 
 def getAllDocuments(conn):
     cur = conn.cursor() 
     cur.execute("SELECT * FROM document") 
     return cur
-
-def insertDocument(conn, source_id, title, text):
-    cur = conn.cursor() 
-    cur.execute("INSERT INTO document (doc_source_id, doc_title, doc_text) VALUES (?, ?, ?)", (source_id, title, text)) 
-    conn.commit() 
 
 def getAllDocumentChunks(conn):
     cur = conn.cursor() 
@@ -47,7 +55,7 @@ def getDocumentsFromIds(conn, ids):
     cur.execute("SELECT doc_id, doc_title FROM document WHERE doc_id in (%s)" % format_strings, tuple(ids)) 
     return cur
 
-def getDocumentChunksFromIds(conn, ids):
+def get_document_chunks_from_ids(conn, ids):
     format_strings = ','.join(['%s'] * len(ids))
     cur = conn.cursor() 
     cur.execute("SELECT doc_chunk_id, chunk_text FROM document_chunk WHERE doc_chunk_id in (%s)" % format_strings, tuple(ids)) 
@@ -58,10 +66,10 @@ def testInsert():
     insertDocument(conn, "id xyz", "another document", "more document text")
 
 def testGet():
-    conn = getConnection()
+    conn = get_connection()
     cur = getDocumentsFromIds(conn, [7,8])
     for doc_id, doc_title in cur: 
         print(f"id: {doc_id}, title: {doc_title}")
-    closeConnection(conn)
+    close_connection(conn)
 
 #testGet()

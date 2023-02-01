@@ -1,6 +1,7 @@
 import pinecone
 import openai
 from openai.embeddings_utils import get_embedding
+import json
 from db import local_db as db
 from . import local_secrets as secrets
 
@@ -8,7 +9,7 @@ PINECONE_API_KEY = "7484d7df-d798-4b27-90c7-0f0164e6744d"
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
 MODEL = "text-embedding-ada-002"
 INDEX_NAME = "main-index"
-TEMPERATURE=.9
+TEMPERATURE=0
 TOP_K=10
 MAX_WORD_COUNT = 2500
 
@@ -75,8 +76,31 @@ def get_chunks_with_text(chunks):
 def create_prompt(question, chunks):
     ids = list(chunks.keys())
     chunks_text_arr = [chunks[str(id)]["text"] for id in ids]
-    header = """Answer the question as truthfully as possible using the provided context, and if the answer is not contained within the text below, try to make a helpful suggestion if possible.  \n\nContext:\n"""
+    context = [{"context_id": str(id), "context": chunks[str(id)]["text"]} for id in ids]
+    header = """
+        You are customer service representative for a company.
+        The below question is from a potential customer.
+        Answer the question as truthfully as possible using the provided context.  
+        Use only the provided context to answer the questions.
+        If you are note certain of the answer, say "I don't know."
+        \n\nContext:\n"""
     prompt = header + "".join(chunks_text_arr) + "\n\n Q: " + question + "\n A:"
+
+    header = """
+        You are customer service representative for a company.
+        The below question is from a potential customer.
+        Answer the question as truthfully as possible using the provided context array.  
+        Use only the provided context to answer the questions.
+        If you are not certain of the answer, say "I don't know."
+        In your response, include each context_id used to formulate the response.
+        Do not list the context_ids that were not helpful.
+        The format of your response should be a JSON object as follows:
+        {
+            response: <ANSWER>, 
+            used_context_ids: [id1, id2, ...]
+        }
+        \n\nContext:\n"""
+    prompt = header + json.dumps(context) + "\n\n Q: " + question + "\n A:"
     return prompt
 
 def query_model(prompt):

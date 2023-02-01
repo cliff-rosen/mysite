@@ -1,6 +1,6 @@
 import openai
 from openai.embeddings_utils import get_embedding, cosine_similarity
-from langchain.text_splitter import CharacterTextSplitter
+from langchain.text_splitter import CharacterTextSplitter, RecursiveCharacterTextSplitter
 import re
 import sys
 sys.path.append('db')
@@ -23,9 +23,6 @@ For each document
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
 openai.api_key = OPENAI_API_KEY
 
-# runtime settings
-domain_id = 1
-
 def ge(text):
     embedding_model = "text-embedding-ada-002"
     return get_embedding(
@@ -36,15 +33,26 @@ def ge(text):
 def get_all_docs():
     return db.get_all_documents(conn, domain_id)
 
-def get_chunks_from_text(text):
-    chunks_splitter = CharacterTextSplitter(        
-        separator = "\n\n",
-        chunk_size = 1000,
-        chunk_overlap  = 200,
-        length_function = len,
-    )
+def get_chunks_from_text(text, r):
+    if not r:
+        chunks_splitter = CharacterTextSplitter(        
+            separator = "\n\n",
+            chunk_size = 1000,
+            chunk_overlap  = 200,
+            length_function = len,
+        )
+    else:
+        text = re.sub('\s+', ' ', text)
+        chunks_splitter = RecursiveCharacterTextSplitter(        
+            chunk_size = 1000,
+            chunk_overlap  = 200,
+            length_function = len,
+        )
     chunks = chunks_splitter.split_text(text)
     return chunks
+
+# runtime settings
+domain_id = 2
 
 # init
 conn = db.get_connection()
@@ -58,8 +66,8 @@ for row in rows:
     uri = row[2]
     print("*********************************")
     print(uri)
-    chunks = get_chunks_from_text(row[4])
-    for chunk in chunks:
+    chunks = get_chunks_from_text(row[4], True)
+    for chunk in chunks[:5]:
         clean_chunk = re.sub('\s+', ' ', chunk)
         print(clean_chunk[:50])
         print("----------------------")

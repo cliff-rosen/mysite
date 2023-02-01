@@ -8,9 +8,6 @@ import local_db as db
 PINECONE_API_KEY = "7484d7df-d798-4b27-90c7-0f0164e6744d"
 INDEX_NAME = "main-index"
 
-# runtime settings
-domain_id = 1
-
 pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
 index = pinecone.Index(INDEX_NAME)
 
@@ -33,6 +30,8 @@ def fetch():
     res = index.fetch(ids=['3'])
     print(res['vectors']['3']['metadata'])
 
+# runtime settings
+domain_id = 2
 
 print(index.describe_index_stats())
-#run()
+run()

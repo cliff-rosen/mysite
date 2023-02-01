@@ -14,5 +14,5 @@ accept: application/json
 X-CSRFToken: 0b1riaUVD6w8SkOQ629PWIE6thLjgj3ySvj5FyRr7kcga7w3P8sUwwE2FizkqgZy
 
 {
-    "query": "how"
+    "query": "are the systems easy to use"
 }

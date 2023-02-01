@@ -16,6 +16,7 @@ import InputLabel from "@mui/material/InputLabel";
 export default function Hello() {
   const [query, setQuery] = useState("");
   const [chunks, setChunks] = useState({});
+  const [chunksUsedcount, setChunksUsedCount] = useState(0);
   const [result, setResult] = useState("...");
 
   useEffect(() => {}, []);
@@ -26,9 +27,11 @@ export default function Hello() {
     try {
       setResult("...");
       setChunks({});
+      setChunksUsedCount(0);
       const data = await fetchPost("polls/", queryObj);
       setResult(data.answer);
       setChunks(data.chunks);
+      setChunksUsedCount(data.chunks_used_count);
     } catch (e) {
       setResult("ERROR");
     }
@@ -71,18 +74,24 @@ export default function Hello() {
         <div>
           <br />
         </div>
+        <div>Chunks used: {chunksUsedcount}</div>
         {Object.values(chunks)
           .sort((a, b) => b.score - a.score)
-          .map((chunk) => (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                border: "solid",
-              }}
-            >
-              <div style={{ padding: 5 }}>{chunk.score.toFixed(3)}</div>
-              <div> {chunk.text}</div>
+          .map((chunk, i) => (
+            <div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  border: "solid",
+                }}
+              >
+                <div style={{ padding: 5 }}>{chunk.score.toFixed(3)}</div>
+                <div> {chunk.text}</div>
+              </div>
+              <div style={{ textAlign: "center" }}>
+                {i + 1 === chunksUsedcount ? <div>UNUSED CHUNKS</div> : ""}
+              </div>
             </div>
           ))}
       </Box>

@@ -1,7 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
-import local_db as db
 import re
+import sys
+sys.path.append('db')
+import local_db as db
 
 """
 TO DO
@@ -18,7 +20,7 @@ def spider(url):
     # Extract page text and save it to db
     page_text = ""
     for main in soup.find_all('main'):
-        page_text = page_text + main.get_text().strip()
+        page_text = page_text + main.get_text()
     save_text(url, page_text)
 
     # Extract all the links on the page
@@ -38,7 +40,7 @@ def spider(url):
 
 def save_text(uri, text):
     print("saving: ", uri)
-    text = re.sub('\s+', ' ', text)
+    #text = re.sub('\s+', ' ', text)
     db.insert_document(conn, domain_id, uri, "", text)
     return    
 

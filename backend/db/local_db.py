@@ -8,7 +8,6 @@ document_chunk: doc_chunk_id, doc_id, chunk_text, chunk_embedding
 index: doc_chunk_id, embedding, metadata {sub_index: <SUB_INDEX>}
 """
 
-
 def get_connection():
     conn = mariadb.connect(
         user="nodejs",
@@ -25,9 +24,9 @@ def insert_document(conn, domain_id, doc_uri, doc_title, doc_text):
     cur.execute("INSERT INTO document (domain_id, doc_uri, doc_title, doc_text) VALUES (?, ?, ?, ?)", (domain_id, doc_uri, doc_title, doc_text)) 
     conn.commit() 
 
-def getAllDocuments(conn):
+def get_all_documents(conn, domain_id):
     cur = conn.cursor() 
-    cur.execute("SELECT * FROM document") 
+    cur.execute("SELECT doc_id, domain_id, doc_uri, doc_title, doc_text FROM document WHERE domain_id = ?", (domain_id,)) 
     return cur
 
 def getAllDocumentChunks(conn):
@@ -35,7 +34,7 @@ def getAllDocumentChunks(conn):
     cur.execute("SELECT * FROM document_chunk") 
     return cur
 
-def insertDocumentChunk(conn, doc_id, chunk_text, chunk_embedding):
+def insert_document_chunk(conn, doc_id, chunk_text, chunk_embedding):
     json_data = json.dumps(chunk_embedding)
     cur = conn.cursor() 
     cur.execute("INSERT INTO document_chunk (doc_id, chunk_text, chunk_embedding) VALUES (?, ?, ?)", (doc_id, chunk_text, json_data)) 

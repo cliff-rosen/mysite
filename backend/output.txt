@@ -1,0 +1,140 @@
+QUERY: what is bayesian dosing
+
+RESPONSE: Bayesian dosing is a statistical method used to determine the probability of an event occurring based on conditions placed on the event and past data. It is used to calculate a precise dose to achieve a clinical target, resulting in significant improvements to mortality, risk, and patient outcomes. Bayesian dosing software uses published population models that take into account patient details, such as height, weight, sex, and genotype, to calculate an individualized dosing recommendation.
+
+=======================================
+
+QUERY: what services does your company provide
+
+RESPONSE: Our company provides a dose individualization service, which includes personalized patient care, self-paced training videos, tailored drug models, customized dose or target functions, mobile and tablet apps for iOS and Android, and access to our support team. We also offer billing solutions for Medicare Part B eligible patients and their supplies, and provide guidance to help navigate the ever-changing Medicare regulations.
+
+=======================================
+
+QUERY: what services does your company provide
+
+RESPONSE: Our company provides a dose individualization service, which requires patient information. We also provide self-paced training videos, tailored solutions to fit individual budgets and needs, customized drug limits and settings, and design new protocols that fit within workflows and guidelines. We also have a 14-day free trial, customer experience people on call 24/7, and data security measures such as HITRUST certification, HIPAA, ISO, and FDA compliance.
+
+=======================================
+
+QUERY: what's the main service your company provides
+
+RESPONSE: Our main service is providing a software platform that helps optimize medication use and clinical dosing practices. We provide tailored solutions to fit individual budgets, needs, and drug models. We also provide training to help customers learn how to use our platform and integrate it into their workflows.
+
+=======================================
+
+QUERY: how does your software work?
+
+RESPONSE: Our software is a precision dosing software designed for healthcare practitioners that uses Bayesian dosing methods to predict the optimal dose of drugs monitored by Therapeutic Drug Monitoring. It leverages clinically validated pharmacokinetic drug models, patient characteristics, genotype (if available) and exact patient responses to the drug dosed (via drug concentrations) to guide dose optimization. It is cloud-based and HIPAA-compliant, and can be customized to an individual institution's dosing guidelines. It also offers 10 different countries utilizing our software, 42 drug models, and 5 different therapeutic areas.
+
+=======================================
+
+QUERY: is your software hipaa compliant?
+
+RESPONSE: Yes, our software is HIPAA compliant. We are HITRUST certified as well as HIPAA, ISO, and FDA compliant.
+
+=======================================
+
+QUERY: how easy is it to use your software
+
+RESPONSE: Our software is designed to be easy to use for all levels of users. We have utilized data and client feedback to continually refine and optimize our product and interface. We have also been positively evaluated as user-friendly in a clinical setting.
+
+=======================================
+
+QUERY: do you serve hospitals or individual physicians?
+
+RESPONSE: We serve both hospitals and individual physicians. We have a web based platform, and we also have a special partnership for small hospitals. We are integrated with ASHP, Cerner, and Epic. We also are integrated with three different pharmacy surveillance systems: Sentri7, VigiLanz, and ilumInsight.
+
+=======================================
+
+QUERY: what is bayesian dosing?
+
+RESPONSE: Bayesian dosing is a statistical method used to determine the probability of an event occurring based on conditions placed on the event and past data. It is used to calculate a precise dose to achieve a therapeutic target and can improve mortality, risk, and patient outcomes.
+
+=======================================
+
+QUERY: what are the main benefits of using your system?
+
+RESPONSE: The main benefits of using our system are excellence and efficiency in workflow, a direct data feed that saves time, an additional safety layer for data entry errors, fully integrated notes, improved standardization and consistency, validated, reliable, and accurate results, increased pharmacist and prescriber confidence, and a low barrier to entry for IT departments.
+
+=======================================
+
+QUERY: what are the steps to implementing your solution?
+
+RESPONSE: The steps to implementing our solution include: 1) a discovery call to collect initial information to tailor the platform to your needs; 2) a 14-day free trial to explore the platform; 3) developing a business case with a summary of results and ROI; 4) creating a tailored solution to fit your individual budget, needs, and drug models; 5) customizing drug limits and settings, and designing new protocols that fit within your workflows and guidelines; 6) training your team from administrators to pharmacists; and 7) measuring success and gathering data to show key stakeholders.
+
+=======================================
+
+QUERY: what is the cost of your software?
+
+RESPONSE: Our solutions start as low as $1,990 per year and can accrue to approximately $10,000 for larger sites that select all the bells and whistles (e.g.dosing using available literature).
+
+=======================================
+
+QUERY: what key questions should i ask when evaluating your platform?
+
+RESPONSE: When evaluating our platform, some key questions to ask include: what metrics are available to track the success of the platform? What baseline metrics do you have to measure against? How will the platform integrate with your existing systems? What type of customization is available? What kind of support is offered? What is the cost of the platform? What data security measures are in place?
+
+=======================================
+
+QUERY: what metrics are available to track the success of the platform?
+
+RESPONSE: The metrics available to track the success of the platform include time to therapeutic target, patient risk indicators, trough vs AUC outcomes, average daily dose amounts, usage numbers (daily and hourly), drug model usage, dosing reports, and top users by login.
+
+=======================================
+
+QUERY: provide a bulleted list of key financial benefits to using your software
+
+RESPONSE: -Cost savings of up to a million dollars
+-Financial offsets the cost of a basic platform
+-Reduced vancomycin doses and reduced AKI rates
+-Improved standardization and results
+-Accessible dosing reports saved within the platform
+-Reduced cost of hiring additional pharmacy staff
+-Direct data feed saves time
+-Increased clinician buy-in
+-Increased efficiency in workflow
+
+=======================================
+
+QUERY: what kind of training do you offer to properly implement and get the most out of your software
+
+RESPONSE: We provide fully tailored training as part of the implementation process. This includes Q&A sessions with our expert clinical pharmacy team and clinical advisory board, plus a range of helpful resources in our help section including clinical competencies to get your team certified using DoseMeRx, easy to follow training videos, user guides and more. We also offer virtual or on-site training, 24/7 customer support and access to our expert resources to provide extra muscle to help you implement our platform with minimal fuss.
+
+=======================================
+
+QUERY: provide a summary of the information available to me on this site
+
+RESPONSE: DoseMeRx provides a dose individualization service which requires patient information. This collected information is used solely internally to DoseMeRx for the purposes of providing individualized dosing as requested by the user. DoseMeRx takes all reasonable steps to store your information in a secure manner and to avoid risks such as inadvertent disclosure or unauthorized access. DoseMeRx also offers HIPAA compliant solutions to leverage your data and a team of experts to support you and your team in providing the best patient care possible. DoseMeRx also provides clinically actionable guidelines to providers with The Sanford Guide and integrated note which provide data such as target levels, outcomes, peaks and troughs.
+
+=======================================
+
+QUERY: create an outline for me to learn how to use your software
+
+RESPONSE: Our journey has been a long one. We started with engaging stakeholders, evaluating dosing, and then we set out for initially. Here's what to expect at every stage of the journey: 
+1. Getting to know you: We kick things off with a discovery call to collect some initial info. This helps us tailor the platform to your unique needs so that you can get the most out of your trial. 
+2. Your 14-day free trial: We give you the grand tour, then you're free to explore the platform on your own. (Remember, if you get stuck, you can chat with us any time) 
+3. Making the business case: We work with you to develop a business case. This includes a summary of results and ROI from your trial to help you get the green light. 
+4. Sealing the deal: When everyone's on board, it's contract time. We create a tailored solution to fit your individual budget, needs, and drug models. 
+5. Getting you set up: Once the contract is signed, we work with your team to customize drug limits and settings, and design new protocols that fit within your workflows and guidelines with independent advice available from our Clinical Advisory Board. 
+6. Training your team: From your administrators to your pharmacists, our training is customized to provide extra muscle to help you implement our platform with minimal fuss.
+
+=======================================
+
+QUERY: what kind of decisions does your software help me to make in my practice
+
+RESPONSE: Our software helps you to make decisions about individualizing doses for patients, managing risk across multiple sites, predicting future trough concentrations, and avoiding potential problems. It can also help you to identify issues in a given unit and improve your resource allocation.
+
+=======================================
+
+QUERY: How does your software helps meto make decisions about individualizing doses for patients, managing risk across multiple sites, predicting future trough concentrations, and avoiding potential problems
+
+RESPONSE: Our software helps to make decisions about individualizing doses for patients by leveraging clinically validated pharmacokinetic drug models, patient characteristics, patient genotype information and exact patient responses to the drug dosed (via drug concentrations) to guide dose optimization. It can also be used to manage risk across multiple sites by providing a clinical risk dashboard which looks at levels that have already been done, and uses charted orders to predict future trough concentrations which can be related to adverse drug event risk, as well as predicting patients who will have super therapeutic dosing. This clinical decision support can also be used to avoid potential problems and highlight issues in a given unit, helping to improve resource allocation.
+
+=======================================
+
+QUERY: How does your software helps me to make decisions about individualizing doses for patients
+
+RESPONSE: Our software helps you make decisions about individualizing doses for patients by leveraging clinically validated pharmacokinetic drug models, patient characteristics, genotype (if available) and exact patient responses to the drug dosed (via drug concentrations) to guide dose optimization. It also provides a clinical risk dashboard to help predict future trough concentrations, which can be related to adverse drug event risk, as well as predict patients who will have super therapeutic dosing.
+
+=======================================
+

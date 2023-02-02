@@ -31,7 +31,7 @@ def get_openai_embedding(text):
     )
 
 def get_all_docs_from_domain(domain_id):
-    return db.get_all_documents(conn, domain_id)
+    return db.get_all_docs_from_domain(conn, domain_id)
 
 def get_chunks_from_text(text, r):
     if not r:

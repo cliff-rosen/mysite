@@ -24,9 +24,9 @@ def insert_document(conn, domain_id, doc_uri, doc_title, doc_text):
     cur.execute("INSERT INTO document (domain_id, doc_uri, doc_title, doc_text) VALUES (?, ?, ?, ?)", (domain_id, doc_uri, doc_title, doc_text)) 
     conn.commit() 
 
-def get_all_documents(conn, domain_id):
+def get_all_docs_from_domain(conn, domain_id):
     cur = conn.cursor() 
-    cur.execute("SELECT doc_id, domain_id, doc_uri, doc_title, doc_text FROM document WHERE domain_id = ?", (domain_id,)) 
+    cur.execute("SELECT doc_id, domain_id, doc_uri, doc_title, doc_text FROM document WHERE domain_id = ? and doc_id > 3269", (domain_id,)) 
     return cur
 
 def insert_document_chunk(conn, doc_id, chunk_text, chunk_embedding):

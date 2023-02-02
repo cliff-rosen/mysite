@@ -115,6 +115,13 @@ def query_model(prompt):
     )
     return response["choices"][0]["text"].strip(" \n")
 
+
+def log_result(query, response):
+    with open("output.txt", "a") as file:
+        file.writelines("QUERY: " + query + "\n\n")
+        file.writelines("RESPONSE: " + response + "\n\n")
+        file.writelines("=======================================" + "\n\n")
+
 def get_answer(domain_id, query):
 
     print("getting query embedding")
@@ -136,7 +143,7 @@ def get_answer(domain_id, query):
     response = query_model(prompt)
 
     #print("response", response)
-    #logResult(query, response)
+    log_result(query, response)
 
     return {"answer": response, "chunks": chunks, "chunks_used_count": len(list(chunks_with_text.keys())) }
 

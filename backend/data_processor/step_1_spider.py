@@ -16,6 +16,7 @@ def link_is_good(link_url):
         and (link_url.startswith(initial_url) or not link_url.startswith("http"))\
         and not link_url.startswith("#") \
         and not link_url.startswith("mailto:") \
+        and not link_url.startswith("tel:") \
         and not link_url.endswith(".jpg") \
         and not link_url.endswith(".pdf") \
         and link_url != '/' \
@@ -33,11 +34,18 @@ def spider(url):
     response = requests.get(url, headers={"User-Agent": "XY"})
     soup = BeautifulSoup(response.content, 'html.parser')
 
-    # Extract page text and save it to db
+    # Extract page text
     page_text = ""
     for main in soup.find_all('main'):
-        page_text = page_text + main.get_text("\n") + "\n\n-----\n\n"
+        page_text = page_text + main.get_text("\n")
+    if page_text == "":
+        page_text = soup.get_text("\n")
 
+    # Clean page text
+    page_text = page_text.encode(encoding='ASCII',errors='ignore').decode()
+    page_text = re.sub('\s+', ' ', page_text)
+
+    # Save page text
     write_text_to_db(url, page_text)
     #write_text_to_file(url, page_text)
 
@@ -49,8 +57,6 @@ def spider(url):
             if not link_url.startswith("http"):
                 link_url = initial_url + link_url
             spider(link_url)
-        #else:
-        #    print("rejected: ", link_url)
 
 def write_text_to_db(uri, text):
     print("saving: ", uri)
@@ -62,16 +68,14 @@ def write_text_to_db(uri, text):
 def write_text_to_file(uri, page_text):
     with open(file_name, "a") as file:
         file.writelines(uri + "\n\n")
-        #file.writelines(page_text + "\n\n")
-        file.writelines(page_text.encode(encoding='ASCII',errors='ignore').decode() + "\n\n")
-        #file.writelines(re.sub('\s+', ' ', page_text) + "\n\n")
-
+        file.writelines(page_text + "\n\n")
 
 # configure job
-domain_id = 3
+domain_id = 4
 initial_url = 'https://everplans.com'
 #initial_url = 'https://www.everplans.com/health-organization'
 #initial_url = 'https://www.everplans.com/topics'
+initial_url = "https://doseme-rx.com"
 file_name = "page.txt"
 
 # init

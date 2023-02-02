@@ -52,7 +52,7 @@ def get_chunks_from_text(text, r):
     return chunks
 
 # runtime settings
-domain_id = 3
+domain_id = 4
 
 # init
 conn = db.get_connection()

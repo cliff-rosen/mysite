@@ -17,6 +17,7 @@ def link_is_good(link_url):
         and not link_url.startswith("#") \
         and not link_url.startswith("mailto:") \
         and not link_url.startswith("tel:") \
+        and not link_url.startswith("javascript:") \
         and not link_url.endswith(".jpg") \
         and not link_url.endswith(".pdf") \
         and link_url != '/' \
@@ -31,7 +32,16 @@ def link_is_good(link_url):
 def spider(url):
     visited_urls.add(url)
     print(url, len(visited_urls))
-    response = requests.get(url, headers={"User-Agent": "XY"})
+
+    # Retrieve url into soup object
+    try:
+        response = requests.get(url, headers={"User-Agent": "XY"})
+    except Exception as e:
+        print ("Error retrieving url", url)
+        print("----- ERROR -----")
+        print(e)
+        print("--------------")
+        return
     soup = BeautifulSoup(response.content, 'html.parser')
 
     # Extract page text
@@ -72,9 +82,6 @@ def write_text_to_file(uri, page_text):
 
 # configure job
 domain_id = 4
-initial_url = 'https://everplans.com'
-#initial_url = 'https://www.everplans.com/health-organization'
-#initial_url = 'https://www.everplans.com/topics'
 initial_url = "https://doseme-rx.com"
 file_name = "page.txt"
 

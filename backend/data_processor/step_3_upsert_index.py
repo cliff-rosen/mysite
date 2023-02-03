@@ -2,7 +2,6 @@ import pinecone
 import json
 import sys
 sys.path.append('db')
-sys.path.append('polls')
 import local_db as db
 
 PINECONE_API_KEY = "7484d7df-d798-4b27-90c7-0f0164e6744d"
@@ -31,7 +30,7 @@ def fetch():
     print(res['vectors']['3']['metadata'])
 
 # runtime settings
-domain_id = 4
+domain_id = 0
 
 print(index.describe_index_stats())
 run()

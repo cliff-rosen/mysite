@@ -23,7 +23,7 @@ export default function Main() {
 
   useEffect(() => {
     const getOptions = async () => {
-      const d = await fetchGet("get_domains");
+      const d = await fetchGet("domain");
       setDomains(d);
     };
 

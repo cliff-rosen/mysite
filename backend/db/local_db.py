@@ -75,11 +75,11 @@ def testInsert():
     conn = getConnection()
     insertDocument(conn, "id xyz", "another document", "more document text")
 
-def testGet():
+def test_get():
     conn = get_connection()
-    cur = getDocumentsFromIds(conn, [7,8])
-    for doc_id, doc_title in cur: 
-        print(f"id: {doc_id}, title: {doc_title}")
+    cur = get_domains(conn)
+    for domain_id, domain_desc in cur: 
+        print(f"id: {domain_id}, desc: {domain_desc}")
     close_connection(conn)
 
-#testGet()
+#test_get()

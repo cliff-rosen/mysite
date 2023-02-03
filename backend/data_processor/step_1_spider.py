@@ -1,9 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
 import re
+import os
 import sys
 sys.path.append('db')
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import local_db as db
+import local_secrets as secrets
 
 """
 TO DO
@@ -29,7 +32,7 @@ def link_is_good(link_url):
         return False        
 
 # Define a function to make a request and spider the website recursively
-def spider(url):
+def spider(url, single):
     visited_urls.add(url)
     print(url, len(visited_urls))
 
@@ -52,21 +55,24 @@ def spider(url):
         page_text = soup.get_text("\n")
 
     # Clean page text
-    page_text = page_text.encode(encoding='ASCII',errors='ignore').decode()
-    page_text = re.sub('\s+', ' ', page_text)
+    #page_text = page_text.encode(encoding='ASCII',errors='ignore').decode()
+    #page_text = re.sub('\s+', ' ', page_text)
 
     # Save page text
-    write_text_to_db(url, page_text)
-    #write_text_to_file(url, page_text)
+    if single == False:
+        write_text_to_db(url, page_text)
+    else:
+        write_text_to_file(url, page_text)
 
     # Extract all the links on the page
-    links = soup.find_all('a')
-    for link in links:
-        link_url = link.get('href')
-        if link_is_good(link_url):
-            if not link_url.startswith("http"):
-                link_url = initial_url + link_url
-            spider(link_url)
+    if single == False:
+        links = soup.find_all('a')
+        for link in links:
+            link_url = link.get('href')
+            if link_is_good(link_url):
+                if not link_url.startswith("http"):
+                    link_url = initial_url + link_url
+                spider(link_url)
 
 def write_text_to_db(uri, text):
     print("saving: ", uri)
@@ -81,8 +87,12 @@ def write_text_to_file(uri, page_text):
         file.writelines(page_text + "\n\n")
 
 # configure job
-domain_id = 4
-initial_url = "https://doseme-rx.com"
+domain_id = 0
+initial_url = "https://www.sans.org/cyber-security-courses/hacker-techniques-incident-handling/"
+initial_url = "https://www.sans.org/cyber-security-courses/enterprise-penetration-testing/"
+initial_url = "https://www.sans.org/cyber-security-courses/advanced-penetration-testing-exploits-ethical-hacking/"
+initial_url = "https://www.sans.org/cyber-security-courses/web-app-penetration-testing-ethical-hacking/"
+single = True
 file_name = "page.txt"
 
 # init
@@ -90,7 +100,7 @@ visited_urls = set()
 conn = db.get_connection()
 
 # do it
-spider(initial_url)
+spider(initial_url, single)
 
 # cleanup
 db.close_connection(conn)

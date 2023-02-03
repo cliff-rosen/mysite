@@ -1,0 +1,1443 @@
+https://www.sans.org/cyber-security-courses/web-app-penetration-testing-ethical-hacking/
+
+SEC542: Web App Penetration Testing and Ethical Hacking
+
+SEC542 enables students to assess a web application's security posture and convincingly demonstrate the business impact should attackers exploit the discovered vulnerabilities. You will practice the art of exploiting web applications to find flaws in your enterprise's web apps. You'll learn about the attacker's tools and methods and, through detailed hands-on exercises, you will learn a best practice process for web application penetration testing, inject SQL into back-end databases to learn how attackers exfiltrate sensitive data, and utilize cross-site scripting attacks to dominate a target infrastructure. 30+ Hands-on Labs
+
+          What You Will Learn
+        
+ 
+Web applications play a vital role in every modern organization. But, if your organization does not properly test and secure its web apps, adversaries can compromise these applications, damage business functionality, and steal data. Unfortunately, many organizations operate under the mistaken impression that a web application security scanner will reliably discover flaws in their systems.
+SEC542 helps students move beyond push-button scanning to professional, thorough, high-value web application penetration testing.
+Customers expect web applications to provide significant functionality and data access. Even beyond the importance of customer-facing web applications, internal web applications increasingly represent the most commonly used business tools within any organization. Unfortunately, there is no "patch Tuesday" for custom web applications, so major industry studies find that web application flaws play a major role in significant breaches and intrusions. Adversaries increasingly focus on these high-value targets either by directly abusing public-facing applications or by focusing on web apps as targets after an initial break-in.
+SEC542 enables students to assess a web application's security posture and convincingly demonstrate the business impact should attackers exploit discovered vulnerabilities.
+Modern cyber defense requires a realistic and thorough understanding of web application security issues. Anyone can learn to sling a few web hacks, but effective web application penetration testing requires something deeper.
+SEC542 gives novice students the information and skills to become expert penetration testers with practice, and fills in all the foundational gaps for individuals with some penetration testing background.
+Students will come to understand common web application flaws, as well as how to identify and exploit them with the intent of demonstrating the potential business impact. Along the way, students follow a field-tested and repeatable process to consistently find flaws. Information security professionals often struggle with helping their organizations understand risk in terms relatable to business. The goal of SEC542 is to better secure organizations through penetration testing, and not just show off hacking skills. The course will help students demonstrate the true impact of web application flaws not only through exploitation but also through proper documenting and reporting.
+In addition to high-quality course content, SEC542 focuses heavily on in-depth, hands-on labs to ensure that students can immediately apply all they learn.
+In addition to walking students through a web app penetration using more than 30 formal hands-on labs, the course culminates in a web application pen test tournament, powered by the SANS Netwars cyber range. This Capture-the-Flag event groups students into teams to apply their newly acquired command of web application penetration testing techniques in a fun way that hammers home lessons learned throughout the course.
+BUSINESS TAKEAWAYS:
+Apply a repeatable methodology to deliver high-value penetration tests
+Discover and exploit key web application flaws
+Explain the potential impact of web application vulnerabilities
+Convey the importance of web application security to an overall security posture
+Wield key web application attack tools more efficiently
+Write web application penetration test reports
+YOU WILL BEABLE TO:
+Apply OWASP's methodology to your web application penetration tests to ensure they are consistent, reproducible, rigorous, and under quality control.
+Analyze the results from automated web testing tools to validate findings, determine their business impact, and eliminate false positives.
+Manually discover key web application flaws.
+Use Python to create testing and exploitation scripts during a penetration test.
+Discover and exploit SQL Injection flaws to determine true risk to the victim organization.
+Understand and exploit insecure deserialization vulnerabilities with ysoserial and similar tools.
+Create configurations and test payloads within other web attacks.
+Fuzz potential inputs for injection attacks with ZAP, BurP'S Intruder and ffuf.
+Explain the impact of exploitation of web application flaws.
+Analyze traffic between the client and the server application using tools such as the Zed Attack Proxy and BurpSuite Pro to find security issues within the client-side application code.
+Manually discover and exploit Cross-Site Request Forgery (CSRF) attacks. 
+Manually discover and exploit Server-Side Request Forgery (SSRF) attacks.
+Use the Browser Exploitation Framework (BeEF) to hook victim browsers, attack client software and the network, and evaluate the potential impact that XSS flaws have within an application.
+Use the Nuclei tool to perform scans of target web sites/servers.
+Perform two complete web penetration tests, one during the five sections of course instruction, and the other during the Capture the Flag exercise.
+Course Topics
+Interception Proxies
+ZAP (Zed Attack Proxy)
+BurpSuite Professional
+Common Vulnerabilities
+SSL/TLS Misconfigurations
+Username Harvesting
+Authorization Flaws (Direct Object Reference)
+Command Injection
+SQL Injection
+Cross-Site Scripting (XSS)
+Server-Side Request Forgery (SSRF)
+Insecure Deserialization
+XML External Entities (XXE)
+Local and Remote File Inclusion (LFI / RFI)
+Cross-Site Request Forgery (CSRF)
+Open-Source Intelligence (OSINT)
+Target Profiling
+Application Discovery
+Authentication and Authorization
+Session Management Flaws
+Automated Exploitation
+Hands-On Training
+SANS SEC542 employs hands-on labs throughout the course to further students' understanding of web application penetration concepts. Some of the many hands-on labs in the course include:
+DNS Harvesting and Virtual Host Discovery
+Authentication Bypass
+BurpSuite Pro's Sequencer
+Insecure Deserialization
+Reflected and Persistent XSS Attacks
+DOM-Based XSS Attacks
+Spidering and Forced Browsing
+WPScan
+SQL Injection
+Blind SQL Injection
+Server-Side Request Forgery
+CSRF Exploitation
+XML External Entities
+Metasploit for Web Application Attacks
+Exploiting Shellshock
+Leveraging the sqlmap tool
+BeEF and Browser Exploitation
+Username Harvesting
+Password Guessing Attacks
+HTML Injection
+Remote File Inclusion
+Local File Inclusion
+OS Command Injection
+Drupalgeddon and Drupalgeddon 2 Exploitation
+Python for Web Application Pen Testers
+Troubleshooting when automated tools fail
+Extensive use of both BurpSuite Pro and ZAP throughout the course
+What You Will Receive
+Course media that includes both web application attack tools, as well as many vulnerable web applications for testing and training within the classroom and beyond
+Audio recordings of the course to review material after class
+A custom virtual machine tailored specifically for web application penetration testing, with all labs installed locally so they can be repeated even after the course
+Your own Burp Suite Professional license
+ 
+ 
+
+                Syllabus
+                
+(36 CPEs)
+ 
+ Download PDF 
+ 
+
+        SEC542.1: Introduction and Information Gathering
+      
+ 
+Overview
+Understanding the attacker's perspective is key to successful web application penetration testing. The course begins by thoroughly examining foundational concepts such as web technology, including protocols, languages, clients, and server architectures, from the attacker's perspective. We look at collecting open-source intelligence (OSINT) specific to data points likely to help exploitation be more successful, and we analyze the importance of encryption and HTTPS. 
+We look at the methodology promoted by OWASP to help ensure the delivery of high-quality assessments, as well as the things necessary for a penetration testers toolkit. The most important tool, an interception proxy, is introduced through performing the initial configuration steps in OWASPs Zed Attack Proxy (ZAP) and BurpSuite Professional, the latter being a tool we use further to explore aspects of a vulnerable web application.
+Section one concludes with profiling the target(s) to understand the underlying configuration. The collected data is used to build a profile of each server and identify potential configuration flaws. The discussion is underscored through several practical, hands-on labs in which we conduct reconnaissance in order to find forgotten virtual hosts. Students will get deeper hands-on experience with BurpSuite Pro, cURL, and manual exploitation techniques with tools such as nmap and testssl.sh.
+Topics
+Overview of the web from a penetration tester's perspective
+Web application assessment methodologies
+The penetration tester's toolkit
+Interception proxies
+Proxying SSL through BurpSuite Pro and Zed Attack Proxy
+DNS reconnaissance
+Virtual host discovery
+Open-source intelligence (OSINT)
+The HTTP protocol
+Secure Sockets Layer (SSL) configurations and weaknesses
+Target discovery and profiling
+Configuration flaws
+ 
+
+        SEC542.2: Content Discovery, Authentication, and Session Testing
+      
+ 
+Overview
+Modern web applications frequently are not monitored as closely as they should, giving attackers the opportunity to discover, and exploit, vulnerabilities without anyone noticing.  A systems configuration should involve proper logging and monitoring to ensure security-related events are not missed. That is why in this section we briefly explore logging configuration and basic incident response testing. 
+We enumerate the application's pages and features. This phase involves identifying the components, analyzing the relationship between them, and determining how the pieces work together. We then dive deep into the spidering/crawling results, which represents a vital part of the overall penetration test, as well as perform forced browsing to find hidden content in a lab. This lab also introduces an extremely fast fuzzer, ffuf.
+We examine different authentication systems, including Basic, Digest, Forms, Windows Integrated and OAuth authentication, and discuss how servers use them and attackers abuse them. We perform username enumeration and use Burps fuzzer, Intruder, to guess the password used to successfully authenticate to a web application. We gain hands-on experience with Burp sequencer. Then we end with a discussion of authentication and authorization bypasses, which can expose sensitive data and business functions to attackers, as well as exploit an authentication flaw in Mutillidae.
+Topics
+Logging and monitoring
+Learning tools to spider a website
+Analyzing website content
+Brute forcing unlinked files and directories via ZAP and ffuf
+Web authentication mechanisms
+Fuzzing with Burp Intruder
+Username harvesting and password guessing
+Burp sequencer
+Session management and attacks
+Authentication and authorization bypass
+Mutillidae
+ 
+
+        SEC542.3: Injection
+      
+ 
+Overview
+After ending section two with authentication bypass, we begin section three by exploring security-related protections included in the web servers responses: cookie flags and response headers.  
+We build on the information identified during the target profiling, spidering, and forced browsing exercises, exploring methods to find and verify vulnerabilities within the application. Students also begin to explore the interactions between the various vulnerabilities.
+This course section dives deeply into vital manual testing techniques for vulnerability discovery. We focus on developing in-depth knowledge of interception proxies for web application vulnerability discovery.  Many of the most common injection flaws (command injection and local and remote file inclusion) are introduced, and followed with lab exercises, to reinforce the discovery and exploitation.
+Besides this, a section covers insecure deserialization, a common vulnerability in object-oriented programming languages, where students will exploit a Java insecure deserialization vulnerability in a lab to steal a secret file from a vulnerable web application. This lab requires more effort and demonstrates chaining of vulnerabilities to achieve the final goal.
+Due to its prevalence and the significant impact generally associated with the flaw, a considerable portion of this section is devoted to traditional and blind SQL injection. 
+Topics
+HTTP resonse security controls
+Command injection
+Directory traversal
+Local File Inclusion (LFI)
+Remote File Inclusion (RFI)
+Insecure deserialization
+SQL injection
+Blind SQL injection
+Error-based SQL injection
+Exploiting SQL injection
+SQL injection tools: sqlmap
+ 
+
+        SEC542.4: XSS, SSRF, and XXE
+      
+ 
+Overview
+Section four continues exploring injection flaws and spends time introducing Cross-Site Scripting (XSS) vulnerabilities, including reflected, stored, and DOM-based XSS vulnerabilities. Manual discovery methods are employed during hands-on labs, and students are introduced to the developer tools in browsers, as a means of analyzing client side JavaScript in modern web applications.
+Section four also introduces the Browser Exploitation Framework (BeEF) to students, which is used in multiple labs. The course continues with a detailed discussion of AJAX as we explore how it enlarges the attack surface leveraged by penetration testers. We also analyze how AJAX is affected by other vulnerabilities already covered in depth earlier in the course.
+We discuss REST (Representational State Transfer) and SOAP (Simple Object Access Protocol). Finally, section four ends with us covering server-side request forgery (SSRF) and XML external entities (XXE)both of which include an associated lab. Again, in the SSRF lab multiple vulnerabilities are chained, relying on previously covered material.
+Topics
+Cross-Site Scripting (XSS)
+Browser Exploitation Framework (BeEF)
+AJAX
+XML and JSON
+Document Object Model (DOM)
+API attacks
+Data attacks
+REST and SOAP
+Server-Side Request Forgery (SSRF)
+XML Eternal Entity (XXE)
+ 
+
+        SEC542.5: CSRF, Logic Flaws and Advanced Tools
+      
+ 
+Overview
+During the fifth section, we launch actual exploits against real-world applications, expand our foothold within the application, and extend it to the network on which it resides. As penetration testers, we specifically focus on ways to leverage previously discovered vulnerabilities to gain further access, highlighting the cyclical nature of web application penetration testing.
+During our exploitation phase, we expand our use of tools such as ZAP and BurpSuite Pro, plus complement them with further use of sqlmap and Metasploit to help craft exploits against various web applications. We launch SQL injection and Cross-Site Request Forgery attacks, amongst others. In class we exploit these flaws to perform data theft, hijack sessions, deface a website, get shells, pivot against connected networks, and much more. Through various forms of exploitation, students gain a keen understanding of the potential business impact of these flaws to an organization.
+Students are also introduced to Nuclei  a modern, open-source vulnerability scanner tool that is very popular among bug bounty hackers  in a lab that combines usage of Nuclei and Metasploit.
+While the whole course is geared toward understanding how web application vulnerabilities work and how they can be exploited, we also discuss the active scanner component in BurpSuite Pro.
+To position students to take their skills to the next level, the last lab of section five looks at an instance where a Metasploit module fails to exploit a vulnerability that has been confirmed to exist in the target web application. We explore a process to research the flaw, manually exploit the vulnerability, and then reconfigure the Metasploit module to successfully gain a shell. This exercise gives students necessary skills to dig deeper when automated tools fail.
+We wrap up course instruction by reviewing how to prepare for penetration testing assessments and important post assessment activities, such as report writing.
+Topics
+Cross-Site Request Forgery (CSRF)
+Logic attacks
+Python for web app penetration testing
+WPScan
+ExploitDB
+BurpSuite Pro scanner
+Nuclei
+Metasploit
+When tools fail
+Business of Penetration Testing:
+Preparation
+Post Assessment and Reporting
+ 
+
+        SEC542.6: Capture the Flag
+      
+ 
+Overview
+During section six, students form teams and compete in a web application penetration testing tournament. This Netwars-powered Capture-the-Flag exercise provides students an opportunity to wield their newly developed or further honed skills to answer questions, complete missions, and exfiltrate data, applying skills gained throughout the course. The style of challenge and integrated hint system allows students of various skill levels to both enjoy a game environment and solidify the skills learned in class.
+ 
+ 
+
+            GIAC Web Application Penetration Tester
+          
+ 
+The GIAC Web Application Penetration Tester (GWAPT) certification 
+validates a practitioner's ability to better secure organizations 
+through penetration testing and a thorough understanding of web 
+application security issues. GWAPT certification holders have 
+demonstrated knowledge of web application exploits and penetration 
+testing methodology.
+Web application overview, authentication attacks, and configuration testing
+Web application session management, SQL injection attacks, and testing tools
+Cross site request forgery and scripting, client injection attack, reconnaissance and mapping
+ 
+More Certification Details
+ 
+
+            Prerequisites
+          
+ 
+SEC542 assumes students have a basic working knowledge of the Linux command line.
+ 
+
+            Laptop Requirements
+          
+ 
+Important! Bring your own system configured according to these instructions!
+A properly configured system is required to fully participate in this course. If you do not carefully read and follow these instructions, you will likely leave the class unsatisfied because you will not be able to participate in hands-on exercises that are essential to this course. Therefore, we strongly urge you to arrive with a system meeting all the requirements specified for the course.
+It is critical that you back-up your system before class. It is also strongly advised that you do not bring a system storing any sensitive data.
+Important Things to Note
+Some settings may require administrative-level privileges on the host workation to implement.
+It is critical that you back-up your system before class.
+It is also strongly advised that you do not bring a system storing any sensitive data.
+Baseline Hardware Requirements
+CPU: 64-bit Intel i5/i7 2.0+ GHz processor (CANNOT BE ARM-based M1/M2 MacBooks)
+BIOS: Enabled "Intel-VT"
+RAM: 8GB RAM (or more)
+Hard Drive Free Space: 50 GB Free Space
+Host Operating System: Latest version of Windows 10, Windows 11, macOS 10.15.x or later, or Linux that also can install and run VMware virtualization products described below. 
+Note: 
+Apple systems using the M1 processor cannot perform the necessary virtualization at this time and cannot be used for this course.
+Additional Hardware Requirements
+The requirements below are in addition to baseline requirements provided above. Prior to the start of class, you must install virtualization software and meet additional hardware and software requirements as described below. If you do not carefully read and follow these instructions, you will leave the class unsatisfied because you will not be able to participate in hands-on exercises that are essential to this course.
+Network, Wireless Connection: A wireless 82.11 B, G, N or AC network adapter is required.
+Additional Software Requirements
+Download and install either VMware Workstation Pro 15.5.x, VMware Player 15.5.x or Fusion 11.5.x or higher versions before class. 
+If you do not own a licensed copy of VMware Workstation or Fusion, you can download a free 30-day trial copy from VMware. VMware will send you a time-limited serial number if you register for the trial at their website. 
+Other virtualization software, such as VirtualBox and Hyper-V, are not appropriate because of compatibility and troubleshooting problems you might encounter during class. 
+VMware Workstation Pro and VMware Player on Windows 10 is not compatible with Windows 10 Credential Guard and Device Guard technologies. Please disable these capabilities for the duration of the class, if they're enabled on your system, by following instructions in this document. 
+Your course media will now be delivered via download. The media files for class can be large, some in the 40 - 50 GB range. You need to allow plenty of time for the download to complete. Internet connections and speed vary greatly and are dependent on many different factors. Therefore, it is not possible to give an estimate of the length of time it will take to download your materials. Please start your course media downloads as you get the link. You will need your course media immediately on the first day of class. Waiting until the night before the class starts to begin your download has a high probability of failure.
+SANS has begun providing printed materials in PDF form. Additionally, certain classes are using an electronic workbook in addition to the PDFs. The number of classes using eWorkbooks will grow quickly. In this new environment, we have found that a second monitor and/or a tablet device can be useful by keeping the class materials visible while the instructor is presenting or while you are working on lab exercises. 
+ 
+
+            Author Statement
+          
+ 
+Students routinely show up to SEC542 having been demoralized by their organization's web application vulnerability scanner. Sitting on the business end of these scanners, students regularly attest to 1,000+ pages of output littered with false positives. One of the most rewarding aspects of teaching SEC542 is seeing and hearing those very same students' enthusiasm for applying the skills they have learned through the week to the applications they are responsible for securing. They intrinsically knew the push-button approach to penetration testing was failing them, but lacked the knowledge and skill to ably and efficiently perform any other style of assessment. We are happy to say that SEC542 remedies this problem. Students walk away from class with a deep knowledge of key web application flaws and how to discover and exploit them, as well as how to present these findings in an impactful way. 
+- Eric Conrad, Timothy McKenzie, and Bojan Zdrnja
+"Eric Conrad was awesome. The real life experiences he shared really helped us understand the content." 
+- Hadis Ali, AWS
+ 
+
+    Ways to Learn
+  
+ 
+ 
+OnDemand
+ 
+Study and prepare for GIAC Certification with four months of online access. Includes labs and exercises, and support.
+ 
+ 
+Live Online
+ 
+Live, interactive sessions with SANS instructors over the course of one or more weeks, at times convenient to students worldwide.
+ 
+ 
+In Person 
+(6 days)
+ 
+Training events and topical summits feature presentations and courses in classrooms around the world.
+ 
+ 
+ 
+
+            Who Should Attend SEC542?
+          
+ 
+General security practitioners
+Penetration testers
+Ethical hackers
+Web application developers
+Website designers, architects, and developers
+NICE Framework Work Roles
+Security Control Assessor (OPM 612)
+Software Developer (OPM 621)
+Secure Software Assessor (OPM 622)
+System Testing and Evaluation Specialist (OPM 671)
+Information Systems Security Developer (OPM 631)
+Systems Developer (OPM 632)
+Vulnerability Assessment Analyst (OPM 541)
+Pen Tester (OPM 541)
+Exploitation Analyst (OPM 121)
+Target Developer (OPM 131)
+Cyber Ops Planner (OPM 332)
+ 
+
+            See prerequisites
+          
+ 
+Need to justify a training request to your manager?
+ 
+
+            Use this justification letter template to share the key details of this training and certification opportunity with your boss.
+          
+ 
+ Download the Letter 
+ 
+Related Programs
+ 
+ 
+ 
+ 
+ 
+Masters Program
+ 
+ 
+ 
+
+          This course and certification can be applied to a master's degree program at the SANS Technology Institute.
+        
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+https://www.sans.org/cyber-security-courses/web-app-penetration-testing-ethical-hacking/
+
+
+          What You Will Learn
+        
+ 
+Web applications play a vital role in every modern organization. But, if your organization does not properly test and secure its web apps, adversaries can compromise these applications, damage business functionality, and steal data. Unfortunately, many organizations operate under the mistaken impression that a web application security scanner will reliably discover flaws in their systems.
+SEC542 helps students move beyond push-button scanning to professional, thorough, high-value web application penetration testing.
+Customers expect web applications to provide significant functionality and data access. Even beyond the importance of customer-facing web applications, internal web applications increasingly represent the most commonly used business tools within any organization. Unfortunately, there is no "patch Tuesday" for custom web applications, so major industry studies find that web application flaws play a major role in significant breaches and intrusions. Adversaries increasingly focus on these high-value targets either by directly abusing public-facing applications or by focusing on web apps as targets after an initial break-in.
+SEC542 enables students to assess a web application's security posture and convincingly demonstrate the business impact should attackers exploit discovered vulnerabilities.
+Modern cyber defense requires a realistic and thorough understanding of web application security issues. Anyone can learn to sling a few web hacks, but effective web application penetration testing requires something deeper.
+SEC542 gives novice students the information and skills to become expert penetration testers with practice, and fills in all the foundational gaps for individuals with some penetration testing background.
+Students will come to understand common web application flaws, as well as how to identify and exploit them with the intent of demonstrating the potential business impact. Along the way, students follow a field-tested and repeatable process to consistently find flaws. Information security professionals often struggle with helping their organizations understand risk in terms relatable to business. The goal of SEC542 is to better secure organizations through penetration testing, and not just show off hacking skills. The course will help students demonstrate the true impact of web application flaws not only through exploitation but also through proper documenting and reporting.
+In addition to high-quality course content, SEC542 focuses heavily on in-depth, hands-on labs to ensure that students can immediately apply all they learn.
+In addition to walking students through a web app penetration using more than 30 formal hands-on labs, the course culminates in a web application pen test tournament, powered by the SANS Netwars cyber range. This Capture-the-Flag event groups students into teams to apply their newly acquired command of web application penetration testing techniques in a fun way that hammers home lessons learned throughout the course.
+BUSINESS TAKEAWAYS:
+Apply a repeatable methodology to deliver high-value penetration tests
+Discover and exploit key web application flaws
+Explain the potential impact of web application vulnerabilities
+Convey the importance of web application security to an overall security posture
+Wield key web application attack tools more efficiently
+Write web application penetration test reports
+YOU WILL BEABLE TO:
+Apply OWASP's methodology to your web application penetration tests to ensure they are consistent, reproducible, rigorous, and under quality control.
+Analyze the results from automated web testing tools to validate findings, determine their business impact, and eliminate false positives.
+Manually discover key web application flaws.
+Use Python to create testing and exploitation scripts during a penetration test.
+Discover and exploit SQL Injection flaws to determine true risk to the victim organization.
+Understand and exploit insecure deserialization vulnerabilities with ysoserial and similar tools.
+Create configurations and test payloads within other web attacks.
+Fuzz potential inputs for injection attacks with ZAP, BurP'S Intruder and ffuf.
+Explain the impact of exploitation of web application flaws.
+Analyze traffic between the client and the server application using tools such as the Zed Attack Proxy and BurpSuite Pro to find security issues within the client-side application code.
+Manually discover and exploit Cross-Site Request Forgery (CSRF) attacks. 
+Manually discover and exploit Server-Side Request Forgery (SSRF) attacks.
+Use the Browser Exploitation Framework (BeEF) to hook victim browsers, attack client software and the network, and evaluate the potential impact that XSS flaws have within an application.
+Use the Nuclei tool to perform scans of target web sites/servers.
+Perform two complete web penetration tests, one during the five sections of course instruction, and the other during the Capture the Flag exercise.
+Course Topics
+Interception Proxies
+ZAP (Zed Attack Proxy)
+BurpSuite Professional
+Common Vulnerabilities
+SSL/TLS Misconfigurations
+Username Harvesting
+Authorization Flaws (Direct Object Reference)
+Command Injection
+SQL Injection
+Cross-Site Scripting (XSS)
+Server-Side Request Forgery (SSRF)
+Insecure Deserialization
+XML External Entities (XXE)
+Local and Remote File Inclusion (LFI / RFI)
+Cross-Site Request Forgery (CSRF)
+Open-Source Intelligence (OSINT)
+Target Profiling
+Application Discovery
+Authentication and Authorization
+Session Management Flaws
+Automated Exploitation
+Hands-On Training
+SANS SEC542 employs hands-on labs throughout the course to further students' understanding of web application penetration concepts. Some of the many hands-on labs in the course include:
+DNS Harvesting and Virtual Host Discovery
+Authentication Bypass
+BurpSuite Pro's Sequencer
+Insecure Deserialization
+Reflected and Persistent XSS Attacks
+DOM-Based XSS Attacks
+Spidering and Forced Browsing
+WPScan
+SQL Injection
+Blind SQL Injection
+Server-Side Request Forgery
+CSRF Exploitation
+XML External Entities
+Metasploit for Web Application Attacks
+Exploiting Shellshock
+Leveraging the sqlmap tool
+BeEF and Browser Exploitation
+Username Harvesting
+Password Guessing Attacks
+HTML Injection
+Remote File Inclusion
+Local File Inclusion
+OS Command Injection
+Drupalgeddon and Drupalgeddon 2 Exploitation
+Python for Web Application Pen Testers
+Troubleshooting when automated tools fail
+Extensive use of both BurpSuite Pro and ZAP throughout the course
+What You Will Receive
+Course media that includes both web application attack tools, as well as many vulnerable web applications for testing and training within the classroom and beyond
+Audio recordings of the course to review material after class
+A custom virtual machine tailored specifically for web application penetration testing, with all labs installed locally so they can be repeated even after the course
+Your own Burp Suite Professional license
+ 
+ 
+
+                Syllabus
+                
+(36 CPEs)
+ 
+ Download PDF 
+ 
+
+        SEC542.1: Introduction and Information Gathering
+      
+ 
+Overview
+Understanding the attacker's perspective is key to successful web application penetration testing. The course begins by thoroughly examining foundational concepts such as web technology, including protocols, languages, clients, and server architectures, from the attacker's perspective. We look at collecting open-source intelligence (OSINT) specific to data points likely to help exploitation be more successful, and we analyze the importance of encryption and HTTPS. 
+We look at the methodology promoted by OWASP to help ensure the delivery of high-quality assessments, as well as the things necessary for a penetration testers toolkit. The most important tool, an interception proxy, is introduced through performing the initial configuration steps in OWASPs Zed Attack Proxy (ZAP) and BurpSuite Professional, the latter being a tool we use further to explore aspects of a vulnerable web application.
+Section one concludes with profiling the target(s) to understand the underlying configuration. The collected data is used to build a profile of each server and identify potential configuration flaws. The discussion is underscored through several practical, hands-on labs in which we conduct reconnaissance in order to find forgotten virtual hosts. Students will get deeper hands-on experience with BurpSuite Pro, cURL, and manual exploitation techniques with tools such as nmap and testssl.sh.
+Topics
+Overview of the web from a penetration tester's perspective
+Web application assessment methodologies
+The penetration tester's toolkit
+Interception proxies
+Proxying SSL through BurpSuite Pro and Zed Attack Proxy
+DNS reconnaissance
+Virtual host discovery
+Open-source intelligence (OSINT)
+The HTTP protocol
+Secure Sockets Layer (SSL) configurations and weaknesses
+Target discovery and profiling
+Configuration flaws
+ 
+
+        SEC542.2: Content Discovery, Authentication, and Session Testing
+      
+ 
+Overview
+Modern web applications frequently are not monitored as closely as they should, giving attackers the opportunity to discover, and exploit, vulnerabilities without anyone noticing.  A systems configuration should involve proper logging and monitoring to ensure security-related events are not missed. That is why in this section we briefly explore logging configuration and basic incident response testing. 
+We enumerate the application's pages and features. This phase involves identifying the components, analyzing the relationship between them, and determining how the pieces work together. We then dive deep into the spidering/crawling results, which represents a vital part of the overall penetration test, as well as perform forced browsing to find hidden content in a lab. This lab also introduces an extremely fast fuzzer, ffuf.
+We examine different authentication systems, including Basic, Digest, Forms, Windows Integrated and OAuth authentication, and discuss how servers use them and attackers abuse them. We perform username enumeration and use Burps fuzzer, Intruder, to guess the password used to successfully authenticate to a web application. We gain hands-on experience with Burp sequencer. Then we end with a discussion of authentication and authorization bypasses, which can expose sensitive data and business functions to attackers, as well as exploit an authentication flaw in Mutillidae.
+Topics
+Logging and monitoring
+Learning tools to spider a website
+Analyzing website content
+Brute forcing unlinked files and directories via ZAP and ffuf
+Web authentication mechanisms
+Fuzzing with Burp Intruder
+Username harvesting and password guessing
+Burp sequencer
+Session management and attacks
+Authentication and authorization bypass
+Mutillidae
+ 
+
+        SEC542.3: Injection
+      
+ 
+Overview
+After ending section two with authentication bypass, we begin section three by exploring security-related protections included in the web servers responses: cookie flags and response headers.  
+We build on the information identified during the target profiling, spidering, and forced browsing exercises, exploring methods to find and verify vulnerabilities within the application. Students also begin to explore the interactions between the various vulnerabilities.
+This course section dives deeply into vital manual testing techniques for vulnerability discovery. We focus on developing in-depth knowledge of interception proxies for web application vulnerability discovery.  Many of the most common injection flaws (command injection and local and remote file inclusion) are introduced, and followed with lab exercises, to reinforce the discovery and exploitation.
+Besides this, a section covers insecure deserialization, a common vulnerability in object-oriented programming languages, where students will exploit a Java insecure deserialization vulnerability in a lab to steal a secret file from a vulnerable web application. This lab requires more effort and demonstrates chaining of vulnerabilities to achieve the final goal.
+Due to its prevalence and the significant impact generally associated with the flaw, a considerable portion of this section is devoted to traditional and blind SQL injection. 
+Topics
+HTTP resonse security controls
+Command injection
+Directory traversal
+Local File Inclusion (LFI)
+Remote File Inclusion (RFI)
+Insecure deserialization
+SQL injection
+Blind SQL injection
+Error-based SQL injection
+Exploiting SQL injection
+SQL injection tools: sqlmap
+ 
+
+        SEC542.4: XSS, SSRF, and XXE
+      
+ 
+Overview
+Section four continues exploring injection flaws and spends time introducing Cross-Site Scripting (XSS) vulnerabilities, including reflected, stored, and DOM-based XSS vulnerabilities. Manual discovery methods are employed during hands-on labs, and students are introduced to the developer tools in browsers, as a means of analyzing client side JavaScript in modern web applications.
+Section four also introduces the Browser Exploitation Framework (BeEF) to students, which is used in multiple labs. The course continues with a detailed discussion of AJAX as we explore how it enlarges the attack surface leveraged by penetration testers. We also analyze how AJAX is affected by other vulnerabilities already covered in depth earlier in the course.
+We discuss REST (Representational State Transfer) and SOAP (Simple Object Access Protocol). Finally, section four ends with us covering server-side request forgery (SSRF) and XML external entities (XXE)both of which include an associated lab. Again, in the SSRF lab multiple vulnerabilities are chained, relying on previously covered material.
+Topics
+Cross-Site Scripting (XSS)
+Browser Exploitation Framework (BeEF)
+AJAX
+XML and JSON
+Document Object Model (DOM)
+API attacks
+Data attacks
+REST and SOAP
+Server-Side Request Forgery (SSRF)
+XML Eternal Entity (XXE)
+ 
+
+        SEC542.5: CSRF, Logic Flaws and Advanced Tools
+      
+ 
+Overview
+During the fifth section, we launch actual exploits against real-world applications, expand our foothold within the application, and extend it to the network on which it resides. As penetration testers, we specifically focus on ways to leverage previously discovered vulnerabilities to gain further access, highlighting the cyclical nature of web application penetration testing.
+During our exploitation phase, we expand our use of tools such as ZAP and BurpSuite Pro, plus complement them with further use of sqlmap and Metasploit to help craft exploits against various web applications. We launch SQL injection and Cross-Site Request Forgery attacks, amongst others. In class we exploit these flaws to perform data theft, hijack sessions, deface a website, get shells, pivot against connected networks, and much more. Through various forms of exploitation, students gain a keen understanding of the potential business impact of these flaws to an organization.
+Students are also introduced to Nuclei  a modern, open-source vulnerability scanner tool that is very popular among bug bounty hackers  in a lab that combines usage of Nuclei and Metasploit.
+While the whole course is geared toward understanding how web application vulnerabilities work and how they can be exploited, we also discuss the active scanner component in BurpSuite Pro.
+To position students to take their skills to the next level, the last lab of section five looks at an instance where a Metasploit module fails to exploit a vulnerability that has been confirmed to exist in the target web application. We explore a process to research the flaw, manually exploit the vulnerability, and then reconfigure the Metasploit module to successfully gain a shell. This exercise gives students necessary skills to dig deeper when automated tools fail.
+We wrap up course instruction by reviewing how to prepare for penetration testing assessments and important post assessment activities, such as report writing.
+Topics
+Cross-Site Request Forgery (CSRF)
+Logic attacks
+Python for web app penetration testing
+WPScan
+ExploitDB
+BurpSuite Pro scanner
+Nuclei
+Metasploit
+When tools fail
+Business of Penetration Testing:
+Preparation
+Post Assessment and Reporting
+ 
+
+        SEC542.6: Capture the Flag
+      
+ 
+Overview
+During section six, students form teams and compete in a web application penetration testing tournament. This Netwars-powered Capture-the-Flag exercise provides students an opportunity to wield their newly developed or further honed skills to answer questions, complete missions, and exfiltrate data, applying skills gained throughout the course. The style of challenge and integrated hint system allows students of various skill levels to both enjoy a game environment and solidify the skills learned in class.
+ 
+ 
+
+            GIAC Web Application Penetration Tester
+          
+ 
+The GIAC Web Application Penetration Tester (GWAPT) certification 
+validates a practitioner's ability to better secure organizations 
+through penetration testing and a thorough understanding of web 
+application security issues. GWAPT certification holders have 
+demonstrated knowledge of web application exploits and penetration 
+testing methodology.
+Web application overview, authentication attacks, and configuration testing
+Web application session management, SQL injection attacks, and testing tools
+Cross site request forgery and scripting, client injection attack, reconnaissance and mapping
+ 
+More Certification Details
+ 
+
+            Prerequisites
+          
+ 
+SEC542 assumes students have a basic working knowledge of the Linux command line.
+ 
+
+            Laptop Requirements
+          
+ 
+Important! Bring your own system configured according to these instructions!
+A properly configured system is required to fully participate in this course. If you do not carefully read and follow these instructions, you will likely leave the class unsatisfied because you will not be able to participate in hands-on exercises that are essential to this course. Therefore, we strongly urge you to arrive with a system meeting all the requirements specified for the course.
+It is critical that you back-up your system before class. It is also strongly advised that you do not bring a system storing any sensitive data.
+Important Things to Note
+Some settings may require administrative-level privileges on the host workation to implement.
+It is critical that you back-up your system before class.
+It is also strongly advised that you do not bring a system storing any sensitive data.
+Baseline Hardware Requirements
+CPU: 64-bit Intel i5/i7 2.0+ GHz processor (CANNOT BE ARM-based M1/M2 MacBooks)
+BIOS: Enabled "Intel-VT"
+RAM: 8GB RAM (or more)
+Hard Drive Free Space: 50 GB Free Space
+Host Operating System: Latest version of Windows 10, Windows 11, macOS 10.15.x or later, or Linux that also can install and run VMware virtualization products described below. 
+Note: 
+Apple systems using the M1 processor cannot perform the necessary virtualization at this time and cannot be used for this course.
+Additional Hardware Requirements
+The requirements below are in addition to baseline requirements provided above. Prior to the start of class, you must install virtualization software and meet additional hardware and software requirements as described below. If you do not carefully read and follow these instructions, you will leave the class unsatisfied because you will not be able to participate in hands-on exercises that are essential to this course.
+Network, Wireless Connection: A wireless 82.11 B, G, N or AC network adapter is required.
+Additional Software Requirements
+Download and install either VMware Workstation Pro 15.5.x, VMware Player 15.5.x or Fusion 11.5.x or higher versions before class. 
+If you do not own a licensed copy of VMware Workstation or Fusion, you can download a free 30-day trial copy from VMware. VMware will send you a time-limited serial number if you register for the trial at their website. 
+Other virtualization software, such as VirtualBox and Hyper-V, are not appropriate because of compatibility and troubleshooting problems you might encounter during class. 
+VMware Workstation Pro and VMware Player on Windows 10 is not compatible with Windows 10 Credential Guard and Device Guard technologies. Please disable these capabilities for the duration of the class, if they're enabled on your system, by following instructions in this document. 
+Your course media will now be delivered via download. The media files for class can be large, some in the 40 - 50 GB range. You need to allow plenty of time for the download to complete. Internet connections and speed vary greatly and are dependent on many different factors. Therefore, it is not possible to give an estimate of the length of time it will take to download your materials. Please start your course media downloads as you get the link. You will need your course media immediately on the first day of class. Waiting until the night before the class starts to begin your download has a high probability of failure.
+SANS has begun providing printed materials in PDF form. Additionally, certain classes are using an electronic workbook in addition to the PDFs. The number of classes using eWorkbooks will grow quickly. In this new environment, we have found that a second monitor and/or a tablet device can be useful by keeping the class materials visible while the instructor is presenting or while you are working on lab exercises. 
+ 
+
+            Author Statement
+          
+ 
+Students routinely show up to SEC542 having been demoralized by their organization's web application vulnerability scanner. Sitting on the business end of these scanners, students regularly attest to 1,000+ pages of output littered with false positives. One of the most rewarding aspects of teaching SEC542 is seeing and hearing those very same students' enthusiasm for applying the skills they have learned through the week to the applications they are responsible for securing. They intrinsically knew the push-button approach to penetration testing was failing them, but lacked the knowledge and skill to ably and efficiently perform any other style of assessment. We are happy to say that SEC542 remedies this problem. Students walk away from class with a deep knowledge of key web application flaws and how to discover and exploit them, as well as how to present these findings in an impactful way. 
+- Eric Conrad, Timothy McKenzie, and Bojan Zdrnja
+"Eric Conrad was awesome. The real life experiences he shared really helped us understand the content." 
+- Hadis Ali, AWS
+ 
+
+    Ways to Learn
+  
+ 
+ 
+OnDemand
+ 
+Study and prepare for GIAC Certification with four months of online access. Includes labs and exercises, and support.
+ 
+ 
+Live Online
+ 
+Live, interactive sessions with SANS instructors over the course of one or more weeks, at times convenient to students worldwide.
+ 
+ 
+In Person 
+(6 days)
+ 
+Training events and topical summits feature presentations and courses in classrooms around the world.
+ 
+ 
+ 
+
+            Who Should Attend SEC542?
+          
+ 
+General security practitioners
+Penetration testers
+Ethical hackers
+Web application developers
+Website designers, architects, and developers
+NICE Framework Work Roles
+Security Control Assessor (OPM 612)
+Software Developer (OPM 621)
+Secure Software Assessor (OPM 622)
+System Testing and Evaluation Specialist (OPM 671)
+Information Systems Security Developer (OPM 631)
+Systems Developer (OPM 632)
+Vulnerability Assessment Analyst (OPM 541)
+Pen Tester (OPM 541)
+Exploitation Analyst (OPM 121)
+Target Developer (OPM 131)
+Cyber Ops Planner (OPM 332)
+ 
+
+            See prerequisites
+          
+ 
+Need to justify a training request to your manager?
+ 
+
+            Use this justification letter template to share the key details of this training and certification opportunity with your boss.
+          
+ 
+ Download the Letter 
+ 
+Related Programs
+ 
+ 
+ 
+ 
+ 
+Masters Program
+ 
+ 
+ 
+
+          This course and certification can be applied to a master's degree program at the SANS Technology Institute.
+        
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+https://www.sans.org/cyber-security-courses/web-app-penetration-testing-ethical-hacking/
+
+
+          What You Will Learn
+        
+ 
+Web applications play a vital role in every modern organization. But, if your organization does not properly test and secure its web apps, adversaries can compromise these applications, damage business functionality, and steal data. Unfortunately, many organizations operate under the mistaken impression that a web application security scanner will reliably discover flaws in their systems.
+SEC542 helps students move beyond push-button scanning to professional, thorough, high-value web application penetration testing.
+Customers expect web applications to provide significant functionality and data access. Even beyond the importance of customer-facing web applications, internal web applications increasingly represent the most commonly used business tools within any organization. Unfortunately, there is no "patch Tuesday" for custom web applications, so major industry studies find that web application flaws play a major role in significant breaches and intrusions. Adversaries increasingly focus on these high-value targets either by directly abusing public-facing applications or by focusing on web apps as targets after an initial break-in.
+SEC542 enables students to assess a web application's security posture and convincingly demonstrate the business impact should attackers exploit discovered vulnerabilities.
+Modern cyber defense requires a realistic and thorough understanding of web application security issues. Anyone can learn to sling a few web hacks, but effective web application penetration testing requires something deeper.
+SEC542 gives novice students the information and skills to become expert penetration testers with practice, and fills in all the foundational gaps for individuals with some penetration testing background.
+Students will come to understand common web application flaws, as well as how to identify and exploit them with the intent of demonstrating the potential business impact. Along the way, students follow a field-tested and repeatable process to consistently find flaws. Information security professionals often struggle with helping their organizations understand risk in terms relatable to business. The goal of SEC542 is to better secure organizations through penetration testing, and not just show off hacking skills. The course will help students demonstrate the true impact of web application flaws not only through exploitation but also through proper documenting and reporting.
+In addition to high-quality course content, SEC542 focuses heavily on in-depth, hands-on labs to ensure that students can immediately apply all they learn.
+In addition to walking students through a web app penetration using more than 30 formal hands-on labs, the course culminates in a web application pen test tournament, powered by the SANS Netwars cyber range. This Capture-the-Flag event groups students into teams to apply their newly acquired command of web application penetration testing techniques in a fun way that hammers home lessons learned throughout the course.
+BUSINESS TAKEAWAYS:
+Apply a repeatable methodology to deliver high-value penetration tests
+Discover and exploit key web application flaws
+Explain the potential impact of web application vulnerabilities
+Convey the importance of web application security to an overall security posture
+Wield key web application attack tools more efficiently
+Write web application penetration test reports
+YOU WILL BEABLE TO:
+Apply OWASP's methodology to your web application penetration tests to ensure they are consistent, reproducible, rigorous, and under quality control.
+Analyze the results from automated web testing tools to validate findings, determine their business impact, and eliminate false positives.
+Manually discover key web application flaws.
+Use Python to create testing and exploitation scripts during a penetration test.
+Discover and exploit SQL Injection flaws to determine true risk to the victim organization.
+Understand and exploit insecure deserialization vulnerabilities with ysoserial and similar tools.
+Create configurations and test payloads within other web attacks.
+Fuzz potential inputs for injection attacks with ZAP, BurP'S Intruder and ffuf.
+Explain the impact of exploitation of web application flaws.
+Analyze traffic between the client and the server application using tools such as the Zed Attack Proxy and BurpSuite Pro to find security issues within the client-side application code.
+Manually discover and exploit Cross-Site Request Forgery (CSRF) attacks. 
+Manually discover and exploit Server-Side Request Forgery (SSRF) attacks.
+Use the Browser Exploitation Framework (BeEF) to hook victim browsers, attack client software and the network, and evaluate the potential impact that XSS flaws have within an application.
+Use the Nuclei tool to perform scans of target web sites/servers.
+Perform two complete web penetration tests, one during the five sections of course instruction, and the other during the Capture the Flag exercise.
+Course Topics
+Interception Proxies
+ZAP (Zed Attack Proxy)
+BurpSuite Professional
+Common Vulnerabilities
+SSL/TLS Misconfigurations
+Username Harvesting
+Authorization Flaws (Direct Object Reference)
+Command Injection
+SQL Injection
+Cross-Site Scripting (XSS)
+Server-Side Request Forgery (SSRF)
+Insecure Deserialization
+XML External Entities (XXE)
+Local and Remote File Inclusion (LFI / RFI)
+Cross-Site Request Forgery (CSRF)
+Open-Source Intelligence (OSINT)
+Target Profiling
+Application Discovery
+Authentication and Authorization
+Session Management Flaws
+Automated Exploitation
+Hands-On Training
+SANS SEC542 employs hands-on labs throughout the course to further students' understanding of web application penetration concepts. Some of the many hands-on labs in the course include:
+DNS Harvesting and Virtual Host Discovery
+Authentication Bypass
+BurpSuite Pro's Sequencer
+Insecure Deserialization
+Reflected and Persistent XSS Attacks
+DOM-Based XSS Attacks
+Spidering and Forced Browsing
+WPScan
+SQL Injection
+Blind SQL Injection
+Server-Side Request Forgery
+CSRF Exploitation
+XML External Entities
+Metasploit for Web Application Attacks
+Exploiting Shellshock
+Leveraging the sqlmap tool
+BeEF and Browser Exploitation
+Username Harvesting
+Password Guessing Attacks
+HTML Injection
+Remote File Inclusion
+Local File Inclusion
+OS Command Injection
+Drupalgeddon and Drupalgeddon 2 Exploitation
+Python for Web Application Pen Testers
+Troubleshooting when automated tools fail
+Extensive use of both BurpSuite Pro and ZAP throughout the course
+What You Will Receive
+Course media that includes both web application attack tools, as well as many vulnerable web applications for testing and training within the classroom and beyond
+Audio recordings of the course to review material after class
+A custom virtual machine tailored specifically for web application penetration testing, with all labs installed locally so they can be repeated even after the course
+Your own Burp Suite Professional license
+ 
+ 
+
+                Syllabus
+                
+(36 CPEs)
+ 
+ Download PDF 
+ 
+
+        SEC542.1: Introduction and Information Gathering
+      
+ 
+Overview
+Understanding the attacker's perspective is key to successful web application penetration testing. The course begins by thoroughly examining foundational concepts such as web technology, including protocols, languages, clients, and server architectures, from the attacker's perspective. We look at collecting open-source intelligence (OSINT) specific to data points likely to help exploitation be more successful, and we analyze the importance of encryption and HTTPS. 
+We look at the methodology promoted by OWASP to help ensure the delivery of high-quality assessments, as well as the things necessary for a penetration testers toolkit. The most important tool, an interception proxy, is introduced through performing the initial configuration steps in OWASPs Zed Attack Proxy (ZAP) and BurpSuite Professional, the latter being a tool we use further to explore aspects of a vulnerable web application.
+Section one concludes with profiling the target(s) to understand the underlying configuration. The collected data is used to build a profile of each server and identify potential configuration flaws. The discussion is underscored through several practical, hands-on labs in which we conduct reconnaissance in order to find forgotten virtual hosts. Students will get deeper hands-on experience with BurpSuite Pro, cURL, and manual exploitation techniques with tools such as nmap and testssl.sh.
+Topics
+Overview of the web from a penetration tester's perspective
+Web application assessment methodologies
+The penetration tester's toolkit
+Interception proxies
+Proxying SSL through BurpSuite Pro and Zed Attack Proxy
+DNS reconnaissance
+Virtual host discovery
+Open-source intelligence (OSINT)
+The HTTP protocol
+Secure Sockets Layer (SSL) configurations and weaknesses
+Target discovery and profiling
+Configuration flaws
+ 
+
+        SEC542.2: Content Discovery, Authentication, and Session Testing
+      
+ 
+Overview
+Modern web applications frequently are not monitored as closely as they should, giving attackers the opportunity to discover, and exploit, vulnerabilities without anyone noticing.  A systems configuration should involve proper logging and monitoring to ensure security-related events are not missed. That is why in this section we briefly explore logging configuration and basic incident response testing. 
+We enumerate the application's pages and features. This phase involves identifying the components, analyzing the relationship between them, and determining how the pieces work together. We then dive deep into the spidering/crawling results, which represents a vital part of the overall penetration test, as well as perform forced browsing to find hidden content in a lab. This lab also introduces an extremely fast fuzzer, ffuf.
+We examine different authentication systems, including Basic, Digest, Forms, Windows Integrated and OAuth authentication, and discuss how servers use them and attackers abuse them. We perform username enumeration and use Burps fuzzer, Intruder, to guess the password used to successfully authenticate to a web application. We gain hands-on experience with Burp sequencer. Then we end with a discussion of authentication and authorization bypasses, which can expose sensitive data and business functions to attackers, as well as exploit an authentication flaw in Mutillidae.
+Topics
+Logging and monitoring
+Learning tools to spider a website
+Analyzing website content
+Brute forcing unlinked files and directories via ZAP and ffuf
+Web authentication mechanisms
+Fuzzing with Burp Intruder
+Username harvesting and password guessing
+Burp sequencer
+Session management and attacks
+Authentication and authorization bypass
+Mutillidae
+ 
+
+        SEC542.3: Injection
+      
+ 
+Overview
+After ending section two with authentication bypass, we begin section three by exploring security-related protections included in the web servers responses: cookie flags and response headers.  
+We build on the information identified during the target profiling, spidering, and forced browsing exercises, exploring methods to find and verify vulnerabilities within the application. Students also begin to explore the interactions between the various vulnerabilities.
+This course section dives deeply into vital manual testing techniques for vulnerability discovery. We focus on developing in-depth knowledge of interception proxies for web application vulnerability discovery.  Many of the most common injection flaws (command injection and local and remote file inclusion) are introduced, and followed with lab exercises, to reinforce the discovery and exploitation.
+Besides this, a section covers insecure deserialization, a common vulnerability in object-oriented programming languages, where students will exploit a Java insecure deserialization vulnerability in a lab to steal a secret file from a vulnerable web application. This lab requires more effort and demonstrates chaining of vulnerabilities to achieve the final goal.
+Due to its prevalence and the significant impact generally associated with the flaw, a considerable portion of this section is devoted to traditional and blind SQL injection. 
+Topics
+HTTP resonse security controls
+Command injection
+Directory traversal
+Local File Inclusion (LFI)
+Remote File Inclusion (RFI)
+Insecure deserialization
+SQL injection
+Blind SQL injection
+Error-based SQL injection
+Exploiting SQL injection
+SQL injection tools: sqlmap
+ 
+
+        SEC542.4: XSS, SSRF, and XXE
+      
+ 
+Overview
+Section four continues exploring injection flaws and spends time introducing Cross-Site Scripting (XSS) vulnerabilities, including reflected, stored, and DOM-based XSS vulnerabilities. Manual discovery methods are employed during hands-on labs, and students are introduced to the developer tools in browsers, as a means of analyzing client side JavaScript in modern web applications.
+Section four also introduces the Browser Exploitation Framework (BeEF) to students, which is used in multiple labs. The course continues with a detailed discussion of AJAX as we explore how it enlarges the attack surface leveraged by penetration testers. We also analyze how AJAX is affected by other vulnerabilities already covered in depth earlier in the course.
+We discuss REST (Representational State Transfer) and SOAP (Simple Object Access Protocol). Finally, section four ends with us covering server-side request forgery (SSRF) and XML external entities (XXE)both of which include an associated lab. Again, in the SSRF lab multiple vulnerabilities are chained, relying on previously covered material.
+Topics
+Cross-Site Scripting (XSS)
+Browser Exploitation Framework (BeEF)
+AJAX
+XML and JSON
+Document Object Model (DOM)
+API attacks
+Data attacks
+REST and SOAP
+Server-Side Request Forgery (SSRF)
+XML Eternal Entity (XXE)
+ 
+
+        SEC542.5: CSRF, Logic Flaws and Advanced Tools
+      
+ 
+Overview
+During the fifth section, we launch actual exploits against real-world applications, expand our foothold within the application, and extend it to the network on which it resides. As penetration testers, we specifically focus on ways to leverage previously discovered vulnerabilities to gain further access, highlighting the cyclical nature of web application penetration testing.
+During our exploitation phase, we expand our use of tools such as ZAP and BurpSuite Pro, plus complement them with further use of sqlmap and Metasploit to help craft exploits against various web applications. We launch SQL injection and Cross-Site Request Forgery attacks, amongst others. In class we exploit these flaws to perform data theft, hijack sessions, deface a website, get shells, pivot against connected networks, and much more. Through various forms of exploitation, students gain a keen understanding of the potential business impact of these flaws to an organization.
+Students are also introduced to Nuclei  a modern, open-source vulnerability scanner tool that is very popular among bug bounty hackers  in a lab that combines usage of Nuclei and Metasploit.
+While the whole course is geared toward understanding how web application vulnerabilities work and how they can be exploited, we also discuss the active scanner component in BurpSuite Pro.
+To position students to take their skills to the next level, the last lab of section five looks at an instance where a Metasploit module fails to exploit a vulnerability that has been confirmed to exist in the target web application. We explore a process to research the flaw, manually exploit the vulnerability, and then reconfigure the Metasploit module to successfully gain a shell. This exercise gives students necessary skills to dig deeper when automated tools fail.
+We wrap up course instruction by reviewing how to prepare for penetration testing assessments and important post assessment activities, such as report writing.
+Topics
+Cross-Site Request Forgery (CSRF)
+Logic attacks
+Python for web app penetration testing
+WPScan
+ExploitDB
+BurpSuite Pro scanner
+Nuclei
+Metasploit
+When tools fail
+Business of Penetration Testing:
+Preparation
+Post Assessment and Reporting
+ 
+
+        SEC542.6: Capture the Flag
+      
+ 
+Overview
+During section six, students form teams and compete in a web application penetration testing tournament. This Netwars-powered Capture-the-Flag exercise provides students an opportunity to wield their newly developed or further honed skills to answer questions, complete missions, and exfiltrate data, applying skills gained throughout the course. The style of challenge and integrated hint system allows students of various skill levels to both enjoy a game environment and solidify the skills learned in class.
+ 
+ 
+
+            GIAC Web Application Penetration Tester
+          
+ 
+The GIAC Web Application Penetration Tester (GWAPT) certification 
+validates a practitioner's ability to better secure organizations 
+through penetration testing and a thorough understanding of web 
+application security issues. GWAPT certification holders have 
+demonstrated knowledge of web application exploits and penetration 
+testing methodology.
+Web application overview, authentication attacks, and configuration testing
+Web application session management, SQL injection attacks, and testing tools
+Cross site request forgery and scripting, client injection attack, reconnaissance and mapping
+ 
+More Certification Details
+ 
+
+            Prerequisites
+          
+ 
+SEC542 assumes students have a basic working knowledge of the Linux command line.
+ 
+
+            Laptop Requirements
+          
+ 
+Important! Bring your own system configured according to these instructions!
+A properly configured system is required to fully participate in this course. If you do not carefully read and follow these instructions, you will likely leave the class unsatisfied because you will not be able to participate in hands-on exercises that are essential to this course. Therefore, we strongly urge you to arrive with a system meeting all the requirements specified for the course.
+It is critical that you back-up your system before class. It is also strongly advised that you do not bring a system storing any sensitive data.
+Important Things to Note
+Some settings may require administrative-level privileges on the host workation to implement.
+It is critical that you back-up your system before class.
+It is also strongly advised that you do not bring a system storing any sensitive data.
+Baseline Hardware Requirements
+CPU: 64-bit Intel i5/i7 2.0+ GHz processor (CANNOT BE ARM-based M1/M2 MacBooks)
+BIOS: Enabled "Intel-VT"
+RAM: 8GB RAM (or more)
+Hard Drive Free Space: 50 GB Free Space
+Host Operating System: Latest version of Windows 10, Windows 11, macOS 10.15.x or later, or Linux that also can install and run VMware virtualization products described below. 
+Note: 
+Apple systems using the M1 processor cannot perform the necessary virtualization at this time and cannot be used for this course.
+Additional Hardware Requirements
+The requirements below are in addition to baseline requirements provided above. Prior to the start of class, you must install virtualization software and meet additional hardware and software requirements as described below. If you do not carefully read and follow these instructions, you will leave the class unsatisfied because you will not be able to participate in hands-on exercises that are essential to this course.
+Network, Wireless Connection: A wireless 82.11 B, G, N or AC network adapter is required.
+Additional Software Requirements
+Download and install either VMware Workstation Pro 15.5.x, VMware Player 15.5.x or Fusion 11.5.x or higher versions before class. 
+If you do not own a licensed copy of VMware Workstation or Fusion, you can download a free 30-day trial copy from VMware. VMware will send you a time-limited serial number if you register for the trial at their website. 
+Other virtualization software, such as VirtualBox and Hyper-V, are not appropriate because of compatibility and troubleshooting problems you might encounter during class. 
+VMware Workstation Pro and VMware Player on Windows 10 is not compatible with Windows 10 Credential Guard and Device Guard technologies. Please disable these capabilities for the duration of the class, if they're enabled on your system, by following instructions in this document. 
+Your course media will now be delivered via download. The media files for class can be large, some in the 40 - 50 GB range. You need to allow plenty of time for the download to complete. Internet connections and speed vary greatly and are dependent on many different factors. Therefore, it is not possible to give an estimate of the length of time it will take to download your materials. Please start your course media downloads as you get the link. You will need your course media immediately on the first day of class. Waiting until the night before the class starts to begin your download has a high probability of failure.
+SANS has begun providing printed materials in PDF form. Additionally, certain classes are using an electronic workbook in addition to the PDFs. The number of classes using eWorkbooks will grow quickly. In this new environment, we have found that a second monitor and/or a tablet device can be useful by keeping the class materials visible while the instructor is presenting or while you are working on lab exercises. 
+ 
+
+            Author Statement
+          
+ 
+Students routinely show up to SEC542 having been demoralized by their organization's web application vulnerability scanner. Sitting on the business end of these scanners, students regularly attest to 1,000+ pages of output littered with false positives. One of the most rewarding aspects of teaching SEC542 is seeing and hearing those very same students' enthusiasm for applying the skills they have learned through the week to the applications they are responsible for securing. They intrinsically knew the push-button approach to penetration testing was failing them, but lacked the knowledge and skill to ably and efficiently perform any other style of assessment. We are happy to say that SEC542 remedies this problem. Students walk away from class with a deep knowledge of key web application flaws and how to discover and exploit them, as well as how to present these findings in an impactful way. 
+- Eric Conrad, Timothy McKenzie, and Bojan Zdrnja
+"Eric Conrad was awesome. The real life experiences he shared really helped us understand the content." 
+- Hadis Ali, AWS
+ 
+
+    Ways to Learn
+  
+ 
+ 
+OnDemand
+ 
+Study and prepare for GIAC Certification with four months of online access. Includes labs and exercises, and support.
+ 
+ 
+Live Online
+ 
+Live, interactive sessions with SANS instructors over the course of one or more weeks, at times convenient to students worldwide.
+ 
+ 
+In Person 
+(6 days)
+ 
+Training events and topical summits feature presentations and courses in classrooms around the world.
+ 
+ 
+ 
+
+            Who Should Attend SEC542?
+          
+ 
+General security practitioners
+Penetration testers
+Ethical hackers
+Web application developers
+Website designers, architects, and developers
+NICE Framework Work Roles
+Security Control Assessor (OPM 612)
+Software Developer (OPM 621)
+Secure Software Assessor (OPM 622)
+System Testing and Evaluation Specialist (OPM 671)
+Information Systems Security Developer (OPM 631)
+Systems Developer (OPM 632)
+Vulnerability Assessment Analyst (OPM 541)
+Pen Tester (OPM 541)
+Exploitation Analyst (OPM 121)
+Target Developer (OPM 131)
+Cyber Ops Planner (OPM 332)
+ 
+
+            See prerequisites
+          
+ 
+Need to justify a training request to your manager?
+ 
+
+            Use this justification letter template to share the key details of this training and certification opportunity with your boss.
+          
+ 
+ Download the Letter 
+ 
+Related Programs
+ 
+ 
+ 
+ 
+ 
+Masters Program
+ 
+ 
+ 
+
+          This course and certification can be applied to a master's degree program at the SANS Technology Institute.
+        
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+https://www.sans.org/cyber-security-courses/web-app-penetration-testing-ethical-hacking/
+
+
+          What You Will Learn
+        
+ 
+Web applications play a vital role in every modern organization. But, if your organization does not properly test and secure its web apps, adversaries can compromise these applications, damage business functionality, and steal data. Unfortunately, many organizations operate under the mistaken impression that a web application security scanner will reliably discover flaws in their systems.
+SEC542 helps students move beyond push-button scanning to professional, thorough, high-value web application penetration testing.
+Customers expect web applications to provide significant functionality and data access. Even beyond the importance of customer-facing web applications, internal web applications increasingly represent the most commonly used business tools within any organization. Unfortunately, there is no "patch Tuesday" for custom web applications, so major industry studies find that web application flaws play a major role in significant breaches and intrusions. Adversaries increasingly focus on these high-value targets either by directly abusing public-facing applications or by focusing on web apps as targets after an initial break-in.
+SEC542 enables students to assess a web application's security posture and convincingly demonstrate the business impact should attackers exploit discovered vulnerabilities.
+Modern cyber defense requires a realistic and thorough understanding of web application security issues. Anyone can learn to sling a few web hacks, but effective web application penetration testing requires something deeper.
+SEC542 gives novice students the information and skills to become expert penetration testers with practice, and fills in all the foundational gaps for individuals with some penetration testing background.
+Students will come to understand common web application flaws, as well as how to identify and exploit them with the intent of demonstrating the potential business impact. Along the way, students follow a field-tested and repeatable process to consistently find flaws. Information security professionals often struggle with helping their organizations understand risk in terms relatable to business. The goal of SEC542 is to better secure organizations through penetration testing, and not just show off hacking skills. The course will help students demonstrate the true impact of web application flaws not only through exploitation but also through proper documenting and reporting.
+In addition to high-quality course content, SEC542 focuses heavily on in-depth, hands-on labs to ensure that students can immediately apply all they learn.
+In addition to walking students through a web app penetration using more than 30 formal hands-on labs, the course culminates in a web application pen test tournament, powered by the SANS Netwars cyber range. This Capture-the-Flag event groups students into teams to apply their newly acquired command of web application penetration testing techniques in a fun way that hammers home lessons learned throughout the course.
+BUSINESS TAKEAWAYS:
+Apply a repeatable methodology to deliver high-value penetration tests
+Discover and exploit key web application flaws
+Explain the potential impact of web application vulnerabilities
+Convey the importance of web application security to an overall security posture
+Wield key web application attack tools more efficiently
+Write web application penetration test reports
+YOU WILL BEABLE TO:
+Apply OWASP's methodology to your web application penetration tests to ensure they are consistent, reproducible, rigorous, and under quality control.
+Analyze the results from automated web testing tools to validate findings, determine their business impact, and eliminate false positives.
+Manually discover key web application flaws.
+Use Python to create testing and exploitation scripts during a penetration test.
+Discover and exploit SQL Injection flaws to determine true risk to the victim organization.
+Understand and exploit insecure deserialization vulnerabilities with ysoserial and similar tools.
+Create configurations and test payloads within other web attacks.
+Fuzz potential inputs for injection attacks with ZAP, BurP'S Intruder and ffuf.
+Explain the impact of exploitation of web application flaws.
+Analyze traffic between the client and the server application using tools such as the Zed Attack Proxy and BurpSuite Pro to find security issues within the client-side application code.
+Manually discover and exploit Cross-Site Request Forgery (CSRF) attacks. 
+Manually discover and exploit Server-Side Request Forgery (SSRF) attacks.
+Use the Browser Exploitation Framework (BeEF) to hook victim browsers, attack client software and the network, and evaluate the potential impact that XSS flaws have within an application.
+Use the Nuclei tool to perform scans of target web sites/servers.
+Perform two complete web penetration tests, one during the five sections of course instruction, and the other during the Capture the Flag exercise.
+Course Topics
+Interception Proxies
+ZAP (Zed Attack Proxy)
+BurpSuite Professional
+Common Vulnerabilities
+SSL/TLS Misconfigurations
+Username Harvesting
+Authorization Flaws (Direct Object Reference)
+Command Injection
+SQL Injection
+Cross-Site Scripting (XSS)
+Server-Side Request Forgery (SSRF)
+Insecure Deserialization
+XML External Entities (XXE)
+Local and Remote File Inclusion (LFI / RFI)
+Cross-Site Request Forgery (CSRF)
+Open-Source Intelligence (OSINT)
+Target Profiling
+Application Discovery
+Authentication and Authorization
+Session Management Flaws
+Automated Exploitation
+Hands-On Training
+SANS SEC542 employs hands-on labs throughout the course to further students' understanding of web application penetration concepts. Some of the many hands-on labs in the course include:
+DNS Harvesting and Virtual Host Discovery
+Authentication Bypass
+BurpSuite Pro's Sequencer
+Insecure Deserialization
+Reflected and Persistent XSS Attacks
+DOM-Based XSS Attacks
+Spidering and Forced Browsing
+WPScan
+SQL Injection
+Blind SQL Injection
+Server-Side Request Forgery
+CSRF Exploitation
+XML External Entities
+Metasploit for Web Application Attacks
+Exploiting Shellshock
+Leveraging the sqlmap tool
+BeEF and Browser Exploitation
+Username Harvesting
+Password Guessing Attacks
+HTML Injection
+Remote File Inclusion
+Local File Inclusion
+OS Command Injection
+Drupalgeddon and Drupalgeddon 2 Exploitation
+Python for Web Application Pen Testers
+Troubleshooting when automated tools fail
+Extensive use of both BurpSuite Pro and ZAP throughout the course
+What You Will Receive
+Course media that includes both web application attack tools, as well as many vulnerable web applications for testing and training within the classroom and beyond
+Audio recordings of the course to review material after class
+A custom virtual machine tailored specifically for web application penetration testing, with all labs installed locally so they can be repeated even after the course
+Your own Burp Suite Professional license
+ 
+ 
+
+                Syllabus
+                
+(36 CPEs)
+ 
+ Download PDF 
+ 
+
+        SEC542.1: Introduction and Information Gathering
+      
+ 
+Overview
+Understanding the attacker's perspective is key to successful web application penetration testing. The course begins by thoroughly examining foundational concepts such as web technology, including protocols, languages, clients, and server architectures, from the attacker's perspective. We look at collecting open-source intelligence (OSINT) specific to data points likely to help exploitation be more successful, and we analyze the importance of encryption and HTTPS. 
+We look at the methodology promoted by OWASP to help ensure the delivery of high-quality assessments, as well as the things necessary for a penetration testers toolkit. The most important tool, an interception proxy, is introduced through performing the initial configuration steps in OWASPs Zed Attack Proxy (ZAP) and BurpSuite Professional, the latter being a tool we use further to explore aspects of a vulnerable web application.
+Section one concludes with profiling the target(s) to understand the underlying configuration. The collected data is used to build a profile of each server and identify potential configuration flaws. The discussion is underscored through several practical, hands-on labs in which we conduct reconnaissance in order to find forgotten virtual hosts. Students will get deeper hands-on experience with BurpSuite Pro, cURL, and manual exploitation techniques with tools such as nmap and testssl.sh.
+Topics
+Overview of the web from a penetration tester's perspective
+Web application assessment methodologies
+The penetration tester's toolkit
+Interception proxies
+Proxying SSL through BurpSuite Pro and Zed Attack Proxy
+DNS reconnaissance
+Virtual host discovery
+Open-source intelligence (OSINT)
+The HTTP protocol
+Secure Sockets Layer (SSL) configurations and weaknesses
+Target discovery and profiling
+Configuration flaws
+ 
+
+        SEC542.2: Content Discovery, Authentication, and Session Testing
+      
+ 
+Overview
+Modern web applications frequently are not monitored as closely as they should, giving attackers the opportunity to discover, and exploit, vulnerabilities without anyone noticing.  A systems configuration should involve proper logging and monitoring to ensure security-related events are not missed. That is why in this section we briefly explore logging configuration and basic incident response testing. 
+We enumerate the application's pages and features. This phase involves identifying the components, analyzing the relationship between them, and determining how the pieces work together. We then dive deep into the spidering/crawling results, which represents a vital part of the overall penetration test, as well as perform forced browsing to find hidden content in a lab. This lab also introduces an extremely fast fuzzer, ffuf.
+We examine different authentication systems, including Basic, Digest, Forms, Windows Integrated and OAuth authentication, and discuss how servers use them and attackers abuse them. We perform username enumeration and use Burps fuzzer, Intruder, to guess the password used to successfully authenticate to a web application. We gain hands-on experience with Burp sequencer. Then we end with a discussion of authentication and authorization bypasses, which can expose sensitive data and business functions to attackers, as well as exploit an authentication flaw in Mutillidae.
+Topics
+Logging and monitoring
+Learning tools to spider a website
+Analyzing website content
+Brute forcing unlinked files and directories via ZAP and ffuf
+Web authentication mechanisms
+Fuzzing with Burp Intruder
+Username harvesting and password guessing
+Burp sequencer
+Session management and attacks
+Authentication and authorization bypass
+Mutillidae
+ 
+
+        SEC542.3: Injection
+      
+ 
+Overview
+After ending section two with authentication bypass, we begin section three by exploring security-related protections included in the web servers responses: cookie flags and response headers.  
+We build on the information identified during the target profiling, spidering, and forced browsing exercises, exploring methods to find and verify vulnerabilities within the application. Students also begin to explore the interactions between the various vulnerabilities.
+This course section dives deeply into vital manual testing techniques for vulnerability discovery. We focus on developing in-depth knowledge of interception proxies for web application vulnerability discovery.  Many of the most common injection flaws (command injection and local and remote file inclusion) are introduced, and followed with lab exercises, to reinforce the discovery and exploitation.
+Besides this, a section covers insecure deserialization, a common vulnerability in object-oriented programming languages, where students will exploit a Java insecure deserialization vulnerability in a lab to steal a secret file from a vulnerable web application. This lab requires more effort and demonstrates chaining of vulnerabilities to achieve the final goal.
+Due to its prevalence and the significant impact generally associated with the flaw, a considerable portion of this section is devoted to traditional and blind SQL injection. 
+Topics
+HTTP resonse security controls
+Command injection
+Directory traversal
+Local File Inclusion (LFI)
+Remote File Inclusion (RFI)
+Insecure deserialization
+SQL injection
+Blind SQL injection
+Error-based SQL injection
+Exploiting SQL injection
+SQL injection tools: sqlmap
+ 
+
+        SEC542.4: XSS, SSRF, and XXE
+      
+ 
+Overview
+Section four continues exploring injection flaws and spends time introducing Cross-Site Scripting (XSS) vulnerabilities, including reflected, stored, and DOM-based XSS vulnerabilities. Manual discovery methods are employed during hands-on labs, and students are introduced to the developer tools in browsers, as a means of analyzing client side JavaScript in modern web applications.
+Section four also introduces the Browser Exploitation Framework (BeEF) to students, which is used in multiple labs. The course continues with a detailed discussion of AJAX as we explore how it enlarges the attack surface leveraged by penetration testers. We also analyze how AJAX is affected by other vulnerabilities already covered in depth earlier in the course.
+We discuss REST (Representational State Transfer) and SOAP (Simple Object Access Protocol). Finally, section four ends with us covering server-side request forgery (SSRF) and XML external entities (XXE)both of which include an associated lab. Again, in the SSRF lab multiple vulnerabilities are chained, relying on previously covered material.
+Topics
+Cross-Site Scripting (XSS)
+Browser Exploitation Framework (BeEF)
+AJAX
+XML and JSON
+Document Object Model (DOM)
+API attacks
+Data attacks
+REST and SOAP
+Server-Side Request Forgery (SSRF)
+XML Eternal Entity (XXE)
+ 
+
+        SEC542.5: CSRF, Logic Flaws and Advanced Tools
+      
+ 
+Overview
+During the fifth section, we launch actual exploits against real-world applications, expand our foothold within the application, and extend it to the network on which it resides. As penetration testers, we specifically focus on ways to leverage previously discovered vulnerabilities to gain further access, highlighting the cyclical nature of web application penetration testing.
+During our exploitation phase, we expand our use of tools such as ZAP and BurpSuite Pro, plus complement them with further use of sqlmap and Metasploit to help craft exploits against various web applications. We launch SQL injection and Cross-Site Request Forgery attacks, amongst others. In class we exploit these flaws to perform data theft, hijack sessions, deface a website, get shells, pivot against connected networks, and much more. Through various forms of exploitation, students gain a keen understanding of the potential business impact of these flaws to an organization.
+Students are also introduced to Nuclei  a modern, open-source vulnerability scanner tool that is very popular among bug bounty hackers  in a lab that combines usage of Nuclei and Metasploit.
+While the whole course is geared toward understanding how web application vulnerabilities work and how they can be exploited, we also discuss the active scanner component in BurpSuite Pro.
+To position students to take their skills to the next level, the last lab of section five looks at an instance where a Metasploit module fails to exploit a vulnerability that has been confirmed to exist in the target web application. We explore a process to research the flaw, manually exploit the vulnerability, and then reconfigure the Metasploit module to successfully gain a shell. This exercise gives students necessary skills to dig deeper when automated tools fail.
+We wrap up course instruction by reviewing how to prepare for penetration testing assessments and important post assessment activities, such as report writing.
+Topics
+Cross-Site Request Forgery (CSRF)
+Logic attacks
+Python for web app penetration testing
+WPScan
+ExploitDB
+BurpSuite Pro scanner
+Nuclei
+Metasploit
+When tools fail
+Business of Penetration Testing:
+Preparation
+Post Assessment and Reporting
+ 
+
+        SEC542.6: Capture the Flag
+      
+ 
+Overview
+During section six, students form teams and compete in a web application penetration testing tournament. This Netwars-powered Capture-the-Flag exercise provides students an opportunity to wield their newly developed or further honed skills to answer questions, complete missions, and exfiltrate data, applying skills gained throughout the course. The style of challenge and integrated hint system allows students of various skill levels to both enjoy a game environment and solidify the skills learned in class.
+ 
+ 
+
+            GIAC Web Application Penetration Tester
+          
+ 
+The GIAC Web Application Penetration Tester (GWAPT) certification 
+validates a practitioner's ability to better secure organizations 
+through penetration testing and a thorough understanding of web 
+application security issues. GWAPT certification holders have 
+demonstrated knowledge of web application exploits and penetration 
+testing methodology.
+Web application overview, authentication attacks, and configuration testing
+Web application session management, SQL injection attacks, and testing tools
+Cross site request forgery and scripting, client injection attack, reconnaissance and mapping
+ 
+More Certification Details
+ 
+
+            Prerequisites
+          
+ 
+SEC542 assumes students have a basic working knowledge of the Linux command line.
+ 
+
+            Laptop Requirements
+          
+ 
+Important! Bring your own system configured according to these instructions!
+A properly configured system is required to fully participate in this course. If you do not carefully read and follow these instructions, you will likely leave the class unsatisfied because you will not be able to participate in hands-on exercises that are essential to this course. Therefore, we strongly urge you to arrive with a system meeting all the requirements specified for the course.
+It is critical that you back-up your system before class. It is also strongly advised that you do not bring a system storing any sensitive data.
+Important Things to Note
+Some settings may require administrative-level privileges on the host workation to implement.
+It is critical that you back-up your system before class.
+It is also strongly advised that you do not bring a system storing any sensitive data.
+Baseline Hardware Requirements
+CPU: 64-bit Intel i5/i7 2.0+ GHz processor (CANNOT BE ARM-based M1/M2 MacBooks)
+BIOS: Enabled "Intel-VT"
+RAM: 8GB RAM (or more)
+Hard Drive Free Space: 50 GB Free Space
+Host Operating System: Latest version of Windows 10, Windows 11, macOS 10.15.x or later, or Linux that also can install and run VMware virtualization products described below. 
+Note: 
+Apple systems using the M1 processor cannot perform the necessary virtualization at this time and cannot be used for this course.
+Additional Hardware Requirements
+The requirements below are in addition to baseline requirements provided above. Prior to the start of class, you must install virtualization software and meet additional hardware and software requirements as described below. If you do not carefully read and follow these instructions, you will leave the class unsatisfied because you will not be able to participate in hands-on exercises that are essential to this course.
+Network, Wireless Connection: A wireless 82.11 B, G, N or AC network adapter is required.
+Additional Software Requirements
+Download and install either VMware Workstation Pro 15.5.x, VMware Player 15.5.x or Fusion 11.5.x or higher versions before class. 
+If you do not own a licensed copy of VMware Workstation or Fusion, you can download a free 30-day trial copy from VMware. VMware will send you a time-limited serial number if you register for the trial at their website. 
+Other virtualization software, such as VirtualBox and Hyper-V, are not appropriate because of compatibility and troubleshooting problems you might encounter during class. 
+VMware Workstation Pro and VMware Player on Windows 10 is not compatible with Windows 10 Credential Guard and Device Guard technologies. Please disable these capabilities for the duration of the class, if they're enabled on your system, by following instructions in this document. 
+Your course media will now be delivered via download. The media files for class can be large, some in the 40 - 50 GB range. You need to allow plenty of time for the download to complete. Internet connections and speed vary greatly and are dependent on many different factors. Therefore, it is not possible to give an estimate of the length of time it will take to download your materials. Please start your course media downloads as you get the link. You will need your course media immediately on the first day of class. Waiting until the night before the class starts to begin your download has a high probability of failure.
+SANS has begun providing printed materials in PDF form. Additionally, certain classes are using an electronic workbook in addition to the PDFs. The number of classes using eWorkbooks will grow quickly. In this new environment, we have found that a second monitor and/or a tablet device can be useful by keeping the class materials visible while the instructor is presenting or while you are working on lab exercises. 
+ 
+
+            Author Statement
+          
+ 
+Students routinely show up to SEC542 having been demoralized by their organization's web application vulnerability scanner. Sitting on the business end of these scanners, students regularly attest to 1,000+ pages of output littered with false positives. One of the most rewarding aspects of teaching SEC542 is seeing and hearing those very same students' enthusiasm for applying the skills they have learned through the week to the applications they are responsible for securing. They intrinsically knew the push-button approach to penetration testing was failing them, but lacked the knowledge and skill to ably and efficiently perform any other style of assessment. We are happy to say that SEC542 remedies this problem. Students walk away from class with a deep knowledge of key web application flaws and how to discover and exploit them, as well as how to present these findings in an impactful way. 
+- Eric Conrad, Timothy McKenzie, and Bojan Zdrnja
+"Eric Conrad was awesome. The real life experiences he shared really helped us understand the content." 
+- Hadis Ali, AWS
+ 
+
+    Ways to Learn
+  
+ 
+ 
+OnDemand
+ 
+Study and prepare for GIAC Certification with four months of online access. Includes labs and exercises, and support.
+ 
+ 
+Live Online
+ 
+Live, interactive sessions with SANS instructors over the course of one or more weeks, at times convenient to students worldwide.
+ 
+ 
+In Person 
+(6 days)
+ 
+Training events and topical summits feature presentations and courses in classrooms around the world.
+ 
+ 
+ 
+
+            Who Should Attend SEC542?
+          
+ 
+General security practitioners
+Penetration testers
+Ethical hackers
+Web application developers
+Website designers, architects, and developers
+NICE Framework Work Roles
+Security Control Assessor (OPM 612)
+Software Developer (OPM 621)
+Secure Software Assessor (OPM 622)
+System Testing and Evaluation Specialist (OPM 671)
+Information Systems Security Developer (OPM 631)
+Systems Developer (OPM 632)
+Vulnerability Assessment Analyst (OPM 541)
+Pen Tester (OPM 541)
+Exploitation Analyst (OPM 121)
+Target Developer (OPM 131)
+Cyber Ops Planner (OPM 332)
+ 
+
+            See prerequisites
+          
+ 
+Need to justify a training request to your manager?
+ 
+
+            Use this justification letter template to share the key details of this training and certification opportunity with your boss.
+          
+ 
+ Download the Letter 
+ 
+Related Programs
+ 
+ 
+ 
+ 
+ 
+Masters Program
+ 
+ 
+ 
+
+          This course and certification can be applied to a master's degree program at the SANS Technology Institute.
+        
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+

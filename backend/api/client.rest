@@ -1,0 +1,18 @@
+GET http://127.0.0.1:5000/domain
+accept: application/json
+
+###
+POST http://127.0.0.1:5000/answer
+content_type: application/json
+accept: application/json
+
+{
+    "domain_id": 1,
+    "query": "are you open on saturdays"
+}
+
+###
+POST http://127.0.0.1:5000/hello
+content_type: application/x-www-form-urlencoded
+
+data=hey

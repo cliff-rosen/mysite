@@ -2,9 +2,10 @@ import openai
 from openai.embeddings_utils import get_embedding, cosine_similarity
 from langchain.text_splitter import CharacterTextSplitter, RecursiveCharacterTextSplitter
 import re
+import os
 import sys
 sys.path.append('db')
-sys.path.append('polls')
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import local_db as db
 import local_secrets as secrets
 
@@ -52,7 +53,7 @@ def get_chunks_from_text(text, r):
     return chunks
 
 # runtime settings
-domain_id = 4
+domain_id = 0
 
 # init
 conn = db.get_connection()

@@ -54,6 +54,7 @@ def get_chunks_with_text(chunks):
 
     # add text property to chunks
     ids = list(chunks.keys())
+    print("ids", ids)
     conn = db.get_connection()
     cur = db.get_document_chunks_from_ids(conn, ids)
     for doc_chunk_id, chunk_text in cur:

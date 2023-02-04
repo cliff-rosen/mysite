@@ -53,7 +53,7 @@ def get_chunks_from_text(text, r):
     return chunks
 
 # runtime settings
-domain_id = 0
+domain_id = 1
 
 # init
 conn = db.get_connection()
@@ -71,8 +71,8 @@ for row in rows:
         #clean_chunk = re.sub('\s+', ' ', chunk)
         print(doc_id, chunk[:50])
         print("----------------------")
-        embedding = get_openai_embedding(chunk)
-        db.insert_document_chunk(conn, doc_id, chunk, embedding)
+        #embedding = get_openai_embedding(chunk)
+        #db.insert_document_chunk(conn, doc_id, chunk, embedding)
 
 # cleanup
 db.close_connection(conn)

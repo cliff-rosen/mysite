@@ -55,8 +55,8 @@ def spider(url, single):
         page_text = soup.get_text("\n")
 
     # Clean page text
-    #page_text = page_text.encode(encoding='ASCII',errors='ignore').decode()
-    #page_text = re.sub('\s+', ' ', page_text)
+    page_text = page_text.encode(encoding='ASCII',errors='ignore').decode()
+    page_text = re.sub('\s+', ' ', page_text)
 
     # Save page text
     if single == False:
@@ -72,7 +72,7 @@ def spider(url, single):
             if link_is_good(link_url):
                 if not link_url.startswith("http"):
                     link_url = initial_url + link_url
-                spider(link_url)
+                spider(link_url, single)
 
 def write_text_to_db(uri, text):
     print("saving: ", uri)
@@ -87,12 +87,9 @@ def write_text_to_file(uri, page_text):
         file.writelines(page_text + "\n\n")
 
 # configure job
-domain_id = 0
-initial_url = "https://www.sans.org/cyber-security-courses/hacker-techniques-incident-handling/"
-initial_url = "https://www.sans.org/cyber-security-courses/enterprise-penetration-testing/"
-initial_url = "https://www.sans.org/cyber-security-courses/advanced-penetration-testing-exploits-ethical-hacking/"
-initial_url = "https://www.sans.org/cyber-security-courses/web-app-penetration-testing-ethical-hacking/"
-single = True
+domain_id = 6
+initial_url = "https://radialtheory.com"
+single = False
 file_name = "page.txt"
 
 # init

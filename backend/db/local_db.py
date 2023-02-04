@@ -29,7 +29,7 @@ def close_connection(conn):
 
 def insert_document(conn, domain_id, doc_uri, doc_title, doc_text):
     cur = conn.cursor() 
-    cur.execute("INSERT INTO document (domain_id, doc_uri, doc_title, doc_text) VALUES (?, ?, ?, ?)", (domain_id, doc_uri, doc_title, doc_text)) 
+    cur.execute("INSERT INTO document (domain_id, doc_uri, doc_title, doc_text) VALUES (%s, %s, %s, %s)", (domain_id, doc_uri, doc_title, doc_text)) 
     conn.commit() 
 
 def get_all_docs_from_domain(conn, domain_id):
@@ -42,7 +42,7 @@ def get_all_docs_from_domain(conn, domain_id):
 def insert_document_chunk(conn, doc_id, chunk_text, chunk_embedding):
     json_data = json.dumps(chunk_embedding)
     cur = conn.cursor() 
-    cur.execute("INSERT INTO document_chunk (doc_id, chunk_text, chunk_embedding) VALUES (?, ?, ?)", (doc_id, chunk_text, json_data)) 
+    cur.execute("INSERT INTO document_chunk (doc_id, chunk_text, chunk_embedding) VALUES (%s, %s, %s)", (doc_id, chunk_text, json_data)) 
     conn.commit() 
 
 def get_document_chunks(conn, domain_id):

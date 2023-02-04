@@ -1,5 +1,8 @@
 import mariadb
 import json
+import local_secrets as secrets
+
+DB_SECRETS = secrets.DB_SECRETS
 
 """
 domain: domain_id, domain_desc
@@ -10,10 +13,10 @@ index: doc_chunk_id, embedding, metadata {sub_index: <SUB_INDEX>}
 
 def get_connection():
     conn = mariadb.connect(
-        user="nodejs",
-        password="db",
-        host="localhost",
-        database="doc")
+        user=DB_SECRETS["DB_USER"],
+        password=DB_SECRETS["DB_PASSWORD"],
+        host=DB_SECRETS["DB_HOST"],
+        database=DB_SECRETS["DB_NAME"])
     return conn
 
 def close_connection(conn):

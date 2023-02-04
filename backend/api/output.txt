@@ -1,12 +1,6 @@
-QUERY: are you open on saturdays
+QUERY: do you work with architects
 
-RESPONSE: Yes, we are open on Saturdays. You can contact us at 1.917.257.0117 or email us at contact@wholehomecontrol.com.
-
-=======================================
-
-QUERY: list the classes available for pen testing
-
-RESPONSE: The classes available for pen testing are SEC560: Network Penetration Testing and Ethical Hacking, SEC660: Advanced Penetration Testing, Exploit Writing, and Ethical Hacking, SEC575: Mobile Device Security and Ethical Hacking, SEC588: Cloud Penetration Testing, and SEC542: Web App Penetration Testing and Ethical Hacking.
+RESPONSE: Yes, we work closely with architects to ensure even the subtlest requirements are realized for both form and function. We typically work in a “design-build” capacity, providing detailed, bid ready design documents for your home technology, or offering home technology consulting services.
 
 =======================================
 

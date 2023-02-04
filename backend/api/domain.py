@@ -1,5 +1,4 @@
 import os
-print(os.getcwd())
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'db'))
 import local_db as db

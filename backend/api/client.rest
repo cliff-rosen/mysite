@@ -8,7 +8,7 @@ accept: application/json
 
 {
     "domain_id": 1,
-    "query": "are you open on saturdays"
+    "query": "do you work with architects"
 }
 
 ###

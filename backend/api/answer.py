@@ -8,7 +8,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import local_db as db
 import local_secrets as secrets
 
-PINECONE_API_KEY = "7484d7df-d798-4b27-90c7-0f0164e6744d"
+PINECONE_API_KEY = secrets.PINECONE_API_KEY
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
 MODEL = "text-embedding-ada-002"
 INDEX_NAME = "main-index"

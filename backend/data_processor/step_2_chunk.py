@@ -53,7 +53,7 @@ def get_chunks_from_text(text, use_recursive):
     return chunks
 
 # runtime settings
-domain_id = 6
+domain_id = 8 
 
 # init
 conn = db.get_connection()

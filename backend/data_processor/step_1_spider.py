@@ -18,11 +18,11 @@ def link_is_good(link_url):
     if link_url is not None \
         and (link_url.startswith(initial_url) or not link_url.startswith("http"))\
         and not link_url.startswith("#") \
-        and not link_url.startswith("mailto:") \
-        and not link_url.startswith("tel:") \
-        and not link_url.startswith("javascript:") \
-        and not link_url.endswith(".jpg") \
-        and not link_url.endswith(".pdf") \
+        and not link_url.lower().startswith("mailto:") \
+        and not link_url.lower().startswith("tel:") \
+        and not link_url.lower().startswith("javascript:") \
+        and not link_url.lower().endswith(".jpg") \
+        and not link_url.lower().endswith(".pdf") \
         and link_url != '/' \
         and link_url != initial_url + '/' \
         and link_url not in visited_urls \
@@ -87,8 +87,8 @@ def write_text_to_file(uri, page_text):
         file.writelines(page_text + "\n\n")
 
 # configure job
-domain_id = 6
-initial_url = "https://radialtheory.com"
+domain_id = 8
+initial_url = "http://www.pureti.com"
 single = False
 file_name = "page.txt"
 

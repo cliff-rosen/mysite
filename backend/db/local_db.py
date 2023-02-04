@@ -52,11 +52,23 @@ def get_document_chunks(conn, domain_id):
         FROM document_chunk dc
         JOIN document d ON dc.doc_id = d.doc_id
         WHERE d.domain_id = %s
-        """, (domain_id,)) 
+        """, 
+        (domain_id,)) 
     rows = cur.fetchall()
     res = [(row['doc_id'], row['doc_chunk_id'], row['chunk_embedding']) for row in rows]
     return res
 
+def insert_query_log(conn, domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id):
+    cur = conn.cursor() 
+    cur.execute("""
+        INSERT 
+        INTO query_log (
+            domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id
+            ) 
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
+        """,
+        (domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id)) 
+    conn.commit() 
 
 def get_document_chunks_from_ids(conn, ids):
     format_strings = ','.join(['%s'] * len(ids))

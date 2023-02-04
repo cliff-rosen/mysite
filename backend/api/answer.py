@@ -118,11 +118,11 @@ def query_model(prompt):
     return response["choices"][0]["text"].strip(" \n")
 
 
-def log_result(query, response):
-    with open("output.txt", "a") as file:
-        file.writelines("QUERY: " + query + "\n\n")
-        file.writelines("RESPONSE: " + response + "\n\n")
-        file.writelines("=======================================" + "\n\n")
+def log_result(domain_id, query_text, query_prompt, query_temp, response_text, chunks, user_id):
+    response_chunk_ids = ', '.join(list(chunks.keys()))
+    conn = db.get_connection()
+    db.insert_query_log(conn, domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id)
+    db.close_connection(conn)
 
 def get_answer(domain_id, query):
 
@@ -145,7 +145,7 @@ def get_answer(domain_id, query):
     response = query_model(prompt)
 
     #print("response", response)
-    log_result(query, response)
+    log_result(domain_id, query, prompt, TEMPERATURE, response, chunks_with_text, 0)
 
     return {"answer": response, "chunks": chunks, "chunks_used_count": len(list(chunks_with_text.keys())) }
 

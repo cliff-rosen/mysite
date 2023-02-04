@@ -34,8 +34,8 @@ def get_openai_embedding(text):
 def get_all_docs_from_domain(domain_id):
     return db.get_all_docs_from_domain(conn, domain_id)
 
-def get_chunks_from_text(text, r):
-    if not r:
+def get_chunks_from_text(text, use_recursive):
+    if not use_recursive:
         chunks_splitter = CharacterTextSplitter(        
             separator = "\n\n",
             chunk_size = 1000,
@@ -53,26 +53,24 @@ def get_chunks_from_text(text, r):
     return chunks
 
 # runtime settings
-domain_id = 1
+domain_id = 0
 
 # init
 conn = db.get_connection()
 
 # one to one creation of chunks with embeddings
 # FIX ME: should be upsertChunk() and not insertChunk()
-rows = get_all_docs_from_domain(domain_id).fetchall()
-for row in rows:
-    doc_id = row[0]
-    uri = row[2]
+rows = get_all_docs_from_domain(domain_id)
+for doc_id, domain_id, uri, doc_title, doc_text in rows:
     print("*********************************")
     print(uri)
-    chunks = get_chunks_from_text(row[4], True)
+    chunks = get_chunks_from_text(doc_text, True)
     for chunk in chunks:
         #clean_chunk = re.sub('\s+', ' ', chunk)
         print(doc_id, chunk[:50])
         print("----------------------")
-        #embedding = get_openai_embedding(chunk)
-        #db.insert_document_chunk(conn, doc_id, chunk, embedding)
+        embedding = get_openai_embedding(chunk)
+        db.insert_document_chunk(conn, doc_id, chunk, embedding)
 
 # cleanup
 db.close_connection(conn)

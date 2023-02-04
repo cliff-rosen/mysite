@@ -51,7 +51,7 @@ def get_document_chunks(conn, domain_id):
         SELECT d.doc_id, dc.doc_chunk_id, dc.chunk_embedding
         FROM document_chunk dc
         JOIN document d ON dc.doc_id = d.doc_id
-        WHERE d.domain_id = ?
+        WHERE d.domain_id = %s
         """, (domain_id,)) 
     rows = cur.fetchall()
     res = [(row['doc_id'], row['doc_chunk_id'], row['chunk_embedding']) for row in rows]

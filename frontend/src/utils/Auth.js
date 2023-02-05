@@ -19,14 +19,14 @@ const p_register = async (username, password) => {
 };
 
 const p_login = async (username, password) => {
-  // temp
-  const user = { userID: 1 };
-  setStoredUser(user);
-  return;
-
   return apiLogin(username, password)
-    .then((user) => {
-      console.log("Auth.login success", user);
+    .then((u) => {
+      console.log("Auth.login success", u);
+      const user = {
+        userID: u.user_id,
+        domainID: u.domain_id,
+        userName: u.user_name,
+      };
       setStoredUser(user);
       return Promise.resolve("success");
     })

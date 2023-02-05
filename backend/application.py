@@ -43,6 +43,11 @@ class Login(Resource):
         username = request.args.get('username')
         password = request.args.get('password')
         res = login.login(username, password)
+        if res['status'] == "ERROR":
+            if res['error'] == 'UNAUTHORIZED':
+                return(res, 401)
+            else:
+                return(res, 500)
         return res
 
 api.add_resource(Hello, '/hello')

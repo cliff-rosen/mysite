@@ -42,20 +42,21 @@ def validate_user(user_name, password):
                     WHERE user_name = %s
                 """
     try:
+        print("getting connection")
         conn = get_connection()
         cur = conn.cursor() 
         cur.execute(query_string, (user_name,)) 
         rows = cur.fetchall()
         close_connection(conn)
     except Exception as e:
-        return {'error': e}
+        return {'error': 'DB_CONNECTION_ERROR'}
 
     if len(rows) == 0:
         return {"error": "USER_NOT_FOUND"}
     elif len(rows) > 1:
         return {"error": "DB_ERROR"}
     elif rows[0]["password"] != password:
-        return {"error": "INVAlID_PASSWORD"}
+        return {"error": "INVALID_PASSWORD"}
     user= rows[0]
     del user['password']
     return user

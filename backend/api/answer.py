@@ -55,14 +55,13 @@ def get_chunks_with_text(chunks):
     # add text property to chunks
     ids = list(chunks.keys())
     print("ids", ids)
-    conn = db.get_connection()
-    cur = db.get_document_chunks_from_ids(conn, ids)
-    for doc_chunk_id, chunk_text in cur:
+    
+    rows = db.get_document_chunks_from_ids(ids)
+    for doc_chunk_id, chunk_text in rows:
         print(f"id: {doc_chunk_id}, title: {chunk_text[:20]}")
         words_in_chunk = len(chunk_text.split())
         print("words", words_in_chunk)
         chunks[str(doc_chunk_id)]["text"] = chunk_text
-    db.close_connection(conn)
 
     # add chunks to chunks_with_text until word_count grows too large
     for id, chunk in sorted(chunks.items(), key=lambda item: item[1]["score"], reverse = True):
@@ -120,9 +119,7 @@ def query_model(prompt):
 
 def log_result(domain_id, query_text, query_prompt, query_temp, response_text, chunks, user_id):
     response_chunk_ids = ', '.join(list(chunks.keys()))
-    conn = db.get_connection()
-    db.insert_query_log(conn, domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id)
-    db.close_connection(conn)
+    db.insert_query_log(domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id)
 
 def get_answer(domain_id, query):
 

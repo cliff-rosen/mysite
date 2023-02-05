@@ -27,6 +27,15 @@ def get_connection():
 def close_connection(conn):
     conn.close()
 
+######################################
+def validate_user(conn):
+    query_string = """
+                    SELECT user_id, user_name, password
+                    FROM user
+                    WHERE UserName = ${userName}
+                """
+
+######################################
 def insert_document(conn, domain_id, doc_uri, doc_title, doc_text):
     cur = conn.cursor() 
     cur.execute("INSERT INTO document (domain_id, doc_uri, doc_title, doc_text) VALUES (%s, %s, %s, %s)", (domain_id, doc_uri, doc_title, doc_text)) 
@@ -60,7 +69,8 @@ def get_document_chunks(conn, domain_id):
     res = [(row['doc_id'], row['doc_chunk_id'], row['chunk_embedding']) for row in rows]
     return res
 
-def insert_query_log(conn, domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id):
+def insert_query_log(domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id):
+    conn = get_connection()
     cur = conn.cursor() 
     cur.execute("""
         INSERT 
@@ -71,12 +81,15 @@ def insert_query_log(conn, domain_id, query_text, query_prompt, query_temp, resp
         """,
         (domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id)) 
     conn.commit() 
+    close_connection(conn)
 
-def get_document_chunks_from_ids(conn, ids):
+def get_document_chunks_from_ids(ids):
     format_strings = ','.join(['%s'] * len(ids))
+    conn = get_connection()
     cur = conn.cursor() 
     cur.execute("SELECT doc_chunk_id, chunk_text FROM document_chunk WHERE doc_chunk_id in (%s)" % format_strings, tuple(ids)) 
     rows = cur.fetchall()
+    close_connection(conn)
     res = [(row['doc_chunk_id'], row['chunk_text']) for row in rows]
     return res
 
@@ -86,6 +99,8 @@ def get_domains(conn):
     rows = cur.fetchall()
     res = [(row['domain_id'], row['domain_desc']) for row in rows]
     return res
+
+##############################################
 
 def test_get_domains():
     conn = get_connection()
@@ -114,6 +129,8 @@ def test_get_chunks_from_ids():
 #test_get_domains()
 #test_get_chunks_from_ids()
 #test_get_all_docs_from_domain()
+
+##############################################
 
 def updateDocumentChunkEmbedding(conn, doc_chunk_id, embedding):
     json_data = json.dumps(embedding)

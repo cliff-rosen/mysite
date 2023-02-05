@@ -17,7 +17,7 @@ content_type: application/json
 accept: application/json
 
 {
-    "domain_id": 1,
+    "domain_id": 2,
     "query": "what kind of projects do you do"
 }
 

@@ -1,9 +1,9 @@
-GET http://127.0.0.1:5000
+GET http://127.0.0.1:5000/hello
 accept: application/json
 
 ###
 
-GET http://127.0.0.1:5000/hello
+GET http://127.0.0.1:5000/login?username=cliff&password=cmr
 accept: application/json
 
 ###
@@ -17,8 +17,8 @@ content_type: application/json
 accept: application/json
 
 {
-    "domain_id": 3,
-    "query": "what kind of business are you"
+    "domain_id": 7,
+    "query": "what kind of site is this"
 }
 
 ###

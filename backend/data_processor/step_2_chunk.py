@@ -10,7 +10,6 @@ import local_db as db
 import local_secrets as secrets
 
 """
-
 embedding length: 1536
 
 Retrieve all documents for domain
@@ -53,7 +52,7 @@ def get_chunks_from_text(text, use_recursive):
     return chunks
 
 # runtime settings
-domain_id = 9 
+domain_id = 0 
 
 # init
 conn = db.get_connection()

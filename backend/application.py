@@ -6,6 +6,8 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), 'api'))
 import answer
 import domain
+import login
+
 application = Flask(__name__)
 CORS(application)
 api = Api(application)
@@ -36,9 +38,17 @@ class Answer(Resource):
         res = answer.get_answer(domain_id, query)
         return res
 
+class Login(Resource):
+    def get(self):
+        username = request.args.get('username')
+        password = request.args.get('password')
+        res = login.login(username, password)
+        return res
+
 api.add_resource(Hello, '/hello')
 api.add_resource(Domain, '/domain')
 api.add_resource(Answer, '/answer')
+api.add_resource(Login, '/login')
 
 if __name__ == '__main__':
     application.run(debug=True)

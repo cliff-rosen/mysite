@@ -29,16 +29,39 @@ def get_connection():
 def close_connection(conn):
     conn.close()
 
+def l_to_d(keys, values):
+    return dict(zip(keys, values))
+
 ##### USER #####
 
-def validate_user(conn):
+def validate_user(user_name, password):
     query_string = """
-                    SELECT user_id, user_name, password
+                    SELECT user_id, user_name, password,
+                        user_description, domain_id
                     FROM user
-                    WHERE UserName = ${userName}
+                    WHERE user_name = %s
                 """
+    try:
+        conn = get_connection()
+        cur = conn.cursor() 
+        cur.execute(query_string, (user_name,)) 
+        rows = cur.fetchall()
+        close_connection(conn)
+    except Exception as e:
+        return {'error': e}
 
-##### DOCUMENT #####
+    if len(rows) == 0:
+        return {"error": "USER_NOT_FOUND"}
+    elif len(rows) > 1:
+        return {"error": "DB_ERROR"}
+    elif rows[0]["password"] != password:
+        return {"error": "INVAlID_PASSWORD"}
+    user= rows[0]
+    del user['password']
+    return user
+
+
+##### DOCUMENT PIPELINE #####
 
 def insert_document(conn, domain_id, doc_uri, doc_title, doc_text):
     cur = conn.cursor() 
@@ -72,6 +95,8 @@ def get_document_chunks(conn, domain_id):
     print("Preparing results for rowcount = ", len(rows))
     res = [(row['doc_id'], row['doc_chunk_id'], row['chunk_embedding']) for row in rows]
     return res
+
+##### ANSWER #####
 
 def get_document_chunks_from_ids(ids):
     format_strings = ','.join(['%s'] * len(ids))
@@ -136,9 +161,14 @@ def test_get_chunks_from_ids():
         print(doc_chunk_id)
     close_connection(conn)
 
+def test_validate_user(user_name, password):
+    res = validate_user(user_name, password)
+    print(res)
+
 #test_get_domains()
 #test_get_chunks_from_ids()
 #test_get_all_docs_from_domain()
+#test_validate_user("cliff", "cmr")
 
 ##### ARCHIVE #####
 

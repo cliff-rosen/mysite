@@ -46,6 +46,7 @@ def insert_document_chunk(conn, doc_id, chunk_text, chunk_embedding):
     conn.commit() 
 
 def get_document_chunks(conn, domain_id):
+    print("Retrieving chunks for domain", domain_id)
     cur = conn.cursor() 
     cur.execute("""
         SELECT d.doc_id, dc.doc_chunk_id, dc.chunk_embedding
@@ -55,6 +56,7 @@ def get_document_chunks(conn, domain_id):
         """, 
         (domain_id,)) 
     rows = cur.fetchall()
+    print("Preparing results for rowcount = ", len(rows))
     res = [(row['doc_id'], row['doc_chunk_id'], row['chunk_embedding']) for row in rows]
     return res
 

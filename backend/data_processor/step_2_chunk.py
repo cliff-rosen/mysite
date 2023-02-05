@@ -53,14 +53,16 @@ def get_chunks_from_text(text, use_recursive):
     return chunks
 
 # runtime settings
-domain_id = 8 
+domain_id = 9 
 
 # init
 conn = db.get_connection()
 
 # one to one creation of chunks with embeddings
 # FIX ME: should be upsertChunk() and not insertChunk()
+print("Retrieve documents for domain", domain_id)
 rows = get_all_docs_from_domain(domain_id)
+print("Retrieved: ", len(rows))
 for doc_id, domain_id, uri, doc_title, doc_text in rows:
     print("*********************************")
     print(uri)

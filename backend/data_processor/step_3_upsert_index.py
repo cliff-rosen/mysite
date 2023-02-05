@@ -18,11 +18,17 @@ def upsert_index(doc_id, doc_chunk_id, vector_str):
     print("response: ", upsert_response)
 
 def run():
+    print("Starting upsert for domain", domain_id)
     conn = db.get_connection()
     rows = db.get_document_chunks(conn, domain_id)
+    cur_count = 1
+    tot_count = len(rows)
+    print("Total chunks to be upserted", tot_count)
     for row in rows:
-        print("upserting: ", row[1], row[2][:20])
+        print("Processing ", cur_count, " of ", tot_count)
+        print("  Upserting: ", row[1], row[2][:20])
         upsert_index(row[0], row[1], row[2])
+        cur_count = cur_count + 1
     db.close_connection(conn)
 
 def fetch():
@@ -30,7 +36,7 @@ def fetch():
     print(res['vectors']['3']['metadata'])
 
 # runtime settings
-domain_id = 8
+domain_id = 9
 
 print(index.describe_index_stats())
 run()

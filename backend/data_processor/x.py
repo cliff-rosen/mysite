@@ -1,4 +1,4 @@
 
-t1 = "hello there   my friend"
-t2 = '  '.join(t1.split())
-print(t2)
+rows = [{"a": 1, "b": 2}]
+for row in rows:
+    print(row)

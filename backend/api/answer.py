@@ -30,6 +30,8 @@ def ge(text):
         engine=embedding_model
     )
 
+# retrieve TOP_K embedding matches to query embedding
+# return as dict {id: {"id": id, "score": score, "metadata": metadata}}
 def get_chunks_from_embedding(domain_id, query_embedding):
     print("getting matches")
     matches = index.query(
@@ -39,47 +41,43 @@ def get_chunks_from_embedding(domain_id, query_embedding):
         vector=query_embedding,
            filter={'domain_id': domain_id}).matches
     print('length:', len(matches))
-    #print("id", matches[0].id, "meta", matches[0].metadata)
-    #matches = sorted(matches, key = lambda match: match.score, reverse = True)
     if len(matches) > 0:
         res = {matches[i].id : {"id" : int(matches[i].id), "score" : matches[i].score, "metadata": matches[i].metadata} for i in range(len(matches))}
     else:
         res = {}
     return res
 
+# retrieve text for all chunks
+# return as dict {"id": text} in desc score
 def get_chunks_with_text(chunks):
     print("getting chunks with text")
     chunks_with_text = {}
-    word_count = 0
 
     # add text property to chunks
     ids = list(chunks.keys())
-    print("ids", ids)
-    
     rows = db.get_document_chunks_from_ids(ids)
-    for doc_chunk_id, chunk_text in rows:
+    for row in rows:
+        doc_chunk_id = row["doc_chunk_id"]
+        chunk_text = row["chunk_text"]
         print(f"id: {doc_chunk_id}, title: {chunk_text[:20]}")
-        words_in_chunk = len(chunk_text.split())
-        print("words", words_in_chunk)
         chunks[str(doc_chunk_id)]["text"] = chunk_text
 
     # add chunks to chunks_with_text until word_count grows too large
+    word_count = 0
     for id, chunk in sorted(chunks.items(), key=lambda item: item[1]["score"], reverse = True):
-        words_in_chunk = len(chunk["text"].split())
-        print("words", words_in_chunk)
-        if word_count + words_in_chunk > MAX_WORD_COUNT:
+        num_words_in_chunk = len(chunk["text"].split())
+        print("words", num_words_in_chunk)
+        if word_count + num_words_in_chunk > MAX_WORD_COUNT:
             break
-        chunks_with_text[str(chunk["id"])] = chunk
-        chunks_with_text[str(chunk["id"])]["text"] = chunk["text"]
-        word_count = word_count + words_in_chunk
+        chunks_with_text[str(chunk["id"])] = chunk["text"]
+        word_count = word_count + num_words_in_chunk
 
     print('word count', word_count)
     return chunks_with_text
 
-def create_prompt(question, chunks):
-    ids = list(chunks.keys())
-    chunks_text_arr = [chunks[str(id)]["text"] for id in ids]
-    context = [{"context_id": str(id), "context": chunks[str(id)]["text"]} for id in ids]
+def create_prompt(question, chunks_with_text):
+    ids = list(chunks_with_text.keys())
+    chunks_text_arr = [chunks_with_text[str(id)] for id in ids]
     header = """
         You are a chatbot working as a customer service representative for a company.
         The following question is from a potential customer.
@@ -88,7 +86,9 @@ def create_prompt(question, chunks):
         If you are note certain of the answer, say "I don't know."
         \n\nContext:\n"""
     prompt = header + "".join(chunks_text_arr) + "\n\n Question: " + question + "\n A:"
+
     """
+    context = [{"context_id": str(id), "context": chunks[str(id)]["text"]} for id in ids]
     header = ""
         You are customer service representative for a company.
         The below question is from a potential customer.
@@ -136,12 +136,10 @@ def get_answer(domain_id, query):
 
     print("creating prompt")
     prompt = create_prompt(query, chunks_with_text)
-    #print(prompt)
 
     print("querying model")
     response = query_model(prompt)
 
-    #print("response", response)
     log_result(domain_id, query, prompt, TEMPERATURE, response, chunks_with_text, 0)
 
     return {"answer": response, "chunks": chunks, "chunks_used_count": len(list(chunks_with_text.keys())) }

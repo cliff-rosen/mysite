@@ -15,6 +15,8 @@ document_chunk: doc_chunk_id, doc_id, chunk_text, chunk_embedding
 index: doc_chunk_id, embedding, metadata {sub_index: <SUB_INDEX>}
 """
 
+##### CONNECTIONS #####
+
 def get_connection():
     conn = pymysql.connect(
         user=DB_SECRETS["DB_USER"],
@@ -27,7 +29,8 @@ def get_connection():
 def close_connection(conn):
     conn.close()
 
-######################################
+##### USER #####
+
 def validate_user(conn):
     query_string = """
                     SELECT user_id, user_name, password
@@ -35,7 +38,8 @@ def validate_user(conn):
                     WHERE UserName = ${userName}
                 """
 
-######################################
+##### DOCUMENT #####
+
 def insert_document(conn, domain_id, doc_uri, doc_title, doc_text):
     cur = conn.cursor() 
     cur.execute("INSERT INTO document (domain_id, doc_uri, doc_title, doc_text) VALUES (%s, %s, %s, %s)", (domain_id, doc_uri, doc_title, doc_text)) 
@@ -69,6 +73,28 @@ def get_document_chunks(conn, domain_id):
     res = [(row['doc_id'], row['doc_chunk_id'], row['chunk_embedding']) for row in rows]
     return res
 
+def get_document_chunks_from_ids(ids):
+    format_strings = ','.join(['%s'] * len(ids))
+    conn = get_connection()
+    cur = conn.cursor() 
+    cur.execute("SELECT doc_chunk_id, chunk_text FROM document_chunk WHERE doc_chunk_id in (%s)" % format_strings, tuple(ids)) 
+    rows = cur.fetchall()
+    close_connection(conn)
+    #res = [(row['doc_chunk_id'], row['chunk_text']) for row in rows]
+    return rows
+
+##### DOMAIN #####
+
+def get_domains():
+    conn = get_connection()
+    cur = conn.cursor() 
+    cur.execute("SELECT domain_id, domain_desc FROM domain")
+    rows = cur.fetchall()
+    close_connection(conn)    
+    return rows
+
+##### MISC #####
+
 def insert_query_log(domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id):
     conn = get_connection()
     cur = conn.cursor() 
@@ -83,24 +109,8 @@ def insert_query_log(domain_id, query_text, query_prompt, query_temp, response_t
     conn.commit() 
     close_connection(conn)
 
-def get_document_chunks_from_ids(ids):
-    format_strings = ','.join(['%s'] * len(ids))
-    conn = get_connection()
-    cur = conn.cursor() 
-    cur.execute("SELECT doc_chunk_id, chunk_text FROM document_chunk WHERE doc_chunk_id in (%s)" % format_strings, tuple(ids)) 
-    rows = cur.fetchall()
-    close_connection(conn)
-    res = [(row['doc_chunk_id'], row['chunk_text']) for row in rows]
-    return res
 
-def get_domains(conn):
-    cur = conn.cursor() 
-    cur.execute("SELECT domain_id, domain_desc FROM domain")
-    rows = cur.fetchall()
-    res = [(row['domain_id'], row['domain_desc']) for row in rows]
-    return res
-
-##############################################
+##### TESTS #####
 
 def test_get_domains():
     conn = get_connection()
@@ -130,7 +140,7 @@ def test_get_chunks_from_ids():
 #test_get_chunks_from_ids()
 #test_get_all_docs_from_domain()
 
-##############################################
+##### ARCHIVE #####
 
 def updateDocumentChunkEmbedding(conn, doc_chunk_id, embedding):
     json_data = json.dumps(embedding)

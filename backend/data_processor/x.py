@@ -128,39 +128,26 @@ Home
 Industries
 
 
-> Architecture And Design
+> Auto
 
 
 
 
-Specify PURETi for Sustainability and Cost Advantages
+Protect Your Family with a Cleaner, Healthier Car
  
-PURETis cost effective solutions making adding self-cleaning functionality to new builds and retrofits a solid business decision.
-
-
-Green today means environmentally benign, products that do no harm or are less harmful than they have been. Green tomorrow will mean environmentally beneficial, products that actively clean and improve our world.
-
-
-PURETi can be a major contributor to sustainability efforts by making surfaces proactively improve air quality, conserve water and energy, and significantly reduce the use of chemicals used in cleaning.
-
-
-Outdoors: Specify PURETi applications on the building envelope and hardscapes. Transform buildings into air scrubbers.
-
-
-Energy Savings: Cool White Roofs and Solar Panels are essential parts of building sustainability, but they cannot work at their best if they are dirty. PURETi can be applied before or after installation to keep them cleaner longer and preserve the intended functionality.
-
-
-Indoors: Sustainability is not just about natural resources, it is about human resources. Healthy indoor air is an essential part of well-being and productivity. Specify PURETi and PURETi-treated products indoors to reduce odors and VOCs.
-
-
-The NOx Neutral Facility: Every outdoor surface treated with PURETi works to reverse pollution, in part by breaking down NOx. Spray enough surface area, and you can offset a major pollution effect caused by the cars driving to a building every day. Dont just reduce pollution, reverse it.
+The PURETi Healthy Car Care Program combines the power of hospital-grade surface disinfection and continuous, light-activated air purification to create healthier vehicle interiors.
 
 
 
 
+The PURETi Healthy Car Care Program, available only through authorized dealers, is apreventative maintenaceservice that enhancesthe health and well being of you and your family. 
+Contact us
+ to find an authorizeddealer near you.
 
 
-
+Click 
+here
+ to review the 2006 Ecology Center study
 
 """
 

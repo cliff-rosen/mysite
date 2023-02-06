@@ -33,8 +33,11 @@ def get_openai_embedding(text):
 def get_all_docs_from_domain(domain_id):
     return db.get_all_docs_from_domain(conn, domain_id)
 
-def get_chunks_from_text(text, use_recursive):
-    if not use_recursive:
+def get_chunks_from_text(text, maker_type):
+    if maker_type == "MAKER_2":
+        return get_chunks_from_text_2(text)
+
+    if maker_type == "CHAR":
         chunks_splitter = CharacterTextSplitter(        
             separator = "\n\n",
             chunk_size = 1000,
@@ -51,8 +54,35 @@ def get_chunks_from_text(text, use_recursive):
     chunks = chunks_splitter.split_text(text)
     return chunks
 
+def get_chunks_from_text_2(text):
+    print("chunker 2")
+    chunks = []
+    fragments = []
+
+    # clean input
+    text.strip()
+    while text.find("\n\n\n") > -1:
+        text = text.replace("\n\n\n", "\n\n")
+
+    # built array of fragments by nn
+    fragments = text.split('\n\n')
+
+    # add array elements until reaching an element with at least 20 words
+    cur_chunk = ""
+    for i, fragment in enumerate(fragments):
+        if len(fragment) > 1:
+            if i > 0:
+                cur_chunk = cur_chunk  + "\n"
+            cur_chunk = cur_chunk + fragment
+        if len(cur_chunk) > 1 and (len(fragment.split()) >= 20 or i + 1 == len(fragments)):
+            chunks.append(cur_chunk.strip())
+            cur_chunk = ""
+
+    return chunks
+
 # runtime settings
-domain_id = 10 
+chunk_maker = "MAKER_2"
+domain_id = 11 
 
 # init
 conn = db.get_connection()
@@ -65,7 +95,7 @@ print("Retrieved: ", len(rows))
 for doc_id, domain_id, uri, doc_title, doc_text in rows:
     print("*********************************")
     print(uri)
-    chunks = get_chunks_from_text(doc_text, True)
+    chunks = get_chunks_from_text(doc_text, chunk_maker)
     for chunk in chunks:
         #clean_chunk = re.sub('\s+', ' ', chunk)
         print(doc_id, chunk[:50])

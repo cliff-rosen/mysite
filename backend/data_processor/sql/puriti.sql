@@ -7,12 +7,12 @@ INSERT INTO document
 	doc_text
 )
 SELECT 	
- 	9,
+ 	11,
 	doc_uri,
 	doc_title,
 	doc_text
 FROM document
-WHERE domain_id = 8
+WHERE domain_id = 10
 
 INSERT INTO document_chunk
 (

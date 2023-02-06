@@ -20,12 +20,14 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Slider from "@mui/material/Slider";
+import { Link } from "react-router-dom";
 
 export default function Main({ sessionManager }) {
   const [domains, setDomains] = useState([]);
   const [domain, setDomain] = useState("");
   const [query, setQuery] = useState("");
   const [prompt, setPrompt] = useState("TBD");
+  const [promptDefault, setPromptDefault] = useState("TBD");
   const [temp, setTemp] = useState(0.4);
   const [chunks, setChunks] = useState([]);
   const [chunksUsedcount, setChunksUsedCount] = useState(0);
@@ -58,6 +60,7 @@ export default function Main({ sessionManager }) {
       setDomains(d);
       const p = await fetchGet("prompt");
       setPrompt(p.prompt_text);
+      setPromptDefault(p.prompt_text);
     };
 
     getOptions();
@@ -148,6 +151,13 @@ export default function Main({ sessionManager }) {
               onChange={(e) => setPrompt(e.target.value)}
               variant="outlined"
             />
+            <Link
+              style={{ textDecoration: "none", color: "gray" }}
+              to="#"
+              onClick={() => setPrompt(promptDefault)}
+            >
+              [reset]
+            </Link>
           </AccordionDetails>
         </Accordion>
         <Slider

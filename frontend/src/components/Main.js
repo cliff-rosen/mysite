@@ -2,26 +2,40 @@ import { useState, useEffect, useRef } from "react";
 import { fetchGet, fetchPost } from "../utils/APIUtils";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import Alert from "@mui/material/Alert";
+import Paper from "@mui/material/Paper";
 import { TextField, Button } from "@mui/material";
-import FormGroup from "@mui/material/FormGroup";
 import FormControl from "@mui/material/FormControl";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormLabel from "@mui/material/FormLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { DataGrid } from "@mui/x-data-grid";
 
 export default function Main({ sessionManager }) {
   const [domains, setDomains] = useState([]);
   const [domain, setDomain] = useState("");
   const [query, setQuery] = useState("");
-  const [chunks, setChunks] = useState({});
+  const [chunks, setChunks] = useState([]);
   const [chunksUsedcount, setChunksUsedCount] = useState(0);
-  const [result, setResult] = useState("-");
+  const [result, setResult] = useState("");
+  const [showThinking, setShowThinking] = useState(false);
 
   console.log("Main userID", sessionManager.user.userID);
+
+  const columns = [
+    { field: "score", headerName: "score" },
+    { field: "id", headerName: "id" },
+    { field: "text", headerName: "text" },
+  ];
+
+  if (!domain && sessionManager.user.domainID)
+    setDomain(sessionManager.user.domainID);
+
+  console.log(chunks);
 
   useEffect(() => {
     console.log("Main useEffect -> userID", sessionManager.user.userID);
@@ -41,12 +55,14 @@ export default function Main({ sessionManager }) {
     e.preventDefault();
     const queryObj = { domain_id: domain, query };
     try {
+      setShowThinking(true);
       setResult(null);
-      setChunks({});
+      setChunks([]);
       setChunksUsedCount(0);
       const data = await fetchPost("answer", queryObj);
       setResult(data.answer);
-      setChunks(data.chunks);
+      setShowThinking(false);
+      setChunks(Object.values(data.chunks));
       setChunksUsedCount(data.chunks_used_count);
     } catch (e) {
       setResult("ERROR");
@@ -95,60 +111,39 @@ export default function Main({ sessionManager }) {
           submit
         </Button>
       </FormControl>
-      {result ? (
+      <br /> <br /> <br />
+      <Paper
+        elevation={0}
+        style={{ minHeight: 100, backgroundColor: "#eeeeee", padding: 20 }}
+      >
         <div>
-          <div>
-            <br />
-          </div>
+          <div></div>
           <div>{result}</div>{" "}
-          <div>
-            <br />
+        </div>
+        {showThinking ? (
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <img src="/waves.gif" style={{ height: 175, width: 350 }} />
           </div>
-          <div>Chunks used: {chunksUsedcount}</div>
-        </div>
-      ) : (
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <img src="/waves.gif" style={{ height: 75, width: 250 }} />
-        </div>
-      )}
-      <div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            border: "solid",
-          }}
+        ) : (
+          <></>
+        )}
+      </Paper>
+      <br />
+      <br />
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
         >
-          <div style={{ flexGrow: 0, padding: 5 }}>SCR</div>
-          <div style={{ flexGrow: 0, padding: 5 }}>ID</div>
-          <div style={{ flexGrow: 1, padding: 5 }}> CHUNK TEXT</div>
-        </div>
-      </div>
+          <Typography>diagnostics</Typography>
+        </AccordionSummary>
 
-      {Object.values(chunks)
-        .sort((a, b) => b.score - a.score)
-        .map((chunk, i) => (
-          <div key={chunk.metadata.doc_chunk_id}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                border: "solid",
-              }}
-            >
-              <div style={{ flexGrow: 0, padding: 5 }}>
-                {chunk.score.toFixed(3)}
-              </div>
-              <div style={{ flexGrow: 0, padding: 5 }}>
-                {chunk.metadata.doc_chunk_id}
-              </div>
-              <div style={{ flexGrow: 1, padding: 5 }}> {chunk.text}</div>
-            </div>
-            <div style={{ textAlign: "center" }}>
-              {i + 1 === chunksUsedcount ? <div>UNUSED CHUNKS</div> : ""}
-            </div>
-          </div>
-        ))}
+        <AccordionDetails>
+          <div>Chunks used: {chunksUsedcount}</div>
+          <DataGrid rows={chunks} columns={columns} />
+        </AccordionDetails>
+      </Accordion>
     </Box>
   );
 }

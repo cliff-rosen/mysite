@@ -13,7 +13,12 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 
 export default function Main({ sessionManager }) {
   const [domains, setDomains] = useState([]);
@@ -25,18 +30,6 @@ export default function Main({ sessionManager }) {
   const [showThinking, setShowThinking] = useState(false);
 
   console.log("Main userID", sessionManager.user.userID);
-
-  const columns: GridColDef[] = [
-    { field: "score", headerName: "score" },
-    { field: "id", headerName: "id" },
-    {
-      field: "text",
-      headerName: "text",
-      width: 500,
-      maxwidth: 500,
-      wordWrap: true,
-    },
-  ];
 
   if (!domain && sessionManager.user.domainID)
     setDomain(sessionManager.user.domainID);
@@ -72,11 +65,14 @@ export default function Main({ sessionManager }) {
       const data = await fetchPost("answer", queryObj);
       setResult(data.answer);
       setShowThinking(false);
-      const rows: GridRowsProp[] = Object.values(data.chunks);
+      const rows: GridRowsProp[] = Object.values(data.chunks).sort(
+        (a, b) => b.score - a.score
+      );
       setChunks(rows);
       setChunksUsedCount(data.chunks_used_count);
     } catch (e) {
       setResult("ERROR");
+      setShowThinking(false);
     }
   };
 
@@ -151,7 +147,30 @@ export default function Main({ sessionManager }) {
         </AccordionSummary>
 
         <AccordionDetails>
-          <DataGrid hideFooter autoHeight rows={chunks} columns={columns} />
+          <TableContainer component={Paper}>
+            <Table aria-label="chunks">
+              <TableHead>
+                <TableRow>
+                  <TableCell align="left">Score</TableCell>
+                  <TableCell align="left">ID</TableCell>
+                  <TableCell align="left">Text</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {chunks.map((chunk) => (
+                  <TableRow key={chunk.ID}>
+                    <TableCell style={{ verticalAlign: "top" }} align="left">
+                      {chunk.score.toFixed(3)}
+                    </TableCell>
+                    <TableCell style={{ verticalAlign: "top" }} align="left">
+                      {chunk.id}
+                    </TableCell>
+                    <TableCell align="left">{chunk.text}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
           <div>Chunks used: {chunksUsedcount}</div>
         </AccordionDetails>
       </Accordion>

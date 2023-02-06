@@ -116,7 +116,6 @@ def query_model(prompt):
     )
     return response["choices"][0]["text"].strip(" \n")
 
-
 def log_result(domain_id, query_text, query_prompt, query_temp, response_text, chunks, user_id):
     response_chunk_ids = ', '.join(list(chunks.keys()))
     db.insert_query_log(domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id)

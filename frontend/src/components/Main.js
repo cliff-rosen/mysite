@@ -19,11 +19,14 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import Slider from "@mui/material/Slider";
 
 export default function Main({ sessionManager }) {
   const [domains, setDomains] = useState([]);
   const [domain, setDomain] = useState("");
   const [query, setQuery] = useState("");
+  const [prompt, setPrompt] = useState("TBD");
+  const [temp, setTemp] = useState(0.4);
   const [chunks, setChunks] = useState([]);
   const [chunksUsedcount, setChunksUsedCount] = useState(0);
   const [result, setResult] = useState("");
@@ -53,6 +56,8 @@ export default function Main({ sessionManager }) {
     const getOptions = async () => {
       const d = await fetchGet("domain");
       setDomains(d);
+      const p = await fetchGet("prompt");
+      setPrompt(p.prompt_text);
     };
 
     getOptions();
@@ -63,6 +68,8 @@ export default function Main({ sessionManager }) {
     const queryObj = {
       domain_id: domain,
       query,
+      prompt_text: prompt,
+      temp,
       user_id: sessionManager.user.userID,
     };
     try {
@@ -106,6 +113,7 @@ export default function Main({ sessionManager }) {
             </MenuItem>
           ))}
         </Select>
+
         <TextField
           margin="normal"
           fullWidth
@@ -116,6 +124,41 @@ export default function Main({ sessionManager }) {
           onChange={(e) => setQuery(e.target.value)}
           variant="outlined"
           required
+        />
+
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography>customize prompt</Typography>
+          </AccordionSummary>
+
+          <AccordionDetails>
+            <TextField
+              margin="normal"
+              fullWidth
+              id="desc"
+              multiline
+              rows={20}
+              type="text"
+              label="Description"
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              variant="outlined"
+            />
+          </AccordionDetails>
+        </Accordion>
+        <Slider
+          aria-label="Temperature"
+          defaultValue={temp}
+          valueLabelDisplay="auto"
+          step={0.1}
+          marks
+          min={0}
+          max={1}
+          onChange={(e) => setTemp(e.target.value)}
         />
         <Button
           type="submit"

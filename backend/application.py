@@ -4,9 +4,11 @@ from flask_cors import CORS
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), 'api'))
-import answer
-import domain
+
 import login
+import domain
+import prompt
+import answer
 
 application = Flask(__name__)
 CORS(application)
@@ -27,6 +29,11 @@ class Domain(Resource):
         res = domain.get_domains()
         return res
 
+class Prompt(Resource):
+    def get(self):
+        res = prompt.get_prompt()
+        return res
+
 class Answer(Resource):
     def post(self):
         data = request.get_json()
@@ -34,9 +41,11 @@ class Answer(Resource):
         query = data["query"]
         domain_id = data["domain_id"]
         user_id = data["user_id"]
+        prompt_text = data["prompt_text"]
+        temp = data["temp"]
         print("domain_id", domain_id)
         print("query", query)
-        res = answer.get_answer(domain_id, query, user_id)
+        res = answer.get_answer(domain_id, query, prompt_text, temp, user_id, )
         return res
 
 class Login(Resource):
@@ -52,9 +61,10 @@ class Login(Resource):
         return res
 
 api.add_resource(Hello, '/hello')
-api.add_resource(Domain, '/domain')
-api.add_resource(Answer, '/answer')
 api.add_resource(Login, '/login')
+api.add_resource(Domain, '/domain')
+api.add_resource(Prompt, '/prompt')
+api.add_resource(Answer, '/answer')
 
 if __name__ == '__main__':
     application.run(debug=True)

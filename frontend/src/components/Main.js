@@ -38,6 +38,14 @@ export default function Main({ sessionManager }) {
 
   useEffect(() => {
     console.log("Main useEffect -> userID", sessionManager.user.userID);
+    if (!sessionManager.user.userID) {
+      setDomain("");
+      setQuery("");
+      setShowThinking(false);
+      setResult(null);
+      setChunks([]);
+      setChunksUsedCount(0);
+    }
     sessionManager.requireUser();
   }, [sessionManager.user.userID]);
 
@@ -71,7 +79,7 @@ export default function Main({ sessionManager }) {
       setChunks(rows);
       setChunksUsedCount(data.chunks_used_count);
     } catch (e) {
-      setResult("ERROR");
+      setResult("Sorry, an error occured.  Please try again.");
       setShowThinking(false);
     }
   };

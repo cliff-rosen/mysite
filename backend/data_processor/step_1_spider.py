@@ -49,14 +49,17 @@ def spider(url, single):
 
     # Extract page text
     page_text = ""
-    for main in soup.find_all('main'):
-        page_text = page_text + main.get_text("\n")
+    #for main in soup.find_all('main'):
+    contents = soup.find(id='content')
+    if contents is not None:
+        for content in contents:
+            page_text = page_text + content.get_text("\n")
     if page_text == "":
         page_text = soup.get_text("\n")
 
     # Clean page text
     page_text = page_text.encode(encoding='ASCII',errors='ignore').decode()
-    page_text = re.sub('\s+', ' ', page_text)
+    #page_text = re.sub('\s+', ' ', page_text)
 
     # Save page text
     if single == False:
@@ -87,8 +90,9 @@ def write_text_to_file(uri, page_text):
         file.writelines(page_text + "\n\n")
 
 # configure job
-domain_id = 8
+domain_id = 10
 initial_url = "http://www.pureti.com"
+#initial_url = "https://www.pureti.com/benefits/"
 single = False
 file_name = "page.txt"
 

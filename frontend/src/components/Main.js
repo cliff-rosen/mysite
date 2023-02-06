@@ -13,7 +13,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 
 export default function Main({ sessionManager }) {
   const [domains, setDomains] = useState([]);
@@ -26,10 +26,16 @@ export default function Main({ sessionManager }) {
 
   console.log("Main userID", sessionManager.user.userID);
 
-  const columns = [
+  const columns: GridColDef[] = [
     { field: "score", headerName: "score" },
     { field: "id", headerName: "id" },
-    { field: "text", headerName: "text" },
+    {
+      field: "text",
+      headerName: "text",
+      width: 500,
+      maxwidth: 500,
+      wordWrap: true,
+    },
   ];
 
   if (!domain && sessionManager.user.domainID)
@@ -53,7 +59,11 @@ export default function Main({ sessionManager }) {
 
   const formSubmit = async (e) => {
     e.preventDefault();
-    const queryObj = { domain_id: domain, query };
+    const queryObj = {
+      domain_id: domain,
+      query,
+      user_id: sessionManager.user.userID,
+    };
     try {
       setShowThinking(true);
       setResult(null);
@@ -62,7 +72,8 @@ export default function Main({ sessionManager }) {
       const data = await fetchPost("answer", queryObj);
       setResult(data.answer);
       setShowThinking(false);
-      setChunks(Object.values(data.chunks));
+      const rows: GridRowsProp[] = Object.values(data.chunks);
+      setChunks(rows);
       setChunksUsedCount(data.chunks_used_count);
     } catch (e) {
       setResult("ERROR");
@@ -140,8 +151,8 @@ export default function Main({ sessionManager }) {
         </AccordionSummary>
 
         <AccordionDetails>
+          <DataGrid hideFooter autoHeight rows={chunks} columns={columns} />
           <div>Chunks used: {chunksUsedcount}</div>
-          <DataGrid rows={chunks} columns={columns} />
         </AccordionDetails>
       </Accordion>
     </Box>

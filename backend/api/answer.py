@@ -121,7 +121,7 @@ def log_result(domain_id, query_text, query_prompt, query_temp, response_text, c
     response_chunk_ids = ', '.join(list(chunks.keys()))
     db.insert_query_log(domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id)
 
-def get_answer(domain_id, query):
+def get_answer(domain_id, query, user_id):
 
     print("getting query embedding")
     query_embedding = ge(query)
@@ -140,7 +140,7 @@ def get_answer(domain_id, query):
     print("querying model")
     response = query_model(prompt)
 
-    log_result(domain_id, query, prompt, TEMPERATURE, response, chunks_with_text, 0)
+    log_result(domain_id, query, prompt, TEMPERATURE, response, chunks_with_text, user_id)
 
     return {"answer": response, "chunks": chunks, "chunks_used_count": len(list(chunks_with_text.keys())) }
 

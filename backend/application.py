@@ -33,9 +33,10 @@ class Answer(Resource):
         print("body", data)
         query = data["query"]
         domain_id = data["domain_id"]
+        user_id = data["user_id"]
         print("domain_id", domain_id)
         print("query", query)
-        res = answer.get_answer(domain_id, query)
+        res = answer.get_answer(domain_id, query, user_id)
         return res
 
 class Login(Resource):

@@ -1,3 +1,9 @@
 * {
   font-family: "Roboto";
 }
+.MuiDataGrid-root .MuiDataGrid-cell {
+  color: #111;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  height: 100;
+}

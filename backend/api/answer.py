@@ -50,7 +50,7 @@ def get_chunks_from_embedding(domain_id, query_embedding):
 
 # retrieve text for all chunks
 # return as dict {"id": text} in desc score
-def get_chunks_with_text(chunks):
+def get_chunk_text_from_ids(chunks):
     print("getting chunks with text")
     chunks_with_text = {}
 
@@ -60,7 +60,9 @@ def get_chunks_with_text(chunks):
     for row in rows:
         doc_chunk_id = row["doc_chunk_id"]
         chunk_text = row["chunk_text"]
+        doc_uri = row["doc_uri"]
         print(f"id: {doc_chunk_id}, title: {chunk_text[:20]}")
+        chunks[str(doc_chunk_id)]["uri"] = doc_uri
         chunks[str(doc_chunk_id)]["text"] = chunk_text
 
     # add chunks to chunks_with_text until word_count grows too large
@@ -109,7 +111,7 @@ def get_answer(domain_id, query, prompt_text, temp, user_id):
         return {"answer": "no data", "chunks": {}, "chunks_used_count": 0 }
 
     print("getting chunk text from ids")
-    chunks_with_text = get_chunks_with_text(chunks)
+    chunks_with_text = get_chunk_text_from_ids(chunks)
 
     print("creating prompt")
     prompt = create_prompt(query, chunks_with_text, prompt_text)

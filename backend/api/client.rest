@@ -18,7 +18,10 @@ accept: application/json
 
 {
     "domain_id": 7,
-    "query": "what kind of site is this"
+    "query": "what kind of site is this",
+    "prompt_text": "Answer the question from the context.  context: <<CONTEXT>> question: <<QUESTION>>",
+    "user_id": 1,
+    "temp": 0.4
 }
 
 ###

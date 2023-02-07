@@ -100,10 +100,17 @@ def get_document_chunks(conn, domain_id):
 ##### ANSWER #####
 
 def get_document_chunks_from_ids(ids):
-    format_strings = ','.join(['%s'] * len(ids))
+    ids_text = ",".join(ids)
     conn = get_connection()
     cur = conn.cursor() 
-    cur.execute("SELECT doc_chunk_id, chunk_text FROM document_chunk WHERE doc_chunk_id in (%s)" % format_strings, tuple(ids)) 
+    query_text = """
+        SELECT dc.doc_chunk_id, dc.chunk_text, d.doc_uri
+        FROM document_chunk dc
+        JOIN document d ON dc.doc_id = d.doc_id
+        WHERE dc.doc_chunk_id in (%s)
+        """ % (ids_text,)
+    print(query_text)
+    cur.execute(query_text) 
     rows = cur.fetchall()
     close_connection(conn)
     #res = [(row['doc_chunk_id'], row['chunk_text']) for row in rows]

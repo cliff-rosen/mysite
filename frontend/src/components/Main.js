@@ -146,7 +146,7 @@ export default function Main({ sessionManager }) {
               multiline
               rows={20}
               type="text"
-              label="Description"
+              label="Prompt Template"
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               variant="outlined"
@@ -224,7 +224,9 @@ export default function Main({ sessionManager }) {
                       {chunk.score.toFixed(3)}
                     </TableCell>
                     <TableCell style={{ verticalAlign: "top" }} align="left">
-                      {chunk.id}
+                      <Link to={chunk.uri} target="_blank">
+                        {chunk.id}
+                      </Link>
                     </TableCell>
                     <TableCell align="left">{chunk.text}</TableCell>
                   </TableRow>

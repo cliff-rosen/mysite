@@ -45,6 +45,7 @@ class Answer(Resource):
         temp = data["temp"]
         print("domain_id", domain_id)
         print("query", query)
+        print("temp", temp)
         res = answer.get_answer(domain_id, query, prompt_text, temp, user_id, )
         return res
 

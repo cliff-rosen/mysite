@@ -31,6 +31,27 @@ def link_is_good(link_url):
     else:
         return False        
 
+def get_page_contents(soup):
+    page_text = ""
+    print("checking main")
+    contents = soup.find('main')
+    if contents == None:
+        print("checking class")
+        contents = soup.find(class_='main-content-wrapper')
+    if contents == None:
+        print("checking id")
+        contents = soup.find(id='content')
+    if contents is not None:
+        print("  contents found")  
+        for content in contents:
+            page_text = page_text + content.get_text("\n")
+    else:
+        print("getting all text from soup")
+        page_text = soup.get_text("\n")
+    page_text = page_text.encode(encoding='ASCII',errors='ignore').decode()
+    #page_text = re.sub('\s+', ' ', page_text)
+    return page_text
+
 # Define a function to make a request and spider the website recursively
 def spider(url, single):
     visited_urls.add(url)
@@ -48,18 +69,7 @@ def spider(url, single):
     soup = BeautifulSoup(response.content, 'html.parser')
 
     # Extract page text
-    page_text = ""
-    #for main in soup.find_all('main'):
-    contents = soup.find(id='content')
-    if contents is not None:
-        for content in contents:
-            page_text = page_text + content.get_text("\n")
-    if page_text == "":
-        page_text = soup.get_text("\n")
-
-    # Clean page text
-    page_text = page_text.encode(encoding='ASCII',errors='ignore').decode()
-    #page_text = re.sub('\s+', ' ', page_text)
+    page_text = get_page_contents(soup)
 
     # Save page text
     if single == False:
@@ -85,14 +95,14 @@ def write_text_to_db(uri, text):
     return    
 
 def write_text_to_file(uri, page_text):
-    with open(file_name, "a") as file:
+    print("writing", uri)
+    with open(file_name, "w") as file:
         file.writelines(uri + "\n\n")
         file.writelines(page_text + "\n\n")
 
 # configure job
-domain_id = 10
-initial_url = "http://www.pureti.com"
-#initial_url = "https://www.pureti.com/benefits/"
+domain_id = 13
+initial_url = 'https://storyvine.com'
 single = False
 file_name = "page.txt"
 

@@ -99,6 +99,14 @@ def get_document_chunks(conn, domain_id):
 
 ##### ANSWER #####
 
+def get_document(doc_id):
+    conn = get_connection()
+    cur = conn.cursor() 
+    cur.execute("SELECT * FROM document where doc_id = %s", (doc_id,))
+    rows = cur.fetchall()
+    close_connection(conn)    
+    return rows
+
 def get_document_chunks_from_ids(ids):
     ids_text = ",".join(ids)
     conn = get_connection()
@@ -116,12 +124,27 @@ def get_document_chunks_from_ids(ids):
     #res = [(row['doc_chunk_id'], row['chunk_text']) for row in rows]
     return rows
 
+def get_document_chunks_from_doc_id(id):
+    conn = get_connection()
+    cur = conn.cursor() 
+    query_text = """
+        SELECT dc.doc_chunk_id, dc.chunk_text, d.doc_uri
+        FROM document_chunk dc
+        JOIN document d ON dc.doc_id = d.doc_id
+        WHERE d.doc_id = %s
+        order by dc.doc_chunk_id
+        """ % (id,)
+    cur.execute(query_text) 
+    rows = cur.fetchall()
+    close_connection(conn)
+    return rows
+
 ##### DOMAIN #####
 
 def get_domains():
     conn = get_connection()
     cur = conn.cursor() 
-    cur.execute("SELECT domain_id, domain_desc FROM domain")
+    cur.execute("SELECT domain_id, domain_desc FROM domain order by domain_desc")
     rows = cur.fetchall()
     close_connection(conn)    
     return rows

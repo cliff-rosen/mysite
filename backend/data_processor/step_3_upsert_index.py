@@ -15,7 +15,7 @@ def upsert_index(doc_id, doc_chunk_id, vector_str):
     vector_obj = json.loads(vector_str)
     metadata = {'domain_id': domain_id, "doc_id": doc_id, "doc_chunk_id": doc_chunk_id}
     upsert_response = index.upsert(vectors=[(id_str, vector_obj, metadata)])
-    print("response: ", upsert_response)
+    print("  response: ", upsert_response)
 
 def run():
     print("Starting upsert for domain", domain_id)
@@ -36,7 +36,7 @@ def fetch():
     print(res['vectors']['3']['metadata'])
 
 # runtime settings
-domain_id = 11
+domain_id = 12
 
 print(index.describe_index_stats())
 run()

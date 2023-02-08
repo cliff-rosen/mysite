@@ -55,11 +55,12 @@ def get_chunks_from_text(text, maker_type):
     return chunks
 
 def get_chunks_from_text_2(text):
-    print("chunker 2")
+    print("chunk maker 2")
     chunks = []
     fragments = []
 
     # clean input
+    text = text.encode(encoding='ASCII',errors='ignore').decode()
     text.strip()
     while text.find("\n\n\n") > -1:
         text = text.replace("\n\n\n", "\n\n")
@@ -82,7 +83,7 @@ def get_chunks_from_text_2(text):
 
 # runtime settings
 chunk_maker = "MAKER_2"
-domain_id = 11 
+domain_id = 12 
 
 # init
 conn = db.get_connection()
@@ -100,7 +101,7 @@ for doc_id, domain_id, uri, doc_title, doc_text in rows:
         #clean_chunk = re.sub('\s+', ' ', chunk)
         print(doc_id, chunk[:50])
         print("----------------------")
-        embedding = get_openai_embedding(chunk)
+        embedding = get_openai_embedding(chunk[:1200])
         db.insert_document_chunk(conn, doc_id, chunk, embedding)
 
 # cleanup

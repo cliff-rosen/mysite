@@ -23,6 +23,7 @@ def link_is_good(link_url):
         and not link_url.lower().startswith("javascript:") \
         and not link_url.lower().endswith(".jpg") \
         and not link_url.lower().endswith(".pdf") \
+        and not link_url.lower().endswith(".atom") \
         and link_url != '/' \
         and link_url != initial_url + '/' \
         and link_url not in visited_urls \
@@ -101,8 +102,8 @@ def write_text_to_file(uri, page_text):
         file.writelines(page_text + "\n\n")
 
 # configure job
-domain_id = 13
-initial_url = 'https://storyvine.com'
+domain_id = 16
+initial_url = 'https://dynomyco.com'
 single = False
 file_name = "page.txt"
 

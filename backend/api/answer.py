@@ -56,6 +56,9 @@ def get_chunk_text_from_ids(chunks):
 
     # add text property to chunks
     ids = list(chunks.keys())
+    print("-----------")
+    print("chunk ids:", ", ".join(ids))
+    print("-----------")
     rows = db.get_document_chunks_from_ids(ids)
     for row in rows:
         doc_chunk_id = row["doc_chunk_id"]
@@ -88,6 +91,7 @@ def create_prompt(question, chunks_with_text, prompt):
     return prompt
 
 def query_model(prompt, temp):
+    print("prompt size: ", len(prompt), len(prompt.split()) )
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=prompt,

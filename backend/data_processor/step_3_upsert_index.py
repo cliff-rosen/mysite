@@ -3,8 +3,9 @@ import json
 import sys
 sys.path.append('db')
 import local_db as db
+import local_secrets as secrets
 
-PINECONE_API_KEY = "7484d7df-d798-4b27-90c7-0f0164e6744d"
+PINECONE_API_KEY = secrets.PINECONE_API_KEY
 INDEX_NAME = "main-index"
 
 pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
@@ -36,7 +37,7 @@ def fetch():
     print(res['vectors']['3']['metadata'])
 
 # runtime settings
-domain_id = 12
+domain_id = 0
 
 print(index.describe_index_stats())
 run()

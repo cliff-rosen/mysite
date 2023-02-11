@@ -55,9 +55,9 @@ def compare_chunks(q, t1, t2):
     print("q to t1: ", cosine_similarity(qe, te1))
     print("q to t2: ", cosine_similarity(qe, te2))
 
-def delete_indexs(ids):
+def delete_indexes(ids):
     print("deleting ids:", ids)
-    res = index.delete(ids=ids, namespace=INDEX_NAME)
+    res = index.delete(ids=ids)
     print("response", res)
 
 def init():
@@ -78,6 +78,10 @@ print("starting...")
 index = None
 init()
 print(index.describe_index_stats())
+ids = ('19826,19827,19828,19829,19830,19831,19832,19833,19834').split(",")
+ids = ('19769,19780,19786,19821,19869').split(",")
+print(ids)
+delete_indexes(ids)
 
 q1 = "what is linux and windows"
 q2 = "what is the difference between apples and oranges"

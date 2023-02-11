@@ -20,6 +20,9 @@ For each document
         insert chunk with embedding into document_chunk table
 """
 
+MIN_CHUNK_LENGTH = 20
+MAX_CHUNK_LENGTH = 1500
+
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
 openai.api_key = OPENAI_API_KEY
 
@@ -54,6 +57,8 @@ def get_chunks_from_text(text, maker_type):
     chunks = chunks_splitter.split_text(text)
     return chunks
 
+# create fragments, which are chunks delimited by \n\n
+# chunks are fragments concatenated until a fragment is min 20 words
 def get_chunks_from_text_2(text):
     print("chunk maker 2")
     chunks = []
@@ -62,28 +67,27 @@ def get_chunks_from_text_2(text):
     # clean input
     text = text.encode(encoding='ASCII',errors='ignore').decode()
     text.strip()
-    while text.find("\n\n\n") > -1:
-        text = text.replace("\n\n\n", "\n\n")
+    while bool(re.search(r'\s{3,}', text)):
+        text = re.sub(r'\s{3,}', '\n\n', text)
 
-    # built array of fragments by nn
+    # build array of fragments by nn
     fragments = text.split('\n\n')
 
     # add array elements until reaching an element with at least 20 words
     cur_chunk = ""
     for i, fragment in enumerate(fragments):
-        if len(fragment) > 1:
-            if i > 0:
-                cur_chunk = cur_chunk  + "\n"
-            cur_chunk = cur_chunk + fragment
+        cur_chunk = cur_chunk + '\n' + fragment
         if len(cur_chunk) > 1 and (len(fragment.split()) >= 20 or i + 1 == len(fragments)):
-            chunks.append(cur_chunk.strip())
+            cur_chunk = cur_chunk.strip()
+            if len(cur_chunk) > MIN_CHUNK_LENGTH:
+                chunks.append(cur_chunk)
             cur_chunk = ""
 
     return chunks
 
 # runtime settings
 chunk_maker = "MAKER_2"
-domain_id = 16
+domain_id = 17
 
 # init
 conn = db.get_connection()
@@ -98,7 +102,6 @@ for doc_id, domain_id, uri, doc_title, doc_text in rows:
     print(uri)
     chunks = get_chunks_from_text(doc_text, chunk_maker)
     for chunk in chunks:
-        #clean_chunk = re.sub('\s+', ' ', chunk)
         print(doc_id, chunk[:50])
         print("----------------------")
         embedding = get_openai_embedding(chunk[:1200])
@@ -106,3 +109,6 @@ for doc_id, domain_id, uri, doc_title, doc_text in rows:
 
 # cleanup
 db.close_connection(conn)
+
+#####################################################
+#clean_chunk = re.sub('\s+', ' ', chunk)

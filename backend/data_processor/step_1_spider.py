@@ -10,8 +10,7 @@ import local_secrets as secrets
 
 """
 TO DO
-    exclusions other than .jpg
-    isolate text within page worth saving
+
 """
 
 def link_is_good(link_url):
@@ -34,6 +33,12 @@ def link_is_good(link_url):
 
 def get_page_contents(soup):
     page_text = ""
+
+    for tag in soup(['script']):
+        print("*** script tags found.  removing from content")
+        print(tag.get_text()[:20])
+        tag.decompose()
+
     print("checking main")
     contents = soup.find('main')
     if contents == None:
@@ -51,6 +56,7 @@ def get_page_contents(soup):
         page_text = soup.get_text("\n")
     page_text = page_text.encode(encoding='ASCII',errors='ignore').decode()
     #page_text = re.sub('\s+', ' ', page_text)
+
     return page_text
 
 # Define a function to make a request and spider the website recursively
@@ -67,6 +73,7 @@ def spider(url, single):
         print(e)
         print("--------------")
         return
+
     soup = BeautifulSoup(response.content, 'html.parser')
 
     # Extract page text
@@ -102,9 +109,10 @@ def write_text_to_file(uri, page_text):
         file.writelines(page_text + "\n\n")
 
 # configure job
-domain_id = 16
+domain_id = 0
 initial_url = 'https://dynomyco.com'
-single = False
+initial_url ='https://dynomyco.com/blogs/blog/types-of-mycorrhiza'
+single = True
 file_name = "page.txt"
 
 # init

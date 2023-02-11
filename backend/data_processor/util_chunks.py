@@ -7,6 +7,8 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import local_db as db
 import local_secrets as secrets
 
+MIN_CHUNK_LENGTH = 20
+
 def get_chunks_from_text_2(text):
     print("chunker 2")
     chunks = []
@@ -14,8 +16,8 @@ def get_chunks_from_text_2(text):
 
     # clean input
     text.strip()
-    while text.find("\n\n\n") > -1:
-        text = text.replace("\n\n\n", "\n\n")
+    while bool(re.search(r'\s{3,}', text)):
+        text = re.sub(r'\s{3,}', '\n\n', text)
 
     # built array of fragments by nn
     fragments = text.split('\n\n')
@@ -23,40 +25,50 @@ def get_chunks_from_text_2(text):
     # add array elements until reaching an element with at least 20 words
     cur_chunk = ""
     for i, fragment in enumerate(fragments):
-        if len(fragment) > 1:
-            if i > 0:
-                cur_chunk = cur_chunk  + "\n"
-            cur_chunk = cur_chunk + fragment
+        cur_chunk = cur_chunk + '\n' + fragment
         if len(cur_chunk) > 1 and (len(fragment.split()) >= 20 or i + 1 == len(fragments)):
-            chunks.append(cur_chunk.strip())
+            cur_chunk = cur_chunk.strip()
+            if len(cur_chunk) > MIN_CHUNK_LENGTH:
+                chunks.append(cur_chunk)
             cur_chunk = ""
 
     return chunks
 
-# runtime settings
-doc_id = 4333
+def write_text_to_file(file_path, text):
+    with open(file_path, 'w') as new_file:
+        #clean_chunk = re.sub('\s+', ' ', chunk_text)
+        #clean_chunk = clean_chunk.encode(encoding='ASCII',errors='ignore').decode()
+        new_file.write(text)
 
-text = db.get_document(doc_id)[0]["doc_text"]
-with open("page.txt", 'w') as new_file:
-    #clean_chunk = re.sub('\s+', ' ', chunk_text)
-    #clean_chunk = clean_chunk.encode(encoding='ASCII',errors='ignore').decode()
-    new_file.write(text)
+def write_chunks_to_file(file_path, chunks):
+    with open(file_path, 'w') as new_file:
+        for chunk in chunks:
+            #clean_chunk = re.sub('\s+', ' ', chunk)
+            chunk = chunk.encode(encoding='ASCII',errors='ignore').decode()
+            new_file.write(chunk + "\n------------------\n")
 
-chunks = get_chunks_from_text_2(text)
-with open("new.txt", 'w') as new_file:
-    for chunk in chunks:
-        clean_chunk = re.sub('\s+', ' ', chunk)
-        clean_chunk = clean_chunk.encode(encoding='ASCII',errors='ignore').decode()
-        new_file.write(clean_chunk + "\n------------------\n")
-   
-chunks = db.get_document_chunks_from_doc_id(doc_id)
-with open("prev.txt", 'w') as new_file:
-    for chunk in chunks:
-        chunk_text = chunk["chunk_text"]
-        clean_chunk = re.sub('\s+', ' ', chunk_text)
-        clean_chunk = clean_chunk.encode(encoding='ASCII',errors='ignore').decode()
-        new_file.write(clean_chunk + "\n------------------\n")
-   
+def run():
+    # runtime settings
+    doc_id = 5758
+
+    text = db.get_document(doc_id)[0]["doc_text"]
+    text = text.strip()
+    write_text_to_file("p1.txt", text)
+
+    chunks = get_chunks_from_text_2(text)
+    write_chunks_to_file("p1-c1.txt", chunks)
+    
+text = """
+    this is the first chunk heading
+    this is the first chunk where i am going to write out enough words so that we get to the length of a chunk
+
+    this is the second chunk heading
+    this is the second chunk where i am going to write out enough words so that we get to the length of a chunk
+
+    third chunk
+"""
+print(get_chunks_from_text_2(text))
+
 
 
 

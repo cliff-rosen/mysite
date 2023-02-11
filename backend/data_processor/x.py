@@ -1,6 +1,6 @@
 import re
 
-filepath = "page.txt"
+filepath = "input.txt"
 
 def read_file(filepath):
     with open(filepath, 'r', encoding='utf-8') as infile:
@@ -19,5 +19,5 @@ write_file('page1.txt', text1)
 
 text2 = text
 while bool(re.search(r'\s{3,}', text2)):
-    text2 = re.sub(r'\s{3,}', '\n', text2)
+    text2 = re.sub(r'\s{3,}', '\n\n', text2)
 write_file('page2.txt', text2)

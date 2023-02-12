@@ -65,9 +65,16 @@ def validate_user(user_name, password):
 ##### DOCUMENT PIPELINE #####
 
 def insert_document(conn, domain_id, doc_uri, doc_title, doc_text):
-    cur = conn.cursor() 
-    cur.execute("INSERT INTO document (domain_id, doc_uri, doc_title, doc_text) VALUES (%s, %s, %s, %s)", (domain_id, doc_uri, doc_title, doc_text)) 
-    conn.commit() 
+    try:
+        cur = conn.cursor() 
+        cur.execute("INSERT INTO document (domain_id, doc_uri, doc_title, doc_text) VALUES (%s, %s, %s, %s)", (domain_id, doc_uri, doc_title, doc_text)) 
+        conn.commit() 
+    except Exception as e:
+        print("***************************")
+        print(doc_uri)
+        print("DB error in insert_document:\n", str(e))
+        return False
+    return True
 
 def get_all_docs_from_domain(conn, domain_id):
     cur = conn.cursor() 

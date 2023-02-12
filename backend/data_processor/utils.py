@@ -9,6 +9,8 @@ sys.path.append('db')
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import local_db as db
 import local_secrets as secrets
+from logger import Logger
+import json
 
 PINECONE_API_KEY = secrets.PINECONE_API_KEY
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
@@ -74,6 +76,7 @@ def init():
 #res = index.fetch(ids=['3890', '3891'])
 #print(res['vectors']['3890']['metadata'])
 
+"""
 print("starting...")
 index = None
 init()
@@ -82,6 +85,7 @@ ids = ('19826,19827,19828,19829,19830,19831,19832,19833,19834').split(",")
 ids = ('19769,19780,19786,19821,19869').split(",")
 print(ids)
 delete_indexes(ids)
+"""
 
 q1 = "what is linux and windows"
 q2 = "what is the difference between apples and oranges"
@@ -89,4 +93,9 @@ t = "linux is an operating system that is opensource.  windows is an operating s
 #compare_queries(q1, q2, t)
 #compare_chunks(q, t1, t2)
 
-
+logger = Logger("x.txt")
+s = set()
+s.add("a")
+s.add("b")
+for e in s:
+    logger.log_error(e)

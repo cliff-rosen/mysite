@@ -7,6 +7,7 @@ sys.path.append('db')
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import local_db as db
 import local_secrets as secrets
+from logger import Logger
 
 """
 TO DO
@@ -29,18 +30,19 @@ def link_is_good(link_url):
         and initial_url + link_url not in visited_urls:
         return True
     else:
-        return False        
+        return False
 
 def get_page_contents(soup):
     page_text = ""
 
     for tag in soup(['script']):
-        print("*** script tags found.  removing from content")
-        print(tag.get_text()[:20])
         tag.decompose()
 
-    print("checking main")
-    contents = soup.find('main')
+    print("checking class=body-container-wrapper")
+    contents = soup.find(class_='body-container-wrapper')
+    if contents == None:
+        print("checking main")        
+        contents = soup.find('main')
     if contents == None:
         print("checking class")
         contents = soup.find(class_='main-content-wrapper')
@@ -61,6 +63,14 @@ def get_page_contents(soup):
 
 # Define a function to make a request and spider the website recursively
 def spider(url, single):
+    if url.lower().startswith('/www'):
+        logger.log("***" + url)
+
+    if len(url) > 250:
+        print("url exceeded max length", url)
+        logger.log(("url exceeded max length:\n" + url))
+        return
+
     visited_urls.add(url)
     print(url, len(visited_urls))
 
@@ -69,9 +79,7 @@ def spider(url, single):
         response = requests.get(url, headers={"User-Agent": "XY"})
     except Exception as e:
         print ("Error retrieving url", url)
-        print("----- ERROR -----")
-        print(e)
-        print("--------------")
+        logger.log("Error retrieving url:\n" +  str(e))
         return
 
     soup = BeautifulSoup(response.content, 'html.parser')
@@ -93,12 +101,17 @@ def spider(url, single):
             if link_is_good(link_url):
                 if not link_url.startswith("http"):
                     link_url = initial_url + link_url
+                #print("parent", url)
+                #print("link", link_url)
                 spider(link_url, single)
 
 def write_text_to_db(uri, text):
     print("saving: ", uri)
     #text = re.sub('\s+', ' ', text)
-    db.insert_document(conn, domain_id, uri, "", text)
+    if not db.insert_document(conn, domain_id, uri, "", text):
+        print("*********************************")
+        print("DB ERROR")
+        logger.log("DB ERROR: " + uri)
     #print(text)
     return    
 
@@ -109,15 +122,15 @@ def write_text_to_file(uri, page_text):
         file.writelines(page_text + "\n\n")
 
 # configure job
-domain_id = 0
-initial_url = 'https://dynomyco.com'
-initial_url ='https://dynomyco.com/blogs/blog/types-of-mycorrhiza'
-single = True
+domain_id = 18
+initial_url ='https://www.tvisioninsights.com'
+single = False
 file_name = "page.txt"
 
 # init
 visited_urls = set()
 conn = db.get_connection()
+logger = Logger()
 
 # do it
 spider(initial_url, single)
@@ -126,7 +139,9 @@ spider(initial_url, single)
 db.close_connection(conn)
 print("------------------------")
 print("set: ", visited_urls)
-
+logger.log("DONE")
+for url in visited_urls:
+    logger.log(url)
 
 """
 filter out pdfs but find another way to harvest them

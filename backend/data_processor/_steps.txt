@@ -1,5 +1,8 @@
 Data Processing Steps
 
+TO DO:
+- add logging to capture links missing content, etc.
+
 1. Create domain record in db
 
 2. Update domain_id in 3 processing scripts
@@ -32,3 +35,8 @@ verify:
 
 Other tests:
 check for chunks that are very long
+SELECT domain_id, LENGTH(chunk_text), doc_chunk_id
+FROM document_chunk dc
+JOIN document d ON dc.doc_id = d.doc_id
+WHERE LENGTH(chunk_text) > 2000
+ORDER BY domain_id

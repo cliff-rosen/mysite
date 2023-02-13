@@ -5,6 +5,7 @@ import os
 import sys
 sys.path.append('db')
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+import json
 import local_db as db
 import local_secrets as secrets
 from logger import Logger
@@ -31,8 +32,7 @@ def link_is_good(link_url):
         and not link_url.lower().endswith(".atom") \
         and link_url != '/' \
         and link_url != initial_url + '/' \
-        and link_url not in visited_urls \
-        and initial_url + link_url not in visited_urls:
+        and link_url not in urls_seen:
         return True
     else:
         return False
@@ -85,17 +85,20 @@ def clean_url(link_url):
 def spider(url, single):
     if len(url) > 250:
         print("url exceeded max length", url)
+        urls_seen[url]['status'] = 'ERROR'
+        urls_seen[url]['detail'] = 'Max URL length exceeded'
         logger.log(("url exceeded max length:\n" + url))
         return
 
-    visited_urls.add(url)
-    print(url, len(visited_urls))
+    print("-> retrieving", len(urls_seen), url)
 
     # Retrieve url into soup object
     try:
         response = requests.get(url, headers={"User-Agent": "XY"})
     except Exception as e:
         print ("Error retrieving url", url)
+        urls_seen[url]['status'] = 'ERROR'
+        urls_seen[url]['detail'] = str(e)
         logger.log("Error retrieving url:\n" + "url\n" + str(e))
         return
 
@@ -109,6 +112,8 @@ def spider(url, single):
     else:
         write_text_to_file(url, page_text)
 
+    urls_seen[url]['status'] = 'COMPLETE'
+
     # Extract all the links on the page
     if single == False:
         links = soup.find_all('a')
@@ -117,7 +122,8 @@ def spider(url, single):
             link_url = clean_url(raw_url)
             if link_is_good(link_url):
                 #logger.log("parent: " + url + '\n' + "url: " + link_url)
-                spider(link_url, single)
+                urls_to_visit.add(link_url)
+                urls_seen[link_url] = {'status': 'PENDING'}
 
 def write_text_to_db(uri, text):
     print("saving: ", uri)
@@ -136,27 +142,33 @@ def write_text_to_file(uri, page_text):
         file.writelines(page_text + "\n\n")
 
 # configure job
-domain_id = 23
-initial_url ='https://www.achieve.com'
-single = False
+domain_id = 22
+initial_url ='https://exemplarcompanies.com'
+single = True
 file_name = "page.txt"
 
 # init
-visited_urls = set()
+urls_to_visit = set()
+urls_seen = {}
 conn = db.get_connection()
 logger = Logger('logs/spider_log.txt')
 logger.log("Starting spider for " + initial_url)
 
 # do it
-spider(initial_url, single)
+urls_to_visit.add(initial_url)
+urls_seen[initial_url] = {'status': 'PENDING'}
+while(urls_to_visit):
+    print("REMAINING: ", len(urls_to_visit))
+    url = urls_to_visit.pop()
+    spider(url, single)
 
 # cleanup
 db.close_connection(conn)
 print("------------------------")
-print("set: ", visited_urls)
+print("URLs seen:\n", urls_seen)
 logger.log("DONE")
-for url in visited_urls:
-    logger.log(url)
+for url in urls_seen:
+    logger.log(url + ': ' + json.dumps(urls_seen[url]))
 
 """
 filter out pdfs but find another way to harvest them

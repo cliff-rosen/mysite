@@ -1,84 +1,11 @@
+Logger started
+
 ---------------------------------------------------
-Starting spider for https://www.achieve.com
+Starting spider for https://exemplarcompanies.com
 
 ---------------------------------------------------
 DONE
 
 ---------------------------------------------------
-https://www.achieve.com
-
----------------------------------------------------
-Starting spider for https://www.achieve.com
-
----------------------------------------------------
-DONE
-
----------------------------------------------------
-https://www.achieve.com/get-started?brand=achieve&section=achieve_web&utm_medium=organic&utm_media=organic&utm_source=achieve_organic_web
-
----------------------------------------------------
-https://www.achieve.com/policies
-
----------------------------------------------------
-https://www.achieve.com/home-equity-loan/frequently-asked-questions
-
----------------------------------------------------
-https://www.achieve.com/about/blog
-
----------------------------------------------------
-https://www.achieve.com
-
----------------------------------------------------
-https://www.achieve.com/about
-
----------------------------------------------------
-https://www.achieve.com/about/contact-us
-
----------------------------------------------------
-https://www.achieve.com/get-started?brand=achieve&section=achieve_hl&utm_medium=organic&utm_media=organic&utm_source=achieve_organic_hl
-
----------------------------------------------------
-https://www.achieve.com/personal-loans
-
----------------------------------------------------
-https://www.achieve.com/learn
-
----------------------------------------------------
-https://www.achieve.com/about/press
-
----------------------------------------------------
-https://www.achieve.com/about/press/press-kit
-
----------------------------------------------------
-https://www.achieve.com/resolve-debt
-
----------------------------------------------------
-https://www.achieve.com/home-equity-loan
-
----------------------------------------------------
-https://www.achieve.com/about/employee-stories
-
----------------------------------------------------
-https://www.achieve.com/personal-loans/frequently-asked-questions
-
----------------------------------------------------
-https://www.achieve.com/cdn-cgi/l/email-protection
-
----------------------------------------------------
-https://www.achieve.com/molo-app
-
----------------------------------------------------
-https://www.achieve.com/about/member-stories
-
----------------------------------------------------
-https://www.achieve.com/signin
-
----------------------------------------------------
-https://www.achieve.com/get-started?brand=achieve&section=achieve_pl&utm_medium=organic&utm_media=organic&utm_source=achieve_organic_pl
-
----------------------------------------------------
-https://www.achieve.com/get-started?brand=achieve&section=achieve_dr&utm_medium=organic&utm_media=organic&utm_source=achieve_organic_dr
-
----------------------------------------------------
-https://www.achieve.com/licenses
+https://exemplarcompanies.com: {"status": "COMPLETE"}
 

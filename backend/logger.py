@@ -9,6 +9,8 @@ class Logger:
         else:
             self.filename = LOG_FILE_NAME
         print("Logger created, using", self.filename)
+        with open(self.filename, "w", encoding='utf-8') as file:
+            file.writelines("Logger started\n\n")
 
     def log(self, msg):
         try:

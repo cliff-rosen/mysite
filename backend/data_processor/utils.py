@@ -95,5 +95,5 @@ t = "linux is an operating system that is opensource.  windows is an operating s
 #compare_queries(q1, q2, t)
 #compare_chunks(q, t1, t2)
 
-text = "abc tel:"
-print(text.find('tel:'))
+x = set('abc')
+print(x)

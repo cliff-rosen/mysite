@@ -15,6 +15,7 @@ TO DO:
 - RUN -
 
 1. Step 1
+ Verify get_page_contents retrieval logic
  Set single to true
  Set domain to "https://domain.com", with no / at end
  Run script and verify:

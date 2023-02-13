@@ -8,6 +8,7 @@ import local_secrets as secrets
 """
 TO DO:
 log error if upsert response not {'upserted_count': 1}
+upsert in batches
 
 """
 PINECONE_API_KEY = secrets.PINECONE_API_KEY
@@ -42,7 +43,7 @@ def fetch():
     print(res['vectors']['3']['metadata'])
 
 # runtime settings
-domain_id = 21
+domain_id = 23
 
 print(index.describe_index_stats())
 run()

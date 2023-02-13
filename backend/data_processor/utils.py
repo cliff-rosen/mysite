@@ -12,11 +12,13 @@ import local_secrets as secrets
 from logger import Logger
 import json
 
+"""
 PINECONE_API_KEY = secrets.PINECONE_API_KEY
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
 openai.api_key = OPENAI_API_KEY
 MODEL = "text-similarity-babbage-001"
 INDEX_NAME = "main-index"
+"""
 
 def ge(text):
     embedding_model = MODEL
@@ -93,9 +95,5 @@ t = "linux is an operating system that is opensource.  windows is an operating s
 #compare_queries(q1, q2, t)
 #compare_chunks(q, t1, t2)
 
-logger = Logger("logs/x.txt")
-s = set()
-s.add("a")
-s.add("b")
-for e in s:
-    logger.log(e)
+text = "abc tel:"
+print(text.find('tel:'))

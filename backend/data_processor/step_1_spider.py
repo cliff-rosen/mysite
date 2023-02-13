@@ -13,15 +13,17 @@ from logger import Logger
 TO DO
 handle urls that have #
 track status of visited urls (i.e. success, error)
+Error retrieving url: maximum recursion depth exceeded
+
 """
 
 def link_is_good(link_url):
     if link_url is not None \
         and (link_url.startswith(initial_url) or not link_url.startswith("http"))\
         and not link_url.startswith("#") \
-        and not link_url.lower().startswith("mailto:") \
-        and not link_url.lower().startswith("tel:") \
-        and not link_url.lower().startswith("javascript:") \
+        and link_url.lower().find("mailto:") == -1 \
+        and link_url.lower().find("tel:") == -1 \
+        and link_url.lower().find("javascript:") == -1 \
         and not link_url.lower().endswith(".jpg") \
         and not link_url.lower().endswith(".bmp") \
         and not link_url.lower().endswith(".png") \
@@ -65,8 +67,14 @@ def get_page_contents(soup):
 def clean_url(link_url):
     if link_url is None:
         return link_url
+
+    pos = link_url.find('#')
+    if pos > -1:
+        link_url = link_url[:pos]
+
     if link_url.startswith("//"):
         return 'https:' + link_url
+
     if not link_url.startswith("http"):
         if not link_url.startswith("/"):
             link_url = '/' + link_url
@@ -75,9 +83,6 @@ def clean_url(link_url):
 
 # Define a function to make a request and spider the website recursively
 def spider(url, single):
-    if url.lower().startswith('/www'):
-        logger.log("***" + url)
-
     if len(url) > 250:
         print("url exceeded max length", url)
         logger.log(("url exceeded max length:\n" + url))
@@ -91,12 +96,11 @@ def spider(url, single):
         response = requests.get(url, headers={"User-Agent": "XY"})
     except Exception as e:
         print ("Error retrieving url", url)
-        logger.log("Error retrieving url:\n" +  str(e))
+        logger.log("Error retrieving url:\n" + "url\n" + str(e))
         return
 
-    soup = BeautifulSoup(response.content, 'html.parser')
-
     # Extract page text
+    soup = BeautifulSoup(response.content, 'html.parser')
     page_text = get_page_contents(soup)
 
     # Save page text
@@ -132,8 +136,8 @@ def write_text_to_file(uri, page_text):
         file.writelines(page_text + "\n\n")
 
 # configure job
-domain_id = 21
-initial_url ='https://www.sealed.com'
+domain_id = 23
+initial_url ='https://www.achieve.com'
 single = False
 file_name = "page.txt"
 

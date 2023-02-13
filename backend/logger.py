@@ -1,5 +1,5 @@
 
-LOG_FILE_NAME = 'errors.txt'
+LOG_FILE_NAME = 'log.txt'
 DELIMETER = "---------------------------------------------------\n"
 
 class Logger:

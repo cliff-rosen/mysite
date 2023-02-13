@@ -5,6 +5,11 @@ sys.path.append('db')
 import local_db as db
 import local_secrets as secrets
 
+"""
+TO DO:
+log error if upsert response not {'upserted_count': 1}
+
+"""
 PINECONE_API_KEY = secrets.PINECONE_API_KEY
 INDEX_NAME = "main-index"
 
@@ -37,7 +42,7 @@ def fetch():
     print(res['vectors']['3']['metadata'])
 
 # runtime settings
-domain_id = 18
+domain_id = 21
 
 print(index.describe_index_stats())
 run()

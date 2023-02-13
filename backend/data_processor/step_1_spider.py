@@ -11,7 +11,8 @@ from logger import Logger
 
 """
 TO DO
-
+handle urls that have #
+track status of visited urls (i.e. success, error)
 """
 
 def link_is_good(link_url):
@@ -22,6 +23,8 @@ def link_is_good(link_url):
         and not link_url.lower().startswith("tel:") \
         and not link_url.lower().startswith("javascript:") \
         and not link_url.lower().endswith(".jpg") \
+        and not link_url.lower().endswith(".bmp") \
+        and not link_url.lower().endswith(".png") \
         and not link_url.lower().endswith(".pdf") \
         and not link_url.lower().endswith(".atom") \
         and link_url != '/' \
@@ -34,21 +37,19 @@ def link_is_good(link_url):
 
 def get_page_contents(soup):
     page_text = ""
-
+    contents = None
     for tag in soup(['script']):
         tag.decompose()
 
-    print("checking class=body-container-wrapper")
-    contents = soup.find(class_='body-container-wrapper')
     if contents == None:
-        print("checking main")        
-        contents = soup.find('main')
+        print("checking id")
+        contents = soup.find(id='main-content')
     if contents == None:
         print("checking class")
         contents = soup.find(class_='main-content-wrapper')
     if contents == None:
-        print("checking id")
-        contents = soup.find(id='content')
+        print("checking main")        
+        contents = soup.find('main')
     if contents is not None:
         print("  contents found")  
         for content in contents:
@@ -60,6 +61,17 @@ def get_page_contents(soup):
     #page_text = re.sub('\s+', ' ', page_text)
 
     return page_text
+
+def clean_url(link_url):
+    if link_url is None:
+        return link_url
+    if link_url.startswith("//"):
+        return 'https:' + link_url
+    if not link_url.startswith("http"):
+        if not link_url.startswith("/"):
+            link_url = '/' + link_url
+        link_url = initial_url + link_url
+    return link_url
 
 # Define a function to make a request and spider the website recursively
 def spider(url, single):
@@ -97,12 +109,10 @@ def spider(url, single):
     if single == False:
         links = soup.find_all('a')
         for link in links:
-            link_url = link.get('href')
+            raw_url = link.get('href')
+            link_url = clean_url(raw_url)
             if link_is_good(link_url):
-                if not link_url.startswith("http"):
-                    link_url = initial_url + link_url
-                #print("parent", url)
-                #print("link", link_url)
+                #logger.log("parent: " + url + '\n' + "url: " + link_url)
                 spider(link_url, single)
 
 def write_text_to_db(uri, text):
@@ -122,15 +132,16 @@ def write_text_to_file(uri, page_text):
         file.writelines(page_text + "\n\n")
 
 # configure job
-domain_id = 18
-initial_url ='https://www.tvisioninsights.com'
+domain_id = 21
+initial_url ='https://www.sealed.com'
 single = False
 file_name = "page.txt"
 
 # init
 visited_urls = set()
 conn = db.get_connection()
-logger = Logger()
+logger = Logger('logs/spider_log.txt')
+logger.log("Starting spider for " + initial_url)
 
 # do it
 spider(initial_url, single)

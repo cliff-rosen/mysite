@@ -2,36 +2,51 @@ Data Processing Steps
 
 TO DO:
 - add logging to capture links missing content, etc.
+- step 2a: look for and remove irrelevant chunks
+
+- PREPARE -
 
 1. Create domain record in db
 
 2. Update domain_id in 3 processing scripts
 
-3. Review site using inspect and establish which tag, tag id or class to spider.  Update domain record with that info and then update the get_page_contents() to retrieve proper target
+3. Review site using inspect and establish which tag, tag id or class to spider.  Update domain record spider_notes with that info and then update the get_page_contents() to retrieve proper target
 
-4. Step 1
+- RUN -
+
+1. Step 1
  Set single to true
  Set domain to "https://domain.com", with no / at end
- Run script and verify content written to page.txt is correct.
+ Run script and verify:
+  console shows content found in correct section (i.e. id=main)
+  content written to page.txt is correct
  Change single to False and run Step 1 fully
+ Check logfile and db document table
 
-5. Step 2
+2. Step 2
 set chunk_maker
 set domain_id
 run script
+check logfile
+check db document_chunks table
+  search for long chunks
 
-6. Step 3
+3. Step 3
 set domain_id
 run script
+check logfile
 verify:
  select count(*) from document_chunk
  compare with index count in Pinecone console
 
-7. Create user
+4. Create user
 
-8. Login as user and test
+- TEST -
+
+1. Login as user and test
 - domain defaults to correct value
 - "what does this company do" ; check chunks and response
+
 
 Other tests:
 check for chunks that are very long

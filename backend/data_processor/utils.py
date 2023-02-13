@@ -93,9 +93,9 @@ t = "linux is an operating system that is opensource.  windows is an operating s
 #compare_queries(q1, q2, t)
 #compare_chunks(q, t1, t2)
 
-logger = Logger("x.txt")
+logger = Logger("logs/x.txt")
 s = set()
 s.add("a")
 s.add("b")
 for e in s:
-    logger.log_error(e)
+    logger.log(e)

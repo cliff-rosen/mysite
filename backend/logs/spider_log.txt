@@ -3,3 +3,1485 @@ Logger started
 ---------------------------------------------------
 Starting spider for https://exemplarcompanies.com
 
+---------------------------------------------------
+DONE
+
+---------------------------------------------------
+https://exemplarcompanies.com: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/feed/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/compliance/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/law/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/wealth/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/capital/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategy/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/flexpertise/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/tax-accounting/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/sports/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/about/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/meet-your-team/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/careers/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/exemplar-at-play/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/news-publications/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/contact-us/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/press-release/exemplar-companies-grows-again-through-strategic-partnership/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/press-release/sagoon-engages-exemplar-companies/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/press-release/exemplar-companies-launches-debt-capital-advisory-group-continues-to-expand-service-offerings/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/news-publications/page/2/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/align-investments-with-value/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/pbackonen/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/ftc-proposes-rule-to-ban-non-compete-clauses-what-does-this-mean-for-employees-and-employers/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/2023-inflation-adjustments-what-changes-is-the-irs-making/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/an-introduction-to-private-markets/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/is-crypto-boosting-the-rise-of-renewable-energy/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/2022-tax-tornado-is-coming/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/stephenwhite/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/4-blockchain-trends-for-2022/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/lets-explore-leadership/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/protecting-intellectual-property/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/blog/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/joelle-paul-cook/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/ryan-allison/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/david-loughran/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/press-release/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/debt-capital-advisory/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/exemplar-capital/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/julie-jenkins/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/jordan-barben/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/insurance-and-finance-topics/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/how-employers-can-help-the-looming-mental-health-crisis-heightened-by-covid-19/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/lawtopic/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/strategytopic/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/golden-handcuffs-what-it-is-and-what-it-is-not/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/pat-dunwoody/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/others/exemplar-entrepreneur-news-update-january-2020/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/value-based-billing/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/conscious-business-the-psychedelic-medicine-economic-evolution/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/newsletter/exemplar-entrepreneur-news-update-december-2020/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/benefits-value-based-pricing/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2023/01/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2022/12/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2022/11/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2022/10/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2022/09/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2022/08/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2022/07/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2022/06/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2022/05/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2022/04/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2022/03/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2022/02/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2022/01/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/12/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/11/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/10/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/09/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/08/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/07/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/06/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/05/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/04/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/03/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/02/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/01/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/12/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/11/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/10/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/09/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/08/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/07/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/06/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/05/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/04/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/03/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/astroarticle/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/astroblog/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/astrobulletin/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/astrolawger/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/team-member/bizdev-team-member/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/bizdev/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/capital-deals/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/capital-marketplace/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/team-member/capital-member-team-member/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/capital-member/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/capitaltopic/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/blog/capital-topic/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/completed-capital-deals/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/capital-marketplace/crowdfunding/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/customerstory/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/events/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/get-real/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/in-process/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/blog/insurance-and-finance-topics-blog/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/law-member/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/live/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/management/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/newsletter/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/others/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/past-events/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/team-member/strategy-member-team-member/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/strategy-member/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/blog/strategy-topic/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/support/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/taxtopic/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/tax-member/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/team-member/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/terminated-capital-deals/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/press-release/exemplar-business-continuity-during-covid-19/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/virtual-accounting-why-its-here-to-stay/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/tax-changes-small-business/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/value-based-pricing/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/small-business-election-impacts/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/michaelroberts/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/taxtopic/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/press-release/exemplar-companies-continues-growth-with-new-office-in-delray-beach-florida/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/press-release/virtual-compliance-event-with-jeffrey-abramczyk/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/press-release/news-ellavoz-impact-capital/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/news-publications/page/3/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/news-publications/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/beware-of-merchant-cash-advances/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/avoiding-employee-misclassification-heres-what-to-know/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/data-privacy-laws-startups/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/do-you-have-a-winning-business-strategy/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/securities-law-for-startups/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/exemplaraccount/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/decentralized-finance-made-simple/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/the-benefits-of-digital-assets/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/trademark-lawyer-everything-you-need-to-know/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/brian-tucker/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/clifton-smith/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/nadine-livingston/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/team-member/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/jobs/dream-job/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/jobs/managing-director-national-head-of-exemplar-law/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/jobs/registered-representatives-for-private-placement-sales-exemplar-capital/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/jobs/accomplished-investment-bankers-exemplar-capital/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/jobs/corporate-attorney/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/jobs/cpa/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/jobs/financial-services-and-insurance-sales-representative/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/tod-oconnor/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/08/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/payton-backonen/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/christophermarston/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/christian-wood/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/sam-kelly/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/ben-york/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/capital-member/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/kiley-doll/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/joseph-ianni/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/dakota-peterson/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/victor-garcia/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/team-member/bizdev-team-member/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/compensation-methods-startup/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/censorship-and-social-media/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/strategytopic/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/john-huber/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/11/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/past-events/exemplar-capital-freedom-motors/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/events/raising-capital-with-digital-assets/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/events/raising-capital-for-your-business-what-to-know-in-2021/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/press-release/webinar-raising-capital-for-your-business/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/astrolawger/business-astrology-may-bulletin/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/astrolawger/business-astrology-april-bulletin/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/astrolawger/business-astrology-february-bulletin/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/astrolawger/business-astrology-march-bulletin/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/roman-vayner/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/capital-deals/exemplar-capital-ropes-creek-investments/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/capital-deals/exemplar-capital-bruce-creek-investors-llc/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/capital-deals/exemplar-capital-resolys-bio-inc/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/capital-deals/exemplar-capital-valiant-litigation-finance/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/capital-deals/exemplar-capital-innovative-health-solutions/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/09/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/2/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/capital-raising-strategy/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/newsletter/april-entrepreneurs-news-update-2021/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/astrolawger/mercury-retrograde/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/04/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/stephen-white/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/eric-geppert-2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/eric-geppert/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/michael-roberts/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/amy-berliner/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/get-real/episode-4-of-ceo-get-real-howard-crosby-ceo-of-nevada-comstock/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/is-your-business-financially-healthy-4-areas-that-help-determine-your-business-health/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/08/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/keele-taylor/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/keele-taylor-2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/claire-bailey/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/jeffrey-abramczyk-2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/strategy-member/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/the-benefits-of-fixed-value-based-pricing-over-hourly-billing/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/small-business-election-impacts-stay-prepared-and-devise-a-plan/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/updated-information-to-the-cares-act-for-small-businesses/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/chris-ashoff/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/get-real/ron-hulnick/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/newsletter/exemplar-entrepreneur-news-update-november-2020/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/2020-election-small-business/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/customerstory/the-human-beauty-movement/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/10/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/succession-planning-business-owners/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/pbackonen/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/michael-tuohy/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/08/page/3/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/vanessa-peters/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/charles-manto/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/jerry-boyette/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/troy-vanderburg/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/richard-mitchell/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/capital-deals/exemplar-capital-sms-biotech/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/bill-hoop/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/george-kanakis/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/stefan-j-kasian/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/others/entrepreneur-update-may-2021/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/newsletter/exemplar-entrepreneur-news-update-march-2021/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/newsletter/exemplar-entrepreneur-news-update-february-2021/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/newsletter/exemplar-entrepreneur-news-update-january-2021/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/newsletter/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/free-speech-community/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/register/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/login/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/astroblog/business-astrology-may-blog/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/astrolawger/lunar-void-of-course/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/astrolawger/macro-level-energies/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/debt-financing/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/nfts-explained/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/capitaltopic/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/artem-zakaryan/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/get-real/episode-12-of-ceos-get-real-syed-gilani-ceo-and-president-of-safr/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/exemplaraccount/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/capital-marketplace/five-flavors/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/3/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/s-corp-vs-llc/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/creating-a-competitive-advantage-5-reasons-a-strong-accounting-function-can-put-your-business-ahead/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/press-release/new-service-offerings/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/press-release/christopher-marston-featured-on-mission-matters-with-adam-torres/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/news-publications/page/4/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/estate-planning-2021/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/federal-minimum-wage-increase/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/financial-services/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/astroblog/business-astrology-april-blog/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/astroblog/business-astrology-march-blog-2021/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/astroblog/business-astrology-february-blog-2021/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/others/compensation-methods-startup/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/astrolawger/astroblog/business-astrology-may-blog/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/register: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2022/09/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/event: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/james-velsor/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/susan-walker/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/bob-hertz/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/06/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/dawnyel-smink/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/strategytopic/page/3/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/team-member/page/3/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/insurance-and-finance-topics/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2023/01/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/astrolawger/astroblog/business-astrology-april-blog/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/4/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/astrolawger/a-lightning-storm-of-innovation-and-liberation-the-2021-saturn-uranus-triple-square/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/astrolawger/business-astrology-in-general/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/get-real/episode-3-of-ceos-get-real-with-greg-womack-from-womack-investment-advisors/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/press-release/introducing-the-first-ever-full-service-business-emergency-room/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/zach-winters/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/colton-boyles/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/events/webinar-raising-capital-with-digital-assets/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/substance-lagarde/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/michelle-trumble/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/support/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/lisa-seim/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/jeffrey-abramczyk/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/richard-feldman/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/andrew-szabo/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/capital-raising-services/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/press-release/smsbiotech-engages-exemplar-capital-for-strategic-investment-banking-services/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/news-publications/page/5/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/03/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/get-real/episode-14-of-ceos-get-real-amir-magal-ceo-tribal-markers/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/get-real/episode-13-of-ceos-get-real-corey-mack-laforge-optical/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/get-real/episode-10-of-ceos-get-real-adam-torres-mission-matters/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/get-real/episode-9-of-ceos-get-real-michael-minkasian-true-north-testing/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/contact-us: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/newsletter/exemplar-entrepreneur-news-update-october-2020/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/managing-diversity-in-the-workplace/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/strategytopic/page/4/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/5-reasons-law-firms-are-abandoning-the-hourly-bill/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/william-dodge/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/duane-dahl/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/strategy-member/page/3/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/mary-arnold-2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/mary-arnold/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/law-member/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/pbackonen/page/3/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/business-emergency-room/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/07/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/05/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/linkedin.com/in/bob-hertz: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/ www.linkedin.com/in/joellepaul-cook: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/03/page/3/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/the-california-consumer-privacy-act-what-your-business-needs-to-know/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/bizdev/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/astrolawger/astroarticle/a-lightning-storm-of-innovation-and-liberation-the-2021-saturn-uranus-triple-square/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/astrolawger/astroarticle/macro-level-energies/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/astrolawger/astroarticle/auto-draft/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/taxtopic/page/3/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/12/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/management/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/09/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/capital-deals/exemplar-capital-latitude42/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/astrolawger/astroarticle/lunar-void-of-course/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/login: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/capital-deals/exemplar-capital-motown-sports-group/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/capital-deals/exemplar-capital-palx/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/lawtopic/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/mark-chasan-esq/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/07/page/2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/lseim@exemplarbusiness.com: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/greg-mcdonnell/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/katherine-brand/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/astrolawger/astroarticle/mercury-retrograde/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/09/page/3/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2021/09/page/4/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/exemplar-tax-accounting/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/s-corp-vs-llc-which-is-best-for-your-business/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/wp-login.php?action=lostpassword: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/5/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/www.linkedin.com/in/zacharyrwinters: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/6/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/lawtopic/major-crowdfunding-updates-to-be-aware-of-in-2021/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/team-member/page/4/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/get-real/episode-8-of-ceos-get-real-stu-lerner-ceo-of-lerner-project/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/exemplaraccount/page/3/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/law-member/page/3/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/3/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/10/page/3/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/4/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/steven-forbes/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/steven-monticone/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/the-value-of-human-resources-in-small-business/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/part-ii-popular-types-of-buy-sell-agreements/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/7/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/team-member/page/5/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/jeffery-c-foy-esq/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/jeffery-c-foy-esq-2/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/07/page/3/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/wp-login.php: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/pbackonen/page/4/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/get-real/episode-7-of-ceos-get-real-ise-lyfe-ceo-of-lyfe-productives/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/get-real/episode-6-of-ceos-get-real-sita-thompson-exemplary-womens-edition-from-sita-couture/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/get-real/episode-5-of-ceo-get-real-christopher-lai-marquis-beverages/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/09/page/3/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/www.linkedin.com/in/vmdpeters: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/successionplanningforbusinessowners/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/blog/the-advantages-of-value-based-pricing/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/quiz/business-health-assessment/%20: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/pbackonen/page/5/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/pbackonen/page/6/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/about:blank: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/keith-montgomery/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/strategy-member/page/4/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/8/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/www.linkedin.com/in/dawnyel-smink-95988548: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/news-publications/page/6/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/exemplaraccount/page/4/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/9/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/adam-krim/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/07/page/4/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/10/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/exemplaraccount/page/5/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/fred-b-wilcon-esq/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/paul-haberman-esq/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/law-member/page/4/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/jessica-neihardt/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/stephan-jan-meyers/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/louis-amatucci/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/richard-strauss/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/bizdev/page/3/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/team-member/page/6/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/5/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/pbackonen/page/7/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/team-member/page/7/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/07/page/5/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/6/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/team-member/page/8/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/7/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/team-member/mehow-pospieszalski/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/11/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/team-member/page/9/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/07/page/6/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/pbackonen/page/8/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/pbackonen/page/9/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/team-member/page/10/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/12/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/13/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/8/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/2020/07/page/7/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/9/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/14/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/10/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/team-member/page/11/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/15/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/team-member/page/12/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/11/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/16/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/team-member/page/13/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/17/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/18/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/12/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/team-member/page/14/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/19/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/13/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/14/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/team-member/page/15/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/20/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/15/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/category/team-member/page/16/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/21/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/22/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/16/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/17/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/23/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/18/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/19/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/24/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/20/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/25/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/21/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/22/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/26/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/23/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/27/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/28/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/24/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/25/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/29/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/30/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/26/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/author/admin-2/page/27/: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/31/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/32/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/33/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/34/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/35/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/36/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/37/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/38/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/39/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/40/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/41/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/42/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/43/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/44/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/45/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/46/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/47/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/48/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/49/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/50/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/51/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/52/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/53/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/54/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/55/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/56/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/57/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/58/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/59/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/60/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/61/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/62/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/63/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/64/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/65/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/66/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/67/?et_blog: {"status": "COMPLETE"}
+
+---------------------------------------------------
+https://exemplarcompanies.com/strategytopic/major-crowdfunding-updates-in-2021/page/68/?et_blog: {"status": "COMPLETE"}
+

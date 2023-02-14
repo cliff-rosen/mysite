@@ -7,6 +7,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'db'))
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import local_db as db
 import local_secrets as secrets
+from logger import Logger
 import conf
 
 PINECONE_API_KEY = secrets.PINECONE_API_KEY
@@ -15,7 +16,7 @@ MODEL = "text-embedding-ada-002"
 INDEX_NAME = "main-index"
 TEMPERATURE=.4
 TOP_K=10
-MAX_WORD_COUNT = 2500
+MAX_WORD_COUNT = 2000
 
 pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
 index = pinecone.Index(INDEX_NAME)
@@ -92,19 +93,25 @@ def create_prompt(question, chunks_with_text, prompt):
 
 def query_model(prompt, temp):
     print("prompt size: ", len(prompt), len(prompt.split()) )
-    response = openai.Completion.create(
-        model="text-davinci-003",
-        prompt=prompt,
-        max_tokens=500,
-        temperature=temp
-    )
-    return response["choices"][0]["text"].strip(" \n")
+    try:
+        response = openai.Completion.create(
+            model="text-davinci-003",
+            prompt=prompt,
+            max_tokens=500,
+            temperature=temp
+        )
+        return response["choices"][0]["text"].strip(" \n")
+    except Exception as e:
+        print("query_model ERROR: " + str(e))
+        return("Sorry, an unexpected error occured.  Please try again.")
 
 def log_result(domain_id, query_text, query_prompt, query_temp, response_text, chunks, user_id):
     response_chunk_ids = ', '.join(list(chunks.keys()))
     db.insert_query_log(domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id)
 
 def get_answer(domain_id, query, prompt_text, temp, user_id):
+
+    logger = Logger('api.log')
 
     print("getting query embedding")
     query_embedding = ge(query)
@@ -119,6 +126,7 @@ def get_answer(domain_id, query, prompt_text, temp, user_id):
 
     print("creating prompt")
     prompt = create_prompt(query, chunks_with_text, prompt_text)
+    logger.log('Prompt:\n' + prompt)
 
     print("querying model")
     response = query_model(prompt, temp)

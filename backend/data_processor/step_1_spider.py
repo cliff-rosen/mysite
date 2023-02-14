@@ -15,28 +15,46 @@ TO DO
 handle urls that have #
 track status of visited urls (i.e. success, error)
 Error retrieving url: maximum recursion depth exceeded
+filter out feeds
 
 """
 
 def link_is_good(link_url):
-    if link_url is not None \
-        and (link_url.startswith(initial_url) or not link_url.startswith("http"))\
-        and not link_url.startswith("#") \
-        and link_url.lower().find("mailto:") == -1 \
-        and link_url.lower().find("tel:") == -1 \
-        and link_url.lower().find("javascript:") == -1 \
-        and not link_url.lower().endswith(".jpg") \
-        and not link_url.lower().endswith(".jpeg") \
-        and not link_url.lower().endswith(".bmp") \
-        and not link_url.lower().endswith(".png") \
-        and not link_url.lower().endswith(".pdf") \
-        and not link_url.lower().endswith(".atom") \
-        and link_url != '/' \
-        and link_url != initial_url + '/' \
-        and link_url not in urls_seen:
-        return True
-    else:
+    if link_url is None:
         return False
+    if not link_url.lower().startswith(initial_url):
+        return False
+    if not link_url.lower().startswith("https"):
+        return False
+    if link_url in urls_seen:
+        return False
+
+    # work around for Exemplar
+    if domain_id == 22 \
+        and (link_url.find('/blog/') > -1
+            or link_url.find('/astro') > -1
+            or link_url.find('/capital-deals/') > -1
+            or link_url.find('/get-real/') > -1
+            or link_url.find('/press-release/') > -1
+            or link_url.find('/past-events/') > -1) \
+        and link_url.find('/page/') > -1:
+        print('--------------------------------------------')
+        print('REDUNDANT LINK - REJECTING: ', link_url)
+        return False
+
+    if link_url.startswith("#") \
+        or link_url.lower().find("mailto:") > -1 \
+        or link_url.lower().find("tel:") > -1 \
+        or link_url.lower().find("javascript:") > -1 \
+        or link_url.lower().endswith(".jpg") \
+        or link_url.lower().endswith(".jpeg") \
+        or link_url.lower().endswith(".bmp") \
+        or link_url.lower().endswith(".png") \
+        or link_url.lower().endswith(".pdf") \
+        or link_url.lower().endswith(".atom"):
+        return False
+
+    return True
 
 def get_page_contents(soup):
     page_text = ""
@@ -68,6 +86,9 @@ def get_page_contents(soup):
 def clean_url(link_url):
     if link_url is None:
         return link_url
+
+    if link_url == "/":
+        return initial_url
 
     pos = link_url.find('#')
     if pos > -1:

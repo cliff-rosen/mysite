@@ -38,7 +38,7 @@ set domain_id
 run script
 check logfile
 verify:
- select count(*) from document_chunk
+ select count(*) from document_chunk where domain_id = 22
  compare with index count in Pinecone console
 
 4. Create user

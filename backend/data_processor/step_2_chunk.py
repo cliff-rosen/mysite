@@ -98,7 +98,7 @@ print("Retrieve documents for domain", domain_id)
 rows = get_all_docs_from_domain(domain_id)
 print("Retrieved: ", len(rows))
 for doc_id, domain_id, uri, doc_title, doc_text in rows:
-    print("*********************************")
+    print("***********************************************************")
     print(uri)
     chunks = get_chunks_from_text(doc_text, chunk_maker)
     for chunk in chunks:

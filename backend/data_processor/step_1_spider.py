@@ -87,8 +87,8 @@ def clean_url(link_url):
     if link_url is None:
         return link_url
 
-    if link_url == "/":
-        return initial_url
+    if link_url == '/' or link_url == initial_url:
+        return initial_url + '/'
 
     pos = link_url.find('#')
     if pos > -1:
@@ -164,8 +164,8 @@ def write_text_to_file(uri, page_text):
         file.writelines(page_text + "\n\n")
 
 # configure job
-domain_id = 22
-initial_url = 'https://exemplarcompanies.com'
+domain_id = 24
+initial_url = 'https://www.kuzneski.com'
 single = False
 file_name = "page.txt"
 

@@ -10,6 +10,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import local_db as db
 import local_secrets as secrets
 from logger import Logger
+from tqdm import tqdm
 import json
 
 """
@@ -95,5 +96,4 @@ t = "linux is an operating system that is opensource.  windows is an operating s
 #compare_queries(q1, q2, t)
 #compare_chunks(q, t1, t2)
 
-x = set()
-print(x)
+        

@@ -87,7 +87,7 @@ def get_chunks_from_text_2(text):
 
 # runtime settings
 chunk_maker = "MAKER_2"
-domain_id = 22
+domain_id = 24
 
 # init
 conn = db.get_connection()

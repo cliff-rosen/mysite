@@ -85,7 +85,7 @@ def get_chunk_text_from_ids(chunks):
 def create_prompt(question, chunks_with_text, prompt):
     ids = list(chunks_with_text.keys())
     chunks_text_arr = [chunks_with_text[str(id)] for id in ids]
-    context = "".join(chunks_text_arr)
+    context = "\n\n".join(chunks_text_arr)
     #prompt = conf.PROMPT
     prompt = prompt.replace("<<CONTEXT>>", context)
     prompt = prompt.replace("<<QUESTION>>", question)

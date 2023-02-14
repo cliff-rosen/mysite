@@ -7,11 +7,12 @@ TO DO:
 
 - PREPARE -
 
-1. Create domain record in db
+1. Review site using inspect and establish which tag, tag id or class to spider.  Update domain record spider_notes with that info and then update the get_page_contents() to retrieve proper target
 
-2. Update domain_id in 3 processing scripts
+2. Create domain record in db with spidering notes
 
-3. Review site using inspect and establish which tag, tag id or class to spider.  Update domain record spider_notes with that info and then update the get_page_contents() to retrieve proper target
+3. Update domain name and domain_id in 3 processing scripts
+
 
 - RUN -
 
@@ -23,7 +24,9 @@ TO DO:
   console shows content found in correct section (i.e. id=main)
   content written to page.txt is correct
  Change single to False and run Step 1 fully
- Check logfile and db document table
+ Check logfile
+ Check db document table sorted by doc_uri
+   find duplicate doc_text
 
 2. Step 2
 set chunk_maker
@@ -32,6 +35,12 @@ run script
 check logfile
 check db document_chunks table
   search for long chunks
+  SELECT length(chunk_text), dc.doc_chunk_id, dc.chunk_text, d.doc_uri
+  FROM document_chunk dc
+  JOIN document d ON dc.doc_id = d.doc_id
+  WHERE domain_id = 24 
+  ORDER BY LENGTH(chunk_text) desc
+  LIMIT 100
 
 3. Step 3
 set domain_id

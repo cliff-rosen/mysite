@@ -3,6 +3,7 @@ Data Processing Steps
 TO DO:
 - add logging to capture links missing content, etc.
 - step 2a: look for and remove irrelevant chunks
+- check for empty or small pages ie from SPAs
 
 - PREPARE -
 

@@ -3,9 +3,3 @@ Logger started
 ---------------------------------------------------
 Starting spider for https://exemplarcompanies.com
 
----------------------------------------------------
-DONE
-
----------------------------------------------------
-https://exemplarcompanies.com: {"status": "COMPLETE"}
-

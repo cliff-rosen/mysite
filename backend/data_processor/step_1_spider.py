@@ -26,6 +26,7 @@ def link_is_good(link_url):
         and link_url.lower().find("tel:") == -1 \
         and link_url.lower().find("javascript:") == -1 \
         and not link_url.lower().endswith(".jpg") \
+        and not link_url.lower().endswith(".jpeg") \
         and not link_url.lower().endswith(".bmp") \
         and not link_url.lower().endswith(".png") \
         and not link_url.lower().endswith(".pdf") \
@@ -126,7 +127,7 @@ def spider(url, single):
                 urls_seen[link_url] = {'status': 'PENDING'}
 
 def write_text_to_db(uri, text):
-    print("saving: ", uri)
+    print("-> saving: ", uri)
     #text = re.sub('\s+', ' ', text)
     if not db.insert_document(conn, domain_id, uri, "", text):
         print("*********************************")
@@ -143,8 +144,8 @@ def write_text_to_file(uri, page_text):
 
 # configure job
 domain_id = 22
-initial_url ='https://exemplarcompanies.com'
-single = True
+initial_url = 'https://exemplarcompanies.com'
+single = False
 file_name = "page.txt"
 
 # init
@@ -158,6 +159,7 @@ logger.log("Starting spider for " + initial_url)
 urls_to_visit.add(initial_url)
 urls_seen[initial_url] = {'status': 'PENDING'}
 while(urls_to_visit):
+    print("-------------------------------------")
     print("REMAINING: ", len(urls_to_visit))
     url = urls_to_visit.pop()
     spider(url, single)

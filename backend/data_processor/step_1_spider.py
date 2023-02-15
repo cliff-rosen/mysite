@@ -17,6 +17,7 @@ track status of visited urls (i.e. success, error)
 Error retrieving url: maximum recursion depth exceeded
 filter out feeds
 
+need system to filter out garbage contents
 """
 
 def link_is_good(link_url):
@@ -51,6 +52,7 @@ def link_is_good(link_url):
         or link_url.lower().endswith(".bmp") \
         or link_url.lower().endswith(".png") \
         or link_url.lower().endswith(".pdf") \
+        or link_url.lower().endswith(".pptx") \
         or link_url.lower().endswith(".atom"):
         return False
 
@@ -79,7 +81,9 @@ def get_page_contents(soup):
         print("getting all text from soup")
         page_text = soup.get_text("\n")
     page_text = page_text.encode(encoding='ASCII',errors='ignore').decode()
-    #page_text = re.sub('\s+', ' ', page_text)
+    #while bool(re.search(r'\s{3,}', page_text)):
+    #    page_text = re.sub(r'\s{3,}', '\n\n', page_text)
+    page_text = re.sub('\s{3,}', '\n\n', page_text)    
 
     return page_text
 
@@ -140,8 +144,7 @@ def spider(url, single):
     if single == False:
         links = soup.find_all('a')
         for link in links:
-            raw_url = link.get('href')
-            link_url = clean_url(raw_url)
+            link_url = clean_url(link.get('href'))
             if link_is_good(link_url):
                 #logger.log("parent: " + url + '\n' + "url: " + link_url)
                 urls_to_visit.add(link_url)
@@ -149,12 +152,8 @@ def spider(url, single):
 
 def write_text_to_db(uri, text):
     print("-> saving: ", uri)
-    #text = re.sub('\s+', ' ', text)
     if not db.insert_document(conn, domain_id, uri, "", text):
-        print("*********************************")
-        print("DB ERROR")
         logger.log("DB ERROR: " + uri)
-    #print(text)
     return    
 
 def write_text_to_file(uri, page_text):
@@ -164,9 +163,9 @@ def write_text_to_file(uri, page_text):
         file.writelines(page_text + "\n\n")
 
 # configure job
-domain_id = 24
-initial_url = 'https://www.kuzneski.com'
-single = False
+domain_id = 25
+initial_url = 'https://www.xogene.com'
+single = True
 file_name = "page.txt"
 
 # init

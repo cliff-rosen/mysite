@@ -67,8 +67,7 @@ def get_chunks_from_text_2(text):
     # clean input
     text = text.encode(encoding='ASCII',errors='ignore').decode()
     text.strip()
-    while bool(re.search(r'\s{3,}', text)):
-        text = re.sub(r'\s{3,}', '\n\n', text)
+    #text = re.sub('\s{3,}', '\n\n', text)    
 
     # build array of fragments by nn
     fragments = text.split('\n\n')
@@ -87,7 +86,7 @@ def get_chunks_from_text_2(text):
 
 # runtime settings
 chunk_maker = "MAKER_2"
-domain_id = 24
+domain_id = 25
 
 # init
 conn = db.get_connection()

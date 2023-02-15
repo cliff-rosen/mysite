@@ -16,8 +16,7 @@ def get_chunks_from_text_2(text):
 
     # clean input
     text.strip()
-    while bool(re.search(r'\s{3,}', text)):
-        text = re.sub(r'\s{3,}', '\n\n', text)
+    text = re.sub('\s{3,}', '\n\n', text)    
 
     # built array of fragments by nn
     fragments = text.split('\n\n')

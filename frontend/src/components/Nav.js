@@ -31,9 +31,15 @@ const Navbar = ({ sessionManager }) => {
       <Box
         sx={{
           flexGrow: 1,
+          color: "red",
           border: "none",
         }}
-      ></Box>
+      >
+        <Typography
+          style={{ fontSize: 12, fontWeight: "bold" }}
+          align="center"
+        ></Typography>
+      </Box>
       <Box sx={{ flexGrow: 0, fontSize: "1em" }}>
         {sessionManager.user?.userID > 0 ? (
           <span>

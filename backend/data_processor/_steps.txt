@@ -7,11 +7,13 @@ TO DO:
 
 - PREPARE -
 
-1. Review site using inspect and establish which tag, tag id or class to spider.  Update domain record spider_notes with that info and then update the get_page_contents() to retrieve proper target
+1. Review site using inspect and establish which tag, tag id or class to spider
 
-2. Create domain record in db with spidering notes
+2. Create domain record with spider_notes with that info
 
-3. Update domain name and domain_id in 3 processing scripts
+3. Update the get_page_contents() to retrieve proper target
+
+4. Update domain name and domain_id in 3 processing scripts
 
 
 - RUN -
@@ -23,6 +25,7 @@ TO DO:
  Run script and verify:
   console shows content found in correct section (i.e. id=main)
   content written to page.txt is correct
+  spider_log has no errors
  Change single to False and run Step 1 fully
  Check logfile
  Check db document table sorted by doc_uri

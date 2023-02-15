@@ -11,6 +11,7 @@ import local_db as db
 import local_secrets as secrets
 from logger import Logger
 from tqdm import tqdm
+from bs4 import BeautifulSoup
 import json
 
 """
@@ -96,4 +97,7 @@ t = "linux is an operating system that is opensource.  windows is an operating s
 #compare_queries(q1, q2, t)
 #compare_chunks(q, t1, t2)
 
-        
+page = '<div><div>hello there</div><div>friend</div></div>'        
+soup = BeautifulSoup(page, 'html.parser')
+text = soup.get_text()
+print(text)

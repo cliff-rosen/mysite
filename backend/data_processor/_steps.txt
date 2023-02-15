@@ -18,7 +18,7 @@ TO DO:
 
 - RUN -
 
-1. Step 1
+1. Step 1: spider side and populate document table
  Verify get_page_contents retrieval logic
  Set single to true
  Set domain to "https://domain.com", with no / at end
@@ -31,7 +31,7 @@ TO DO:
  Check db document table sorted by doc_uri
    find duplicate doc_text
 
-2. Step 2
+2. Step 2: populate document_chunk from document records
 set chunk_maker
 set domain_id
 run script
@@ -41,11 +41,11 @@ check db document_chunks table
   SELECT length(chunk_text), dc.doc_chunk_id, dc.chunk_text, d.doc_uri
   FROM document_chunk dc
   JOIN document d ON dc.doc_id = d.doc_id
-  WHERE domain_id = 24 
+  WHERE domain_id = 25
   ORDER BY LENGTH(chunk_text) desc
   LIMIT 100
 
-3. Step 3
+3. Step 3: update Pinecone index with chunks
 set domain_id
 run script
 check logfile

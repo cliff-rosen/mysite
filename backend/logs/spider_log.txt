@@ -1,11 +1,5 @@
 Logger started
 
 ---------------------------------------------------
-Starting spider for https://www.xogene.com
-
----------------------------------------------------
-DONE
-
----------------------------------------------------
-https://www.xogene.com: {"status": "COMPLETE"}
+Starting spider for https://linksquares.com
 

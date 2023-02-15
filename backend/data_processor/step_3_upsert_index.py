@@ -43,7 +43,7 @@ def fetch():
     print(res['vectors']['3']['metadata'])
 
 # runtime settings
-domain_id = 25
+domain_id = 26
 
 print(index.describe_index_stats())
 run()

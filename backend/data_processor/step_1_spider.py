@@ -20,6 +20,8 @@ filter out feeds
 need system to filter out garbage contents
 """
 
+MAX_URL_LENGTH = 250
+
 def link_is_good(link_url):
     if link_url is None:
         return False
@@ -28,6 +30,9 @@ def link_is_good(link_url):
     if not link_url.lower().startswith("https"):
         return False
     if link_url in urls_seen:
+        return False
+    if len(url) > MAX_URL_LENGTH:
+        print("url exceeded max length", url)
         return False
 
     # work around for Exemplar
@@ -58,41 +63,12 @@ def link_is_good(link_url):
 
     return True
 
-def get_page_contents(soup):
-    page_text = ""
-    contents = None
-    for tag in soup(['script']):
-        tag.decompose()
-
-    if contents == None:
-        print("checking id")
-        contents = soup.find(id='main-content')
-    if contents == None:
-        print("checking class")
-        contents = soup.find(class_='main-content-wrapper')
-    if contents == None:
-        print("checking main")        
-        contents = soup.find('main')
-    if contents is not None:
-        print("  contents found")  
-        for content in contents:
-            page_text = page_text + content.get_text("\n")
-    else:
-        print("getting all text from soup")
-        page_text = soup.get_text("\n")
-    page_text = page_text.encode(encoding='ASCII',errors='ignore').decode()
-    #while bool(re.search(r'\s{3,}', page_text)):
-    #    page_text = re.sub(r'\s{3,}', '\n\n', page_text)
-    page_text = re.sub('\s{3,}', '\n\n', page_text)    
-
-    return page_text
-
 def clean_url(link_url):
     if link_url is None:
         return link_url
 
-    if link_url == '/' or link_url == initial_url:
-        return initial_url + '/'
+    if link_url == '/' or link_url == initial_url + '/':
+        return initial_url
 
     pos = link_url.find('#')
     if pos > -1:
@@ -109,12 +85,6 @@ def clean_url(link_url):
 
 # Define a function to make a request and spider the website recursively
 def spider(url, single):
-    if len(url) > 250:
-        print("url exceeded max length", url)
-        urls_seen[url]['status'] = 'ERROR'
-        urls_seen[url]['detail'] = 'Max URL length exceeded'
-        logger.log(("url exceeded max length:\n" + url))
-        return
 
     print("-> retrieving", len(urls_seen), url)
 
@@ -162,10 +132,39 @@ def write_text_to_file(uri, page_text):
         file.writelines(uri + "\n\n")
         file.writelines(page_text + "\n\n")
 
+def get_page_contents(soup):
+    page_text = ""
+    contents = None
+    for tag in soup(['script']):
+        tag.decompose()
+
+    if contents == None:
+        print("checking id")
+        contents = soup.find(id='main-content')
+    if contents == None:
+        print("checking class")
+        contents = soup.find(class_='main-content-wrapper')
+    if contents == None:
+        print("checking main")        
+        contents = soup.find('main')
+    if contents is not None:
+        print("  contents found")  
+        for content in contents:
+            page_text = page_text + content.get_text("\n")
+    else:
+        print("getting all text from soup")
+        page_text = soup.get_text("\n")
+    page_text = page_text.encode(encoding='ASCII',errors='ignore').decode()
+    #while bool(re.search(r'\s{3,}', page_text)):
+    #    page_text = re.sub(r'\s{3,}', '\n\n', page_text)
+    page_text = re.sub('\s{3,}', '\n\n', page_text)    
+
+    return page_text
+
 # configure job
-domain_id = 25
-initial_url = 'https://www.xogene.com'
-single = True
+domain_id = 26
+initial_url = 'https://linksquares.com'
+single = False
 file_name = "page.txt"
 
 # init

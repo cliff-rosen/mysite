@@ -172,6 +172,27 @@ def insert_query_log(domain_id, query_text, query_prompt, query_temp, response_t
     conn.commit() 
     close_connection(conn)
 
+def insert_doc_temp(doc_text):
+    try:
+        conn = get_connection()
+        cur = conn.cursor() 
+        cur.execute("""
+            INSERT 
+            INTO doc_temp (
+                doc_text
+            )
+            VALUES (%s)
+            """,
+            (doc_text,)) 
+        conn.commit() 
+    except Exception as e:
+        print("***************************")
+        print("DB error in insert_doc_temp")
+        print(e)
+        return False
+    close_connection(conn)
+    return True
+
 
 ##### TESTS #####
 

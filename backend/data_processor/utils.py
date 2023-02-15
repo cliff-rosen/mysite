@@ -97,7 +97,16 @@ t = "linux is an operating system that is opensource.  windows is an operating s
 #compare_queries(q1, q2, t)
 #compare_chunks(q, t1, t2)
 
-page = '<div><div>hello there</div><div>friend</div></div>'        
+page = """
+<div>
+<h2 style="font-weight: 500;">How We Share Your Personal Information</h2><div>*</div>
+<p style="font-weight: 400;">Besides as described in this privacy policy, we do not share your personal information with other organizations.</p>
+</div>
+"""
 soup = BeautifulSoup(page, 'html.parser')
-text = soup.get_text()
-print(text)
+page_text = soup.get_text('\n')
+page_text = page_text.encode(encoding='ASCII',errors='ignore').decode()
+page_text = page_text.strip()
+page_text = re.sub('\s{3,}', '\n\n', page_text)    
+
+print(page_text)

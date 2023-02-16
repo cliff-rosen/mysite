@@ -33,8 +33,11 @@ def run():
     print("Total chunks to be upserted", tot_count)
     for row in rows:
         print("Processing ", cur_count, " of ", tot_count)
-        print("  Upserting: ", row[1], row[2][:20])
-        upsert_index(row[0], row[1], row[2])
+        doc_id = row['doc_id']
+        doc_chunk_id = row['doc_chunk_id']
+        chunk_embedding = row['chunk_embedding']
+        print("  Upserting: ", doc_chunk_id, chunk_embedding[:20])
+        upsert_index(doc_id, doc_chunk_id, chunk_embedding)
         cur_count = cur_count + 1
     db.close_connection(conn)
 
@@ -43,7 +46,7 @@ def fetch():
     print(res['vectors']['3']['metadata'])
 
 # runtime settings
-domain_id = 26
+domain_id = 28
 
 print(index.describe_index_stats())
 run()

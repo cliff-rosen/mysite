@@ -89,20 +89,24 @@ def insert_document_chunk(conn, doc_id, chunk_text, chunk_embedding):
     cur.execute("INSERT INTO document_chunk (doc_id, chunk_text, chunk_embedding) VALUES (%s, %s, %s)", (doc_id, chunk_text, json_data)) 
     conn.commit() 
 
+def update_document_chunk_embedding(conn, doc_chunk_id, embedding):
+    json_data = json.dumps(embedding)
+    cur = conn.cursor()
+    cur.execute("UPDATE document_chunk SET chunk_embedding = %s WHERE doc_chunk_id = %s", (json_data, doc_chunk_id,)) 
+    conn.commit() 
+
 def get_document_chunks(conn, domain_id):
     print("Retrieving chunks for domain", domain_id)
     cur = conn.cursor() 
     cur.execute("""
-        SELECT d.doc_id, dc.doc_chunk_id, dc.chunk_embedding
+        SELECT d.doc_id, dc.doc_chunk_id, dc.chunk_embedding, dc.chunk_text
         FROM document_chunk dc
         JOIN document d ON dc.doc_id = d.doc_id
         WHERE d.domain_id = %s
         """, 
         (domain_id,)) 
     rows = cur.fetchall()
-    print("Preparing results for rowcount = ", len(rows))
-    res = [(row['doc_id'], row['doc_chunk_id'], row['chunk_embedding']) for row in rows]
-    return res
+    return rows
 
 ##### ANSWER #####
 
@@ -230,14 +234,6 @@ def test_validate_user(user_name, password):
 #test_validate_user("cliff", "cmr")
 
 ##### ARCHIVE #####
-
-def updateDocumentChunkEmbedding(conn, doc_chunk_id, embedding):
-    json_data = json.dumps(embedding)
-    cur = conn.cursor()
-    #cur.execute("UPDATE document_chunk SET chunk_text = '%s' WHERE id = (%s)", (json_data, doc_chunk_id)) 
-    #cur.execute("SELECT * FROM document_chunk WHERE doc_chunk_id = ?", (doc_chunk_id,)) 
-    cur.execute("UPDATE document_chunk SET chunk_embedding = ? WHERE doc_chunk_id = ?", (json_data, doc_chunk_id,)) 
-    conn.commit() 
 
 def getDocumentsFromIds(conn, ids):
     format_strings = ','.join(['%s'] * len(ids))

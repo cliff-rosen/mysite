@@ -23,7 +23,7 @@ need system to filter out garbage contents
 MAX_URL_LENGTH = 250
 
 def link_is_good(link_url):
-    if link_url is None:
+    if link_url is None or link_url == "":
         return False
     if not link_url.lower().startswith(initial_url):
         return False
@@ -64,10 +64,10 @@ def link_is_good(link_url):
     return True
 
 def clean_url(link_url):
-    if link_url is None:
+    if link_url is None or link_url == "" or link_url == '#' or link_url == '/':
         return link_url
 
-    if link_url == '/' or link_url == initial_url + '/':
+    if link_url == initial_url + '/' or link_url == initial_url + '#':
         return initial_url
 
     pos = link_url.find('#')
@@ -83,6 +83,18 @@ def clean_url(link_url):
         link_url = initial_url + link_url
     return link_url
 
+def write_text_to_db(uri, text):
+    print("-> saving: ", uri)
+    if not db.insert_document(conn, domain_id, uri, "", text):
+        logger.log("DB ERROR: " + uri)
+    return    
+
+def write_text_to_file(uri, page_text):
+    print("writing", uri)
+    with open(file_name, "w") as file:
+        file.writelines(uri + "\n\n")
+        file.writelines(page_text + "\n\n")
+
 # Define a function to make a request and spider the website recursively
 def spider(url, single):
 
@@ -97,6 +109,7 @@ def spider(url, single):
         urls_seen[url]['detail'] = str(e)
         logger.log("Error retrieving url:\n" + "url\n" + str(e))
         return
+    urls_seen[url]['status'] = 'RETRIEVED'
 
     # Extract page text
     soup = BeautifulSoup(response.content, 'html.parser')
@@ -116,21 +129,8 @@ def spider(url, single):
         for link in links:
             link_url = clean_url(link.get('href'))
             if link_is_good(link_url):
-                #logger.log("parent: " + url + '\n' + "url: " + link_url)
                 urls_to_visit.add(link_url)
                 urls_seen[link_url] = {'status': 'PENDING'}
-
-def write_text_to_db(uri, text):
-    print("-> saving: ", uri)
-    if not db.insert_document(conn, domain_id, uri, "", text):
-        logger.log("DB ERROR: " + uri)
-    return    
-
-def write_text_to_file(uri, page_text):
-    print("writing", uri)
-    with open(file_name, "w") as file:
-        file.writelines(uri + "\n\n")
-        file.writelines(page_text + "\n\n")
 
 def get_page_contents(soup):
     page_text = ""
@@ -162,10 +162,10 @@ def get_page_contents(soup):
     return page_text
 
 # configure job
-domain_id = 26
-initial_url = 'https://linksquares.com'
+domain_id = 28
+initial_url = 'https://braff.co'
 single = False
-file_name = "page.txt"
+file_name = "logs/page.txt"
 
 # init
 urls_to_visit = set()

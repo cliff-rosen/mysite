@@ -1,10 +1,10 @@
+
 class RecursiveCharacterTextSplitter(TextSplitter):
     """Implementation of splitting text that looks at characters.
 
     Recursively tries to split by different characters to find one
     that works.
     """
-
     def __init__(self, separators: Optional[List[str]] = None, **kwargs: Any):
         """Create a new TextSplitter."""
         super().__init__(**kwargs)

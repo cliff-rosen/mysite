@@ -1,8 +1,7 @@
 import pinecone
 import json
 import sys
-sys.path.append('db')
-import local_db as db
+from db import local_db as db
 import local_secrets as secrets
 
 """
@@ -46,7 +45,7 @@ def fetch():
     print(res['vectors']['3']['metadata'])
 
 # runtime settings
-domain_id = 28
+domain_id = 29
 
 print(index.describe_index_stats())
 run()

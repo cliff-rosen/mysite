@@ -3,7 +3,6 @@ import pymysql.cursors
 import json
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import local_secrets as secrets
 
 DB_SECRETS = secrets.DB_SECRETS

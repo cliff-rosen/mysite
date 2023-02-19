@@ -3,12 +3,7 @@ from flask_restful import Resource, Api
 from flask_cors import CORS
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), 'api'))
-
-import login
-import domain
-import prompt
-import answer
+from api import login, domain, prompt, answer
 
 application = Flask(__name__)
 CORS(application)

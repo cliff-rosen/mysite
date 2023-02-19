@@ -1,23 +1,34 @@
-import re
+from langchain.agents import load_tools
+from langchain.agents import initialize_agent
+from langchain.llms import OpenAI
 
-filepath = "input.txt"
+#llm = OpenAI(temperature=0)
 
-def read_file(filepath):
-    with open(filepath, 'r', encoding='utf-8') as infile:
-        return infile.read()
+text = "What would be a good company name a company that makes colorful socks?"
+#print(llm(text))
 
-def write_file(filepath, text):
-    with open(filepath, 'w', encoding='utf-8') as outfile:
-         outfile.write(text + '\n')
 
-text = read_file(filepath)
+class X():
+    a=1
 
-text1 = text
-while text1.find("\n\n\n") > -1:
-    text1 = text1.replace("\n\n\n", "\n\n")
-write_file('page1.txt', text1)
+def x(*args, **kwargs):
+    print('args', args)
+    print('kwargs', kwargs)
 
-text2 = text
-while bool(re.search(r'\s{3,}', text2)):
-    text2 = re.sub(r'\s{3,}', '\n\n', text2)
-write_file('page2.txt', text2)
+x(1,2,3, a=4)
+
+
+"""
+tools = load_tools(["serpapi", "llm-math"], llm=llm)
+agent = initialize_agent(tools, llm, agent="zero-shot-react-description", verbose=True)
+agent.run("What are the common adverse events in a hep A trial?")
+
+
+class Hello():
+    def __call__(self, msg):
+        print('hello, ' + msg)
+
+hello = Hello()
+hello("there")
+
+"""

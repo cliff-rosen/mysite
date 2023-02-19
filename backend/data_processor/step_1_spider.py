@@ -3,10 +3,8 @@ from bs4 import BeautifulSoup
 import re
 import os
 import sys
-sys.path.append('db')
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import json
-import local_db as db
+from db import local_db as db
 import local_secrets as secrets
 from logger import Logger
 
@@ -139,10 +137,13 @@ def get_page_contents(soup):
         tag.decompose()
 
     if contents == None:
-        print("checking id")
+        print("checking id=main-content")
         contents = soup.find(id='main-content')
     if contents == None:
-        print("checking class")
+        print("checking id=MainContent")
+        contents = soup.find(id='MainContent')
+    if contents == None:
+        print("checking class=main-content-wrapper")
         contents = soup.find(class_='main-content-wrapper')
     if contents == None:
         print("checking main")        
@@ -162,9 +163,10 @@ def get_page_contents(soup):
     return page_text
 
 # configure job
-domain_id = 28
-initial_url = 'https://braff.co'
-single = False
+domain_id = 29
+initial_url = 'https://pangaia.com'
+initial_url = 'https://pangaia.com/collections/men-shop-all'
+single = True
 file_name = "logs/page.txt"
 
 # init

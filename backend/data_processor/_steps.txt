@@ -38,12 +38,19 @@ run script
 check logfile
 check db document_chunks table
   search for long chunks
-  SELECT length(chunk_text), dc.doc_chunk_id, dc.chunk_text, d.doc_uri
-  FROM document_chunk dc
-  JOIN document d ON dc.doc_id = d.doc_id
-  WHERE domain_id = 25
-  ORDER BY LENGTH(chunk_text) desc
-  LIMIT 100
+    SELECT length(chunk_text), dc.doc_chunk_id, dc.chunk_text, d.doc_uri
+    FROM document_chunk dc
+    JOIN document d ON dc.doc_id = d.doc_id
+    WHERE domain_id = 25
+    ORDER BY LENGTH(chunk_text) desc
+    LIMIT 100
+  search for redundant and useless chunks
+    SELECT dc.*
+    FROM document_chunk dc
+    JOIN document d ON dc.doc_id = d.doc_id
+    WHERE domain_id = 28
+    ORDER BY chunk_text
+
 
 3. Step 3: update Pinecone index with chunks
 set domain_id

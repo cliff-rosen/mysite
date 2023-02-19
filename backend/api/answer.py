@@ -3,9 +3,7 @@ import openai
 from openai.embeddings_utils import get_embedding
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'db'))
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-import local_db as db
+from db import local_db as db
 import local_secrets as secrets
 from logger import Logger
 import conf

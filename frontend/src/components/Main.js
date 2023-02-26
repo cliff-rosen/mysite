@@ -168,9 +168,11 @@ export default function Main({ sessionManager }) {
         <History chatHistory={chatHistory} />
 
         {showThinking ? (
-          <Paper elevation={0} style={{ backgroundColor: "#eeeeee" }}>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <img src="/waves.gif" style={{ height: 20, width: 500 }} />
+          <Paper elevation={0}>
+            <div
+              style={{ display: "flex", justifyContent: "left", height: 50 }}
+            >
+              <img src="/spinner.gif" />
             </div>
           </Paper>
         ) : (
@@ -198,7 +200,7 @@ export default function Main({ sessionManager }) {
               color="primary"
               style={{ marginTop: 20 }}
             >
-              - O -
+              O
             </Button>
           </div>
         </div>

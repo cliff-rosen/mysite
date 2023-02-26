@@ -11,29 +11,165 @@ If you are not certain of the answer, say "I don't know."
 
 
 Context:###
-Our Work WHC Admin 2018-12-04T15:54:21+00:00
+Demographics 
+All data for background and demographic variables will be listed. For these
+parameters, summary statistics will be provided by group.
 
-Home WHC Admin 2017-10-10T15:46:47+00:00 Whole Home Control is a boutique home technology integrator serving the high end residential market in NYC and surrounding areas.
+9 STATISTICAL CONSIDERATIONS (cont.)
 
-Home WHC Admin 2017-10-10T15:46:47+00:00 Whole Home Control is a boutique home technology integrator serving the high end residential market in NYC and surrounding areas.
+9.4 Statistical Analyses
+9.4.1 General Approach
+All data will be listed, and all variables will be summarized according to their type. Variables measured
+on metrical scales will be summarized using descriptive statistics (number of non-missing observations,
+arithmetic mean, sample standard deviation, median, minimum, first quartile, third quartile, and
+maximum). Variables measured on ordinal or nominal scales will be summarized using frequency
+tables showing the number and percentage of subjects falling within a particular category.
+Missing data will be handled as such, i.e., no imputation of missing data is planned.
+All details of the statistical analysis will be described in more detail in a statistical analysis plan, which
+will be agreed upon before database closure.
+Standard of truth
+The standard of truth in this study is the result of the clinical diagnosis established through histological
+verification of the presence or absence of AL amyloidosis with cardiac involvement determined
+through either endomyocardial biopsy or through extracardiac biopsy in conjunction with typical CMR
+or echo imaging features as the standard of truth (Section 8.1.2).
+9.4.2 Analysis of the Primary Endpoints(s)
+The co-primary efficacy variables (sensitivity and specificity) will be evaluated using five independent
+individual blinded readers. Point estimates together with 95% confidence intervals of sensitivity and
+specificity (relative to the standard of truth) will be assessed for each of the 5 readers separately.
+Point estimates for the sensitivity and specificity of each reader will be calculated according to the
+visual assessment and the standard of truth (Section 8.1.2) as described in the table below.
+Table 2. Truth table of AL cardiac amyloidosis detection
+Standard of Truth
+AL-CA present AL-CA absent
+Visual assessment AL-pos True positive (TP) False positive (FP)
+AL-neg False negative (FN) True negative (TN)
+The point estimate for sensitivity (?^????) and specificity (?^????) is calculated as:
+[formula removed]
+Where nsens and nspec are the sample size used to estimate sensitivity and specificity.
+The following hypotheses are formulated:
+ H0,sens: se??siti??ity ?? 0.6 ??s. H1,sens: sensitivity > 0.6
+ H0,spec: spe??ifi??ity ?? 0.6 ??s. H1,spec: specificity > 0.6
 
-Design WHC Admin 2017-10-14T01:56:56+00:00 DESIGN For those who prefer a two stage process rather than a Design-Build approach, we can create a complete bid-ready design set for your home technology project. In this scenario, we work with you using the same thoughtful and rigorous process implemented with a Design-Build engagement, but once the design is complete you can send it out for bid. GET IN TOUCH
+H0,sens will be rejected if the lower bound of the two-sided 95% confidence is larger than 0.6 for at least
+3 out of the 5 blinded readers.
+H0,spec will be rejected if the lower bound of the two-sided 95% confidence is larger than 0.6 for at least
+3 out of the 5 blinded readers.
+9.4.3 Analysis of the Secondary Endpoints
+Receiver operating characteristic curves will be applied to assess the performance of quantitative
+[18F]florbetaben PET measurements in the detection of AL cardiac amyloidosis.
+Association of PET results with the parameters of left ventricular function (LV ejection fraction and LV
+mass) will be assessed by means of scatter plots and correlation coefficients.
+Association of PET results with the disease stage based on FLC-diff, cTnT and NT-proBNP levels1 will be
+assessed by means of scatter plots and correlation coefficients. If required, cTnT may be replaced by
+cTnI; NT-proBNP by BNP. The respective threshold values for disease staging are derived from recent
+literature22-23:
+Impact of [18F]florbetaben PET on diagnostic thinking and patient management will be assessed by
+means of the change in clinical diagnosis and diagnosis confidence after intermediate PET read has
+been provided to the investigator.
+9.4.4 Safety Analyses
+Analysis of safety parameters will include all vital signs, and AE data listed by subject. The safety
+variable will be evaluated according to their scale. Continuous variables will be evaluated using
+descriptive statistics. Categorical and ordinal variables will be evaluated using frequency tables.
+9.4.5 Planned Interim Analyses
+No interim analysis is planned.
 
-Five Keys to Ensure Your Smart Home Works Reliably
+Diagnosis and main criteria for Inclusion and Exclusion
+Patients with suspected cardiac amyloidosis or with a putative diagnosis of
+cardiac amyloidosis but with remaining diagnostic uncertainty (e.g. unclear
+etiology and/or cardiac manifestation) or patients with diagnosis of
+amyloidosis but unclear cardiac involvement will be recruited for the study.
+Inclusion Criteria (for all subjects)
+ Males and females age >= 18 years
+ Able to understand, sign and date written informed consent
+ Written informed consent must be obtained before any assessment
+is performed
+ Subjects being considered for a possible diagnosis of cardiac
+amyloidosis by:
+1. One of the following conditions:
+o Established systemic amyloidosis without proven cardiac
+involvement,
+o Known plasma cell dyscrasia (MGUS, multiple myeloma),
+o Pathological free light chain levels in urine or serum,
+o Presence of heart failure with preserved ejection fraction
+2. AND one of the following parameters, indicative of cardiac
+manifestation:
+o Mean (left ventricular (LV) wall + septum) thickness >12mm as
+measured by echocardiography in absence of other known
+cause of left ventricular hypertrophy (LVH),
+o NT-proBNP >335 ng/L
+ Planned diagnostic procedures to establish diagnosis and cardiac
+involvement (e.g., endomyocardial biopsy or extracardiac biopsy in
+conjunction with cardiac magnetic resonance imaging/
+echocardiography or bone scintigraphy)
+ Female subjects must be documented by medical records or
+physicians note to be either surgically sterile (by means of
+hysterectomy, bilateral salpingectomy or bilateral oophorectomy)
+or post-menopausal for at least 1 year (no menses for 12 months
+without an alternative medical cause). If they are of child-bearing
+potential, they must commit to use of a highly effective
+contraceptive measure for one week after the PET scan (including
+combined (estrogen and progestogen containing) hormonal
+contraception associated with inhibition of ovulation (oral,
+intravaginal or transdermal), progestogen-only hormonal
+contraception associated with inhibition of ovulation (oral,
+injectable or implantable), intrauterine device, intrauterine
+hormone-releasing system, bilateral tubal occlusion, vasectomised
+partner or sexual abstinence)
+ Male subjects and their partners of childbearing potential must
+commit to the use of a highly effective method of contraception for
+a minimum of 90 days following each PET scan (including, for female
+partners of childbearing potential, combined (estrogen and
+progestogen containing) hormonal contraception associated with
+inhibition of ovulation (oral, intravaginal or transdermal),
+progestogen-only hormonal contraception associated with
+inhibition of ovulation (oral, injectable or implantable), intrauterine
+device, intrauterine hormone-releasing system, bilateral tubal
+occlusion, male subjects with vasectomy or sexual abstinence)
+ Male subjects must commit to not donate sperm for a minimum of
+90 days after the PET scan
+Exclusion Criteria (for all subjects)
+ Any known allergic reactions or hypersensitivity towards any
+compound of the study drug
+ Severe hepatic impairment (AST/ALT >5 x ULN; bilirubin >3 x ULN )
+ Inability to lay flat for up to 60 min
+ Pregnant, lactating or breastfeeding
+ Unwilling and/or unable to cooperate with study procedures
+ Having been administered a PET radiopharmaceutical within 10
+radioactive half-lives prior to study drug administration in this study.
 
-Categories Uncategorized Recent Posts The Real Reason to Get Motorized Shades Avoiding the Two Biggest Pitfalls of Home Technology Design Five Keys to Ensure Your Smart Home Works Reliably Why You Need Good Wires for Good Wireless Three Approaches to Whole House Audio What You Need to Know about 8K Displays Categories Uncategorized
+10 SUPPORTING DOCUMENTATION AND OPERATIONAL CONSIDERATIONS (cont)
 
-What We Do WHC Admin 2017-10-17T06:21:07+00:00 We are a boutique home technology integrator serving the high end residential market in NYC and surrounding areas. Our job as a home technology integrator is to provide technology that maximizes the usefulness of your home while seamlessly integrating with your home’s architecture. While we work with a broad array of technology applications, the key applications featured in most of our projects include: Home Networking / WiFi Smart Lighting HVAC (Heating and Air Conditioning) Video / Distributed Video / Home Theater Audio / Distributed Audio Motorized Shades Surveillance These applications are all seamlessly tied together with a “central brain” or controller. Our platform of choice for this controller is Control4. We are a full service design-build firm, but also are happy to work in a design or consulting capacity.
+10.1.5 Clinical Monitoring
+Clinical site monitoring is conducted by the sponsor (or sponsor representative) to ensure that the
+rights and well-being of trial participants are protected, that the reported trial data are accurate,
+complete, and verifiable, and that the conduct of the study is in compliance with currently approved
+protocol/amendment(s), with ICH GCP and with applicable regulatory requirement(s).
+A monitor (clinical research associate) will visit the site regularly during the study to check the
+completeness of patient records, the accuracy of data, the adherence to the protocol and to GCP, the
+progress of enrolment and to ensure that study drug is being transferred to the imaging facility,
+dispensed, and accounted for according to specifications. Key study personnel must be available to
+assist the monitor during these visits.
+The investigator will maintain source documents for each patient in the study, consisting of case and
+visit notes containing demographic and medical information, laboratory data and the results of any
+other tests or assessments. All information in the database must be traceable to these source
+documents in the patients file. The investigator must also keep the original informed consent form
+signed by the patient (a signed copy is given to the patient).
+The investigator will permit study-related monitoring, providing the monitor direct access to all
+relevant source documents to confirm their consistency with the database entries. Monitoring
+standards require full verification for the presence of informed consent, adherence to the
+inclusion/exclusion criteria, documentation of SAEs and the recording of data that will be used for all
+primary and safety variables.
+Additional checks of the consistency of the source data with the database are performed according to
+the study-specific monitoring plan. No information in source documents about the identity of the
+subjects will be disclosed in the eCRF. Local requirements for data protection will be followed.
 
-Lighting that is not only very easy to control, but also more architecturally friendly because “keypads” now replace large, unsightly banks of light switches. Video and audio systems that give you the sights and sounds you want without so much gear cluttering your space and certainly without any visible wires. “Orchestrated control” of lights, audio, video, security, heating and cooling, door locks, etc. In other words, you can easily change the state of any or all of these systems together with a single button press, a scheduled event, etc. Control over these systems from a phone or tablet, whether you are sitting on the Great Room couch or half way around the world. To be sure, the list goes on. But, if you start with these ideas in mind as you build your new home, you are headed in the right direction to make it a smart home. By WHC Admin|
-
-Contact WHC Admin 2017-10-10T08:15:01+00:00 CONTACT US Schedule a free consultation with us to discuss your project anytime. Whole Home Control, LLC Offices in New York City and Long Island Phone: 1.917.257.0117 Email: contact@wholehomecontrol.com Web: wholehomecontrol.com
-
-Design-Build WHC Admin 2017-10-13T16:58:44+00:00 DESIGN-BUILD Let Whole Home Control be your one stop shop to take your home technology from concept to completion with our design-build service. We begin with a robust process of learning about your requirements while at the same providing the information you need to navigate the myriad options and arrive at a suitable system for your needs. GET IN TOUCH
+Safety 
+Analysis of safety parameters will include all vital signs, and AE data during
+PET imaging and up to the safety follow-up phone call, listed by subject.
 
 ###
 Question:###
-hello
+list criteria
 
 ###
 Answer:

@@ -101,14 +101,23 @@ def query_model(prompt, temp):
         print("query_model ERROR: " + str(e))
         return("Sorry, an unexpected error occured.  Please try again.")
 
-def log_result(domain_id, query_text, query_prompt, query_temp, response_text, chunks, user_id):
-    response_chunk_ids = ', '.join(list(chunks.keys()))
-    db.insert_query_log(domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id)
+def update_conversation_tables(
+                domain_id, 
+                query_text, prompt, query_temp,
+                response_text, chunks, 
+                user_id, conversation_id):
 
-def update_conversation_table(conversation_id, user_id, domain_id, prompt, response):
-    conversation_id = make_new_conversation_id()
-    conversation_text = prompt + response
-    db.insert_conversation(conversation_id, user_id, domain_id, conversation_text)
+    conversation_text = prompt + response_text + '\n'
+    if conversation_id == 'NEW':
+        conversation_id = make_new_conversation_id()
+        db.insert_conversation(conversation_id, user_id, domain_id, conversation_text)
+    else:
+        db.update_conversation(conversation_id, conversation_text)
+
+    response_chunk_ids = ', '.join(list(chunks.keys()))
+    db.insert_query_log(domain_id, query_text, prompt, query_temp, response_text, response_chunk_ids, user_id, conversation_id)
+
+    return conversation_id
 
 def get_answer(conversation_id, domain_id, query, prompt_text, temp, user_id):
 
@@ -127,14 +136,16 @@ def get_answer(conversation_id, domain_id, query, prompt_text, temp, user_id):
 
     print("creating prompt")
     prompt = create_prompt(query, chunks_with_text, prompt_text)
+    if conversation_id != 'NEW':
+        prior_conversation = db.get_conversation(conversation_id)[0]['conversation_text']
+        prompt = prior_conversation + '\n' + prompt
     logger.log('Prompt:\n' + prompt)
 
     print("querying model")
     response = query_model(prompt, temp)
 
-    update_conversaton_table(conversation_id, user_id, domain_id, query, response)
-    log_result(domain_id, query, prompt, temp, response, chunks_with_text, user_id, conversation_id)
+    conversation_id = update_conversation_tables(domain_id, query, prompt, temp, response, chunks_with_text, user_id, conversation_id)
 
-    return {"answer": response, "chunks": chunks, "chunks_used_count": len(list(chunks_with_text.keys())) }
+    return {"answer": response, "chunks": chunks, "chunks_used_count": len(list(chunks_with_text.keys())), "conversation_id": conversation_id }
 
 

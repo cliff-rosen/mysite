@@ -23,6 +23,12 @@ import TableRow from "@mui/material/TableRow";
 import Slider from "@mui/material/Slider";
 import { Link } from "react-router-dom";
 
+const FOLLOWUP_PROMPT = `
+Question:
+<<QUESTION>>
+
+Answer:`;
+
 export default function Main({ sessionManager }) {
   const [domains, setDomains] = useState([]);
   const [domain, setDomain] = useState("");
@@ -32,9 +38,9 @@ export default function Main({ sessionManager }) {
   const [temp, setTemp] = useState(0.4);
   const [chunks, setChunks] = useState([]);
   const [chunksUsedcount, setChunksUsedCount] = useState(0);
-  const [result, setResult] = useState("");
   const [showThinking, setShowThinking] = useState(false);
   const [chatHistory, setChatHistory] = useState([]);
+  const [conversationID, setConversationID] = useState("NEW");
 
   console.log("Main userID", sessionManager.user.userID);
 
@@ -49,9 +55,10 @@ export default function Main({ sessionManager }) {
       setDomain("");
       setQuery("");
       setShowThinking(false);
-      setResult(null);
       setChunks([]);
       setChunksUsedCount(0);
+      setChatHistory([]);
+      setConversationID("NEW");
     }
     sessionManager.requireUser();
   }, [sessionManager.user.userID]);
@@ -76,25 +83,29 @@ export default function Main({ sessionManager }) {
       prompt_text: prompt,
       temp,
       user_id: sessionManager.user.userID,
+      conversation_id: conversationID,
     };
     try {
       setQuery("");
       setShowThinking(true);
-      setResult(null);
       setChunks([]);
       setChunksUsedCount(0);
       setChatHistory((h) => [...h, "User: " + query]);
       const data = await fetchPost("answer", queryObj);
-      setResult(data.answer);
       setChatHistory((h) => [...h, "AI: " + data.answer]);
+      setConversationID(data.conversation_id);
       setShowThinking(false);
+      setPrompt(FOLLOWUP_PROMPT);
       const rows: GridRowsProp[] = Object.values(data.chunks).sort(
         (a, b) => b.score - a.score
       );
       setChunks(rows);
       setChunksUsedCount(data.chunks_used_count);
     } catch (e) {
-      setResult("Sorry, an error occured.  Please try again.");
+      setChatHistory((h) => [
+        ...h,
+        "Sorry, an error occured.  Please try again.",
+      ]);
       setShowThinking(false);
     }
   };
@@ -106,6 +117,7 @@ export default function Main({ sessionManager }) {
       onSubmit={formSubmit}
       sx={{ mt: 1, margin: "auto" }}
     >
+      ConversationID: {conversationID}
       <FormControl fullWidth>
         <InputLabel>Domain</InputLabel>
         <Select
@@ -113,7 +125,9 @@ export default function Main({ sessionManager }) {
           label="Domain"
           onChange={(e) => {
             setChatHistory([]);
+            setConversationID("NEW");
             setDomain(e.target.value);
+            setPrompt(promptDefault);
           }}
         >
           {domains.map((d) => (

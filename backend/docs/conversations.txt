@@ -4,16 +4,19 @@ All calls from frontend to get_answer occurs in the context of a conversation.
 Each conversation has a unique conversation_id
 Front end assigns either an existing id or "NEW" for each all
 
-If id is "NEW":
- a new 20 character ID is generated
- the submitted prompt is created from query, chunks, and input prompt
- a new record is inserted into the conversation table
-    conversation_text is set to submitted prompt + answer
+If conversation_id is "NEW":
+ a new 20 character conversation_id is generated
+ the submitted prompt is created from create_prompt(question, chunks_with_text, prompt)
+ conversation_text is set to submitted prompt + answer
+ a new record is inserted into the conversation table with submitted_prompt + answer
 
-If id is provided:
+If conversation_id is provided:
  existing conversation record is retrieved from db
  the submitted prompt is a concatation of:
-    conversation_text from db + 'Question: ' + query + 'Answer: ' + answer
- existing conversation record is updated with conversation_text = submitted_prompt
+    conversation_text from db + create_prompt(question, chunks_with_text, prompt)
+ existing conversation record is updated with submitted_prompt + answer
+ NOTE: prompt in this case should only consist of:
+    Question: {query}
+    Answer: 
 
- 
+

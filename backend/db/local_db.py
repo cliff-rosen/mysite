@@ -189,6 +189,48 @@ def insert_conversation(
     close_connection(conn)
 
 
+def get_conversation(conversation_id):
+    rows = None
+    try:
+        conn = get_connection()
+        cur = conn.cursor() 
+        cur.execute("""
+            SELECT 
+                conversation_id,
+                user_id,
+                domain_id,
+                conversation_text
+            FROM conversation
+            WHERE conversation_id = %s
+            """,
+            (conversation_id, )) 
+        rows = cur.fetchall()
+    except Exception as e:
+        print("***************************")
+        print("DB error in get_conversation")
+        print(e)
+    close_connection(conn)    
+    return rows
+
+
+def update_conversation(conversation_id, conversation_text):
+    try:
+        conn = get_connection()
+        cur = conn.cursor()
+        cur.execute("""
+            UPDATE  conversation
+            SET     conversation_text = %s
+            WHERE   conversation_id = %s
+            """,
+            (conversation_text, conversation_id, )) 
+        conn.commit()         
+    except Exception as e:
+        print("***************************")
+        print("DB error in update_conversation")
+        print(e)
+    close_connection(conn)    
+
+
 ##### MISC #####
 
 def insert_query_log(domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id, conversation_id = ""):
@@ -274,3 +316,4 @@ def getDocumentsFromIds(conn, ids):
     cur = conn.cursor() 
     cur.execute("SELECT doc_id, doc_title FROM document WHERE doc_id in (%s)" % format_strings, tuple(ids)) 
     return cur
+

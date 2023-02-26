@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { fetchGet, fetchPost } from "../utils/APIUtils";
+import History from "./History";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -33,6 +34,7 @@ export default function Main({ sessionManager }) {
   const [chunksUsedcount, setChunksUsedCount] = useState(0);
   const [result, setResult] = useState("");
   const [showThinking, setShowThinking] = useState(false);
+  const [chatHistory, setChatHistory] = useState([]);
 
   console.log("Main userID", sessionManager.user.userID);
 
@@ -76,12 +78,15 @@ export default function Main({ sessionManager }) {
       user_id: sessionManager.user.userID,
     };
     try {
+      setQuery("");
       setShowThinking(true);
       setResult(null);
       setChunks([]);
       setChunksUsedCount(0);
+      setChatHistory((h) => [...h, "User: " + query]);
       const data = await fetchPost("answer", queryObj);
       setResult(data.answer);
+      setChatHistory((h) => [...h, "AI: " + data.answer]);
       setShowThinking(false);
       const rows: GridRowsProp[] = Object.values(data.chunks).sort(
         (a, b) => b.score - a.score
@@ -107,6 +112,7 @@ export default function Main({ sessionManager }) {
           value={domain}
           label="Domain"
           onChange={(e) => {
+            setChatHistory([]);
             setDomain(e.target.value);
           }}
         >
@@ -116,18 +122,6 @@ export default function Main({ sessionManager }) {
             </MenuItem>
           ))}
         </Select>
-
-        <TextField
-          margin="normal"
-          fullWidth
-          id="querytitle"
-          type="text"
-          label="Question"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          variant="outlined"
-          required
-        />
 
         <Accordion>
           <AccordionSummary
@@ -170,32 +164,45 @@ export default function Main({ sessionManager }) {
           max={1}
           onChange={(e) => setTemp(e.target.value)}
         />
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          style={{ marginTop: 20 }}
-        >
-          submit
-        </Button>
-      </FormControl>
-      <br /> <br /> <br />
-      <Paper
-        elevation={0}
-        style={{ minHeight: 100, backgroundColor: "#eeeeee", padding: 20 }}
-      >
-        <div>
-          <div></div>
-          <div>{result}</div>{" "}
-        </div>
+
+        <History chatHistory={chatHistory} />
+
         {showThinking ? (
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <img src="/waves.gif" style={{ height: 175, width: 350 }} />
-          </div>
+          <Paper elevation={0} style={{ backgroundColor: "#eeeeee" }}>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <img src="/waves.gif" style={{ height: 20, width: 500 }} />
+            </div>
+          </Paper>
         ) : (
           <></>
         )}
-      </Paper>
+
+        <div style={{ display: "flex" }}>
+          <div style={{ flexGrow: 1, paddingRight: 10 }}>
+            <TextField
+              margin="normal"
+              fullWidth
+              id="querytitle"
+              type="text"
+              label="Question"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              variant="outlined"
+              required
+            />
+          </div>
+          <div style={{}}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              style={{ marginTop: 20 }}
+            >
+              - O -
+            </Button>
+          </div>
+        </div>
+      </FormControl>
       <br />
       <br />
       <Accordion>

@@ -2,23 +2,178 @@ Logger started
 
 ---------------------------------------------------
 Prompt:
-Answer the question from the context.  context: of New York Cruise Lines, Inc. You confirm that you are in good standing with New York Cruise Lines, Inc. and have not previously been banned from use of any aspect of the service. NON-PERMITTED USES: You agree not to use the site for any illegal or non-permitted purposes. You will not use this website to copy, store, host, transmit, send, use, publish or distribute and material which consists of (or is linked to) any spyware, computer virus, Trojan horse, worm, keystroke logger, robot, rootkit or other malicious computer software. Repetitive data extraction devices or other means with similar functionality which may impinge on the proper use of the website are not permitted. INVESTIGATION AND REMEDY: In the event that New York Cruise Lines, Inc. believes that any aspect of the Terms have been violated, you agree to allow without prior notice and at New York Cruise Lines, Inc.'s sole discretion that any account or access may be blocked and tickets may be revoked which you agree to accept without refund or remedy. New York Cruise Lines, Inc. reserves the right to investigate and take the appropriate legal action in response to any suspicious or improper potential, planned or
 
-laws. You should assume that everything you see or read on this Site is protected by copyright unless otherwise stated and may only be used according to these Terms. Use of the Website to violate any third-party right, including any breach of confidence, copyright, trademark, patent, trade secret, moral right, privacy right, right of publicity, or any other intellectual property or proprietary right is strictly prohibited without the express written consent and accreditation of New York Cruise Lines, Inc. HOLD HARMLESS : To the fullest extent permitted by law users of the Website agrees to indemnify, defend and hold harmless New York Cruise Lines, Inc. and all associated entities, officers, employees, agents, subsidiaries, successors, assigns and sub-contractors as their interests may appear together with their partners successors and assigns, from and against any and all losses, claims, suits, damages, penalties, fines, judgment, liabilities, (including without limitation, death, personal injuries, expenses, attorney fees and costs) incurred in connection with the use of the Website or the services conveyed by New York Cruise Lines, Inc., directly or
+You are a chatbot working as a customer service representative for a company.
+The following question is from a potential customer.
+Answer the question as truthfully as possible.  
+Use only the provided context and no further information to answer the question.
+If you are not certain of the answer, say "I don't know."
 
-purposes including but not limited contracts, promotions, tickets, surveys and same shall be considered a legal conveyance of notification. CONTENT, LISTINGS AND UPDATES: New York Cruise Lines, Inc. shall endeavor to maintain accurate and up-to-date information on the Website. However, in some cases the Website may contain false or defective information or servers or deliverables may contain viruses or bugs. In the event that you encounter any misinformation please feel free to notify: info@nycl.com. The Website may include third party links or content. New York Cruise Lines, Inc. does not certify the safety or validity of such data. Please note that in visiting the Website there may be content or links which some deem offensive, inappropriate, inaccurate, or otherwise harmful. You therefore access the Website under your own volition and at your own risk and agree that New York Cruise Lines, Inc. is not responsible and that you will not lay a claim resulting from use of the Website. New York Cruise Lines, Inc. reserves the right to edit or remove any material submitted to this website, stored on servers, hosted or published on this Website. WEBSITE OPERATIONS AND
 
-they would not have access to the information we collect through cookies. Such other cookies would be subject to that company's privacy policies. Our website may also use "tracking tags," which are invisible graphics embedded in the pages of our website that are programmed to collect non-personal information about your use of our website. These are also known as "web beacons," "action tags," or "single-pixel gifs." Like cookies, tracking tags provide overall usage patterns for our website that we use for analysis and to provide personalized services and advertising content. CALIFORNIA VISITORS: California Civil Code Section 1798.83 permits California residents to request information about whether New York Cruise Lines, Inc. has disclosed personal information to any third parties for the third parties' direct marketing purposes. To make such a request, please contact us at the following e-mail address: privacy@nycl.com EU VISITORS: If you are located within the European Union, you should be aware that your personal information will be transferred to the United States, the laws of which may be deemed by the European Union to have inadequate data protection. If you
+Context:###
+Planned study dates
+Start of study (First subject first visit) Q3 2022
+End of study (Last subject last visit) Q1 2024
+Final clinical study report 3 months after end of study
 
-rates apply; Your wireless carries and other service providers may also collect data about your wireless device usage, and their practices are governed by their own policies; New York Cruise Lines, Inc. does not guarantee the privacy or security of your wireless network or the messages you receive; New York Cruise Lines, Inc. may access the content of your wireless account with your carrier for the purpose of identifying and resolving technical problems and/or service-related complaints; and New York Cruise Lines, Inc. is authorized to use the information obtained in connection with providing mobile messages to you as described in this policy. TERMS AND CONDITIONS: The following Terms and Conditions, together with the Privacy Policy and all applicable laws (the "Terms") govern use of the website together with outlining ticketing operations, procedures and liabilities. The person using or purchasing tickets from the website is expressly agreeing on behalf of themselves and any individual associated with a particular booking, to be legally bound to the Terms. Such Terms may be updated from time to time and will become effective immediately upon posting online. In
+Planned number of study centers / countries:
+8 centers in the EU/UK
 
-will not lay a claim resulting from use of the Website. New York Cruise Lines, Inc. reserves the right to edit or remove any material submitted to this website, stored on servers, hosted or published on this Website. WEBSITE OPERATIONS AND MAINTENANCE: New York Cruise Lines, Inc. strives to operate the Website 24 hours a day, 7 days a week. While New York Cruise Lines, Inc. shall not be liable for any consequential damages due to suspension of service, whether such suspension of service is temporary or permanent. In the event of required maintenance New York Cruise Lines, Inc. will diligently work to ensure that access is returned as soon as possible. NOT INTENDED FOR USE BY MINORS: While New York Cruise Lines, Inc. welcomes passengers of all ages, this website's products and services are directed for purchase by an adult market. Therefore, this website is intended for use by adults only. PRICES AND CURRENCY: All prices are listed on a per person basis and in United States dollars unless otherwise indicated. In some cases, additional taxes or fees may apply. Prices are subject to change and do not include tips or gratuities. At various times New York Cruise Lines, Inc. may offer
+Study scheme
 
-to the Chairman. Please report any company matters such as: Possible instances of dishonesty or malpractice. Possible violations of any law, regulation, company policy or ethical requirement. Possible questionable accounting, internal controls. You do not have to give your name or personal details as the system has been designed to support anonymous cases. Contact Us How can we help? We'd love to hear about your perfect cruise experience! Let us know and we'll be in touch shortly. General Inquiry Form
+This is an open-label, multi-center, pivotal Phase 3 study without randomization (Figure 1). All eligible patients will receive a single administration of the imaging agent [18F]florbetaben at a radioactive dose of 300 MBq. The study will be structured into three main activities: Screening, [18F]florbetaben PET imaging including follow up and assessment of the impact of PET results on diagnostic thinking and patient management (Figure 2).
+The completion of this study protocol for all patients comprises the following components:
+ Medical and physical assessments at screening
+ [18F]florbetaben PET imaging visit
+ Safety follow-up phone call 4 days (2 days) and 15 days (2 days) after the [18F]florbetaben PET imaging visit
+ Routine diagnostic procedures according to standard of care
+ Questionnaire on diagnostic thinking and patient management of the investigator
+The evaluations included at screening visit and at the PET imaging visit are summarized in Section 1.3 Schedule of Activities. After patients have met all study entry criteria, patients will be enrolled and will participate in the [18F]florbetaben PET imaging session. Follow-up phone calls for AE assessment will occur 4 days (2 days) and 15 days (+/- 2days) following the PET imaging visit.
+After enrolment a routine diagnostic work-up will be performed, which is not part of this protocol and at the discretion of the treating physician according to standard of care. After a diagnosis is made, the investigator receives the preliminary results from the PET imaging assessed by a local nuclear medicine physician. The impact of the PET result on diagnostic thinking and patient management is assessed.
 
-cold beverages including beer, wine and cocktails. Free WiFi No need to wait to upload your favorite photos and selfies! Previous Next George Washington bridge Guests Looking at Henry Hudson Bridge Plan Your Visit Get ready, Get set, Get Directions to Pier 83 What To Do When You Arrive If you purchased Premier Tickets directly from circleline.com, please alert a red-shirted Ambassador and they will escort you through security to your seats on the boat. If you bought standard tickets from circleline.com, Viator, Get Your Guide or Expedia, please go directly to boarding at the entrance to our Pier. Please have your bag open and ready to be checked by our security personnel. If you have a CityPASS and you have reserved your seats in advance at citypass.circleline.com , please proceed to directly to security. If you have another pass, such as NY Pass, Explorer Pass or Sightseeing Pass, or a voucher, please go to our ticket office to pick up your tickets and proceed to the security line. Parking at Pier 83 If you're driving to Pier 83 we've got parking for you! We offer convenient parking just steps away from our boats. We have a parking attendant and security personnel to ensure the safety
+After enrolment, patients will undergo the routine diagnostic work up. In parallel a [18F]florbetaben PET imaging visit is scheduled. Local diagnosis and local PET scan results are used for the determination of the impact of PET results on diagnostic thinking and patient management. After study end, final SoT diagnosis will be determined by an external expert panel, final PET interpretation will be performed
+after by independent external image readers.
 
-agreeing on behalf of themselves and any individual associated with a particular booking, to be legally bound to the Terms. Such Terms may be updated from time to time and will become effective immediately upon posting online. In the event that you do not agree to the Terms you should not continue to use the website, as such continued use indicates consent to be bound by the Terms. PERMITTED USE: The website is available only to those persons who are eligible to form legally binding agreements based on applicable law. Those who do not qualify are not permitted to use the website. You agree that you are authorized to visit the website and that you are doing so solely for your personal use. You shall not copy, reproduce, republish, download, post, modify, or otherwise disseminate material from the website, including but not limited to: images, videos, or content, in any manner except for personal and non-commercial use without the express written consent of New York Cruise Lines, Inc. You confirm that you are in good standing with New York Cruise Lines, Inc. and have not previously been banned from use of any aspect of the service. NON-PERMITTED USES: You agree not to use the site for any
+Statistical Methods The co-primary efficacy variables of the study will be evaluated using 5
+independent individual blinded readers. The sensitivity and specificity will be
+assessed for each of the 5 readers. The 95% confidence intervals will be
+calculated for the individual blinded readers separately.
+The following hypotheses will be tested:
+ H0,sens: se??siti??ity ?? 0.6 ??s. H1,sens: sensitivity > 0.6
+ H0,spec: spe??ifi??ity ?? 0.6 vs. H1,spec: specificity > 0.6
+H0,sens will be rejected if the lower bound of the two-sided 95% confidence is
+larger than 0.6 for at least 3 out of the 5 blinded readers.
+H0,spec will be rejected if the lower bound of the two-sided 95% confidence is
+larger than 0.6 for at least 3 out of the 5 blinded readers.
 
-disruption, loss of product, loss of anticipated profits or revenue, loss of use of the equipment or system, non-operation, or cost of capital. Please note that some of the jurisdictions may not allow the exclusion of implied warranties, so some of above exclusions may not apply to you, however in the event that a portion of the Terms is not applicable all other sections shall remain in full effect. STATUTE OF LIMITATIONS : You agree to bring any and all claims or actions relating to the use of the Website within one (1) year after such alleged cause of action arose. If there is an outstanding claim from more than one (1) year of such action, then you agree that the statute of limitations would be exceeded and the claim will be barred. GOVERNING LAW : By virtue of confirming the order the customer enters into a binding contract with New York Cruise Lines, Inc. governed by these Terms which shall be construed and interpreted, and the rights and liabilities of the parties determined, in accordance with the law of the United States, to the extent applicable, and otherwise in accordance with the laws of the State of New York. All disputes arising hereunder, unless resolved by mutual agreement question: what kind of site is this
+STUDY DESIGN
+Study Blinding
+
+4.2.1 Primary efficacy analysis: External SoT diagnosis and external PET image
+interpretation
+The members of the external expert panel establishing the final SoT-based diagnosis used for the
+primary and secondary endpoints related to diagnostic efficacy will be independent from any study
+site and not be involved in the study conduct. They will be fully blinded to the PET results (both local
+and external reads). The panel will be provided with the clinical information available at the time when
+the local diagnosis was established (Day x, see Figure 2), but will be blinded to the diagnosis of the
+local physician. Any clinical data that were generated after the data of the local PET interpretation
+were shared with the investigator are not provided to the external panel to avoid incorporation bias.
+The 5 independent readers for the external read of the PET scans will be independent from any study
+site and not be involved in the study conduct. They will be fully blinded to the SoT diagnosis and any
+other patient-specific information such as medical history, laboratory results etc. The readers will have
+access only to the relevant PET and anatomical images marked with study specific patient identifiers.
+The read will require a forced positive/negative determination.
+The data share to the external panel and the external readers will be controlled by the CRO.
+4.2.2 On-site diagnosis and evaluation of PET images
+The local PET read will be used for the evaluation of the impact of [18F]florbetaben PET imaging on
+diagnostic thinking and patient management. The local physician establishing the clinical diagnosis
+based on the diagnostic work-up after the PET imaging visit will be kept blinded to the local PET results
+until the diagnosis is established and documented. The nuclear medicine physician conducting the PET
+scan is obliged not to share any preliminary diagnostic information derived from the scans with the
+referring physician and will be asked to refrain from uploading the PET images into the local system.
+The local nuclear medicine physician will sign a corresponding non-disclosure form.
+The local nuclear medicine physician will be blinded for the SoT diagnosis and will not have access to
+the respective pages of the eCRF.
+The local physician establishing the diagnosis will fill in the questionnaire on diagnostic thinking. The
+eCRF pages on the local PET results will be disclosed to them only after the patients clinical diagnosis
+has been established based on the routine clinical assessment and part 2 of the questionnaire on
+diagnostic thinking has been completed (Day x, see Figure 2) to avoid information carry-over.
+Disclosure of the local PET results will be controlled by the CRO.
+4.3 Justification for Dose
+The recommended activity for an adult is 300 MBq [18F]florbetaben. The maximum dose should not
+exceed 360 MBq and not fall below 240 MBq at time of administration. The volume of [18F]florbetaben
+to be injected can be from 0.5 to 10 mL in order to provide the target activity of 300 MBq at the time
+of i.v. administration.
+Radioactivity dose dependencies were not investigated. As a general principle, radioactivity dose
+activities were chosen in a way to allow for well tolerable radiation doses on the one hand, with suitable imaging signal and contrast on the other hand. Therefore, target activities tested were always
+between 250 MBq and 300 MBq. The [18F]florbetaben IB provides further information regarding
+dosage.
+4.4 Beginning and End of Study Definition
+The overall study begins when the first patient signs the informed consent form. The overall study ends
+at last patient last visit, i.e. when the last patient will have completed the safety follow-up phone call
+after the [18F]florbetaben PET imaging visit, the clinical diagnosis (SoT) has been established and the
+questionnaire on diagnostic thinking has been finalized by the investigator for this patient.
+
+STUDY ASSESSMENTS AND PROCEDURES (cont)
+
+8.1.2 Non Study-specific Procedures: Routine Diagnostic Work-up
+After enrolment, patients will be subjected to diagnostic procedures according to standard of care to
+resolve diagnostic uncertainties and to clarify possible cardiac involvement. The diagnostic work up
+may start before the PET imaging procedure to ensure an undelayed diagnosis and treatment start.
+Physicians performing the diagnostic work-up will be kept blinded to the [18F]florbetaben PET scan
+results.
+The results of the clinical work-up (based on the assessments described in 8.1.2.1 and 8.1.2.2 according
+to expert consensus recommendations17), will be used as standard of truth to compare to
+[18F]florbetaben PET imaging results for the efficacy assessment. LV ejection fraction [%] and LV mass
+index [g/m2] are obtained by echocardiography or CMR according to guidelines during routine
+diagnostic work-up. These data will be analyzed to establish a correlation with quantitative PET results.
+8.1.2.1 SoT for the establishment of a diagnosis of cardiac AL amyloidosis
+Clinical diagnosis of cardiac AL amyloidosis:
+ Endomyocardial biopsy with AL type confirmed by immunohistochemistry (IHC) or mass
+spectrometry
+OR
+ Extracardiac biopsy with AL type confirmed by IHC or mass spec AND typical cardiac imaging
+features*
+Absence of cardiac AL amyloidosis:
+ Endomyocardial biopsy assessed as negative for AL amyloidosis
+OR
+ Extracardiac biopsy assessed as negative for AL amyloidosis and typical imaging features* for
+cardiac amyloidosis absent
+OR
+ Extracardiac biopsy assessed as negative for AL amyloidosis and absence of a clonal plasma
+cell process as assessed by serum FLCs and serum and urine immunofixation and typical
+imaging features* for cardiac amyloidosis present
+ OR
+ Extracardiac biopsy assessed as positive for AL amyloidosis and typical imaging features* for
+cardiac amyloidosis absent
+8.1.2.2 SoT for the establishment of a diagnosis of cardiac ATTR amyloidosis
+Clinical diagnosis of cardiac ATTR amyloidosis:
+ Endomyocardial biopsy with ATTR type confirmed by IHC or mass spectrometry
+OR
+ 99mTc-PYP, DPD, HMDP Grade 2 or 3 myocardial uptake of radiotracer AND absence of a clonal
+plasma cell process as assessed by serum FLCs and serum and urine immunofixation AND
+typical imaging features* for cardiac amyloidosis present
+Absence of cardiac ATTR amyloidosis
+ Endomyocardial biopsy assessed as negative for ATTR amyloidosis
+OR
+ 99mTc-PYP, DPD, HMDP Grade 0 myocardial uptake of radiotracer amyloidosis in absence of
+of typical imaging features* for cardiac amyloidosis
+* Typical CMR or Echo Imaging Features of Cardiac Amyloidosis:
+a. 1.CMR: Diffuse LGE OR
+b. Abnormal gadolinium kinetics typical for amyloidosis, myocardial nulling prior to blood pool
+nulling
+2. Echo:
+a. LV wall thickness >12 mm AND
+b. Relative apical sparing of global Longitudinal Strain (LS) ratio (average of apical LS/average of
+combined mid+basal LS >1) and Cherry-on-the-top sign on STE longitudinal strain bullseye
+map (preservation of apical longitudinal strain with severely abnormal basal and mid-LV
+longitudinal strain)
+AND at least one of the following:
+c. ?? G??ade 2 diastoli?? dysfu????tion OR
+d. Decreased global longitudinal LV strain (absolute value less than 16%)
+A final diagnosis, as defined by the SoT, will be established by an external expert panel at the end of
+the study. The expert panel will consist of three experts with experience in diagnosing cardiac
+amyloidosis, e.g. specialized cardiologists, hematologists and/or radiologists.
+
+Number of study subjects
+
+Up to 200 patients with suspected cardiac amyloidosis or with a putative
+diagnosis of cardiac amyloidosis but with remaining diagnostic uncertainty
+(e.g., unclear etiology and/or cardiac manifestation) or patients with
+diagnosis of amyloidosis but unclear cardiac involvement need to be
+enrolled (FAS).
+The Per Protocol Analysis Set for the primary efficacy analysis will comprise
+patients diagnosed with cardiac AL and non-cardiac AL (disease controls).
+Enrolment will be stopped and primary efficacy analysis will be performed
+when 48 cardiac AL patients and 48 non-CA AL patients underwent
+[18F]florbetaben PET and have received a SoT diagnosis of AL-CA or non ALCA,
+respectively.
+
+###
+Question:###
+what is this study about
+
+###
+Answer:
+
 

@@ -1,8 +1,6 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
 from flask_cors import CORS
-import os
-import sys
 from api import login, domain, prompt, answer
 
 application = Flask(__name__)
@@ -31,17 +29,21 @@ class Prompt(Resource):
 
 class Answer(Resource):
     def post(self):
+        # retrieve inputs
         data = request.get_json()
         print("body", data)
-        query = data["query"]
+        conversation_id=data["conversation_id"]
         domain_id = data["domain_id"]
         user_id = data["user_id"]
+        query = data["query"]
         prompt_text = data["prompt_text"]
         temp = data["temp"]
         print("domain_id", domain_id)
         print("query", query)
         print("temp", temp)
-        res = answer.get_answer(domain_id, query, prompt_text, temp, user_id, )
+
+        # execute call to get_answer()
+        res = answer.get_answer(conversation_id, domain_id, query, prompt_text, temp, user_id, )
         return res
 
 class Login(Resource):

@@ -16,17 +16,33 @@
 CREATE DATABASE IF NOT EXISTS `doc` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `doc`;
 
+-- Dumping structure for table doc.conversation
+CREATE TABLE IF NOT EXISTS `conversation` (
+  `conversation_id` varchar(20) NOT NULL DEFAULT '',
+  `user_id` int(11) NOT NULL DEFAULT 0,
+  `domain_id` int(11) NOT NULL DEFAULT 0,
+  `conversation_text` text NOT NULL DEFAULT '0',
+  `date_time_started` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  KEY `Index 1` (`conversation_id`),
+  KEY `FK__user` (`user_id`),
+  KEY `FK__domain` (`domain_id`),
+  CONSTRAINT `FK__domain` FOREIGN KEY (`domain_id`) REFERENCES `domain` (`domain_id`),
+  CONSTRAINT `FK__user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Data exporting was unselected.
+
 -- Dumping structure for table doc.document
 CREATE TABLE IF NOT EXISTS `document` (
   `doc_id` int(11) NOT NULL AUTO_INCREMENT,
   `domain_id` int(11) NOT NULL,
-  `doc_uri` varchar(250) NOT NULL,
-  `doc_title` tinytext DEFAULT '0',
-  `doc_text` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_nopad_ci NOT NULL,
+  `doc_uri` varchar(500) NOT NULL,
+  `doc_title` text DEFAULT '0',
+  `doc_text` longtext NOT NULL,
   PRIMARY KEY (`doc_id`),
   KEY `FK_document_domain` (`domain_id`),
   CONSTRAINT `FK_document_domain` FOREIGN KEY (`domain_id`) REFERENCES `domain` (`domain_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3841 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21196 DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
@@ -37,7 +53,19 @@ CREATE TABLE IF NOT EXISTS `document_chunk` (
   `chunk_text` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_nopad_ci NOT NULL DEFAULT '',
   `chunk_embedding` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '',
   PRIMARY KEY (`doc_chunk_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14215 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=45161 DEFAULT CHARSET=latin1;
+
+-- Data exporting was unselected.
+
+-- Dumping structure for table doc.doc_temp
+CREATE TABLE IF NOT EXISTS `doc_temp` (
+  `doc_id` int(11) NOT NULL AUTO_INCREMENT,
+  `domain_id` int(11) DEFAULT NULL,
+  `doc_uri` varchar(500) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `doc_title` text CHARACTER SET utf8mb4 DEFAULT '0',
+  `doc_text` longtext CHARACTER SET utf8mb4 NOT NULL,
+  PRIMARY KEY (`doc_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
 
@@ -45,8 +73,9 @@ CREATE TABLE IF NOT EXISTS `document_chunk` (
 CREATE TABLE IF NOT EXISTS `domain` (
   `domain_id` int(11) NOT NULL AUTO_INCREMENT,
   `domain_desc` varchar(50) DEFAULT '0',
+  `spider_notes` text DEFAULT NULL,
   KEY `Index 1` (`domain_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
 
@@ -62,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `query_log` (
   `response_chunk_ids` varchar(100) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   KEY `Index 1` (`query_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1188 DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
 
@@ -76,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `domain_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`user_id`) USING BTREE,
   UNIQUE KEY `UserName` (`user_name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
 

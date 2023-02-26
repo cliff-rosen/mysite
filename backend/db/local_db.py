@@ -159,20 +159,55 @@ def get_domains():
     close_connection(conn)    
     return rows
 
+##### CONVERSATION #####
+
+def insert_conversation(
+        conversation_id,
+        user_id,
+        domain_id,
+        conversation_text
+        ):
+    try:
+        conn = get_connection()
+        cur = conn.cursor() 
+        cur.execute("""
+            INSERT 
+            INTO conversation (
+                conversation_id,
+                user_id,
+                domain_id,
+                conversation_text
+                ) 
+            VALUES (%s, %s, %s, %s)
+            """,
+            (conversation_id, user_id, domain_id, conversation_text)) 
+        conn.commit() 
+    except Exception as e:
+        print("***************************")
+        print("DB error in insert_conversation")
+        print(e)
+    close_connection(conn)
+
+
 ##### MISC #####
 
-def insert_query_log(domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id):
-    conn = get_connection()
-    cur = conn.cursor() 
-    cur.execute("""
-        INSERT 
-        INTO query_log (
-            domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id
-            ) 
-        VALUES (%s, %s, %s, %s, %s, %s, %s)
-        """,
-        (domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id)) 
-    conn.commit() 
+def insert_query_log(domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id, conversation_id = ""):
+    try:
+        conn = get_connection()
+        cur = conn.cursor() 
+        cur.execute("""
+            INSERT 
+            INTO query_log (
+                domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id, conversation_id
+                ) 
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            """,
+            (domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id, conversation_id)) 
+        conn.commit() 
+    except Exception as e:
+        print("***************************")
+        print("DB error in insert_query_log")
+        print(e)
     close_connection(conn)
 
 def insert_doc_temp(doc_text):

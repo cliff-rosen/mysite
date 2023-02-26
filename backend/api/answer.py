@@ -1,12 +1,10 @@
 import pinecone
 import openai
 from openai.embeddings_utils import get_embedding
-import os
-import sys
 from db import local_db as db
 import local_secrets as secrets
 from logger import Logger
-import conf
+from utils import make_new_conversation_id
 
 PINECONE_API_KEY = secrets.PINECONE_API_KEY
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
@@ -107,7 +105,12 @@ def log_result(domain_id, query_text, query_prompt, query_temp, response_text, c
     response_chunk_ids = ', '.join(list(chunks.keys()))
     db.insert_query_log(domain_id, query_text, query_prompt, query_temp, response_text, response_chunk_ids, user_id)
 
-def get_answer(domain_id, query, prompt_text, temp, user_id):
+def update_conversation_table(conversation_id, user_id, domain_id, prompt, response):
+    conversation_id = make_new_conversation_id()
+    conversation_text = prompt + response
+    db.insert_conversation(conversation_id, user_id, domain_id, conversation_text)
+
+def get_answer(conversation_id, domain_id, query, prompt_text, temp, user_id):
 
     logger = Logger('api.log')
 
@@ -129,7 +132,8 @@ def get_answer(domain_id, query, prompt_text, temp, user_id):
     print("querying model")
     response = query_model(prompt, temp)
 
-    log_result(domain_id, query, prompt, temp, response, chunks_with_text, user_id)
+    update_conversaton_table(conversation_id, user_id, domain_id, query, response)
+    log_result(domain_id, query, prompt, temp, response, chunks_with_text, user_id, conversation_id)
 
     return {"answer": response, "chunks": chunks, "chunks_used_count": len(list(chunks_with_text.keys())) }
 

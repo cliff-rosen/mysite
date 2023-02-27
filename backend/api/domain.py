@@ -7,3 +7,7 @@ def get_domains():
     rows = db.get_domains()
     return rows
     
+def get_domain(domain_id):
+    rows = db.get_domain(domain_id)
+    return rows
+        

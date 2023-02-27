@@ -19,4 +19,40 @@ If conversation_id is provided:
     Question: {query}
     Answer: 
 
+-------------------------------
+
+configuration:
+1. initial prompt template (with or withut context)
+2. follow-up prompt template (with or without context)
+3. initial message
+
+RAG
+FE
+1. user selects domain
+2. prompts and greeting retrieved and initial prompt loaded
+3. no greeting retrieved so no message shown
+4. user submits question
+5. follow-up prompt loaded containing q/c
+BE
+1. assemble prompt:
+a. context token found so
+ - context retrieved
+ - only last 10 q/a history retrieved
+b. initial prompt plus q/a history plus question and context submitted
+2. question and answer added to history
+
+Interview
+FE
+1. user selects domain
+2. prompts and greeting retrieved and initial prompt loaded
+3. greeting loaded for user
+4. user submits question
+5. follow-up prompt loaded containing q only
+BE
+1. assemble prompt:
+a. no context token found so
+ - no context retrieved
+ - full q/a history retrieved
+b. initial prompt plus q/a history plus question submitted
+2. question and answer added to history
 

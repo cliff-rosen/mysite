@@ -154,10 +154,25 @@ def get_document_chunks_from_doc_id(id):
 def get_domains():
     conn = get_connection()
     cur = conn.cursor() 
-    cur.execute("SELECT domain_id, domain_desc FROM domain order by domain_desc")
+    cur.execute("SELECT domain_id, domain_desc FROM domain ORDER BY domain_desc")
     rows = cur.fetchall()
     close_connection(conn)    
     return rows
+
+def get_domain(domain_id):
+    conn = get_connection()
+    cur = conn.cursor() 
+    cur.execute("""
+                SELECT  domain_id, domain_desc,
+                        initial_prompt_template, followup_prompt_template,
+                        initial_conversation_message
+                FROM    domain
+                WHERE   domain_id = %s
+                """, (domain_id,))
+    rows = cur.fetchall()
+    close_connection(conn)    
+    return rows
+
 
 ##### CONVERSATION #####
 

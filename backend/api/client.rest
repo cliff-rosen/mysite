@@ -8,7 +8,7 @@ accept: application/json
 
 ###
 
-GET http://127.0.0.1:5000/domain
+GET http://127.0.0.1:5000/domain/1
 accept: application/json
 
 ###

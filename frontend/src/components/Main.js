@@ -35,6 +35,9 @@ export default function Main({ sessionManager }) {
   const [query, setQuery] = useState("");
   const [prompt, setPrompt] = useState("TBD");
   const [promptDefault, setPromptDefault] = useState("TBD");
+  const [promptInitial, setPromptInitial] = useState("");
+  const [promptFollowup, setPromptFollowup] = useState(FOLLOWUP_PROMPT);
+  const [initialMessage, setInitialMessage] = useState("");
   const [temp, setTemp] = useState(0.4);
   const [chunks, setChunks] = useState([]);
   const [chunksUsedcount, setChunksUsedCount] = useState(0);
@@ -44,8 +47,21 @@ export default function Main({ sessionManager }) {
 
   console.log("Main userID", sessionManager.user.userID);
 
+  async function setActiveDomain(iDomainID) {
+    setDomain(iDomainID);
+    const data = await fetchGet(`domain/${iDomainID}`);
+    setPromptInitial(data[0].initial_prompt_template);
+    setPromptFollowup(data[0].followup_prompt_template);
+    //setInitialMessage(data[0].initial_conversation_message);
+    let newHistory = [];
+    if (data[0].initial_conversation_message)
+      newHistory.push("AI: " + data[0].initial_conversation_message);
+    setChatHistory(newHistory);
+    setPrompt(data[0].initial_prompt_template || promptDefault);
+  }
+
   if (!domain && sessionManager.user.domainID)
-    setDomain(sessionManager.user.domainID);
+    setActiveDomain(sessionManager.user.domainID);
 
   console.log(chunks);
 
@@ -95,7 +111,7 @@ export default function Main({ sessionManager }) {
       setChatHistory((h) => [...h, "AI: " + data.answer]);
       setConversationID(data.conversation_id);
       setShowThinking(false);
-      setPrompt(FOLLOWUP_PROMPT);
+      setPrompt(promptFollowup);
       const rows: GridRowsProp[] = Object.values(data.chunks).sort(
         (a, b) => b.score - a.score
       );
@@ -126,7 +142,7 @@ export default function Main({ sessionManager }) {
           onChange={(e) => {
             setChatHistory([]);
             setConversationID("NEW");
-            setDomain(e.target.value);
+            setActiveDomain(e.target.value);
             setPrompt(promptDefault);
           }}
         >

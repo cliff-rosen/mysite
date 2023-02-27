@@ -1,11 +1,14 @@
 from flask import Flask, request
-from flask_restful import Resource, Api
+from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS
 from api import login, domain, prompt, answer
 
 application = Flask(__name__)
 CORS(application)
 api = Api(application)
+
+parser = reqparse.RequestParser()
+parser.add_argument('domain_id', type=int)
 
 """
 @app.route('/hello', methods=['POST'])
@@ -18,9 +21,14 @@ class Hello(Resource):
         return "hello"
 
 class Domain(Resource):
-    def get(self):
-        res = domain.get_domains()
-        return res
+    def get(self, domain_id=None):
+        print("domain_id", domain_id)
+        if domain_id is None:        
+            res = domain.get_domains()
+            return res
+        else:
+            res = domain.get_domain(domain_id)
+            return res
 
 class Prompt(Resource):
     def get(self):
@@ -60,7 +68,7 @@ class Login(Resource):
 
 api.add_resource(Hello, '/hello')
 api.add_resource(Login, '/login')
-api.add_resource(Domain, '/domain')
+api.add_resource(Domain, '/domain', '/domain/<int:domain_id>')
 api.add_resource(Prompt, '/prompt')
 api.add_resource(Answer, '/answer')
 

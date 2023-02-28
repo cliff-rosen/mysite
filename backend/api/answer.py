@@ -148,7 +148,7 @@ def get_answer(conversation_id, domain_id, query, prompt, temp, user_id):
     chunks_with_text = {}
     logger = Logger('api.log')
 
-    initial_prompt = conf.DEFAULT_INITIAL_PROMPT
+    initial_prompt = prompt #conf.DEFAULT_INITIAL_PROMPT
     followup_prompt_template = conf.DEFAULT_FOLLOWUP_PROMPT
 
     print("getting custom prompts")

@@ -45,10 +45,10 @@ export default function Main({ sessionManager }) {
   const [chatHistory, setChatHistory] = useState([]);
   const [conversationID, setConversationID] = useState("NEW");
 
-  console.log("Main userID", sessionManager.user.userID);
+  console.log("Main --> userID", sessionManager.user.userID);
 
   async function setActiveDomain(iDomainID) {
-    console.log("setting domain to", iDomainID);
+    console.log("setActiveDomain -> setting domain to", iDomainID);
     setConversationID("NEW");
     setChatHistory([]);
     setQuery("");
@@ -67,13 +67,31 @@ export default function Main({ sessionManager }) {
     setPrompt(data.initial_prompt_template || promptDefault);
   }
 
-  if (!domain && sessionManager.user.domainID)
-    setActiveDomain(sessionManager.user.domainID);
+  useEffect(() => {
+    console.log("useEffect -> Main");
 
-  console.log(chunks);
+    const getOptions = async () => {
+      const d = await fetchGet("domain");
+      setDomains(d);
+      const p = await fetchGet("prompt");
+      setPromptDefault(p.prompt_text);
+    };
+
+    getOptions();
+
+    if (!domain && sessionManager.user.domainID)
+      setActiveDomain(sessionManager.user.domainID);
+  }, []);
 
   useEffect(() => {
-    console.log("Main useEffect -> userID", sessionManager.user.userID);
+    console.log(
+      "useEffect -> Session change, userID",
+      sessionManager.user.userID
+    );
+
+    if (!domain && sessionManager.user.domainID)
+      setActiveDomain(sessionManager.user.domainID);
+
     if (!sessionManager.user.userID) {
       setDomain("");
       setQuery("");
@@ -84,20 +102,9 @@ export default function Main({ sessionManager }) {
       setChatHistory([]);
       setConversationID("NEW");
     }
+
     sessionManager.requireUser();
   }, [sessionManager.user.userID]);
-
-  useEffect(() => {
-    const getOptions = async () => {
-      const d = await fetchGet("domain");
-      setDomains(d);
-      const p = await fetchGet("prompt");
-      setPrompt(p.prompt_text);
-      setPromptDefault(p.prompt_text);
-    };
-
-    getOptions();
-  }, []);
 
   const formSubmit = async (e) => {
     e.preventDefault();
@@ -145,7 +152,7 @@ export default function Main({ sessionManager }) {
       <FormControl fullWidth>
         <InputLabel>Domain</InputLabel>
         <Select
-          value={domain}
+          value={domains.length > 0 ? domain : ""}
           label="Domain"
           onChange={(e) => {
             setActiveDomain(e.target.value);

@@ -44,14 +44,14 @@ class Answer(Resource):
         domain_id = data["domain_id"]
         user_id = data["user_id"]
         query = data["query"]
-        prompt_text = data["prompt_text"]
+        prompt_template = data["prompt_template"]
         temp = data["temp"]
         print("domain_id", domain_id)
         print("query", query)
         print("temp", temp)
 
         # execute call to get_answer()
-        res = answer.get_answer(conversation_id, domain_id, query, prompt_text, temp, user_id, )
+        res = answer.get_answer(conversation_id, domain_id, query, prompt_template, temp, user_id, )
         return res
 
 class Login(Resource):

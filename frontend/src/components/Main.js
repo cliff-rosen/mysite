@@ -50,16 +50,14 @@ export default function Main({ sessionManager }) {
   async function setActiveDomain(iDomainID) {
     setDomain(iDomainID);
     const data = await fetchGet(`domain/${iDomainID}`);
-    setPromptInitial(data[0].initial_prompt_template);
-    setPromptFollowup(
-      data[0].followup_prompt_template || DEFAULT_FOLLOWUP_PROMPT
-    );
+    setPromptInitial(data.initial_prompt_template);
+    setPromptFollowup(data.followup_prompt_template || DEFAULT_FOLLOWUP_PROMPT);
     //setInitialMessage(data[0].initial_conversation_message);
     let newHistory = [];
-    if (data[0].initial_conversation_message)
-      newHistory.push("AI: " + data[0].initial_conversation_message);
+    if (data.initial_conversation_message)
+      newHistory.push("AI: " + data.initial_conversation_message);
     setChatHistory(newHistory);
-    setPrompt(data[0].initial_prompt_template || promptDefault);
+    setPrompt(data.initial_prompt_template || promptDefault);
   }
 
   if (!domain && sessionManager.user.domainID)
@@ -98,7 +96,7 @@ export default function Main({ sessionManager }) {
     const queryObj = {
       domain_id: domain,
       query,
-      prompt_text: prompt,
+      prompt_template: prompt,
       temp,
       user_id: sessionManager.user.userID,
       conversation_id: conversationID,

@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `conversation` (
   `user_id` int(11) NOT NULL DEFAULT 0,
   `domain_id` int(11) NOT NULL DEFAULT 0,
   `conversation_text` text NOT NULL DEFAULT '0',
-  `date_time_started` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `date_time_started` timestamp NOT NULL DEFAULT current_timestamp(),
   KEY `Index 1` (`conversation_id`),
   KEY `FK__user` (`user_id`),
   KEY `FK__domain` (`domain_id`),
@@ -74,8 +74,11 @@ CREATE TABLE IF NOT EXISTS `domain` (
   `domain_id` int(11) NOT NULL AUTO_INCREMENT,
   `domain_desc` varchar(50) DEFAULT '0',
   `spider_notes` text DEFAULT NULL,
+  `initial_prompt_template` mediumtext DEFAULT NULL,
+  `followup_prompt_template` mediumtext DEFAULT NULL,
+  `initial_conversation_message` text DEFAULT NULL,
   KEY `Index 1` (`domain_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
 
@@ -90,8 +93,9 @@ CREATE TABLE IF NOT EXISTS `query_log` (
   `response_text` text NOT NULL,
   `response_chunk_ids` varchar(100) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
+  `conversation_id` varchar(20) DEFAULT NULL,
   KEY `Index 1` (`query_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1188 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1244 DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
 

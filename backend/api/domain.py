@@ -8,6 +8,6 @@ def get_domains():
     return rows
     
 def get_domain(domain_id):
-    rows = db.get_domain(domain_id)
-    return rows
+    res = db.get_domain(domain_id)
+    return res
         

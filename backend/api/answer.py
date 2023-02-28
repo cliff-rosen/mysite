@@ -5,6 +5,7 @@ from db import local_db as db
 import local_secrets as secrets
 from logger import Logger
 from utils import make_new_conversation_id
+import conf
 
 PINECONE_API_KEY = secrets.PINECONE_API_KEY
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
@@ -77,16 +78,42 @@ def get_chunk_text_from_ids(chunks):
     print('word count', word_count)
     return chunks_with_text
 
-def create_prompt(question, chunks_with_text, prompt):
+
+def get_conversation_history(conversation_id):
+    conversation_text = ""
+    user = 'Patient'
+    ai = 'Chatbot'
+    rows = db.get_conversation_history(conversation_id)
+    for row in rows:
+        conversation_text += f"{user}: {row['query_text']}\n{ai}: {row['response_text']}\n\n"
+    return conversation_text
+
+
+def create_prompt(domain_id, cur_prompt_template, conversation_id, query, chunks_with_text):
+    prompt = ""
+    conversation_history = ""
     context = ""
+    initial_prompt = conf.DEFAULT_INITIAL_PROMPT
+
+    custom_initial_prompt = db.get_domain(domain_id)['initial_prompt_template']
+    if custom_initial_prompt:
+        initial_prompt = custom_initial_prompt
+
+    if conversation_id != 'NEW':
+        conversation_history = get_conversation_history(conversation_id)
+
     if chunks_with_text:
         ids = list(chunks_with_text.keys())
         chunks_text_arr = [chunks_with_text[str(id)] for id in ids]
         context = "\n\n".join(chunks_text_arr)
-    #prompt = conf.PROMPT
-    prompt = prompt.replace("<<CONTEXT>>", context)
-    prompt = prompt.replace("<<QUESTION>>", question)
+
+    cur_prompt = cur_prompt_template
+    cur_prompt = cur_prompt.replace("<<CONTEXT>>", context)
+    cur_prompt = cur_prompt.replace("<<QUESTION>>", query)
+
+    prompt = initial_prompt + conversation_history + cur_prompt
     return prompt
+
 
 def query_model(prompt, temp):
     print("prompt size: ", len(prompt), len(prompt.split()) )
@@ -102,12 +129,12 @@ def query_model(prompt, temp):
         print("query_model ERROR: " + str(e))
         return("Sorry, an unexpected error occured.  Please try again.")
 
+
 def update_conversation_tables(
                 domain_id, 
                 query_text, prompt, query_temp,
                 response_text, chunks, 
                 user_id, conversation_id):
-
     conversation_text = prompt + response_text + '\n'
     if conversation_id == 'NEW':
         conversation_id = make_new_conversation_id()
@@ -120,7 +147,8 @@ def update_conversation_tables(
 
     return conversation_id
 
-def get_answer(conversation_id, domain_id, query, prompt_text, temp, user_id):
+
+def get_answer(conversation_id, domain_id, query, prompt_template, temp, user_id):
     chunks = {}
     chunks_with_text = {}
     logger = Logger('api.log')
@@ -129,19 +157,16 @@ def get_answer(conversation_id, domain_id, query, prompt_text, temp, user_id):
     query_embedding = ge(query)
 
     print("handling chunk retrieval")
-    if (prompt_text.find("<<CONTEXT>>") > -1):
+    if (prompt_template.find("<<CONTEXT>>") > -1):
         print("getting chunks ids")
         chunks = get_chunks_from_embedding(domain_id, query_embedding)
         if not chunks:
-            return {"answer": "no data", "chunks": {}, "chunks_used_count": 0 }
+            return {"answer": "No data found for query", "chunks": {}, "chunks_used_count": 0 }
         print("getting chunk text from ids")
         chunks_with_text = get_chunk_text_from_ids(chunks)
 
     print("creating prompt")
-    prompt = create_prompt(query, chunks_with_text, prompt_text)
-    if conversation_id != 'NEW':
-        prior_conversation = db.get_conversation(conversation_id)[0]['conversation_text']
-        prompt = prior_conversation + '\n' + prompt
+    prompt = create_prompt(domain_id, prompt_template, conversation_id, query, chunks_with_text)
     logger.log('Prompt:\n' + prompt)
 
     print("querying model")

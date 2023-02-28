@@ -24,8 +24,8 @@ import Slider from "@mui/material/Slider";
 import { Link } from "react-router-dom";
 
 const DEFAULT_FOLLOWUP_PROMPT = `
-Question:
-<<QUESTION>>
+Context: <<CONTEXT>>
+Question: <<QUESTION>>
 
 Answer:`;
 
@@ -48,10 +48,17 @@ export default function Main({ sessionManager }) {
   console.log("Main userID", sessionManager.user.userID);
 
   async function setActiveDomain(iDomainID) {
+    console.log("setting domain to", iDomainID);
+    setConversationID("NEW");
+    setChatHistory([]);
+    setQuery("");
+    setShowThinking(false);
+    setChunks([]);
+    setChunksUsedCount(0);
     setDomain(iDomainID);
     const data = await fetchGet(`domain/${iDomainID}`);
     setPromptInitial(data.initial_prompt_template);
-    setPromptFollowup(data.followup_prompt_template || DEFAULT_FOLLOWUP_PROMPT);
+    //setPromptFollowup(data.followup_prompt_template || DEFAULT_FOLLOWUP_PROMPT);
     //setInitialMessage(data[0].initial_conversation_message);
     let newHistory = [];
     if (data.initial_conversation_message)
@@ -70,6 +77,7 @@ export default function Main({ sessionManager }) {
     if (!sessionManager.user.userID) {
       setDomain("");
       setQuery("");
+      setPrompt("");
       setShowThinking(false);
       setChunks([]);
       setChunksUsedCount(0);
@@ -111,7 +119,7 @@ export default function Main({ sessionManager }) {
       setChatHistory((h) => [...h, "AI: " + data.answer]);
       setConversationID(data.conversation_id);
       setShowThinking(false);
-      setPrompt(promptFollowup);
+      //setPrompt(promptFollowup);
       const rows: GridRowsProp[] = Object.values(data.chunks).sort(
         (a, b) => b.score - a.score
       );
@@ -140,10 +148,7 @@ export default function Main({ sessionManager }) {
           value={domain}
           label="Domain"
           onChange={(e) => {
-            setChatHistory([]);
-            setConversationID("NEW");
             setActiveDomain(e.target.value);
-            setPrompt(promptDefault);
           }}
         >
           {domains.map((d) => (

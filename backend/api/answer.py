@@ -89,15 +89,10 @@ def get_conversation_history(conversation_id):
     return conversation_text
 
 
-def create_prompt(domain_id, cur_prompt_template, conversation_id, query, chunks_with_text):
+def create_prompt(domain_id, conversation_id, query, initial_prompt, followup_prompt_template, chunks_with_text):
     prompt = ""
     conversation_history = ""
     context = ""
-    initial_prompt = conf.DEFAULT_INITIAL_PROMPT
-
-    custom_initial_prompt = db.get_domain(domain_id)['initial_prompt_template']
-    if custom_initial_prompt:
-        initial_prompt = custom_initial_prompt
 
     if conversation_id != 'NEW':
         conversation_history = get_conversation_history(conversation_id)
@@ -107,11 +102,11 @@ def create_prompt(domain_id, cur_prompt_template, conversation_id, query, chunks
         chunks_text_arr = [chunks_with_text[str(id)] for id in ids]
         context = "\n\n".join(chunks_text_arr)
 
-    cur_prompt = cur_prompt_template
-    cur_prompt = cur_prompt.replace("<<CONTEXT>>", context)
-    cur_prompt = cur_prompt.replace("<<QUESTION>>", query)
+    followup_prompt = followup_prompt_template
+    followup_prompt = followup_prompt.replace("<<CONTEXT>>", context)
+    followup_prompt = followup_prompt.replace("<<QUESTION>>", query)
 
-    prompt = initial_prompt + conversation_history + cur_prompt
+    prompt = initial_prompt + conversation_history + followup_prompt
     return prompt
 
 
@@ -148,16 +143,26 @@ def update_conversation_tables(
     return conversation_id
 
 
-def get_answer(conversation_id, domain_id, query, prompt_template, temp, user_id):
+def get_answer(conversation_id, domain_id, query, prompt, temp, user_id):
     chunks = {}
     chunks_with_text = {}
     logger = Logger('api.log')
+
+    initial_prompt = conf.DEFAULT_INITIAL_PROMPT
+    followup_prompt_template = conf.DEFAULT_FOLLOWUP_PROMPT
+
+    print("getting custom prompts")
+    res = db.get_domain(domain_id)
+    if res['initial_prompt_template']:
+        initial_prompt = res['initial_prompt_template']
+    if res['followup_prompt_template']:
+        followup_prompt_template = res['followup_prompt_template']
 
     print("getting query embedding")
     query_embedding = ge(query)
 
     print("handling chunk retrieval")
-    if (prompt_template.find("<<CONTEXT>>") > -1):
+    if (followup_prompt_template.find("<<CONTEXT>>") > -1):
         print("getting chunks ids")
         chunks = get_chunks_from_embedding(domain_id, query_embedding)
         if not chunks:
@@ -166,7 +171,8 @@ def get_answer(conversation_id, domain_id, query, prompt_template, temp, user_id
         chunks_with_text = get_chunk_text_from_ids(chunks)
 
     print("creating prompt")
-    prompt = create_prompt(domain_id, prompt_template, conversation_id, query, chunks_with_text)
+    #prompt = create_prompt(domain_id, prompt_template, conversation_id, query, chunks_with_text)
+    prompt = create_prompt(domain_id, conversation_id, query, initial_prompt, followup_prompt_template, chunks_with_text)
     logger.log('Prompt:\n' + prompt)
 
     print("querying model")

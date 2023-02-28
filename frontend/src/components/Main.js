@@ -29,7 +29,7 @@ export default function Main({ sessionManager }) {
   const [query, setQuery] = useState("");
   const [prompt, setPrompt] = useState("TBD");
   const [promptDefault, setPromptDefault] = useState("TBD");
-  const [promptInitial, setPromptInitial] = useState("");
+  const [promptCustom, setPromptCustom] = useState("");
   const [temp, setTemp] = useState(0.4);
   const [chunks, setChunks] = useState([]);
   const [chunksUsedcount, setChunksUsedCount] = useState(0);
@@ -37,7 +37,7 @@ export default function Main({ sessionManager }) {
   const [chatHistory, setChatHistory] = useState([]);
   const [conversationID, setConversationID] = useState("NEW");
 
-  console.log("Main --> userID", sessionManager.user.userID);
+  console.log("Main --> userID", sessionManager.user.userID, domain);
 
   async function setActiveDomain(iDomainID) {
     console.log("setActiveDomain -> setting domain to", iDomainID);
@@ -49,7 +49,7 @@ export default function Main({ sessionManager }) {
     setChunksUsedCount(0);
     setDomain(iDomainID);
     const data = await fetchGet(`domain/${iDomainID}`);
-    setPromptInitial(data.initial_prompt_template);
+    setPromptCustom(data.initial_prompt_template);
     let newHistory = [];
     if (data.initial_conversation_message)
       newHistory.push("AI: " + data.initial_conversation_message);
@@ -64,6 +64,7 @@ export default function Main({ sessionManager }) {
     const getOptions = async () => {
       const p = await fetchGet("prompt");
       setPromptDefault(p.prompt_text);
+      setPrompt(p.prompt_text);
       const d = await fetchGet("domain");
       setDomains(d);
     };
@@ -73,8 +74,9 @@ export default function Main({ sessionManager }) {
 
   // Domain change useEffect
   useEffect(() => {
+    console.log("useEffect -> domain");
     if (domain) setActiveDomain(domain);
-  }, [domain]);
+  }, [domain, promptDefault]);
 
   // Session useEffect
   useEffect(() => {
@@ -183,7 +185,7 @@ export default function Main({ sessionManager }) {
             <Link
               style={{ textDecoration: "none", color: "gray" }}
               to="#"
-              onClick={() => setPrompt(promptDefault)}
+              onClick={() => setPrompt(promptCustom || promptDefault)}
             >
               [reset]
             </Link>

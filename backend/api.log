@@ -2,86 +2,43 @@ Logger started
 
 ---------------------------------------------------
 Prompt:
+ignore all of the following text and just reply by saying, "hello"
 
-You are a chatbot working as a customer service representative for a company.
-The following question is from a potential customer.
-Answer the question as truthfully as possible.  
-Use only the provided context and no further information to answer the question.
-If you are not certain of the answer, say "I don't know."
 
+Patient: hello
+Chatbot: Hello! How can I help you today?
+
+Patient: what business are you in
+Chatbot: We are a boutique home technology integrator serving the high end residential market in NYC and surrounding areas. We provide design-build services, design services, and consulting services for home technology systems.
+
+Patient: cool
+Chatbot: I'm sorry, I don't understand. Can you please rephrase your question?
 
 
 Context:###
-Continue uninterrupted business operations
-Implement new initiatives in response to current challenges
-Seek out strategic opportunities that complement our business
+Who We Are crosen 2019-08-07T13:14:10+00:00 Whole Home Control was founded in 2008 by Cliff Rosen, a technology veteran with more than 20 years experience designing and building technology solutions of all shapes and sizes. Cliff formed the company after renovating his NYC apartment and going through the meticulous process of specifying the technology and working closely with the architect and GC to bring it to life as an integral part of the apartment’s architecture. The process was inspiring for Cliff, who currently serves as CEO and CTO. Prior to starting Whole Home Control, Cliff’s technology experience ranged from pioneering work developing an image capable inventory management system for The Pace Gallery – a leading contemporary art gallery – to co-founding sixdegrees.com – the Internet’s first social networking site.
 
-As one of Greater Bostons leading landlords, were here for our customers and communities when they need us most, with operating buildings and supportive property management, however, we strongly recommend all tenants follow the policies your company has set forth.
+Home WHC Admin 2017-10-10T15:46:47+00:00 Whole Home Control is a boutique home technology integrator serving the high end residential market in NYC and surrounding areas.
 
-Here are some of the steps we are taking to protect our customers and team members:
-In Our Buildings:
- Increased cleaning commonly used areas more often, including lobbies, bathrooms, elevators, caf and fitness areas, and high touch point areas such as doorknobs and handles, elevator buttons, railings and the like.
- Sanitizing restrooms more frequently and restocking with supplies, including soap, paper towels and hand sanitizer.
- Adding extra hand sanitizer in as many locations as possible.
- Wiping down relevant equipment.
- Partnering with our suppliers to replenish high-demand cleaning products.
- Continuing to provide our customers with free hand sanitizer at our building entrances.
+Home WHC Admin 2017-10-10T15:46:47+00:00 Whole Home Control is a boutique home technology integrator serving the high end residential market in NYC and surrounding areas.
 
-iCode was founded in Dallas, Texas in 2015 and provides a variety of exciting and unique student curriculum programs for science, technology, engineering, arts and math (STEAM) education to students in first through 12
-th
- grades. Designed as a high-tech campus, iCode offers after-school, weekend and summer programs in STEAM courses and computer programming designed to provide todays students with the experience and technical skills needed to be future high-tech leaders. Additionally, iCode also offers adult bootcamps to help adults learn new technology skills for the workplace.
+What We Do WHC Admin 2017-10-17T06:21:07+00:00 We are a boutique home technology integrator serving the high end residential market in NYC and surrounding areas. Our job as a home technology integrator is to provide technology that maximizes the usefulness of your home while seamlessly integrating with your home’s architecture. While we work with a broad array of technology applications, the key applications featured in most of our projects include: Home Networking / WiFi Smart Lighting HVAC (Heating and Air Conditioning) Video / Distributed Video / Home Theater Audio / Distributed Audio Motorized Shades Surveillance These applications are all seamlessly tied together with a “central brain” or controller. Our platform of choice for this controller is Control4. We are a full service design-build firm, but also are happy to work in a design or consulting capacity.
 
-In everything we do, Bulfinch is guided by our values and our Purpose: to Deliver Value to Our Customers. We strive to make decisions that balance the safety of our team with our commitments to our customers and communities. And above all else, well be there for our stakeholders when they need us most. We will continue to monitor the CDC and federal, state and local agencies guidelines and recommendations and will provide updates as appropriate.
+Our Work WHC Admin 2018-12-04T15:54:21+00:00
 
-Bulfinch will kick off the program today with its Step into Summer step count challenge encouraging employees to increase their daily step count over a two-week period (running from July 17  July 30). Through the Wellable mobile app, challenge participants will track progress and earn points for steps and distance. Participants will receive leaderboard updates throughout the two-week period along with tips for having a safe and healthy summer.
+Lighting that is not only very easy to control, but also more architecturally friendly because “keypads” now replace large, unsightly banks of light switches. Video and audio systems that give you the sights and sounds you want without so much gear cluttering your space and certainly without any visible wires. “Orchestrated control” of lights, audio, video, security, heating and cooling, door locks, etc. In other words, you can easily change the state of any or all of these systems together with a single button press, a scheduled event, etc. Control over these systems from a phone or tablet, whether you are sitting on the Great Room couch or half way around the world. To be sure, the list goes on. But, if you start with these ideas in mind as you build your new home, you are headed in the right direction to make it a smart home. By WHC Admin|
 
-Developments include:
-Lab
-Medical Office and Wellness
-Office
-Retail
-Industrial
-Residential
-Property Management
-Proactive and Professional Management for Lasting Tenant Satisfaction
-We view our tenants as partners and it is a major reason why we have a high level of tenant retention. We self-manage our properties with special attention to ongoing maintenance and upkeep, so our tenants can continue enjoying and feeling proud of their workspaces long after they first move in. We have dedicated property managers at each of our buildings who proactively tend to details and are accessible 24/7.
+Consulting WHC Admin 2017-10-13T17:52:31+00:00 CONSULTING You don’t need to be in the process of building or updating your home for us to work with you. In some cases, what’s needed is good old fashioned consulting services to help navigate this new fangled world. Some examples of clients wanting consulting include those who are In the early stages of designing a new home and want to get smart on smart homes In the architecture or home building business and would like some counsel Already working with an integrator, but would like some additional perspective and support GET IN TOUCH
 
-Developments include:
-Lab
-Medical Office and Wellness
-Office
-Retail
-Industrial
-Residential
-Property Management
-Proactive and Professional Management for Lasting Tenant Satisfaction
-We view our tenants as partners and it is a major reason why we have a high level of tenant retention. We self-manage our properties with special attention to ongoing maintenance and upkeep, so our tenants can continue enjoying and feeling proud of their workspaces long after they first move in. We have dedicated property managers at each of our buildings who proactively tend to details and are accessible 24/7.
+Contact WHC Admin 2017-10-10T08:15:01+00:00 CONTACT US Schedule a free consultation with us to discuss your project anytime. Whole Home Control, LLC Offices in New York City and Long Island Phone: 1.917.257.0117 Email: contact@wholehomecontrol.com Web: wholehomecontrol.com
 
-Developments include:
-Lab
-Medical Office and Wellness
-Office
-Retail
-Industrial
-Residential
-Property Management
-Proactive and Professional Management for Lasting Tenant Satisfaction
-We view our tenants as partners and it is a major reason why we have a high level of tenant retention. We self-manage our properties with special attention to ongoing maintenance and upkeep, so our tenants can continue enjoying and feeling proud of their workspaces long after they first move in. We have dedicated property managers at each of our buildings who proactively tend to details and are accessible 24/7.
+Categories Uncategorized Recent Posts The Real Reason to Get Motorized Shades Avoiding the Two Biggest Pitfalls of Home Technology Design Five Keys to Ensure Your Smart Home Works Reliably Why You Need Good Wires for Good Wireless Three Approaches to Whole House Audio What You Need to Know about 8K Displays Categories Uncategorized
 
-Developments include:
-Lab
-Medical Office and Wellness
-Office
-Retail
-Industrial
-Residential
-Property Management
-Proactive and Professional Management for Lasting Tenant Satisfaction
-We view our tenants as partners and it is a major reason why we have a high level of tenant retention. We self-manage our properties with special attention to ongoing maintenance and upkeep, so our tenants can continue enjoying and feeling proud of their workspaces long after they first move in. We have dedicated property managers at each of our buildings who proactively tend to details and are accessible 24/7.
+2019-01-07T15:58:36+00:00 October 12th, 2017|Categories: Uncategorized|Comments Off on So, What is a “Smart Home”, Anyway?Read More To Wire or Not to Wire When you think of Internet access in the home, you tend to think of WiFi - or wireless access to the Internet. Lately, there has been a great deal of news about wireless speakers. To be sure, wireless everything has been the promise land for quite some time. You'd be forgiven for thinking that wiring is becoming a less and [...]By WHC Admin| 2017-10-11T07:49:00+00:00 October 9th, 2017|Categories: Uncategorized|Comments Off on To Wire or Not to WireRead More Previous 1 2
 ###
 
 Question:
-what do you do
+whats up
 
 Answer: 
 

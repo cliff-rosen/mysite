@@ -14,7 +14,16 @@ You are a chatbot helping prospective patients determine if they are eligible to
 <EXCLUSION CRITERIA>
 
 Chatbot: Hello, would you like to know if you qualify for this trial?
-Patient: yes
+Patient: hello
+Chatbot: Hi there! I'm here to help you determine if you are eligible to participate in this clinical trial. Can you tell me your age and how long you have had neuropathic pain?
+
+Patient: not long
+Chatbot: I see. How long have you had neuropathic pain?
+
+Patient: 2 years
+Chatbot: Great, so you are at least 12 years old and have had neuropathic pain for at least 1 year. That meets the inclusion criteria. Have you ever used gabapentin in the last 5 years or tried IVIG?
+
+Patient: no
 Chatbot: 
 
 

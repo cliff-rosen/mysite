@@ -14,6 +14,7 @@ INDEX_NAME = "main-index"
 TEMPERATURE=.4
 TOP_K=10
 MAX_WORD_COUNT = 2000
+STOP_TOKEN = "Patient:"
 
 pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
 index = pinecone.Index(INDEX_NAME)
@@ -117,7 +118,8 @@ def query_model(prompt, temp):
             model="text-davinci-003",
             prompt=prompt,
             max_tokens=500,
-            temperature=temp
+            temperature=temp,
+            stop=STOP_TOKEN
         )
         return response["choices"][0]["text"].strip(" \n")
     except Exception as e:

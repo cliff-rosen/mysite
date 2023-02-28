@@ -14,10 +14,7 @@ export default function History({ chatHistory }) {
   }
 
   return (
-    <div
-      ref={containerRef}
-      style={{ maxHeight: "50vh", height: "400px", overflowY: "auto" }}
-    >
+    <div ref={containerRef} style={{ maxHeight: "50vh", overflowY: "auto" }}>
       {chatHistory.map((e, i) => (
         <div key={i}>
           <Divider style={{ paddingTop: 10, paddingBottom: 10 }} />

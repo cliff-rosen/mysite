@@ -247,7 +247,7 @@ export default function Main({ sessionManager }) {
               fullWidth
               id="querytitle"
               type="text"
-              label="Question"
+              label=""
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               variant="outlined"

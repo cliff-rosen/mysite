@@ -23,7 +23,7 @@ import TableRow from "@mui/material/TableRow";
 import Slider from "@mui/material/Slider";
 import { Link } from "react-router-dom";
 
-const FOLLOWUP_PROMPT = `
+const DEFAULT_FOLLOWUP_PROMPT = `
 Question:
 <<QUESTION>>
 
@@ -36,7 +36,7 @@ export default function Main({ sessionManager }) {
   const [prompt, setPrompt] = useState("TBD");
   const [promptDefault, setPromptDefault] = useState("TBD");
   const [promptInitial, setPromptInitial] = useState("");
-  const [promptFollowup, setPromptFollowup] = useState(FOLLOWUP_PROMPT);
+  const [promptFollowup, setPromptFollowup] = useState(DEFAULT_FOLLOWUP_PROMPT);
   const [initialMessage, setInitialMessage] = useState("");
   const [temp, setTemp] = useState(0.4);
   const [chunks, setChunks] = useState([]);
@@ -51,7 +51,9 @@ export default function Main({ sessionManager }) {
     setDomain(iDomainID);
     const data = await fetchGet(`domain/${iDomainID}`);
     setPromptInitial(data[0].initial_prompt_template);
-    setPromptFollowup(data[0].followup_prompt_template);
+    setPromptFollowup(
+      data[0].followup_prompt_template || DEFAULT_FOLLOWUP_PROMPT
+    );
     //setInitialMessage(data[0].initial_conversation_message);
     let newHistory = [];
     if (data[0].initial_conversation_message)

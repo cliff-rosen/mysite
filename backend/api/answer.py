@@ -21,7 +21,6 @@ print("initing openai")
 openai.api_key = OPENAI_API_KEY
 
 def ge(text):
-    print(OPENAI_API_KEY)
     embedding_model = MODEL
     return get_embedding(
         text,
@@ -79,9 +78,11 @@ def get_chunk_text_from_ids(chunks):
     return chunks_with_text
 
 def create_prompt(question, chunks_with_text, prompt):
-    ids = list(chunks_with_text.keys())
-    chunks_text_arr = [chunks_with_text[str(id)] for id in ids]
-    context = "\n\n".join(chunks_text_arr)
+    context = ""
+    if chunks_with_text:
+        ids = list(chunks_with_text.keys())
+        chunks_text_arr = [chunks_with_text[str(id)] for id in ids]
+        context = "\n\n".join(chunks_text_arr)
     #prompt = conf.PROMPT
     prompt = prompt.replace("<<CONTEXT>>", context)
     prompt = prompt.replace("<<QUESTION>>", question)
@@ -120,19 +121,21 @@ def update_conversation_tables(
     return conversation_id
 
 def get_answer(conversation_id, domain_id, query, prompt_text, temp, user_id):
-
+    chunks = {}
+    chunks_with_text = {}
     logger = Logger('api.log')
 
     print("getting query embedding")
     query_embedding = ge(query)
 
-    print("getting chunks ids")
-    chunks = get_chunks_from_embedding(domain_id, query_embedding)
-    if not chunks:
-        return {"answer": "no data", "chunks": {}, "chunks_used_count": 0 }
-
-    print("getting chunk text from ids")
-    chunks_with_text = get_chunk_text_from_ids(chunks)
+    print("handling chunk retrieval")
+    if (prompt_text.find("<<CONTEXT>>") > -1):
+        print("getting chunks ids")
+        chunks = get_chunks_from_embedding(domain_id, query_embedding)
+        if not chunks:
+            return {"answer": "no data", "chunks": {}, "chunks_used_count": 0 }
+        print("getting chunk text from ids")
+        chunks_with_text = get_chunk_text_from_ids(chunks)
 
     print("creating prompt")
     prompt = create_prompt(query, chunks_with_text, prompt_text)

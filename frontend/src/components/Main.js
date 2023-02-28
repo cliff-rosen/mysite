@@ -36,23 +36,34 @@ export default function Main({ sessionManager }) {
   const [showThinking, setShowThinking] = useState(false);
   const [chatHistory, setChatHistory] = useState([]);
   const [conversationID, setConversationID] = useState("NEW");
+  const [initialMessage, setInitialMessage] = useState("");
 
   console.log("Main --> userID", sessionManager.user.userID, domain);
 
-  async function setActiveDomain(iDomainID) {
-    console.log("setActiveDomain -> setting domain to", iDomainID);
+  function resetConversation() {
     setConversationID("NEW");
-    setChatHistory([]);
+    if (initialMessage) setChatHistory([initialMessage]);
+    else setChatHistory([]);
     setQuery("");
     setShowThinking(false);
     setChunks([]);
     setChunksUsedCount(0);
+  }
+
+  async function setActiveDomain(iDomainID) {
+    console.log("setActiveDomain -> setting domain to", iDomainID);
+    resetConversation();
     setDomain(iDomainID);
     const data = await fetchGet(`domain/${iDomainID}`);
     setPromptCustom(data.initial_prompt_template);
     let newHistory = [];
-    if (data.initial_conversation_message)
+    if (data.initial_conversation_message) {
+      setInitialMessage("AI: " + data.initial_conversation_message);
       newHistory.push("AI: " + data.initial_conversation_message);
+    } else {
+      setInitialMessage("");
+    }
+
     setChatHistory(newHistory);
     setPrompt(data.initial_prompt_template || promptDefault);
   }
@@ -97,6 +108,7 @@ export default function Main({ sessionManager }) {
       setChunksUsedCount(0);
       setChatHistory([]);
       setConversationID("NEW");
+      setInitialMessage("");
     }
 
     sessionManager.requireUser();
@@ -143,23 +155,35 @@ export default function Main({ sessionManager }) {
       onSubmit={formSubmit}
       sx={{ mt: 1, margin: "auto" }}
     >
-      ConversationID: {conversationID}
       <FormControl fullWidth>
-        <InputLabel>Domain</InputLabel>
-        <Select
-          value={domains.length > 0 ? domain : ""}
-          label="Domain"
-          onChange={(e) => {
-            setDomain(e.target.value);
-          }}
-        >
-          {domains.map((d) => (
-            <MenuItem key={d.domain_id} value={d.domain_id}>
-              {d.domain_desc}
-            </MenuItem>
-          ))}
-        </Select>
-
+        <div style={{ display: "flex", paddingBottom: 10 }}>
+          <div style={{ flexGrow: 1, paddingRight: 10 }}>
+            <InputLabel>Domain</InputLabel>
+            <Select
+              value={domains.length > 0 ? domain : ""}
+              label="Domain"
+              onChange={(e) => {
+                setDomain(e.target.value);
+              }}
+              style={{ width: "100%" }}
+            >
+              {domains.map((d) => (
+                <MenuItem key={d.domain_id} value={d.domain_id}>
+                  {d.domain_desc}
+                </MenuItem>
+              ))}
+            </Select>
+          </div>
+          <div style={{ flexGrow: 0, alignSelf: "center" }}>
+            <Link
+              style={{ textDecoration: "none", color: "gray" }}
+              to="#"
+              onClick={() => resetConversation()}
+            >
+              RESTART SESSION
+            </Link>
+          </div>
+        </div>
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -255,6 +279,7 @@ export default function Main({ sessionManager }) {
 
         <AccordionDetails>
           <TableContainer component={Paper}>
+            ConversationID: {conversationID}
             <Table aria-label="chunks">
               <TableHead>
                 <TableRow>

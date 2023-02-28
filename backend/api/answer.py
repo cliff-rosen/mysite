@@ -153,8 +153,8 @@ def get_answer(conversation_id, domain_id, query, prompt, temp, user_id):
 
     print("getting custom prompts")
     res = db.get_domain(domain_id)
-    if res['initial_prompt_template']:
-        initial_prompt = res['initial_prompt_template']
+    #if res['initial_prompt_template']:
+    #    initial_prompt = res['initial_prompt_template']
     if res['followup_prompt_template']:
         followup_prompt_template = res['followup_prompt_template']
 

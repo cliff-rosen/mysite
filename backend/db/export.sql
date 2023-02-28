@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `conversation` (
   `conversation_id` varchar(20) NOT NULL DEFAULT '',
   `user_id` int(11) NOT NULL DEFAULT 0,
   `domain_id` int(11) NOT NULL DEFAULT 0,
-  `conversation_text` text NOT NULL DEFAULT '0',
+  `conversation_text` text CHARACTER SET utf16 COLLATE utf16_unicode_ci NOT NULL DEFAULT '0',
   `date_time_started` timestamp NOT NULL DEFAULT current_timestamp(),
   KEY `Index 1` (`conversation_id`),
   KEY `FK__user` (`user_id`),
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `domain` (
   `domain_id` int(11) NOT NULL AUTO_INCREMENT,
   `domain_desc` varchar(50) DEFAULT '0',
   `spider_notes` text DEFAULT NULL,
-  `initial_prompt_template` mediumtext DEFAULT NULL,
+  `initial_prompt_template` mediumtext CHARACTER SET utf16 COLLATE utf16_unicode_ci DEFAULT NULL,
   `followup_prompt_template` mediumtext DEFAULT NULL,
   `initial_conversation_message` text DEFAULT NULL,
   KEY `Index 1` (`domain_id`)
@@ -86,16 +86,17 @@ CREATE TABLE IF NOT EXISTS `domain` (
 CREATE TABLE IF NOT EXISTS `query_log` (
   `query_id` int(11) NOT NULL AUTO_INCREMENT,
   `query_text` text NOT NULL,
-  `query_prompt` text NOT NULL,
+  `query_prompt` text CHARACTER SET utf16 NOT NULL,
   `query_temp` float NOT NULL,
   `query_timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
   `domain_id` int(11) DEFAULT NULL,
-  `response_text` text NOT NULL,
+  `response_text` text CHARACTER SET utf16 NOT NULL,
   `response_chunk_ids` varchar(100) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `conversation_id` varchar(20) DEFAULT NULL,
-  KEY `Index 1` (`query_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1244 DEFAULT CHARSET=latin1;
+  KEY `Index 1` (`query_id`),
+  KEY `Index 2` (`conversation_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1294 DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
 

@@ -23,12 +23,6 @@ import TableRow from "@mui/material/TableRow";
 import Slider from "@mui/material/Slider";
 import { Link } from "react-router-dom";
 
-const DEFAULT_FOLLOWUP_PROMPT = `
-Context: <<CONTEXT>>
-Question: <<QUESTION>>
-
-Answer:`;
-
 export default function Main({ sessionManager }) {
   const [domains, setDomains] = useState([]);
   const [domain, setDomain] = useState("");
@@ -36,8 +30,6 @@ export default function Main({ sessionManager }) {
   const [prompt, setPrompt] = useState("TBD");
   const [promptDefault, setPromptDefault] = useState("TBD");
   const [promptInitial, setPromptInitial] = useState("");
-  const [promptFollowup, setPromptFollowup] = useState(DEFAULT_FOLLOWUP_PROMPT);
-  const [initialMessage, setInitialMessage] = useState("");
   const [temp, setTemp] = useState(0.4);
   const [chunks, setChunks] = useState([]);
   const [chunksUsedcount, setChunksUsedCount] = useState(0);
@@ -58,8 +50,6 @@ export default function Main({ sessionManager }) {
     setDomain(iDomainID);
     const data = await fetchGet(`domain/${iDomainID}`);
     setPromptInitial(data.initial_prompt_template);
-    //setPromptFollowup(data.followup_prompt_template || DEFAULT_FOLLOWUP_PROMPT);
-    //setInitialMessage(data[0].initial_conversation_message);
     let newHistory = [];
     if (data.initial_conversation_message)
       newHistory.push("AI: " + data.initial_conversation_message);
@@ -67,22 +57,26 @@ export default function Main({ sessionManager }) {
     setPrompt(data.initial_prompt_template || promptDefault);
   }
 
+  // Main useEffect
   useEffect(() => {
     console.log("useEffect -> Main");
 
     const getOptions = async () => {
-      const d = await fetchGet("domain");
-      setDomains(d);
       const p = await fetchGet("prompt");
       setPromptDefault(p.prompt_text);
+      const d = await fetchGet("domain");
+      setDomains(d);
     };
 
     getOptions();
-
-    if (!domain && sessionManager.user.domainID)
-      setActiveDomain(sessionManager.user.domainID);
   }, []);
 
+  // Domain change useEffect
+  useEffect(() => {
+    if (domain) setActiveDomain(domain);
+  }, [domain]);
+
+  // Session useEffect
   useEffect(() => {
     console.log(
       "useEffect -> Session change, userID",
@@ -90,7 +84,7 @@ export default function Main({ sessionManager }) {
     );
 
     if (!domain && sessionManager.user.domainID)
-      setActiveDomain(sessionManager.user.domainID);
+      setDomain(sessionManager.user.domainID);
 
     if (!sessionManager.user.userID) {
       setDomain("");
@@ -126,7 +120,6 @@ export default function Main({ sessionManager }) {
       setChatHistory((h) => [...h, "AI: " + data.answer]);
       setConversationID(data.conversation_id);
       setShowThinking(false);
-      //setPrompt(promptFollowup);
       const rows: GridRowsProp[] = Object.values(data.chunks).sort(
         (a, b) => b.score - a.score
       );
@@ -155,7 +148,7 @@ export default function Main({ sessionManager }) {
           value={domains.length > 0 ? domain : ""}
           label="Domain"
           onChange={(e) => {
-            setActiveDomain(e.target.value);
+            setDomain(e.target.value);
           }}
         >
           {domains.map((d) => (

@@ -176,7 +176,7 @@ export default function Main({ sessionManager }) {
           </div>
           <div style={{ flexGrow: 0, alignSelf: "center" }}>
             <Link
-              style={{ textDecoration: "none", color: "gray" }}
+              style={{ textDecoration: "none" }}
               to="#"
               onClick={() => resetConversation()}
             >
@@ -261,7 +261,7 @@ export default function Main({ sessionManager }) {
               color="primary"
               style={{ marginTop: 20 }}
             >
-              O
+              send
             </Button>
           </div>
         </div>

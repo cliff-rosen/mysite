@@ -14,7 +14,7 @@ import Slider from "@mui/material/Slider";
 import { Link } from "react-router-dom";
 
 export default function Main({ sessionManager }) {
-  const [domains, setDomains] = useState([]);
+  const [domainList, setDomainList] = useState([]);
   const [domainID, setDomainID] = useState("");
   const [query, setQuery] = useState("");
   const [prompt, setPrompt] = useState("TBD");
@@ -22,7 +22,7 @@ export default function Main({ sessionManager }) {
   const [promptCustom, setPromptCustom] = useState("");
   const [temp, setTemp] = useState(0.4);
   const [chunks, setChunks] = useState([]);
-  const [chunksUsedcount, setChunksUsedCount] = useState(0);
+  const [chunksUsedCount, setChunksUsedCount] = useState(0);
   const [showThinking, setShowThinking] = useState(false);
   const [chatHistory, setChatHistory] = useState([]);
   const [conversationID, setConversationID] = useState("NEW");
@@ -70,7 +70,7 @@ export default function Main({ sessionManager }) {
       setPromptDefault(p.prompt_text);
       setPrompt(p.prompt_text);
       const d = await fetchGet("domain");
-      setDomains(d);
+      setDomainList(d);
     };
 
     getOptions();
@@ -156,14 +156,14 @@ export default function Main({ sessionManager }) {
           <div style={{ flexGrow: 1, paddingRight: 10 }}>
             <InputLabel>Domain</InputLabel>
             <Select
-              value={domains.length > 0 ? domainID : ""}
+              value={domainList.length > 0 ? domainID : ""}
               label="Domain"
               onChange={(e) => {
                 setDomainID(e.target.value);
               }}
               style={{ width: "100%" }}
             >
-              {domains.map((d) => (
+              {domainList.map((d) => (
                 <MenuItem key={d.domain_id} value={d.domain_id}>
                   {d.domain_desc}
                 </MenuItem>
@@ -234,7 +234,7 @@ export default function Main({ sessionManager }) {
       <Diagnostics
         conversationID={conversationID}
         chunks={chunks}
-        chunksUsedCount={chunksUsedcount}
+        chunksUsedCount={chunksUsedCount}
       />
     </Box>
   );

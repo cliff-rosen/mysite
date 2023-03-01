@@ -1,20 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import { fetchGet, fetchPost } from "../utils/APIUtils";
+import Prompt from "./Prompt";
 import History from "./History";
 import Diagnostics from "./Diagnostics";
-import Container from "@mui/material/Container";
+import Thinking from "./Thinking";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import { TextField, Button } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Slider from "@mui/material/Slider";
 import { Link } from "react-router-dom";
 
@@ -179,37 +174,14 @@ export default function Main({ sessionManager }) {
             </Link>
           </div>
         </div>
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography>customize prompt</Typography>
-          </AccordionSummary>
 
-          <AccordionDetails>
-            <TextField
-              margin="normal"
-              fullWidth
-              id="desc"
-              multiline
-              rows={20}
-              type="text"
-              label="Prompt Template"
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-              variant="outlined"
-            />
-            <Link
-              style={{ textDecoration: "none", color: "gray" }}
-              to="#"
-              onClick={() => setPrompt(promptCustom || promptDefault)}
-            >
-              [reset]
-            </Link>
-          </AccordionDetails>
-        </Accordion>
+        <Prompt
+          prompt={prompt}
+          setPrompt={setPrompt}
+          promptCustom={promptCustom}
+          promptDefault={promptDefault}
+        />
+
         <Slider
           aria-label="Temperature"
           defaultValue={temp}
@@ -223,17 +195,7 @@ export default function Main({ sessionManager }) {
 
         <History chatHistory={chatHistory} />
 
-        {showThinking ? (
-          <Paper elevation={0}>
-            <div
-              style={{ display: "flex", justifyContent: "left", height: 50 }}
-            >
-              <img src="/spinner.gif" />
-            </div>
-          </Paper>
-        ) : (
-          <></>
-        )}
+        <Thinking show={showThinking} />
 
         <div style={{ display: "flex" }}>
           <div style={{ flexGrow: 1, paddingRight: 10 }}>

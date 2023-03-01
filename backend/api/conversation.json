@@ -1,0 +1,134 @@
+/*
+structure required to produce every completion.  
+
+To request a new completion, the frontend currently only needs to send in the conversationID and newQuery values.  (conversationID is set to "NEW" to start a new conversation, in which case the backend creates a new ID and sends it back to the FE with the completion result.)
+
+The backend pulls the balance of the info from the DB and then assembles this together to form the final prompt as (roughly):
+
+  buildPromptText(initialPrompt) + buildConversationText(userRoleName, botRoleName, conversationHistory)  + userRoleName + newQuery
+
+However, if we use this scheme, the frontend would need a notion of the initialPrompt, userRoleName and botRoleName if we are to provide a UI that manages domains (aka trials.)  Also, initialPrompt.initialMessage is used by the frontend to seed the conversation history shown in the UI when a new conversation begins.
+
+*/
+
+{
+  "conversationID": "AqEqS3bKCyz5kojI1Ps7",
+  "initialPrompt": {
+    "instruction": "You are an assistant working for a CRO...",
+    "inclusionCriteria": "1. Patients must ...",
+    "exclusionCriteria": "1. Patients must not ...",
+    "initialMessage": "Hello, how can I assist you?"
+  },
+  "userRoleName": "Patient",
+  "botRoleName": "Assistant",
+  "conversationHistory": [
+    {
+      "queryID": 1,
+      "query": "Hello, I would...",
+      "response": "Sure, I can ..."
+    },
+    {
+      "queryID": 2,
+      "query": "Yes, I am ...",
+      "response": "Thank you. Are you ..."
+    }
+  ],
+  "newQuery": "What does ..."
+}
+
+api documentation (swagger?)
+ssl
+authentication via auth/token, returns JWT good for a week; send as Bearer
+
+endpoints:
+/auth/token
+/answer
+
+======================================================================
+POST $BASE_URL/auth/token
+body: {
+    "username": "string",
+    "password": "string"
+}
+
+success returns 200 with:
+{"status": "SUCCESS", "token": "string"}
+
+invalid login returns 401 with:
+{"status": "INVALID_LOGIN"}
+
+server error returns 500 with:
+{"status": "SERVER_ERROR"}
+
+
+======================================================================
+POST $BASE_URL/conversation
+header:
+    authorization: Bearer BEARER_JWT
+body: {
+    "promptHeader": "string",
+    "initialMessage": "string",
+    "userRoleName": "string",
+    "botRoleName": "string",
+    "conversationHistory": [
+        {
+            "userMessage": "string", 
+            "userMessageTimeStamp": "int",
+            "response": "String",
+            "responseTimeStamp": "int"
+        }
+    ],
+    "userMessage": "string"
+}
+
+success returns 200 with:
+{"status": "SUCCESS", "response": "string"}
+
+invalid token returns 401 with:
+{"status": "INVALID_TOKEN"}
+
+server error returns 500 with:
+{"status": "SERVER_ERROR"}
+
+
+
+======================================================================
+POST $BASE_URL/prompt
+header:
+    Bearer BEARER_JWT
+body: {
+    "promptHeaderTemplate": "string",
+    "initialMessage": "string",
+    "userRoleName": "string",
+    "botRoleName": "string"
+}
+
+success returns 200 with:
+{"status": "SUCCESS"}
+
+invalid token returns 401 with:
+{"status": "INVALID_TOKEN"}
+
+server error returns 500 with:
+{"status": "SERVER_ERROR"}
+
+
+======================================================================
+GET $BASE_URL/prompt
+header:
+    Bearer BEARER_JWT
+
+success returns 200 with:
+{
+    "status": "SUCCESS",
+    "promptHeaderTemplate": "string",
+    "initialMessage": "string",
+    "userRoleName": "string",
+    "botRoleName": "string"
+}
+
+invalid token returns 401 with:
+{"status": "INVALID_TOKEN"}
+
+server error returns 500 with:
+{"status": "SERVER_ERROR"}

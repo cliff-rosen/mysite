@@ -3,12 +3,22 @@ accept: application/json
 
 ###
 
+POST http://127.0.0.1:5000/auth/token
+content_type: application/json
+
+{
+    "username": "cliff",
+    "password": "abc123"
+}
+
+###
+
 GET http://127.0.0.1:5000/login?username=cliff&password=cmr
 accept: application/json
 
 ###
 
-GET http://127.0.0.1:5000/domain/1
+GET http://127.0.0.1:5000/domain/30
 accept: application/json
 
 ###

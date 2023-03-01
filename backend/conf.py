@@ -10,6 +10,6 @@ If you are not certain of the answer, say "I don't know."\n\n
 
 DEFAULT_FOLLOWUP_PROMPT = """
 Context:###\n<<CONTEXT>>\n###\n
-Question:\n<<QUESTION>>\n
+Question: <<QUESTION>>\n
 Answer: 
 """

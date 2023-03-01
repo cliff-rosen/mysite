@@ -1,7 +1,7 @@
 from flask import Flask, request
 from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS
-from api import login, domain, prompt, answer
+from api import login, domain, prompt, answer, token
 
 application = Flask(__name__)
 CORS(application)
@@ -66,8 +66,24 @@ class Login(Resource):
                 return(res, 500)
         return res
 
+class Token(Resource):
+    def post(self):
+        data = request.get_json()
+        print("body", data)
+        username=data["username"]
+        password=data["password"]
+        print("token", username, password)
+        res = token.get_token(username, password)
+        if res['status'] == "ERROR":
+            if res['error'] == 'UNAUTHORIZED':
+                return(res, 401)
+            else:
+                return(res, 500)
+        return res
+
 api.add_resource(Hello, '/hello')
 api.add_resource(Login, '/login')
+api.add_resource(Token, '/auth/token')
 api.add_resource(Domain, '/domain', '/domain/<int:domain_id>')
 api.add_resource(Prompt, '/prompt')
 api.add_resource(Answer, '/answer')

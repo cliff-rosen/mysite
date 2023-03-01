@@ -1,7 +1,4 @@
-import os
-import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'db'))
-import local_db as db
+from db import local_db as db
 
 def login(username, password):
     res = db.validate_user(username, password)
@@ -13,3 +10,4 @@ def login(username, password):
     else:
         res['status'] = "SUCCESS"
         return res
+    

@@ -33,6 +33,28 @@ def l_to_d(keys, values):
 
 ##### USER #####
 
+def get_user(user_name):
+    query_string = """
+                    SELECT user_id, user_name, password,
+                        user_description, domain_id
+                    FROM user
+                    WHERE user_name = %s
+                """
+    try:
+        print("getting connection")
+        conn = get_connection()
+        cur = conn.cursor() 
+        cur.execute(query_string, (user_name,)) 
+        rows = cur.fetchall()
+    except Exception as e:
+        return {'error': 'DB_CONNECTION_ERROR'}
+    close_connection(conn)
+    if len(rows) == 0:
+        return({"status": "ERROR", "error": "USER_NOT_FOUND"})
+    if len(rows) == 2:
+        return({"status": "ERROR", "error": "TOO_MANY_ROWS"})
+    return rows[0]
+
 def validate_user(user_name, password):
     query_string = """
                     SELECT user_id, user_name, password,
@@ -46,9 +68,9 @@ def validate_user(user_name, password):
         cur = conn.cursor() 
         cur.execute(query_string, (user_name,)) 
         rows = cur.fetchall()
-        close_connection(conn)
     except Exception as e:
         return {'error': 'DB_CONNECTION_ERROR'}
+    close_connection(conn)
 
     if len(rows) == 0:
         return {"error": "USER_NOT_FOUND"}

@@ -1,8 +1,6 @@
 #import mariadb
 import pymysql.cursors
 import json
-import os
-import sys
 import local_secrets as secrets
 
 DB_SECRETS = secrets.DB_SECRETS

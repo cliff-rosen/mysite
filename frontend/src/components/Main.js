@@ -28,10 +28,12 @@ export default function Main({ sessionManager }) {
   const [conversationID, setConversationID] = useState("NEW");
   const [initialMessage, setInitialMessage] = useState("");
 
+  const NEW_CONVERSATION_ID = "NEW";
+
   console.log("Main --> userID", sessionManager.user.userID, domain);
 
   function resetConversation() {
-    setConversationID("NEW");
+    setConversationID(NEW_CONVERSATION_ID);
     if (initialMessage) setChatHistory([initialMessage]);
     else setChatHistory([]);
     setQuery("");
@@ -43,6 +45,7 @@ export default function Main({ sessionManager }) {
   async function setActiveDomain(iDomainID) {
     console.log("setActiveDomain -> setting domain to", iDomainID);
     resetConversation();
+
     setDomain(iDomainID);
     const data = await fetchGet(`domain/${iDomainID}`);
     setPromptCustom(data.initial_prompt_template);
@@ -106,6 +109,13 @@ export default function Main({ sessionManager }) {
 
   const formSubmit = async (e) => {
     e.preventDefault();
+
+    setQuery("");
+    setShowThinking(true);
+    setChunks([]);
+    setChunksUsedCount(0);
+    setChatHistory((h) => [...h, "User: " + query]);
+
     const queryObj = {
       domain_id: domain,
       query,
@@ -114,12 +124,8 @@ export default function Main({ sessionManager }) {
       user_id: sessionManager.user.userID,
       conversation_id: conversationID,
     };
+
     try {
-      setQuery("");
-      setShowThinking(true);
-      setChunks([]);
-      setChunksUsedCount(0);
-      setChatHistory((h) => [...h, "User: " + query]);
       const data = await fetchPost("answer", queryObj);
       setChatHistory((h) => [...h, "AI: " + data.answer]);
       setConversationID(data.conversation_id);

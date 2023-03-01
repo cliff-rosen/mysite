@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 
 export default function Main({ sessionManager }) {
   const [domains, setDomains] = useState([]);
-  const [domain, setDomain] = useState("");
+  const [domainID, setDomainID] = useState("");
   const [query, setQuery] = useState("");
   const [prompt, setPrompt] = useState("TBD");
   const [promptDefault, setPromptDefault] = useState("TBD");
@@ -30,7 +30,7 @@ export default function Main({ sessionManager }) {
 
   const NEW_CONVERSATION_ID = "NEW";
 
-  console.log("Main --> userID", sessionManager.user.userID, domain);
+  console.log("Main --> userID", sessionManager.user.userID, domainID);
 
   function resetConversation() {
     setConversationID(NEW_CONVERSATION_ID);
@@ -42,11 +42,11 @@ export default function Main({ sessionManager }) {
     setChunksUsedCount(0);
   }
 
+  // call only from useEffect on domainID change
   async function setActiveDomain(iDomainID) {
     console.log("setActiveDomain -> setting domain to", iDomainID);
     resetConversation();
 
-    setDomain(iDomainID);
     const data = await fetchGet(`domain/${iDomainID}`);
     setPromptCustom(data.initial_prompt_template);
     let newHistory = [];
@@ -78,9 +78,9 @@ export default function Main({ sessionManager }) {
 
   // Domain change useEffect
   useEffect(() => {
-    console.log("useEffect -> domain");
-    if (domain) setActiveDomain(domain);
-  }, [domain, promptDefault]);
+    console.log("useEffect -> domain", domainID);
+    if (domainID) setActiveDomain(domainID);
+  }, [domainID, promptDefault]);
 
   // Session useEffect
   useEffect(() => {
@@ -89,11 +89,11 @@ export default function Main({ sessionManager }) {
       sessionManager.user.userID
     );
 
-    if (!domain && sessionManager.user.domainID)
-      setDomain(sessionManager.user.domainID);
+    if (!domainID && sessionManager.user.domainID)
+      setDomainID(sessionManager.user.domainID);
 
     if (!sessionManager.user.userID) {
-      setDomain("");
+      setDomainID("");
       setQuery("");
       setPrompt("");
       setShowThinking(false);
@@ -117,7 +117,7 @@ export default function Main({ sessionManager }) {
     setChatHistory((h) => [...h, "User: " + query]);
 
     const queryObj = {
-      domain_id: domain,
+      domain_id: domainID,
       query,
       prompt_template: prompt,
       temp,
@@ -156,10 +156,10 @@ export default function Main({ sessionManager }) {
           <div style={{ flexGrow: 1, paddingRight: 10 }}>
             <InputLabel>Domain</InputLabel>
             <Select
-              value={domains.length > 0 ? domain : ""}
+              value={domains.length > 0 ? domainID : ""}
               label="Domain"
               onChange={(e) => {
-                setDomain(e.target.value);
+                setDomainID(e.target.value);
               }}
               style={{ width: "100%" }}
             >

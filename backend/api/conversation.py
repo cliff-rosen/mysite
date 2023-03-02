@@ -38,7 +38,7 @@ def create_prompt(
     return prompt
 
 
-def query_model(prompt, temp):
+def query_model(prompt, stop_token, temp):
     #model = 'gpt-3.5-turbo'
     model = 'text-davinci-003'
     print("prompt size: ", len(prompt), len(prompt.split()) )
@@ -48,7 +48,7 @@ def query_model(prompt, temp):
             prompt=prompt,
             max_tokens=500,
             temperature=temp,
-            stop=STOP_TOKEN
+            stop=stop_token
         )
         return response["choices"][0]["text"].strip(" \n")
     except Exception as e:
@@ -78,10 +78,10 @@ def get_response(
     logger.log('Prompt:\n' + prompt)
 
     print("querying model")
-    #response = query_model(prompt, TEMPERATURE)
-    response = "TBD response"
-
-    #conversation_id = update_conversation_tables(domain_id, query, prompt, temp, response, chunks_with_text, user_id, conversation_id)
+    response = query_model(prompt, user_role_name + ':', TEMPERATURE)
+    
+    conversation_text = prompt + response
+    db.insert_conversation('NA', 1, 30, conversation_text)
 
     return {"status": "SUCCESS", "response": response }
 

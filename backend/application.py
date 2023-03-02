@@ -69,15 +69,15 @@ class Login(Resource):
 class Token(Resource):
     def post(self):
         data = request.get_json()
-        print("body", data)
         username=data["username"]
         password=data["password"]
         print("token", username, password)
         res = token.get_token(username, password)
-        if res['status'] == "ERROR":
-            if res['error'] == 'UNAUTHORIZED':
+        if res['status'] != "SUCCESS":
+            if res['status'] == 'INVALID_LOGIN':
                 return(res, 401)
             else:
+                res['status'] = 'SERVER_ERROR'
                 return(res, 500)
         return res
 

@@ -8,7 +8,7 @@ content_type: application/json
 
 {
     "username": "cliff",
-    "password": "abc123"
+    "password": "cmr"
 }
 
 ###

@@ -33,7 +33,7 @@ def l_to_d(keys, values):
 
 def get_user(user_name):
     query_string = """
-                    SELECT user_id, user_name, password,
+                    SELECT user_id, user_name, password, hashed_password,
                         user_description, domain_id
                     FROM user
                     WHERE user_name = %s
@@ -45,12 +45,13 @@ def get_user(user_name):
         cur.execute(query_string, (user_name,)) 
         rows = cur.fetchall()
     except Exception as e:
-        return {'error': 'DB_CONNECTION_ERROR'}
+        return {'result': 'DB_CONNECTION_ERROR'}
     close_connection(conn)
     if len(rows) == 0:
-        return({"status": "ERROR", "error": "USER_NOT_FOUND"})
+        return({"result": "USER_NOT_FOUND"})
     if len(rows) == 2:
-        return({"status": "ERROR", "error": "TOO_MANY_ROWS"})
+        return({"result": "TOO_MANY_ROWS"})
+    rows[0]['result'] = 'SUCCESS'
     return rows[0]
 
 def validate_user(user_name, password):

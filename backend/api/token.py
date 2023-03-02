@@ -3,6 +3,7 @@ import local_secrets as secrets
 from logger import Logger
 import jwt
 import datetime
+import bcrypt
 
 def make_jwt(user_id, username):
     payload = {
@@ -14,15 +15,26 @@ def make_jwt(user_id, username):
     return token
 
 def get_token(username, password):
+    # get user record
     res = db.get_user(username)
-    print(res)
-    if 'error' in res:
-        res['status'] = "ERROR"
-        if res['error'] == "USER_NOT_FOUND":
-            res['error'] = "UNAUTHORIZED"
-        return res
-    jwt = make_jwt(res["user_id"], res["user_name"])
-    return({"status":"SUCCESS", "token": jwt})
+    print('get_user', res)
+    if res['result'] != 'SUCCESS':
+        if res['result'] == 'USER_NOT_FOUND':
+            print('get_token error - user not found')
+            return {'status': 'INVALID_LOGIN'}
+        else:
+            print('get_token error', res)
+            return {'status', 'db error'}
+    
+    # verify and return
+    hashed_password = res['hashed_password']
+    #hashed_password = bcrypt.hashpw(res['password'].encode('utf-8'), bcrypt.gensalt())
+    if bcrypt.checkpw(password.encode('utf-8'), hashed_password.encode('utf-8')):
+        jwt = make_jwt(res['user_id'], res['user_name'])
+        return({"status":"SUCCESS", "token": jwt})
+    else:
+        print('get_token error - invalid password')
+        return({"status": "INVALID_LOGIN"})
 
 """
     if 'error' in res:

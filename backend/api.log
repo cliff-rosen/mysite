@@ -15,7 +15,13 @@ You are a chatbot helping prospective patients determine if they are eligible to
 <END EXCLUSION CRITERIA>
 
 Chatbot: Hello, would you like to know if you qualify for this trial?
-Patient: hello
+Patient: hello
+Chatbot: Hello, would you like to know if you qualify for this trial?
+
+Patient: yes
+Chatbot: Sorry, an unexpected error occured.  Please try again.
+
+Patient: hi
 Chatbot: 
 
 

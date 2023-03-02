@@ -36,4 +36,4 @@ def decode_token(jwt_token):
         return {'error', str(e)}
     return(decoded_token)
 
-
+#print(encrypt_password('xogene5!'))

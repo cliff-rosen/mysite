@@ -112,10 +112,12 @@ def create_prompt(domain_id, conversation_id, query, initial_prompt, followup_pr
 
 
 def query_model(prompt, temp):
+    #model = 'gpt-3.5-turbo'
+    model = 'text-davinci-003'
     print("prompt size: ", len(prompt), len(prompt.split()) )
     try:
         response = openai.Completion.create(
-            model="text-davinci-003",
+            model=model,
             prompt=prompt,
             max_tokens=500,
             temperature=temp,

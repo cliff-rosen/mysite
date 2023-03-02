@@ -7,11 +7,31 @@ POST http://127.0.0.1:5000/auth/token
 content_type: application/json
 
 {
-    "username": "cliff",
-    "password": "cmr"
+    "username": "poc",
+    "password": "xogene5!"
 }
 
 ###
+POST http://127.0.0.1:5000/conversation
+content_type: application/json
+accept: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywidXNlcm5hbWUiOiJwb2MiLCJleHAiOjE2NzgzNzYyNDN9.NYZ6ivVFcimAZqJ_20Y9B6zkpWC51iEKU1S3cWf9itk
+
+{
+    "promptHeader": "prompt header",
+    "initialMessage": "initial message",
+    "userRoleName": "Patient",
+    "botRoleName": "Nurse",
+    "conversationHistory": [
+        {
+            "userMessage": "message 1", 
+            "userMessageTimeStamp": 1,
+            "response": "response 1",
+            "responseTimeStamp": 2
+        }
+    ],
+    "userMessage": "message 2"
+}
 
 GET http://127.0.0.1:5000/login?username=cliff&password=cmr
 accept: application/json

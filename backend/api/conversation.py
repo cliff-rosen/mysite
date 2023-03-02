@@ -22,6 +22,7 @@ def create_prompt(
         user_message    
     ):
 
+    conversation_history = sorted(conversation_history, key=lambda item: item["userMessageTimeStamp"])
     conversation_history_text = ""
     for entry in conversation_history:
         print("message", user_role_name + ': ' + entry['userMessage'])
@@ -32,7 +33,7 @@ def create_prompt(
     prompt = prompt_header.strip() + '\n\n' \
         + bot_role_name + ': ' + initial_message.strip() + '\n\n' \
         + conversation_history_text.strip() + '\n\n' \
-        + user_role_name + ':' + user_message.strip() + '\n'\
+        + user_role_name + ': ' + user_message.strip() + '\n'\
         + bot_role_name + ': '
 
     return prompt
@@ -79,7 +80,7 @@ def get_response(
 
     print("querying model")
     response = query_model(prompt, user_role_name + ':', TEMPERATURE)
-    
+
     conversation_text = prompt + response
     db.insert_conversation('NA', 1, 30, conversation_text)
 

@@ -25,7 +25,7 @@ class Conversation(Resource):
         user_role_name = data["userRoleName"]
         bot_role_name = data["botRoleName"]
         conversation_history = data['conversationHistory']
-        user_message = data["user_message"]
+        user_message = data["userMessage"]
 
         res = conversation.get_response(
             prompt_header,
@@ -102,13 +102,13 @@ class Answer(Resource):
         res = answer.get_answer(conversation_id, domain_id, query, prompt_template, temp, user_id, )
         return res
 
-api.add_resource(Hello, '/hello')
-api.add_resource(Login, '/login')
 api.add_resource(Token, '/auth/token')
 api.add_resource(Conversation, '/conversation')
 api.add_resource(Domain, '/domain', '/domain/<int:domain_id>')
 api.add_resource(Prompt, '/prompt')
 api.add_resource(Answer, '/answer')
+api.add_resource(Hello, '/hello')
+api.add_resource(Login, '/login')
 
 if __name__ == '__main__':
     application.run(debug=True)

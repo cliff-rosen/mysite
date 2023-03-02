@@ -21,7 +21,19 @@ def create_prompt(
         conversation_history,
         user_message    
     ):
-    prompt = "TBD"
+
+    conversation_history_text = ""
+    for entry in conversation_history:
+        print("message", user_role_name + ': ' + entry['userMessage'])
+        conversation_history_text += \
+            user_role_name + ': ' + entry['userMessage'] + '\n' \
+            + bot_role_name + ': ' + entry['response'] + '\n\n'
+
+    prompt = prompt_header.strip() + '\n\n' \
+        + bot_role_name + ': ' + initial_message.strip() + '\n\n' \
+        + conversation_history_text.strip() + '\n\n' \
+        + user_role_name + ':' + user_message.strip() + '\n'\
+        + bot_role_name + ': '
 
     return prompt
 
@@ -53,8 +65,7 @@ def get_response(
         user_message    
     ):
     logger = Logger('api.log')
-    print(conversation_history)
-    
+
     print("creating prompt")
     prompt = create_prompt(
         prompt_header,
@@ -67,7 +78,8 @@ def get_response(
     logger.log('Prompt:\n' + prompt)
 
     print("querying model")
-    response = query_model(prompt, TEMPERATURE)
+    #response = query_model(prompt, TEMPERATURE)
+    response = "TBD response"
 
     #conversation_id = update_conversation_tables(domain_id, query, prompt, temp, response, chunks_with_text, user_id, conversation_id)
 

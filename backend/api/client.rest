@@ -12,26 +12,35 @@ content_type: application/json
 }
 
 ###
+
 POST http://127.0.0.1:5000/conversation
 content_type: application/json
 accept: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywidXNlcm5hbWUiOiJwb2MiLCJleHAiOjE2NzgzNzYyNDN9.NYZ6ivVFcimAZqJ_20Y9B6zkpWC51iEKU1S3cWf9itk
 
 {
-    "promptHeader": "prompt header",
-    "initialMessage": "initial message",
+    "promptHeader": "Act as an experienced Nurse... ",
+    "initialMessage": "Hello, would you like to know if you qualify for this trial?",
     "userRoleName": "Patient",
     "botRoleName": "Nurse",
     "conversationHistory": [
         {
-            "userMessage": "message 1", 
+            "userMessage": "yes", 
             "userMessageTimeStamp": 1,
-            "response": "response 1",
+            "response": "Are you older than 12 years of ag?",
             "responseTimeStamp": 2
+        },
+        {
+            "userMessage": "yes", 
+            "userMessageTimeStamp": 3,
+            "response": "Are you in good health?",
+            "responseTimeStamp": 4
         }
     ],
-    "userMessage": "message 2"
+    "userMessage": "Yes"
 }
+
+###
 
 GET http://127.0.0.1:5000/login?username=cliff&password=cmr
 accept: application/json

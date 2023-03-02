@@ -119,12 +119,23 @@ def get_document_chunks(conn, domain_id):
     print("Retrieving chunks for domain", domain_id)
     cur = conn.cursor() 
     cur.execute("""
-        SELECT d.doc_id, dc.doc_chunk_id, dc.chunk_embedding, dc.chunk_text
+        SELECT d.doc_id, dc.doc_chunk_id, dc.chunk_embedding, dc.chunk_text, d.domain_id
         FROM document_chunk dc
         JOIN document d ON dc.doc_id = d.doc_id
         WHERE d.domain_id = %s
         """, 
         (domain_id,)) 
+    rows = cur.fetchall()
+    return rows
+
+def get_document_chunks_all(conn):
+    print("Retrieving all chunks")
+    cur = conn.cursor() 
+    cur.execute("""
+        SELECT d.doc_id, dc.doc_chunk_id, dc.chunk_embedding, dc.chunk_text, d.domain_id
+        FROM document_chunk dc
+        JOIN document d ON dc.doc_id = d.doc_id
+        """) 
     rows = cur.fetchall()
     return rows
 

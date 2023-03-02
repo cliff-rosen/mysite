@@ -1,4 +1,5 @@
-GET http://127.0.0.1:5000/hello
+#GET http://127.0.0.1:5000/hello
+GET https://api.trippersalmanac.com/hello
 accept: application/json
 
 ###
@@ -13,7 +14,8 @@ accept: application/json
 }
 
 ###
-POST http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com/auth/token
+#POST http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com/auth/token
+POST https://api.trippersalmanac.com/auth/token
 content-type: application/json
 accept: application/json
 
@@ -25,10 +27,11 @@ accept: application/json
 ###
 
 #POST http://127.0.0.1:5000/conversation
-POST http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com/auth/token
+#POST http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com/conversation
+POST https://api.trippersalmanac.com/conversation
 content-type: application/json
 accept: application/json
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywidXNlcm5hbWUiOiJwb2MiLCJleHAiOjE2NzgzNzYyNDN9.NYZ6ivVFcimAZqJ_20Y9B6zkpWC51iEKU1S3cWf9itk
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywidXNlcm5hbWUiOiJwb2MiLCJleHAiOjE2NzgzODU0NDF9.9PgZpJhFzQIpcbEIMEMODr727srblfg4qPwVc4qaOz0
 
 {
     "promptHeader": "Act as an experienced Nurse... ",

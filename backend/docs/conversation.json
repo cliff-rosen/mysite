@@ -132,3 +132,58 @@ invalid token returns 401 with:
 
 server error returns 500 with:
 {"status": "SERVER_ERROR"}
+
+
+==============================
+POST https://api.trippersalmanac.com/auth/token
+content_type: application/json
+
+{
+    "username": "poc",
+    "password": "xogene5!"
+}
+
+returns:
+
+{
+  "status": "SUCCESS",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywidXNlcm5hbWUiOiJwb2MiLCJleHAiOjE2NzgzODE0MTl9.8gc75vU3JRgWf4dDS_r8dg0k3ldnZDpC9f7d1klKwaM"
+}
+
+==================================
+POST https://api.trippersalmanac.com/conversation
+content_type: application/json
+accept: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywidXNlcm5hbWUiOiJwb2MiLCJleHAiOjE2NzgzNzYyNDN9.NYZ6ivVFcimAZqJ_20Y9B6zkpWC51iEKU1S3cWf9itk
+
+{
+    "promptHeader": "Act as an experienced Nurse... ",
+    "initialMessage": "Hello, would you like to know if you qualify for this trial?",
+    "userRoleName": "Patient",
+    "botRoleName": "Nurse",
+    "conversationHistory": [
+        {
+            "userMessage": "yes", 
+            "userMessageTimeStamp": 1,
+            "response": "Are you older than 12 years of age?",
+            "responseTimeStamp": 2
+        },
+        {
+            "userMessage": "yes", 
+            "userMessageTimeStamp": 3,
+            "response": "Are you in good health?",
+            "responseTimeStamp": 4
+        }
+    ],
+    "userMessage": "Yes"
+}
+
+returns:
+
+{
+  "status": "SUCCESS",
+  "response": "Great, then you qualify for the trial. Please fill out this form and I will review it with you."
+}
+
+
+

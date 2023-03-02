@@ -38,7 +38,8 @@ BE
 a. context token found so
  - context retrieved
  - only last 10 q/a history retrieved
-b. initial prompt plus q/a history plus question and context submitted
+b. question token found so initial prompt plus q/a history plus 
+    question and context submitted
 2. question and answer added to history
 
 Interview

@@ -2,6 +2,7 @@ from flask import Flask, request
 from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS
 from api import login, domain, prompt, answer, conversation, token
+from utils import decode_token
 
 application = Flask(__name__)
 CORS(application)
@@ -9,6 +10,21 @@ api = Api(application)
 
 parser = reqparse.RequestParser()
 parser.add_argument('domain_id', type=int)
+
+def authenticate():
+    auth_header = request.headers.get('Authorization')
+    if auth_header:
+        try:
+            auth_token = auth_header.split(" ")[1]
+            decoded_token = decode_token(auth_token)
+            print(decoded_token)
+            if 'error' in decoded_token:
+                return False
+        except IndexError:
+            return False
+    else:
+        return False
+    return True
 
 """
 @app.route('/hello', methods=['POST'])
@@ -18,6 +34,10 @@ def hello():
 """
 class Conversation(Resource):
     def post(self):
+
+        if not authenticate():
+            return {"status": "INVALID_TOKEN"}
+
         # retrieve inputs
         data = request.get_json()
         prompt_header = data["promptHeader"]

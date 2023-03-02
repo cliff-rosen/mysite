@@ -7,7 +7,8 @@ const prod = {
 
 const dev = {
   url: {
-    API_URL: "http://127.0.0.1:5000",
+    xAPI_URL: "http://127.0.0.1:5000",
+    API_URL: "http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com",
   },
 };
 

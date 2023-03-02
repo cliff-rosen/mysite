@@ -2,16 +2,7 @@ Logger started
 
 ---------------------------------------------------
 Prompt:
-Act as an experienced Nurse...
+Answer the question from the context.  question: <<QUESTION>>Patient: what kind of site is this
+Chatbot: 
 
-Nurse: Hello, would you like to know if you qualify for this trial?
-
-Patient: yes
-Nurse: Are you older than 12 years of ag?
-
-Patient: yes
-Nurse: Are you in good health?
-
-Patient:Yes
-Nurse: 
 

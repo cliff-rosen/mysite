@@ -8,7 +8,6 @@ import conf
 
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
 TEMPERATURE=.4
-STOP_TOKEN = "Patient:"
 
 print("initing openai")
 openai.api_key = OPENAI_API_KEY

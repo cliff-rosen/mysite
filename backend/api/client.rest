@@ -4,7 +4,18 @@ accept: application/json
 ###
 
 POST http://127.0.0.1:5000/auth/token
-content_type: application/json
+content-type: application/json
+accept: application/json
+
+{
+    "username": "poc",
+    "password": "xogene5!"
+}
+
+###
+POST http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com/auth/token
+content-type: application/json
+accept: application/json
 
 {
     "username": "poc",
@@ -13,8 +24,9 @@ content_type: application/json
 
 ###
 
-POST http://127.0.0.1:5000/conversation
-content_type: application/json
+#POST http://127.0.0.1:5000/conversation
+POST http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com/auth/token
+content-type: application/json
 accept: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywidXNlcm5hbWUiOiJwb2MiLCJleHAiOjE2NzgzNzYyNDN9.NYZ6ivVFcimAZqJ_20Y9B6zkpWC51iEKU1S3cWf9itk
 
@@ -42,7 +54,8 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
 
 ###
 
-GET http://127.0.0.1:5000/login?username=cliff&password=cmr
+#GET http://127.0.0.1:5000/login?username=cliff&password=cmr
+GET http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com/login?username=cliff&password=cmr
 accept: application/json
 
 ###
@@ -51,20 +64,23 @@ GET http://127.0.0.1:5000/domain/30
 accept: application/json
 
 ###
-POST http://127.0.0.1:5000/answer
-content_type: application/json
+#POST http://127.0.0.1:5000/answer
+POST http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com/answer
+content-type: application/json
 accept: application/json
 
 {
-    "domain_id": 7,
-    "query": "what kind of site is this",
-    "prompt_text": "Answer the question from the context.  context: <<CONTEXT>> question: <<QUESTION>>",
+    "conversation_id": "NEW",
+    "domain_id": 30,
     "user_id": 1,
+    "query": "what kind of site is this",
+    "prompt_template": "Answer the question from the context.  question: <<QUESTION>>",
     "temp": 0.4
 }
 
 ###
-POST http://127.0.0.1:5000/hello
+#GET http://127.0.0.1:5000/hello
+GET http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com/hello
 content_type: application/x-www-form-urlencoded
 
 data=hey

@@ -114,12 +114,13 @@ class Answer(Resource):
         query = data["query"]
         prompt_template = data["prompt_template"]
         temp = data["temp"]
+        use_new_model = data["use_new_model"]
         print("domain_id", domain_id)
         print("query", query)
         print("temp", temp)
 
         # execute call to get_answer()
-        res = answer.get_answer(conversation_id, domain_id, query, prompt_template, temp, user_id, )
+        res = answer.get_answer(conversation_id, domain_id, query, prompt_template, temp, user_id, use_new_model)
         return res
 
 api.add_resource(Token, '/auth/token')

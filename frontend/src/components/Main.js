@@ -12,6 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import Slider from "@mui/material/Slider";
 import { Link } from "react-router-dom";
+import Checkbox from "@mui/material/Checkbox";
 
 export default function Main({ sessionManager }) {
   const [domainList, setDomainList] = useState([]);
@@ -27,7 +28,7 @@ export default function Main({ sessionManager }) {
   const [chatHistory, setChatHistory] = useState([]);
   const [conversationID, setConversationID] = useState("NEW");
   const [initialMessage, setInitialMessage] = useState("");
-
+  const [useNewModel, setUseNewModel] = useState(false);
   const NEW_CONVERSATION_ID = "NEW";
 
   console.log("Main --> userID", sessionManager.user.userID, domainID);
@@ -123,6 +124,7 @@ export default function Main({ sessionManager }) {
       temp,
       user_id: sessionManager.user.userID,
       conversation_id: conversationID,
+      use_new_model: useNewModel,
     };
 
     try {
@@ -188,16 +190,34 @@ export default function Main({ sessionManager }) {
           promptDefault={promptDefault}
         />
 
-        <Slider
-          aria-label="Temperature"
-          defaultValue={temp}
-          valueLabelDisplay="auto"
-          step={0.1}
-          marks
-          min={0}
-          max={1}
-          onChange={(e) => setTemp(e.target.value)}
-        />
+        <div style={{ display: "flex", paddingTop: 10 }}>
+          <div style={{ flexGrow: 1, paddingRight: 10 }}>
+            <Slider
+              aria-label="Temperature"
+              defaultValue={temp}
+              valueLabelDisplay="auto"
+              step={0.1}
+              marks
+              min={0}
+              max={1}
+              onChange={(e) => setTemp(e.target.value)}
+            />
+          </div>
+          <div
+            style={{
+              flexGrow: 0,
+              alignSelf: "center",
+              paddingLeft: 10,
+            }}
+          >
+            use new model:
+            <Checkbox
+              checked={useNewModel}
+              onChange={(e) => setUseNewModel(e.target.checked)}
+              size="small"
+            />
+          </div>
+        </div>
 
         <History chatHistory={chatHistory} />
 

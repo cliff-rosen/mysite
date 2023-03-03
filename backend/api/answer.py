@@ -145,20 +145,26 @@ def query_model_1(prompt, temp):
         return("Sorry, an unexpected error occured.  Please try again.")
 
 
-def create_prompt_2(domain_id, conversation_id, query, initial_prompt, chunks_with_text):
+def create_prompt_2(conversation_id, initial_message, query, initial_prompt, chunks_with_text):
     messages = []
 
+    # add system message
     context_for_prompt = get_context_for_prompt(chunks_with_text)
     if context_for_prompt:
         initial_prompt += '\n\n' + context_for_prompt
     messages.append({"role": "system", "content": initial_prompt})
 
+    # add initial assistant message
+    messages.append({"role": "assistant", "content": initial_message})
+
+    # add user and assistant messages from history
     if conversation_id != 'NEW':
         rows = db.get_conversation_history(conversation_id)
         for row in rows:
             messages.append({"role": "user", "content": row['query_text']})        
             messages.append({"role": "assistant", "content": row['response_text']})   
 
+    # add new user message
     messages.append({"role": "user", "content": query})
 
     return messages
@@ -172,13 +178,43 @@ def query_model_2(messages):
     return completion.choices[0].message.content
 
 
+def query_1(domain_id, conversation_id, query, initial_prompt, chunks_with_text, temp):
+    global g_prompt_for_logging
+    
+    print("creating prompt")
+    prompt = create_prompt_1(domain_id, conversation_id, query, initial_prompt, chunks_with_text)
+    g_prompt_for_logging = prompt
+    logger.log('Prompt:\n' + g_prompt_for_logging)
+
+    print("querying model")
+    return query_model_1(prompt, temp)
+
+
+def query_2(domain_id, conversation_id, initial_message, query, initial_prompt, chunks_with_text):
+    global g_prompt_for_logging
+
+    print("creating prompt")
+    messages = create_prompt_2(conversation_id, initial_message, query, initial_prompt, chunks_with_text)
+
+    g_prompt_for_logging = ""
+    for message in messages:
+        g_prompt_for_logging += message['role'] + ': ' + message['content'] \
+            + '\n--------------------------------------\n'
+    g_prompt_for_logging += 'assistant: '
+    logger.log('Prompt:\n' + g_prompt_for_logging)
+
+    print("querying model")
+    return query_model_2(messages)
+
+
 def update_conversation_tables(
                 domain_id, 
                 query_text, prompt, query_temp,
                 response_text, chunks, 
                 user_id, conversation_id):
     
-    conversation_text = prompt + response_text + '\n'
+    global g_prompt_for_logging
+    conversation_text = g_prompt_for_logging + response_text + '\n'
 
     if conversation_id == 'NEW':
         conversation_id = make_new_conversation_id()
@@ -191,32 +227,19 @@ def update_conversation_tables(
 
     return conversation_id
 
-def query_1(domain_id, conversation_id, query, initial_prompt, chunks_with_text, temp):
-    print("creating prompt")
-    prompt = create_prompt_1(domain_id, conversation_id, query, initial_prompt, chunks_with_text)
-    logger.log('Prompt:\n' + prompt)
-
-    print("querying model")
-    return query_model_1(prompt, temp)
-
-def query_2(domain_id, conversation_id, query, initial_prompt, chunks_with_text, temp):
-    print("creating prompt")
-    messages = create_prompt_2(domain_id, conversation_id, query, initial_prompt, chunks_with_text)
-    logger.log('Prompt:\n' + str(messages))
-
-    print("querying model")
-    return query_model_2(messages)
-
 
 def get_answer(conversation_id, domain_id, query, prompt, temp, user_id):
     use_context = False
     chunks = {}
     chunks_with_text = {}
-
+    use_context = False
+    initial_message = conf.DEFAULT_INITIAL_MESSAGE
     initial_prompt = prompt #conf.DEFAULT_INITIAL_PROMPT
 
     print("getting domain settings")
     res = db.get_domain(domain_id)
+    if res['initial_conversation_message']:
+        initial_message = res['initial_conversation_message']
     if res['use_context']:
         use_context = True
 
@@ -233,10 +256,12 @@ def get_answer(conversation_id, domain_id, query, prompt, temp, user_id):
         print("getting chunk text from ids")
         chunks_with_text = get_chunk_text_from_ids(chunks)
 
-    response = query_2(domain_id, conversation_id, query, initial_prompt, chunks_with_text, temp)
+    #response = query_1(domain_id, conversation_id, query, initial_prompt, chunks_with_text, temp)
+    response = query_2(domain_id, conversation_id, initial_message, query, initial_prompt, chunks_with_text)
 
     conversation_id = update_conversation_tables(domain_id, query, prompt, temp, response, chunks_with_text, user_id, conversation_id)
 
     return {"conversation_id": conversation_id, "answer": response, "chunks": chunks, "chunks_used_count": len(list(chunks_with_text.keys())) }
 
 
+g_prompt_for_logging = ""

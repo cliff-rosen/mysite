@@ -14,7 +14,7 @@ INDEX_NAME = "main-index-2"
 TEMPERATURE=.4
 TOP_K=10
 MAX_WORD_COUNT = 2000
-STOP_TOKEN = "Patient:"
+STOP_TOKEN = "User:"
 
 pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
 index = pinecone.Index(INDEX_NAME)
@@ -82,7 +82,7 @@ def get_chunk_text_from_ids(chunks):
 
 def get_conversation_history(conversation_id):
     conversation_text = ""
-    user = 'Patient'
+    user = 'User'
     ai = 'Chatbot'
     rows = db.get_conversation_history(conversation_id)
     for row in rows:
@@ -90,7 +90,7 @@ def get_conversation_history(conversation_id):
     return conversation_text
 
 
-def create_prompt(domain_id, conversation_id, query, initial_prompt, followup_prompt_template, chunks_with_text):
+def create_prompt(domain_id, conversation_id, query, initial_prompt, chunks_with_text):
     prompt = ""
     conversation_history = ""
     context = ""
@@ -103,16 +103,24 @@ def create_prompt(domain_id, conversation_id, query, initial_prompt, followup_pr
         chunks_text_arr = [chunks_with_text[str(id)] for id in ids]
         context = "\n\n".join(chunks_text_arr)
 
-    followup_prompt = followup_prompt_template
-    followup_prompt = followup_prompt.replace("<<CONTEXT>>", context)
-    followup_prompt = followup_prompt.replace("<<QUESTION>>", query)
+    prompt = initial_prompt.strip() + '\n\n'
+    if context:
+        prompt += '<START OF CONTEXT>' + context + '<END OF CONTEXT>\n\n'
+    prompt += conversation_history \
+        + 'User: ' + query + '\n' \
+        + 'Chatbot: '
 
-    prompt = initial_prompt + conversation_history + followup_prompt
     return prompt
 
 
 def query_model(prompt, temp):
     #model = 'gpt-3.5-turbo'
+    words_to_avoid = ["13681", "1049", "30932", "6275"]
+    logit_bias = {}
+    for word in words_to_avoid:
+        logit_bias[word] = -100
+    print(logit_bias)
+    
     model = 'text-davinci-003'
     print("prompt size: ", len(prompt), len(prompt.split()) )
     try:
@@ -121,6 +129,7 @@ def query_model(prompt, temp):
             prompt=prompt,
             max_tokens=500,
             temperature=temp,
+            logit_bias = logit_bias,
             stop=STOP_TOKEN
         )
         return response["choices"][0]["text"].strip(" \n")
@@ -134,7 +143,9 @@ def update_conversation_tables(
                 query_text, prompt, query_temp,
                 response_text, chunks, 
                 user_id, conversation_id):
+    
     conversation_text = prompt + response_text + '\n'
+
     if conversation_id == 'NEW':
         conversation_id = make_new_conversation_id()
         db.insert_conversation(conversation_id, user_id, domain_id, conversation_text)
@@ -148,25 +159,23 @@ def update_conversation_tables(
 
 
 def get_answer(conversation_id, domain_id, query, prompt, temp, user_id):
+    use_context = False
     chunks = {}
     chunks_with_text = {}
     logger = Logger('api.log')
 
     initial_prompt = prompt #conf.DEFAULT_INITIAL_PROMPT
-    followup_prompt_template = conf.DEFAULT_FOLLOWUP_PROMPT
 
-    print("getting custom prompts")
+    print("getting domain settings")
     res = db.get_domain(domain_id)
-    #if res['initial_prompt_template']:
-    #    initial_prompt = res['initial_prompt_template']
-    if res['followup_prompt_template']:
-        followup_prompt_template = res['followup_prompt_template']
-
-    print("getting query embedding")
-    query_embedding = ge(query)
+    if res['use_context']:
+        use_context = True
 
     print("handling chunk retrieval")
-    if (followup_prompt_template.find("<<CONTEXT>>") > -1):
+    if use_context:
+        print("getting query embedding")
+        query_embedding = ge(query)
+
         print("getting chunks ids")
         chunks = get_chunks_from_embedding(domain_id, query_embedding)
         if not chunks:
@@ -176,8 +185,7 @@ def get_answer(conversation_id, domain_id, query, prompt, temp, user_id):
         chunks_with_text = get_chunk_text_from_ids(chunks)
 
     print("creating prompt")
-    #prompt = create_prompt(domain_id, prompt_template, conversation_id, query, chunks_with_text)
-    prompt = create_prompt(domain_id, conversation_id, query, initial_prompt, followup_prompt_template, chunks_with_text)
+    prompt = create_prompt(domain_id, conversation_id, query, initial_prompt, chunks_with_text)
     logger.log('Prompt:\n' + prompt)
 
     print("querying model")
@@ -185,6 +193,6 @@ def get_answer(conversation_id, domain_id, query, prompt, temp, user_id):
 
     conversation_id = update_conversation_tables(domain_id, query, prompt, temp, response, chunks_with_text, user_id, conversation_id)
 
-    return {"answer": response, "chunks": chunks, "chunks_used_count": len(list(chunks_with_text.keys())), "conversation_id": conversation_id }
+    return {"conversation_id": conversation_id, "answer": response, "chunks": chunks, "chunks_used_count": len(list(chunks_with_text.keys())) }
 
 

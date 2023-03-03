@@ -1,5 +1,7 @@
-#GET http://127.0.0.1:5000/hello
-GET https://api.trippersalmanac.com/hello
+#http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com/auth/token
+#https://api.trippersalmanac.com/hello
+
+GET http://127.0.0.1:5000/hello
 accept: application/json
 
 ###
@@ -14,8 +16,8 @@ accept: application/json
 }
 
 ###
-#POST http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com/auth/token
-POST https://api.trippersalmanac.com/auth/token
+
+POST http://127.0.0.1:5000
 content-type: application/json
 accept: application/json
 
@@ -26,9 +28,7 @@ accept: application/json
 
 ###
 
-#POST http://127.0.0.1:5000/conversation
-#POST http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com/conversation
-POST https://api.trippersalmanac.com/conversation
+POST http://127.0.0.1:5000/conversation
 content-type: application/json
 accept: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywidXNlcm5hbWUiOiJwb2MiLCJleHAiOjE2NzgzODU0NDF9.9PgZpJhFzQIpcbEIMEMODr727srblfg4qPwVc4qaOz0
@@ -57,8 +57,7 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
 
 ###
 
-#GET http://127.0.0.1:5000/login?username=cliff&password=cmr
-GET http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com/login?username=cliff&password=cmr
+GET http://127.0.0.1:5000/login?username=cliff&password=cmr
 accept: application/json
 
 ###
@@ -67,8 +66,8 @@ GET http://127.0.0.1:5000/domain/30
 accept: application/json
 
 ###
-#POST http://127.0.0.1:5000/answer
-POST http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com/answer
+#POST http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com/answer
+POST http://127.0.0.1:5000/answer
 content-type: application/json
 accept: application/json
 
@@ -76,14 +75,8 @@ accept: application/json
     "conversation_id": "NEW",
     "domain_id": 30,
     "user_id": 1,
-    "query": "what kind of site is this",
-    "prompt_template": "Answer the question from the context.  question: <<QUESTION>>",
+    "query": "what kind of business is this?",
+    "prompt_template": "Answer the question as honestly as you can.",
     "temp": 0.4
 }
 
-###
-#GET http://127.0.0.1:5000/hello
-GET http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com/hello
-content_type: application/x-www-form-urlencoded
-
-data=hey

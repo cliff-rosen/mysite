@@ -197,7 +197,7 @@ def get_domain(domain_id):
     cur.execute("""
                 SELECT  domain_id, domain_desc,
                         initial_prompt_template, followup_prompt_template,
-                        initial_conversation_message
+                        initial_conversation_message, use_context
                 FROM    domain
                 WHERE   domain_id = %s
                 """, (domain_id,))

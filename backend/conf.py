@@ -13,3 +13,19 @@ Context:###\n<<CONTEXT>>\n###\n
 Question: <<QUESTION>>\n
 Answer: 
 """
+
+"""
+prompt built from:
+    initial_prompt
+    conversation_history
+    followup_prompt
+
+initial_prompt comes from domain || default
+        
+conversation_history built from get_conversation_history()
+
+followup_prompt build from followup_prompt_template
+    followup_prompt_template comes from domain || default
+    if contains <<CONTEXT>>, context retrieved from pinecone
+    
+"""

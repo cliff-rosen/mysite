@@ -75,7 +75,7 @@ accept: application/json
     "conversation_id": "NEW",
     "domain_id": 30,
     "user_id": 1,
-    "query": "what kind of business is this?",
+    "query": "hello",
     "prompt_template": "Answer the question as honestly as you can.",
     "temp": 0.4
 }

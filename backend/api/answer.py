@@ -16,9 +16,9 @@ TOP_K=10
 MAX_WORD_COUNT = 2000
 STOP_TOKEN = "User:"
 
+logger = Logger('api.log')
 pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
 index = pinecone.Index(INDEX_NAME)
-
 print("initing openai")
 openai.api_key = OPENAI_API_KEY
 
@@ -89,38 +89,45 @@ def get_conversation_history(conversation_id):
         conversation_text += f"{user}: {row['query_text']}\n{ai}: {row['response_text']}\n\n"
     return conversation_text
 
-
-def create_prompt(domain_id, conversation_id, query, initial_prompt, chunks_with_text):
-    prompt = ""
-    conversation_history = ""
+def get_context_for_prompt(chunks_with_text):
     context = ""
-
-    if conversation_id != 'NEW':
-        conversation_history = get_conversation_history(conversation_id)
 
     if chunks_with_text:
         ids = list(chunks_with_text.keys())
         chunks_text_arr = [chunks_with_text[str(id)] for id in ids]
         context = "\n\n".join(chunks_text_arr)
 
-    prompt = initial_prompt.strip() + '\n\n'
     if context:
-        prompt += '<START OF CONTEXT>' + context + '<END OF CONTEXT>\n\n'
-    prompt += conversation_history \
+        return '<START OF CONTEXT>' + context + '<END OF CONTEXT>\n\n'
+    else:
+        return ''
+
+def create_prompt_1(domain_id, conversation_id, query, initial_prompt, chunks_with_text):
+    prompt = ""
+    conversation_history = ""
+    context_for_prompt = ""
+
+    if conversation_id != 'NEW':
+        conversation_history = get_conversation_history(conversation_id)
+
+    context_for_prompt = get_context_for_prompt(chunks_with_text)
+
+    prompt = initial_prompt.strip() + '\n\n'
+    prompt += context_for_prompt \
+        + conversation_history \
         + 'User: ' + query + '\n' \
         + 'Chatbot: '
 
     return prompt
 
 
-def query_model(prompt, temp):
+def query_model_1(prompt, temp):
     #model = 'gpt-3.5-turbo'
     words_to_avoid = ["13681", "1049", "30932", "6275"]
     logit_bias = {}
     for word in words_to_avoid:
         logit_bias[word] = -100
-    print(logit_bias)
-    
+
     model = 'text-davinci-003'
     print("prompt size: ", len(prompt), len(prompt.split()) )
     try:
@@ -129,13 +136,40 @@ def query_model(prompt, temp):
             prompt=prompt,
             max_tokens=500,
             temperature=temp,
-            logit_bias = logit_bias,
+            logit_bias = {13681: -90},
             stop=STOP_TOKEN
         )
         return response["choices"][0]["text"].strip(" \n")
     except Exception as e:
         print("query_model ERROR: " + str(e))
         return("Sorry, an unexpected error occured.  Please try again.")
+
+
+def create_prompt_2(domain_id, conversation_id, query, initial_prompt, chunks_with_text):
+    messages = []
+
+    context_for_prompt = get_context_for_prompt(chunks_with_text)
+    if context_for_prompt:
+        initial_prompt += '\n\n' + context_for_prompt
+    messages.append({"role": "system", "content": initial_prompt})
+
+    if conversation_id != 'NEW':
+        rows = db.get_conversation_history(conversation_id)
+        for row in rows:
+            messages.append({"role": "user", "content": row['query_text']})        
+            messages.append({"role": "assistant", "content": row['response_text']})   
+
+    messages.append({"role": "user", "content": query})
+
+    return messages
+
+def query_model_2(messages):
+    completion = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=messages
+        )
+
+    return completion.choices[0].message.content
 
 
 def update_conversation_tables(
@@ -157,12 +191,27 @@ def update_conversation_tables(
 
     return conversation_id
 
+def query_1(domain_id, conversation_id, query, initial_prompt, chunks_with_text, temp):
+    print("creating prompt")
+    prompt = create_prompt_1(domain_id, conversation_id, query, initial_prompt, chunks_with_text)
+    logger.log('Prompt:\n' + prompt)
+
+    print("querying model")
+    return query_model_1(prompt, temp)
+
+def query_2(domain_id, conversation_id, query, initial_prompt, chunks_with_text, temp):
+    print("creating prompt")
+    messages = create_prompt_2(domain_id, conversation_id, query, initial_prompt, chunks_with_text)
+    logger.log('Prompt:\n' + str(messages))
+
+    print("querying model")
+    return query_model_2(messages)
+
 
 def get_answer(conversation_id, domain_id, query, prompt, temp, user_id):
     use_context = False
     chunks = {}
     chunks_with_text = {}
-    logger = Logger('api.log')
 
     initial_prompt = prompt #conf.DEFAULT_INITIAL_PROMPT
 
@@ -184,12 +233,7 @@ def get_answer(conversation_id, domain_id, query, prompt, temp, user_id):
         print("getting chunk text from ids")
         chunks_with_text = get_chunk_text_from_ids(chunks)
 
-    print("creating prompt")
-    prompt = create_prompt(domain_id, conversation_id, query, initial_prompt, chunks_with_text)
-    logger.log('Prompt:\n' + prompt)
-
-    print("querying model")
-    response = query_model(prompt, temp)
+    response = query_2(domain_id, conversation_id, query, initial_prompt, chunks_with_text, temp)
 
     conversation_id = update_conversation_tables(domain_id, query, prompt, temp, response, chunks_with_text, user_id, conversation_id)
 

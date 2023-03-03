@@ -72,11 +72,11 @@ content-type: application/json
 accept: application/json
 
 {
-    "conversation_id": "NEW",
-    "use_new_model": false,
+    "conversation_id": "EoVZTIipqfxuHONxLWyc",
+    "use_new_model": true,
     "domain_id": 1,
     "user_id": 1,
-    "query": "what business is this",
+    "query": "option 1",
     "prompt_template": "Answer the question as honestly as you can.",
     "temp": 0.4
 }

@@ -31,7 +31,7 @@ def create_prompt(
 
     prompt = prompt_header.strip() + '\n\n' \
         + bot_role_name + ': ' + initial_message.strip() + '\n\n' \
-        + conversation_history_text.strip() + '\n\n' \
+        + conversation_history_text.strip() \
         + user_role_name + ': ' + user_message.strip() + '\n'\
         + bot_role_name + ': '
 

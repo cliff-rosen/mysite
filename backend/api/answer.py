@@ -98,7 +98,7 @@ def get_context_for_prompt(chunks_with_text):
         context = "\n\n".join(chunks_text_arr)
 
     if context:
-        return '<START OF CONTEXT>' + context + '<END OF CONTEXT>\n\n'
+        return '<START OF CONTEXT>' + context + '<END OF CONTEXT>'
     else:
         return ''
 
@@ -117,9 +117,9 @@ def create_prompt_1(conversation_history, initial_message,
     conversation_history_text = get_conversation_history_text(conversation_history)
 
     prompt = initial_prompt.strip() + '\n\n' \
+        + context_for_prompt + '\n\n' \
         + bot_role + initial_message + '\n\n' \
-        + context_for_prompt \
-        + conversation_history_text \
+        + conversation_history_text  \
         + user_role + query + '\n' \
         + bot_role
 

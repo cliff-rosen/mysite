@@ -98,7 +98,7 @@ def get_context_for_prompt(chunks_with_text):
         context = "\n\n".join(chunks_text_arr)
 
     if context:
-        return '<START OF CONTEXT>' + context + '<END OF CONTEXT>'
+        return '<START OF CONTEXT>\n' + context + '\n<END OF CONTEXT>'
     else:
         return ''
 
@@ -210,10 +210,14 @@ def update_conversation_tables(domain_id, query,
                 initial_prompt, initial_message,
                 query_temp, conversation_id, conversation_history,
                 response_text, chunks_with_text, chunks,
-                user_id):
+                user_id, use_new_model):
     
     prompt = create_prompt_1(conversation_history, initial_message,
                              query, initial_prompt, chunks_with_text)
+    if use_new_model:
+        prompt = 'NEW MODEL\n' + prompt
+    else:
+        prompt = 'OLD MODEL\n' + prompt
 
     conversation_text = prompt + response_text + '\n'
 
@@ -267,9 +271,11 @@ def get_answer(conversation_id, domain_id, query,
         chunks_with_text = get_chunk_text_from_ids(chunks)
 
     if use_new_model:
+        print("answering with new model")
         response = query_2(conversation_history, initial_message, 
                        query, initial_prompt, chunks_with_text)
     else:
+        print("answering with old model")
         response = query_1(conversation_history, initial_message,
                            query, initial_prompt, chunks_with_text, temp)
 
@@ -278,7 +284,7 @@ def get_answer(conversation_id, domain_id, query,
                                                 initial_prompt, initial_message,
                                                 temp, conversation_id, conversation_history,
                                                 response, chunks_with_text, chunks,
-                                                user_id)
+                                                user_id, use_new_model)
 
     return {"conversation_id": conversation_id, "answer": response, "chunks": chunks, "chunks_used_count": len(list(chunks_with_text.keys())) }
 

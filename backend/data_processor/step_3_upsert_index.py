@@ -42,7 +42,8 @@ def run():
     else:
         print("Processing domain", g_domain_id)
         domain_recs = [{'domain_id': g_domain_id}]
-
+    #domain_recs = [{'domain_id': x} for x in [13, 18, 12, 25] ]
+    
     for domain_rec in domain_recs:
         domain_id = domain_rec['domain_id']
         print("--------------------------------------------")

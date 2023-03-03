@@ -107,7 +107,7 @@ class Answer(Resource):
     def post(self):
         # retrieve inputs
         data = request.get_json()
-        print("body", data)
+        #print("body", data)
         conversation_id=data["conversation_id"]
         domain_id = data["domain_id"]
         user_id = data["user_id"]

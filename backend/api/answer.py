@@ -10,7 +10,7 @@ import conf
 PINECONE_API_KEY = secrets.PINECONE_API_KEY
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
 MODEL = "text-embedding-ada-002"
-INDEX_NAME = "main-index"
+INDEX_NAME = "main-index-2"
 TEMPERATURE=.4
 TOP_K=10
 MAX_WORD_COUNT = 2000
@@ -170,6 +170,7 @@ def get_answer(conversation_id, domain_id, query, prompt, temp, user_id):
         print("getting chunks ids")
         chunks = get_chunks_from_embedding(domain_id, query_embedding)
         if not chunks:
+            # FIX ME: reply doesn't include converation_id and conv tables not updated
             return {"answer": "No data found for query", "chunks": {}, "chunks_used_count": 0 }
         print("getting chunk text from ids")
         chunks_with_text = get_chunk_text_from_ids(chunks)

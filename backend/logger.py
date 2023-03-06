@@ -36,4 +36,5 @@ class Logger:
 
 
     def debug(self, msg):
+        print('DEBUG: ' + msg)
         self.write_log('DEBUG', msg)

@@ -4,18 +4,14 @@ from flask_cors import CORS
 from api import login, domain, prompt, answer, conversation, token
 from utils import decode_token
 from logger import Logger
+from application_init import application
 
-application = Flask(__name__)
-CORS(application)
-api = Api(application)
+logger = application.logger
 
 parser = reqparse.RequestParser()
 parser.add_argument('domain_id', type=int)
 
-logger = Logger('api.log')
-application.logger = logger
-application.logger.debug('Initializing application...')
-application.extensions['logger'] = logger
+#application.extensions['logger'] = logger
 
 def authenticate():
     auth_header = request.headers.get('Authorization')
@@ -40,6 +36,7 @@ def hello():
 """
 class Conversation(Resource):
     def post(self):
+        logger.debug('Conversation called')
 
         if not authenticate():
             return {"status": "INVALID_TOKEN"}
@@ -129,6 +126,7 @@ class Answer(Resource):
         res = answer.get_answer(conversation_id, domain_id, query, prompt_template, temp, user_id, use_new_model)
         return res
 
+api = Api(application)
 api.add_resource(Token, '/auth/token')
 api.add_resource(Conversation, '/conversation')
 api.add_resource(Domain, '/domain', '/domain/<int:domain_id>')

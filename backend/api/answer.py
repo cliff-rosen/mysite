@@ -1,4 +1,3 @@
-from flask import Flask
 import pinecone
 import openai
 from openai.embeddings_utils import get_embedding
@@ -7,8 +6,6 @@ import local_secrets as secrets
 from utils import make_new_conversation_id
 import conf
 
-application = Flask(__name__)
-logger = application.logger
 
 PINECONE_API_KEY = secrets.PINECONE_API_KEY
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
@@ -21,7 +18,7 @@ STOP_TOKEN = "User:"
 
 pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
 index = pinecone.Index(INDEX_NAME)
-print("initing openai")
+print("answer initing openai")
 openai.api_key = OPENAI_API_KEY
 
 def ge(text):

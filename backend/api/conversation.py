@@ -1,19 +1,17 @@
-from flask import Flask
+from application_init import get_application
 import openai
 from openai.embeddings_utils import get_embedding
 from db import local_db as db
 import local_secrets as secrets
-from logger import Logger
 from utils import make_new_conversation_id
-import conf
 
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
 TEMPERATURE=.4
 
-application = Flask(__name__)
+application = get_application()
 logger = application.logger
 
-print("initing openai")
+print("conversation initing openai")
 openai.api_key = OPENAI_API_KEY
 
 def create_prompt(
@@ -63,12 +61,11 @@ def query_model(prompt, stop_token, temp):
 def insert_conversation(conversation_id, user_id, domain_id, conversation_text):
     conversation_id = 'NA'
     try:
-        logger.debug('insert_converation')
         db.insert_conversation(conversation_id, 1, 30, conversation_text)
         #db.insert_conversation(1, 30, conversation_text)
     except Exception as e:
         print('insert_conversation error: ', e)
-        logger.debug('insert_converation error: ')
+        logger.debug('insert_conversation error: ' + str(e))
 
 
 def get_response(

@@ -1,3 +1,4 @@
+from flask import Flask
 import openai
 from openai.embeddings_utils import get_embedding
 from db import local_db as db
@@ -8,6 +9,9 @@ import conf
 
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
 TEMPERATURE=.4
+
+application = Flask(__name__)
+logger = application.logger
 
 print("initing openai")
 openai.api_key = OPENAI_API_KEY
@@ -56,6 +60,17 @@ def query_model(prompt, stop_token, temp):
         return("Sorry, an unexpected error occured.  Please try again.")
 
 
+def insert_conversation(conversation_id, user_id, domain_id, conversation_text):
+    conversation_id = 'NA'
+    try:
+        logger.debug('insert_converation')
+        db.insert_conversation(conversation_id, 1, 30, conversation_text)
+        #db.insert_conversation(1, 30, conversation_text)
+    except Exception as e:
+        print('insert_conversation error: ', e)
+        logger.debug('insert_converation error: ')
+
+
 def get_response(
         prompt_header,
         initial_message,
@@ -64,7 +79,7 @@ def get_response(
         conversation_history,
         user_message    
     ):
-    logger = Logger('api.log')
+    #logger = Logger('api.log')
 
     print("creating prompt")
     prompt = create_prompt(
@@ -75,13 +90,13 @@ def get_response(
         conversation_history,
         user_message    
     )
-    logger.log('Prompt:\n' + prompt)
+    #logger.log('Prompt:\n' + prompt)
 
     print("querying model")
     response = query_model(prompt, user_role_name + ':', TEMPERATURE)
 
     conversation_text = prompt + response
-    db.insert_conversation('NA', 1, 30, conversation_text)
+    insert_conversation('NA', 1, 30, conversation_text)
 
     return {"status": "SUCCESS", "response": response }
 

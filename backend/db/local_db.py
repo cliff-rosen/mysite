@@ -1,9 +1,12 @@
-#import mariadb
+from flask import Flask
 import pymysql.cursors
 import json
 import local_secrets as secrets
 
 DB_SECRETS = secrets.DB_SECRETS
+
+application = Flask(__name__)
+logger = application.logger
 
 """
 domain: domain_id, domain_desc

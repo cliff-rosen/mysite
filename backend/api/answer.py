@@ -1,11 +1,14 @@
+from flask import Flask
 import pinecone
 import openai
 from openai.embeddings_utils import get_embedding
 from db import local_db as db
 import local_secrets as secrets
-from logger import Logger
 from utils import make_new_conversation_id
 import conf
+
+application = Flask(__name__)
+logger = application.logger
 
 PINECONE_API_KEY = secrets.PINECONE_API_KEY
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
@@ -16,7 +19,6 @@ TOP_K=10
 MAX_WORD_COUNT = 2000
 STOP_TOKEN = "User:"
 
-logger = Logger('api.log')
 pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
 index = pinecone.Index(INDEX_NAME)
 print("initing openai")

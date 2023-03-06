@@ -3,6 +3,7 @@ from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS
 from api import login, domain, prompt, answer, conversation, token
 from utils import decode_token
+from logger import Logger
 
 application = Flask(__name__)
 CORS(application)
@@ -11,13 +12,18 @@ api = Api(application)
 parser = reqparse.RequestParser()
 parser.add_argument('domain_id', type=int)
 
+logger = Logger('api.log')
+application.logger = logger
+application.logger.debug('Initializing application...')
+application.extensions['logger'] = logger
+
 def authenticate():
     auth_header = request.headers.get('Authorization')
     if auth_header:
         try:
             auth_token = auth_header.split(" ")[1]
             decoded_token = decode_token(auth_token)
-            print(decoded_token)
+            #print(decoded_token)
             if 'error' in decoded_token:
                 return False
         except IndexError:

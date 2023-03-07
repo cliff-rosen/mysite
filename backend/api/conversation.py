@@ -1,15 +1,15 @@
-from application_init import get_application
+from flask import current_app
 import openai
 from openai.embeddings_utils import get_embedding
+import logging
 from db import local_db as db
 import local_secrets as secrets
 from utils import make_new_conversation_id
 
+logger = logging.getLogger()
+
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
 TEMPERATURE=.4
-
-application = get_application()
-logger = application.logger
 
 print("conversation initing openai")
 openai.api_key = OPENAI_API_KEY
@@ -55,6 +55,7 @@ def query_model(prompt, stop_token, temp):
         return response["choices"][0]["text"].strip(" \n")
     except Exception as e:
         print("query_model ERROR: " + str(e))
+        logger.error('conversation.query_model: ' + str(e))
         return("Sorry, an unexpected error occured.  Please try again.")
 
 
@@ -65,7 +66,7 @@ def insert_conversation(conversation_id, user_id, domain_id, conversation_text):
         #db.insert_conversation(1, 30, conversation_text)
     except Exception as e:
         print('insert_conversation error: ', e)
-        logger.debug('insert_conversation error: ' + str(e))
+        logger.error('insert_conversation error: ' + str(e))
 
 
 def get_response(
@@ -76,7 +77,7 @@ def get_response(
         conversation_history,
         user_message    
     ):
-    #logger = Logger('api.log')
+    logger.info('conversation.get_response')
 
     print("creating prompt")
     prompt = create_prompt(
@@ -87,7 +88,7 @@ def get_response(
         conversation_history,
         user_message    
     )
-    #logger.log('Prompt:\n' + prompt)
+    logger.debug('Prompt:\n' + prompt)
 
     print("querying model")
     response = query_model(prompt, user_role_name + ':', TEMPERATURE)

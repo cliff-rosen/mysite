@@ -34,8 +34,8 @@ accept: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywidXNlcm5hbWUiOiJwb2MiLCJleHAiOjE2NzgzODU0NDF9.9PgZpJhFzQIpcbEIMEMODr727srblfg4qPwVc4qaOz0
 
 {
-    "promptHeader": "Act as an experienced Nurse... ",
-    "initialMessage": "Hello, would you like to know if you qualify for this trial?",
+    "promptHeader": "Please answer this question honestly",
+    "initialMessage": "≥",
     "userRoleName": "Patient",
     "botRoleName": "Nurse",
     "conversationHistory": [
@@ -72,11 +72,11 @@ content-type: application/json
 accept: application/json
 
 {
-    "conversation_id": "EoVZTIipqfxuHONxLWyc",
-    "use_new_model": true,
+    "conversation_id": "NEW",
+    "use_new_model": false,
     "domain_id": 1,
     "user_id": 1,
-    "query": "option 1",
+    "query": "how can i used large language models for my business",
     "prompt_template": "Answer the question as honestly as you can.",
     "temp": 0.4
 }

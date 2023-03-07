@@ -1,12 +1,11 @@
-from flask import Flask
 import pymysql.cursors
 import json
+import logging
 import local_secrets as secrets
 
 DB_SECRETS = secrets.DB_SECRETS
 
-application = Flask(__name__)
-logger = application.logger
+logger = logging.getLogger()
 
 """
 domain: domain_id, domain_desc
@@ -236,6 +235,7 @@ def insert_conversation(
         print("***************************")
         print("DB error in insert_conversation")
         print(e)
+        logger.error("db.insert_conversation:" + str(e))
     close_connection(conn)
 
 

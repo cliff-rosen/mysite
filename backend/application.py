@@ -3,15 +3,19 @@ from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS
 from api import login, domain, prompt, answer, conversation, token
 from utils import decode_token
-from logger import Logger
-from application_init import application
+import logging
 
-logger = application.logger
+LOG_LEVEL = logging.INFO
+logging.basicConfig(format='%(asctime)s  %(levelname)s - %(message)s', level=LOG_LEVEL, filename='app.log')
+logger = logging.getLogger()
+
+application = Flask(__name__)
+CORS(application)
+
+logger.info('Initializing application...')
 
 parser = reqparse.RequestParser()
 parser.add_argument('domain_id', type=int)
-
-#application.extensions['logger'] = logger
 
 def authenticate():
     auth_header = request.headers.get('Authorization')
@@ -39,6 +43,7 @@ class Conversation(Resource):
         logger.debug('Conversation called')
 
         if not authenticate():
+            logger.warning('Authentication failure')
             return {"status": "INVALID_TOKEN"}
 
         # retrieve inputs

@@ -23,19 +23,23 @@ def create_prompt(
         user_message    
     ):
 
-    conversation_history = sorted(conversation_history, key=lambda item: item["userMessageTimeStamp"])
-    conversation_history_text = ""
-    for entry in conversation_history:
-        print("message", user_role_name + ': ' + entry['userMessage'])
-        conversation_history_text += \
-            user_role_name + ': ' + entry['userMessage'] + '\n' \
-            + bot_role_name + ': ' + entry['response'] + '\n\n'
+    try:
+        conversation_history = sorted(conversation_history, key=lambda item: item["userMessageTimeStamp"])
+        conversation_history_text = ""
+        for entry in conversation_history:
+            print("message", user_role_name + ': ' + entry['userMessage'])
+            conversation_history_text += \
+                user_role_name + ': ' + entry['userMessage'] + '\n' \
+                + bot_role_name + ': ' + entry['response'] + '\n\n'
 
-    prompt = prompt_header.strip() + '\n\n' \
-        + bot_role_name + ': ' + initial_message.strip() + '\n\n' \
-        + conversation_history_text.strip() \
-        + user_role_name + ': ' + user_message.strip() + '\n'\
-        + bot_role_name + ': '
+        prompt = prompt_header.strip() + '\n\n' \
+            + bot_role_name + ': ' + initial_message.strip() + '\n\n' \
+            + conversation_history_text.strip() \
+            + user_role_name + ': ' + user_message.strip() + '\n'\
+            + bot_role_name + ': '
+    except Exception as e:
+        logger.error('create_prompt: ', e.str)
+        raise(e)
 
     return prompt
 
@@ -54,7 +58,6 @@ def query_model(prompt, stop_token, temp):
         )
         return response["choices"][0]["text"].strip(" \n")
     except Exception as e:
-        print("query_model ERROR: " + str(e))
         logger.error('conversation.query_model: ' + str(e))
         return("Sorry, an unexpected error occured.  Please try again.")
 
@@ -63,7 +66,6 @@ def insert_conversation(conversation_id, user_id, domain_id, conversation_text):
     conversation_id = 'NA'
     try:
         db.insert_conversation(conversation_id, 1, 30, conversation_text)
-        #db.insert_conversation(1, 30, conversation_text)
     except Exception as e:
         print('insert_conversation error: ', e)
         logger.error('insert_conversation error: ' + str(e))

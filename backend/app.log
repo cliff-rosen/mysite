@@ -218,3 +218,84 @@ Nurse:
 2023-03-07 08:28:01,146  INFO - 127.0.0.1 - - [07/Mar/2023 08:28:01] "POST /conversation HTTP/1.1" 200 -
 2023-03-07 08:28:41,539  INFO - conversation.get_response
 2023-03-07 08:28:42,818  INFO - 127.0.0.1 - - [07/Mar/2023 08:28:42] "POST /conversation HTTP/1.1" 200 -
+2023-03-07 08:35:23,139  INFO -  * Detected change in 'c:\\Code\\_dag_poc\\backend\\api\\conversation.py', reloading
+2023-03-07 08:35:23,476 -  * Restarting with stat
+2023-03-07 08:35:26,943  INFO - Initializing application...
+2023-03-07 08:35:26,954  WARNING -  * Debugger is active!
+2023-03-07 08:35:26,960  INFO -  * Debugger PIN: 901-032-737
+2023-03-07 08:36:09,522  INFO - 127.0.0.1 - - [07/Mar/2023 08:36:09] "[35m[1mPOST /conversation HTTP/1.1[0m" 500 -
+2023-03-07 08:37:14,284  INFO -  * Detected change in 'c:\\Code\\_dag_poc\\backend\\api\\conversation.py', reloading
+2023-03-07 08:37:14,638 -  * Restarting with stat
+2023-03-07 08:37:17,931  INFO - Initializing application...
+2023-03-07 08:37:17,943  WARNING -  * Debugger is active!
+2023-03-07 08:37:17,950  INFO -  * Debugger PIN: 901-032-737
+2023-03-07 08:37:25,070  INFO -  * Detected change in 'c:\\Code\\_dag_poc\\backend\\api\\conversation.py', reloading
+2023-03-07 08:37:25,442 -  * Restarting with stat
+2023-03-07 08:37:28,826  INFO - Initializing application...
+2023-03-07 08:37:28,838  WARNING -  * Debugger is active!
+2023-03-07 08:37:28,846  INFO -  * Debugger PIN: 901-032-737
+2023-03-07 08:37:28,899  INFO - 127.0.0.1 - - [07/Mar/2023 08:37:28] "[35m[1mPOST /conversation HTTP/1.1[0m" 500 -
+2023-03-07 08:40:20,087  INFO -  * Detected change in 'c:\\Code\\_dag_poc\\backend\\application.py', reloading
+2023-03-07 08:40:20,439 -  * Restarting with stat
+2023-03-07 08:40:23,745  INFO - Initializing application...
+2023-03-07 08:40:23,757  WARNING -  * Debugger is active!
+2023-03-07 08:40:23,764  INFO -  * Debugger PIN: 901-032-737
+2023-03-07 08:40:30,358  WARNING - Error parsing body
+2023-03-07 08:40:30,359  INFO - 127.0.0.1 - - [07/Mar/2023 08:40:30] "POST /conversation HTTP/1.1" 200 -
+2023-03-07 08:41:54,185  WARNING - Authentication failure
+2023-03-07 08:41:54,188  INFO - 127.0.0.1 - - [07/Mar/2023 08:41:54] "POST /conversation HTTP/1.1" 200 -
+2023-03-07 08:44:40,362  INFO -  * Detected change in 'c:\\Code\\_dag_poc\\backend\\application.py', reloading
+2023-03-07 08:44:40,699 -  * Restarting with stat
+2023-03-07 08:44:45,557  INFO - Initializing application...
+2023-03-07 08:44:45,566  WARNING -  * Debugger is active!
+2023-03-07 08:44:45,573  INFO -  * Debugger PIN: 901-032-737
+2023-03-07 08:44:47,815  WARNING - Error parsing body
+2023-03-07 08:44:47,829  INFO - 127.0.0.1 - - [07/Mar/2023 08:44:47] "[35m[1mPOST /conversation HTTP/1.1[0m" 500 -
+2023-03-07 08:45:00,791  INFO -  * Detected change in 'c:\\Code\\_dag_poc\\backend\\application.py', reloading
+2023-03-07 08:45:01,146 -  * Restarting with stat
+2023-03-07 08:45:04,406  INFO - Initializing application...
+2023-03-07 08:45:04,416  WARNING -  * Debugger is active!
+2023-03-07 08:45:04,423  INFO -  * Debugger PIN: 901-032-737
+2023-03-07 08:45:06,676  WARNING - Error parsing body
+2023-03-07 08:45:06,678  INFO - 127.0.0.1 - - [07/Mar/2023 08:45:06] "[31m[1mPOST /conversation HTTP/1.1[0m" 400 -
+2023-03-07 08:47:23,705  INFO -  * Detected change in 'c:\\Code\\_dag_poc\\backend\\application.py', reloading
+2023-03-07 08:47:24,344 -  * Restarting with stat
+2023-03-07 08:47:28,183  INFO - Initializing application...
+2023-03-07 08:47:28,195  WARNING -  * Debugger is active!
+2023-03-07 08:47:28,202  INFO -  * Debugger PIN: 901-032-737
+2023-03-07 08:47:58,606  INFO -  * Detected change in 'c:\\Code\\_dag_poc\\backend\\application.py', reloading
+2023-03-07 08:47:58,955 -  * Restarting with stat
+2023-03-07 08:48:02,322  INFO - Initializing application...
+2023-03-07 08:48:02,332  WARNING -  * Debugger is active!
+2023-03-07 08:48:02,339  INFO -  * Debugger PIN: 901-032-737
+2023-03-07 08:48:21,269  INFO - conversation.get_response
+2023-03-07 08:48:27,101  INFO - 127.0.0.1 - - [07/Mar/2023 08:48:27] "POST /conversation HTTP/1.1" 200 -
+2023-03-07 08:48:47,697  INFO - conversation.get_response
+2023-03-07 08:48:49,557  INFO - 127.0.0.1 - - [07/Mar/2023 08:48:49] "POST /conversation HTTP/1.1" 200 -
+2023-03-07 08:48:55,383  WARNING - Authentication failure
+2023-03-07 08:48:55,391  INFO - 127.0.0.1 - - [07/Mar/2023 08:48:55] "[35m[1mPOST /conversation HTTP/1.1[0m" 500 -
+2023-03-07 08:49:07,191  INFO -  * Detected change in 'c:\\Code\\_dag_poc\\backend\\application.py', reloading
+2023-03-07 08:49:07,535 -  * Restarting with stat
+2023-03-07 08:49:10,810  INFO - Initializing application...
+2023-03-07 08:49:10,819  WARNING -  * Debugger is active!
+2023-03-07 08:49:10,826  INFO -  * Debugger PIN: 901-032-737
+2023-03-07 08:49:10,846  WARNING - Authentication failure
+2023-03-07 08:49:10,847  INFO - 127.0.0.1 - - [07/Mar/2023 08:49:10] "[33mPOST /conversation HTTP/1.1[0m" 404 -
+2023-03-07 08:50:24,818  INFO -  * Detected change in 'c:\\Code\\_dag_poc\\backend\\application.py', reloading
+2023-03-07 08:50:25,204 -  * Restarting with stat
+2023-03-07 08:50:28,479  INFO - Initializing application...
+2023-03-07 08:50:28,490  WARNING -  * Debugger is active!
+2023-03-07 08:50:28,497  INFO -  * Debugger PIN: 901-032-737
+2023-03-07 08:50:28,515  WARNING - Authentication failure
+2023-03-07 08:50:28,516  INFO - 127.0.0.1 - - [07/Mar/2023 08:50:28] "[31m[1mPOST /conversation HTTP/1.1[0m" 401 -
+2023-03-07 08:51:02,942  INFO -  * Detected change in 'c:\\Code\\_dag_poc\\backend\\application.py', reloading
+2023-03-07 08:51:03,303 -  * Restarting with stat
+2023-03-07 08:51:06,738  INFO - Initializing application...
+2023-03-07 08:51:06,749  WARNING -  * Debugger is active!
+2023-03-07 08:51:06,756  INFO -  * Debugger PIN: 901-032-737
+2023-03-07 08:51:06,776  WARNING - Conversation - Authentication failure
+2023-03-07 08:51:06,777  INFO - 127.0.0.1 - - [07/Mar/2023 08:51:06] "[31m[1mPOST /conversation HTTP/1.1[0m" 401 -
+2023-03-07 08:51:18,976  INFO - conversation.get_response
+2023-03-07 08:51:20,770  INFO - 127.0.0.1 - - [07/Mar/2023 08:51:20] "POST /conversation HTTP/1.1" 200 -
+2023-03-07 08:51:25,705  INFO - conversation.get_response
+2023-03-07 08:51:26,560  INFO - 127.0.0.1 - - [07/Mar/2023 08:51:26] "POST /conversation HTTP/1.1" 200 -

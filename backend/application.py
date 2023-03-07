@@ -1,5 +1,5 @@
 from flask import Flask, request
-from flask_restful import Resource, Api, reqparse
+from flask_restful import Resource, Api, reqparse, abort
 from flask_cors import CORS
 from api import login, domain, prompt, answer, conversation, token
 from utils import decode_token
@@ -43,17 +43,22 @@ class Conversation(Resource):
         logger.debug('Conversation called')
 
         if not authenticate():
-            logger.warning('Authentication failure')
-            return {"status": "INVALID_TOKEN"}
+            logger.warning('Conversation - Authentication failure')
+            abort(401)
+            #return {"status": "INVALID_TOKEN"}
 
         # retrieve inputs
-        data = request.get_json()
-        prompt_header = data["promptHeader"]
-        initial_message = data["initialMessage"]
-        user_role_name = data["userRoleName"]
-        bot_role_name = data["botRoleName"]
-        conversation_history = data['conversationHistory']
-        user_message = data["userMessage"]
+        try:
+            data = request.get_json()
+            prompt_header = data["promptHeader"]
+            initial_message = data["initialMessage"]
+            user_role_name = data["userRoleName"]
+            bot_role_name = data["botRoleName"]
+            conversation_history = data['conversationHistory']
+            user_message = data["userMessage"]
+        except Exception as e:
+            logger.warning('Conversation - Error parsing body')
+            abort(400)
 
         res = conversation.get_response(
             prompt_header,

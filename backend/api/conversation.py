@@ -2,6 +2,7 @@ from flask import current_app
 import openai
 from openai.embeddings_utils import get_embedding
 import logging
+import traceback
 from db import local_db as db
 import local_secrets as secrets
 from utils import make_new_conversation_id
@@ -22,6 +23,7 @@ def create_prompt(
         conversation_history,
         user_message    
     ):
+    prompt=""
 
     try:
         conversation_history = sorted(conversation_history, key=lambda item: item["userMessageTimeStamp"])
@@ -38,8 +40,9 @@ def create_prompt(
             + user_role_name + ': ' + user_message.strip() + '\n'\
             + bot_role_name + ': '
     except Exception as e:
-        logger.error('create_prompt: ', e.str)
-        raise(e)
+        err_message = traceback.format_exc()
+        logger.error('create_prompt: ' + err_message)
+        #raise(e)
 
     return prompt
 
@@ -91,6 +94,8 @@ def get_response(
         user_message    
     )
     logger.debug('Prompt:\n' + prompt)
+    if not prompt:
+        return {"status": "BAD_REQUEST"}
 
     print("querying model")
     response = query_model(prompt, user_role_name + ':', TEMPERATURE)

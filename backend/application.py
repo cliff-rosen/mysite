@@ -6,7 +6,7 @@ from utils import decode_token
 import logging
 
 LOG_LEVEL = logging.INFO
-logging.basicConfig(format='%(asctime)s  %(levelname)s - %(message)s', level=LOG_LEVEL, filename='app.log')
+logging.basicConfig(format='%(asctime)s  %(levelname)s - %(message)s', level=LOG_LEVEL, filename='app.log', filemode='w')
 logger = logging.getLogger()
 
 application = Flask(__name__)
@@ -57,7 +57,7 @@ class Conversation(Resource):
             conversation_history = data['conversationHistory']
             user_message = data["userMessage"]
         except Exception as e:
-            logger.warning('Conversation - Error parsing body')
+            logger.warning('Conversation - Error parsing body: ' + str(data))
             abort(400)
 
         res = conversation.get_response(
@@ -68,6 +68,8 @@ class Conversation(Resource):
             conversation_history,
             user_message    
            )
+        if res["status"] == "BAD_REQUEST":
+            abort(400)
         return res
 
 class Token(Resource):

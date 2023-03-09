@@ -1,12 +1,14 @@
 import requests
 from bs4 import BeautifulSoup
+import logging
 import re
 import os
 import sys
-import json
+sys.path.append('.\..')
 from db import local_db as db
+import json
 import local_secrets as secrets
-from logger import Logger
+
 
 """
 TO DO
@@ -19,6 +21,10 @@ need system to filter out garbage contents
 """
 
 MAX_URL_LENGTH = 250
+LOG_LEVEL = logging.INFO
+
+logging.basicConfig(format='%(asctime)s  %(levelname)s - %(message)s', level=LOG_LEVEL, filename='spider.log', filemode='w')
+logger = logging.getLogger()
 
 def link_is_good(link_url):
     if link_url is None or link_url == "":
@@ -84,7 +90,7 @@ def clean_url(link_url):
 def write_text_to_db(uri, text):
     print("-> saving: ", uri)
     if not db.insert_document(conn, domain_id, uri, "", text):
-        logger.log("DB ERROR: " + uri)
+        logger.info("DB ERROR: " + uri)
     return    
 
 def write_text_to_file(uri, page_text):
@@ -105,7 +111,7 @@ def spider(url, single):
         print ("Error retrieving url", url)
         urls_seen[url]['status'] = 'ERROR'
         urls_seen[url]['detail'] = str(e)
-        logger.log("Error retrieving url:\n" + "url\n" + str(e))
+        logger.info("Error retrieving url:\n" + "url\n" + str(e))
         return
     urls_seen[url]['status'] = 'RETRIEVED'
 
@@ -163,18 +169,16 @@ def get_page_contents(soup):
     return page_text
 
 # configure job
-domain_id = 29
-initial_url = 'https://pangaia.com'
-initial_url = 'https://pangaia.com/collections/men-shop-all'
-single = True
-file_name = "logs/page.txt"
+file_name = "page.txt"
+domain_id = 31
+initial_url = 'https://karrikinsgroup.com'
+single = False
 
 # init
 urls_to_visit = set()
 urls_seen = {}
 conn = db.get_connection()
-logger = Logger('logs/spider_log.txt')
-logger.log("Starting spider for " + initial_url)
+logger.info("Starting spider for " + initial_url)
 
 # do it
 urls_to_visit.add(initial_url)
@@ -189,9 +193,9 @@ while(urls_to_visit):
 db.close_connection(conn)
 print("------------------------")
 print("URLs seen:\n", urls_seen)
-logger.log("DONE")
+logger.info("DONE")
 for url in urls_seen:
-    logger.log(url + ': ' + json.dumps(urls_seen[url]))
+    logger.info(url + ': ' + json.dumps(urls_seen[url]))
 
 """
 filter out pdfs but find another way to harvest them

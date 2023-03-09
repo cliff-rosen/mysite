@@ -1,7 +1,3 @@
-2023-03-07 10:58:19,368  INFO - Initializing application...
-2023-03-07 10:58:19,397  WARNING -  * Debugger is active!
-2023-03-07 10:58:19,408  INFO -  * Debugger PIN: 901-032-737
-2023-03-07 10:58:22,066  WARNING - Conversation - Error parsing body: {'xpromptHeader': 'Please answer this question honestly', 'initialMessage': '\u2265', 'userRoleName': 'Patient', 'botRoleName': 'Nurse', 'conversationHistory': [{'userMessage': 'yes', 'userMessageTimeStamp': 1, 'response': 'Are you older than 12 years of ag?', 'responseTimeStamp': 2}, {'userMessage': 'yes', 'userMessageTimeStamp': 3, 'response': 'Are you in good health?', 'responseTimeStamp': 4}], 'userMessage': 'Yes'}
-2023-03-07 10:58:22,068  INFO - 127.0.0.1 - - [07/Mar/2023 10:58:22] "[31m[1mPOST /conversation HTTP/1.1[0m" 400 -
-2023-03-07 10:58:50,688  INFO - conversation.get_response
-2023-03-07 10:58:51,634  INFO - 127.0.0.1 - - [07/Mar/2023 10:58:51] "POST /conversation HTTP/1.1" 200 -
+2023-03-08 15:13:06,124  INFO - Initializing application...
+2023-03-08 15:13:06,191  WARNING -  * Debugger is active!
+2023-03-08 15:13:06,268  INFO -  * Debugger PIN: 901-032-737

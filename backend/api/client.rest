@@ -35,7 +35,7 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
 
 {
     "promptHeader": "Please answer this question honestly",
-    "initialMessage": "≥",
+    "initialMessage": "Hello, can i help you",
     "userRoleName": "Patient",
     "botRoleName": "Nurse",
     "conversationHistory": [

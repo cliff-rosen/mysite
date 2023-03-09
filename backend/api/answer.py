@@ -231,7 +231,7 @@ def update_conversation_tables(domain_id, query,
     db.insert_query_log(domain_id, query, prompt, query_temp, response_text,
                         response_chunk_ids, user_id, conversation_id)
 
-    logger.log('Conversation:\n' + conversation_text)
+    #logger.log('Conversation:\n' + conversation_text)
 
     return conversation_id
 

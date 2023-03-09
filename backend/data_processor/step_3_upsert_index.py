@@ -42,7 +42,7 @@ def run():
     else:
         print("Processing domain", g_domain_id)
         domain_recs = [{'domain_id': g_domain_id}]
-    domain_recs = [{'domain_id': x} for x in [1] ]
+    #domain_recs = [{'domain_id': x} for x in [1] ]
 
     for domain_rec in domain_recs:
         domain_id = domain_rec['domain_id']
@@ -66,7 +66,7 @@ def fetch():
 
 # runtime settings
 ALL_DOMAINS = 1000000
-g_domain_id = ALL_DOMAINS
+g_domain_id = 31
 
 print(index.describe_index_stats())
 run()

@@ -30,10 +30,14 @@ TO DO:
  Check logfile
  Check db document table sorted by doc_uri
    find duplicate doc_text
+  SELECT *
+  FROM document
+  WHERE domain_id = 31
+  ORDER BY doc_uri   
 
 2. Step 2: populate document_chunk from document records
 set chunk_maker
-set domain_id
+set g_domain_id
 run script
 check logfile
 check db document_chunks table
@@ -51,13 +55,13 @@ check db document_chunks table
     WHERE domain_id = 28
     ORDER BY chunk_text
 
-
 3. Step 3: update Pinecone index with chunks
 set domain_id
 run script
 check logfile
 verify:
  select count(*) from document_chunk where domain_id = 22
+ select count(*) from document_chunk
  compare with index count in Pinecone console
 
 4. Create user

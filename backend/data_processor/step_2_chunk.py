@@ -4,6 +4,8 @@ from langchain.text_splitter import CharacterTextSplitter, RecursiveCharacterTex
 import re
 import os
 import sys
+import sys
+sys.path.append('.\..')
 from db import local_db as db
 import local_secrets as secrets
 
@@ -84,7 +86,7 @@ def get_chunks_from_text_2(text):
 
 # runtime settings
 chunk_maker = "MAKER_2"
-domain_id = 29
+domain_id = 31
 
 # init
 conn = db.get_connection()

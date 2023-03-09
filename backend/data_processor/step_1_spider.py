@@ -69,9 +69,6 @@ def link_is_good(link_url):
 
 def clean_url(link_url):
     if link_url is None or link_url == "" or link_url == '#' or link_url == '/':
-        return link_url
-
-    if link_url == initial_url + '/' or link_url == initial_url + '#':
         return initial_url
 
     pos = link_url.find('#')

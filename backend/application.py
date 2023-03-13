@@ -6,7 +6,7 @@ from utils import decode_token
 import logging
 
 LOG_LEVEL = logging.INFO
-logging.basicConfig(format='%(asctime)s  %(levelname)s - %(message)s', level=LOG_LEVEL, filename='app.log', filemode='w')
+logging.basicConfig(format='%(asctime)s  %(levelname)s - %(message)s', level=LOG_LEVEL, filename='app2.log', filemode='w')
 logger = logging.getLogger()
 
 application = Flask(__name__)
@@ -49,15 +49,23 @@ class Conversation(Resource):
 
         # retrieve inputs
         try:
+            data = None
             data = request.get_json()
-            prompt_header = data["promptHeader"]
-            initial_message = data["initialMessage"]
-            user_role_name = data["userRoleName"]
-            bot_role_name = data["botRoleName"]
+            prompt_header = data['promptHeader']
+            initial_message = data['initialMessage']
+            user_role_name = data['userRoleName']
+            bot_role_name = data['botRoleName']
             conversation_history = data['conversationHistory']
-            user_message = data["userMessage"]
+            user_message = data['userMessage']
+            max_tokens = data.get('max_tokens', 4000)
+            temperature = data.get('temperature', .4)
+
         except Exception as e:
-            logger.warning('Conversation - Error parsing body: ' + str(data))
+            if data:
+                data_str = str(data)
+            else:
+                data_str = 'NO_DATA_PARSED'
+            logger.warning('Conversation - Error parsing body: ' + data_str)
             abort(400)
 
         res = conversation.get_response(
@@ -66,7 +74,9 @@ class Conversation(Resource):
             user_role_name,
             bot_role_name,
             conversation_history,
-            user_message    
+            user_message,
+            max_tokens,
+            temperature
            )
         if res["status"] == "BAD_REQUEST":
             abort(400)

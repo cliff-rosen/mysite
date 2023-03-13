@@ -15,6 +15,7 @@ TEMPERATURE=.4
 print("conversation initing openai")
 openai.api_key = OPENAI_API_KEY
 
+
 def create_prompt(
         prompt_header,
         initial_message,
@@ -47,7 +48,7 @@ def create_prompt(
     return prompt
 
 
-def query_model(prompt, stop_token, temp):
+def query_model(prompt, stop_token, max_tokens, temperature):
     #model = 'gpt-3.5-turbo'
     model = 'text-davinci-003'
     print("prompt size: ", len(prompt), len(prompt.split()) )
@@ -55,8 +56,8 @@ def query_model(prompt, stop_token, temp):
         response = openai.Completion.create(
             model=model,
             prompt=prompt,
-            max_tokens=500,
-            temperature=temp,
+            max_tokens=max_tokens,
+            temperature=temperature,
             stop=stop_token
         )
         return response["choices"][0]["text"].strip(" \n")
@@ -80,7 +81,9 @@ def get_response(
         user_role_name,
         bot_role_name,
         conversation_history,
-        user_message    
+        user_message,
+        max_tokens,
+        temperature    
     ):
     logger.info('conversation.get_response')
 
@@ -91,14 +94,14 @@ def get_response(
         user_role_name,
         bot_role_name,
         conversation_history,
-        user_message    
+        user_message
     )
     logger.debug('Prompt:\n' + prompt)
     if not prompt:
         return {"status": "BAD_REQUEST"}
 
     print("querying model")
-    response = query_model(prompt, user_role_name + ':', TEMPERATURE)
+    response = query_model(prompt, user_role_name + ':', max_tokens, temperature)
 
     conversation_text = prompt + response
     insert_conversation('NA', 1, 30, conversation_text)

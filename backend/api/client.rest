@@ -31,7 +31,7 @@ accept: application/json
 POST http://127.0.0.1:5000/conversation
 content-type: application/json
 accept: application/json
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywidXNlcm5hbWUiOiJwb2MiLCJleHAiOjE2NzgzODU0NDF9.9PgZpJhFzQIpcbEIMEMODr727srblfg4qPwVc4qaOz0
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywidXNlcm5hbWUiOiJwb2MiLCJleHAiOjE2NzkzMzkxNDl9.EiTEeWsQISYseQ-sr8-iBInayPR9KLWhvRZ_RJFXv8Q
 
 {
     "promptHeader": "Please answer this question honestly",
@@ -52,7 +52,9 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
             "responseTimeStamp": 4
         }
     ],
-    "userMessage": "Yes"
+    "userMessage": "Yes",
+    "max_tokens": 3000,
+    "temperature": 0.4
 }
 
 ###

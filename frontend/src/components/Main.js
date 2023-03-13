@@ -29,6 +29,7 @@ export default function Main({ sessionManager }) {
   const [conversationID, setConversationID] = useState("NEW");
   const [initialMessage, setInitialMessage] = useState("");
   const [useNewModel, setUseNewModel] = useState(false);
+  const [x, setX] = useState(0);
   const NEW_CONVERSATION_ID = "NEW";
 
   console.log("Main --> userID", sessionManager.user.userID, domainID);

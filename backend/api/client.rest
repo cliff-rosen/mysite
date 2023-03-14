@@ -35,14 +35,26 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
 
 {
     "promptHeader": "You are a customer service chatbot.  Answer the following question using only the provided context:",
-    "initialMessage": "Hello, can I help you",
+    "initialMessage": "Hello, can I help youx",
     "userRoleName": "User",
     "botRoleName": "Assistant",
     "conversationHistory": [
+        {
+            "userMessage": "yes", 
+            "userMessageTimeStamp": 1,
+            "response": "What can I do for you?",
+            "responseTimeStamp": 2
+        },
+        {
+            "userMessage": "I don't feel fulfilled", 
+            "userMessageTimeStamp": 3,
+            "response": "How long have you felt that way",
+            "responseTimeStamp": 4
+        }
     ],
     "userMessage": "What business are you in?",
     "max_tokens": 500,
-    "temperature": 0.4,
+    "temperature": 0.7,
     "domain_id": 1
 }
 

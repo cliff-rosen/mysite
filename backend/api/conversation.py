@@ -49,7 +49,7 @@ def create_prompt(
         prompt = prompt_header.strip() + '\n\n' \
             + context_for_prompt + '\n\n' \
             + bot_role_name + ': ' + initial_message.strip() + '\n\n' \
-            + conversation_history_text.strip() + '\n\n' \
+            + conversation_history_text \
             + user_role_name + ': ' + user_message.strip() + '\n'\
             + bot_role_name + ': '
     except Exception as e:
@@ -104,12 +104,12 @@ def get_response(
     use_context = False
     chunks = {}
     chunks_with_text = {}
-    conversation_history = []
 
     print("getting domain settings")
-    res = db.get_domain(domain_id)
-    if res['use_context']:
-        use_context = True
+    if domain_id != 0:
+        res = db.get_domain(domain_id)
+        if res['use_context']:
+            use_context = True
 
     print("handling chunk retrieval")
     if use_context:

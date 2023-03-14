@@ -1,69 +1,55 @@
-2023-03-14 19:31:09,073  INFO - Initializing application...
-2023-03-14 19:31:09,083  WARNING -  * Debugger is active!
-2023-03-14 19:31:09,090  INFO -  * Debugger PIN: 901-032-737
-2023-03-14 19:31:13,062  INFO - conversation.get_response
-2023-03-14 19:31:14,164  INFO - prompt: You are a customer service chatbot.  Answer the following question using only the provided context:
-
-<START OF CONTEXT>
-Consulting WHC Admin 2017-10-13T17:52:31+00:00 CONSULTING You don’t need to be in the process of building or updating your home for us to work with you. In some cases, what’s needed is good old fashioned consulting services to help navigate this new fangled world. Some examples of clients wanting consulting include those who are In the early stages of designing a new home and want to get smart on smart homes In the architecture or home building business and would like some counsel Already working with an integrator, but would like some additional perspective and support GET IN TOUCH
-
-What We Do WHC Admin 2017-10-17T06:21:07+00:00 We are a boutique home technology integrator serving the high end residential market in NYC and surrounding areas. Our job as a home technology integrator is to provide technology that maximizes the usefulness of your home while seamlessly integrating with your home’s architecture. While we work with a broad array of technology applications, the key applications featured in most of our projects include: Home Networking / WiFi Smart Lighting HVAC (Heating and Air Conditioning) Video / Distributed Video / Home Theater Audio / Distributed Audio Motorized Shades Surveillance These applications are all seamlessly tied together with a “central brain” or controller. Our platform of choice for this controller is Control4. We are a full service design-build firm, but also are happy to work in a design or consulting capacity.
-
-What Is a Home Technology Integrator Businesses have a simple strategy for ensuring they harness technology to meet their needs – they hire someone called a “Chief Technology Officer (CTO)” to manage the process of selecting technologies and orchestrating their use within the business. A luxury home has parallel needs, and home owners meet these needs by hiring a “Home Technology Integrator (HTI.)” Read MoreHow Do I Build a Smart Home Once understanding that a Home Technology Integrator will be your trusted source to ensure that the proper technologies are baked into your home, the next question might be: how exactly does the process work of building this smart home? Actually, the process involves a lifecycle much like that of building the home, itself. Read MoreHow Do I Get Started Contact us to schedule a free consultation, and we’ll be thrilled to start the process of designing the ideal technologies for you into your dream home. Read More
-
-What Is a Home Technology Integrator Businesses have a simple strategy for ensuring they harness technology to meet their needs – they hire someone called a “Chief Technology Officer (CTO)” to manage the process of selecting technologies and orchestrating their use within the business. A luxury home has parallel needs, and home owners meet these needs by hiring a “Home Technology Integrator (HTI.)” Read MoreHow Do I Build a Smart Home Once understanding that a Home Technology Integrator will be your trusted source to ensure that the proper technologies are baked into your home, the next question might be: how exactly does the process work of building this smart home? Actually, the process involves a lifecycle much like that of building the home, itself. Read MoreHow Do I Get Started Contact us to schedule a free consultation, and we’ll be thrilled to start the process of designing the ideal technologies for you into your dream home. Read More
-
-Home WHC Admin 2017-10-10T15:46:47+00:00 Whole Home Control is a boutique home technology integrator serving the high end residential market in NYC and surrounding areas.
-
-Home WHC Admin 2017-10-10T15:46:47+00:00 Whole Home Control is a boutique home technology integrator serving the high end residential market in NYC and surrounding areas.
-
-Our Work WHC Admin 2018-12-04T15:54:21+00:00
-
-Who We Are crosen 2019-08-07T13:14:10+00:00 Whole Home Control was founded in 2008 by Cliff Rosen, a technology veteran with more than 20 years experience designing and building technology solutions of all shapes and sizes. Cliff formed the company after renovating his NYC apartment and going through the meticulous process of specifying the technology and working closely with the architect and GC to bring it to life as an integral part of the apartment’s architecture. The process was inspiring for Cliff, who currently serves as CEO and CTO. Prior to starting Whole Home Control, Cliff’s technology experience ranged from pioneering work developing an image capable inventory management system for The Pace Gallery – a leading contemporary art gallery – to co-founding sixdegrees.com – the Internet’s first social networking site.
-
-DESIGN-BUILD We typically work in a “design-build” capacity. In other words, we are a one stop shop for both the design and implementation of technology systems in your home. FIND OUT MORE DESIGN As an alternative to design-build, we can work with you to provide detailed, bid ready design documents for your home technology. FIND OUT MORE CONSULTING If design or design-build services don’t quite fit your needs, but you are still seeking guidance on your home technology, we offer home technology consulting services. FIND OUT MORE
-
-Design-Build WHC Admin 2017-10-13T16:58:44+00:00 DESIGN-BUILD Let Whole Home Control be your one stop shop to take your home technology from concept to completion with our design-build service. We begin with a robust process of learning about your requirements while at the same providing the information you need to navigate the myriad options and arrive at a suitable system for your needs. GET IN TOUCH
-<END OF CONTEXT>
-
-User: Hello, can I help you
+2023-03-14 19:45:30,434  INFO - Initializing application...
+2023-03-14 19:45:30,460  WARNING -  * Debugger is active!
+2023-03-14 19:45:30,473  INFO -  * Debugger PIN: 901-032-737
+2023-03-14 19:45:30,755  INFO - conversation.get_response
+2023-03-14 19:45:30,956  INFO - prompt: You are a customer service chatbot.  Answer the following question using only the provided context:
 
 
 
-Assistant: What business are you in?
-User: 
-2023-03-14 19:31:14,249  INFO - error_code=None error_message="This model's maximum context length is 4097 tokens, however you requested 4258 tokens (1258 in your prompt; 3000 for the completion). Please reduce your prompt; or completion length." error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
-2023-03-14 19:31:14,249  ERROR - conversation.query_model: This model's maximum context length is 4097 tokens, however you requested 4258 tokens (1258 in your prompt; 3000 for the completion). Please reduce your prompt; or completion length.
-2023-03-14 19:31:14,424  INFO - 127.0.0.1 - - [14/Mar/2023 19:31:14] "POST /conversation HTTP/1.1" 200 -
-2023-03-14 19:36:09,874  INFO - conversation.get_response
-2023-03-14 19:36:10,822  INFO - prompt: You are a customer service chatbot.  Answer the following question using only the provided context:
+Assistant: Hello, can I help youx
 
-<START OF CONTEXT>
-Consulting WHC Admin 2017-10-13T17:52:31+00:00 CONSULTING You don’t need to be in the process of building or updating your home for us to work with you. In some cases, what’s needed is good old fashioned consulting services to help navigate this new fangled world. Some examples of clients wanting consulting include those who are In the early stages of designing a new home and want to get smart on smart homes In the architecture or home building business and would like some counsel Already working with an integrator, but would like some additional perspective and support GET IN TOUCH
+User: yes
+Assistant: What can I do for you?
 
-What We Do WHC Admin 2017-10-17T06:21:07+00:00 We are a boutique home technology integrator serving the high end residential market in NYC and surrounding areas. Our job as a home technology integrator is to provide technology that maximizes the usefulness of your home while seamlessly integrating with your home’s architecture. While we work with a broad array of technology applications, the key applications featured in most of our projects include: Home Networking / WiFi Smart Lighting HVAC (Heating and Air Conditioning) Video / Distributed Video / Home Theater Audio / Distributed Audio Motorized Shades Surveillance These applications are all seamlessly tied together with a “central brain” or controller. Our platform of choice for this controller is Control4. We are a full service design-build firm, but also are happy to work in a design or consulting capacity.
-
-What Is a Home Technology Integrator Businesses have a simple strategy for ensuring they harness technology to meet their needs – they hire someone called a “Chief Technology Officer (CTO)” to manage the process of selecting technologies and orchestrating their use within the business. A luxury home has parallel needs, and home owners meet these needs by hiring a “Home Technology Integrator (HTI.)” Read MoreHow Do I Build a Smart Home Once understanding that a Home Technology Integrator will be your trusted source to ensure that the proper technologies are baked into your home, the next question might be: how exactly does the process work of building this smart home? Actually, the process involves a lifecycle much like that of building the home, itself. Read MoreHow Do I Get Started Contact us to schedule a free consultation, and we’ll be thrilled to start the process of designing the ideal technologies for you into your dream home. Read More
-
-What Is a Home Technology Integrator Businesses have a simple strategy for ensuring they harness technology to meet their needs – they hire someone called a “Chief Technology Officer (CTO)” to manage the process of selecting technologies and orchestrating their use within the business. A luxury home has parallel needs, and home owners meet these needs by hiring a “Home Technology Integrator (HTI.)” Read MoreHow Do I Build a Smart Home Once understanding that a Home Technology Integrator will be your trusted source to ensure that the proper technologies are baked into your home, the next question might be: how exactly does the process work of building this smart home? Actually, the process involves a lifecycle much like that of building the home, itself. Read MoreHow Do I Get Started Contact us to schedule a free consultation, and we’ll be thrilled to start the process of designing the ideal technologies for you into your dream home. Read More
-
-Home WHC Admin 2017-10-10T15:46:47+00:00 Whole Home Control is a boutique home technology integrator serving the high end residential market in NYC and surrounding areas.
-
-Home WHC Admin 2017-10-10T15:46:47+00:00 Whole Home Control is a boutique home technology integrator serving the high end residential market in NYC and surrounding areas.
-
-Our Work WHC Admin 2018-12-04T15:54:21+00:00
-
-Who We Are crosen 2019-08-07T13:14:10+00:00 Whole Home Control was founded in 2008 by Cliff Rosen, a technology veteran with more than 20 years experience designing and building technology solutions of all shapes and sizes. Cliff formed the company after renovating his NYC apartment and going through the meticulous process of specifying the technology and working closely with the architect and GC to bring it to life as an integral part of the apartment’s architecture. The process was inspiring for Cliff, who currently serves as CEO and CTO. Prior to starting Whole Home Control, Cliff’s technology experience ranged from pioneering work developing an image capable inventory management system for The Pace Gallery – a leading contemporary art gallery – to co-founding sixdegrees.com – the Internet’s first social networking site.
-
-DESIGN-BUILD We typically work in a “design-build” capacity. In other words, we are a one stop shop for both the design and implementation of technology systems in your home. FIND OUT MORE DESIGN As an alternative to design-build, we can work with you to provide detailed, bid ready design documents for your home technology. FIND OUT MORE CONSULTING If design or design-build services don’t quite fit your needs, but you are still seeking guidance on your home technology, we offer home technology consulting services. FIND OUT MORE
-
-Design-Build WHC Admin 2017-10-13T16:58:44+00:00 DESIGN-BUILD Let Whole Home Control be your one stop shop to take your home technology from concept to completion with our design-build service. We begin with a robust process of learning about your requirements while at the same providing the information you need to navigate the myriad options and arrive at a suitable system for your needs. GET IN TOUCH
-<END OF CONTEXT>
-
-Assistant: Hello, can I help you
-
-
+User: I don't feel fulfilled
+Assistant: How long have you felt that way
 
 User: What business are you in?
 Assistant: 
-2023-03-14 19:36:13,049  INFO - 127.0.0.1 - - [14/Mar/2023 19:36:13] "POST /conversation HTTP/1.1" 200 -
+2023-03-14 19:45:32,171  INFO - 127.0.0.1 - - [14/Mar/2023 19:45:32] "POST /conversation HTTP/1.1" 200 -
+2023-03-14 19:45:49,701  INFO - conversation.get_response
+2023-03-14 19:45:50,974  INFO - prompt: You are a customer service chatbot.  Answer the following question using only the provided context:
+
+<START OF CONTEXT>
+Consulting WHC Admin 2017-10-13T17:52:31+00:00 CONSULTING You don’t need to be in the process of building or updating your home for us to work with you. In some cases, what’s needed is good old fashioned consulting services to help navigate this new fangled world. Some examples of clients wanting consulting include those who are In the early stages of designing a new home and want to get smart on smart homes In the architecture or home building business and would like some counsel Already working with an integrator, but would like some additional perspective and support GET IN TOUCH
+
+What We Do WHC Admin 2017-10-17T06:21:07+00:00 We are a boutique home technology integrator serving the high end residential market in NYC and surrounding areas. Our job as a home technology integrator is to provide technology that maximizes the usefulness of your home while seamlessly integrating with your home’s architecture. While we work with a broad array of technology applications, the key applications featured in most of our projects include: Home Networking / WiFi Smart Lighting HVAC (Heating and Air Conditioning) Video / Distributed Video / Home Theater Audio / Distributed Audio Motorized Shades Surveillance These applications are all seamlessly tied together with a “central brain” or controller. Our platform of choice for this controller is Control4. We are a full service design-build firm, but also are happy to work in a design or consulting capacity.
+
+What Is a Home Technology Integrator Businesses have a simple strategy for ensuring they harness technology to meet their needs – they hire someone called a “Chief Technology Officer (CTO)” to manage the process of selecting technologies and orchestrating their use within the business. A luxury home has parallel needs, and home owners meet these needs by hiring a “Home Technology Integrator (HTI.)” Read MoreHow Do I Build a Smart Home Once understanding that a Home Technology Integrator will be your trusted source to ensure that the proper technologies are baked into your home, the next question might be: how exactly does the process work of building this smart home? Actually, the process involves a lifecycle much like that of building the home, itself. Read MoreHow Do I Get Started Contact us to schedule a free consultation, and we’ll be thrilled to start the process of designing the ideal technologies for you into your dream home. Read More
+
+What Is a Home Technology Integrator Businesses have a simple strategy for ensuring they harness technology to meet their needs – they hire someone called a “Chief Technology Officer (CTO)” to manage the process of selecting technologies and orchestrating their use within the business. A luxury home has parallel needs, and home owners meet these needs by hiring a “Home Technology Integrator (HTI.)” Read MoreHow Do I Build a Smart Home Once understanding that a Home Technology Integrator will be your trusted source to ensure that the proper technologies are baked into your home, the next question might be: how exactly does the process work of building this smart home? Actually, the process involves a lifecycle much like that of building the home, itself. Read MoreHow Do I Get Started Contact us to schedule a free consultation, and we’ll be thrilled to start the process of designing the ideal technologies for you into your dream home. Read More
+
+Home WHC Admin 2017-10-10T15:46:47+00:00 Whole Home Control is a boutique home technology integrator serving the high end residential market in NYC and surrounding areas.
+
+Home WHC Admin 2017-10-10T15:46:47+00:00 Whole Home Control is a boutique home technology integrator serving the high end residential market in NYC and surrounding areas.
+
+Our Work WHC Admin 2018-12-04T15:54:21+00:00
+
+Who We Are crosen 2019-08-07T13:14:10+00:00 Whole Home Control was founded in 2008 by Cliff Rosen, a technology veteran with more than 20 years experience designing and building technology solutions of all shapes and sizes. Cliff formed the company after renovating his NYC apartment and going through the meticulous process of specifying the technology and working closely with the architect and GC to bring it to life as an integral part of the apartment’s architecture. The process was inspiring for Cliff, who currently serves as CEO and CTO. Prior to starting Whole Home Control, Cliff’s technology experience ranged from pioneering work developing an image capable inventory management system for The Pace Gallery – a leading contemporary art gallery – to co-founding sixdegrees.com – the Internet’s first social networking site.
+
+DESIGN-BUILD We typically work in a “design-build” capacity. In other words, we are a one stop shop for both the design and implementation of technology systems in your home. FIND OUT MORE DESIGN As an alternative to design-build, we can work with you to provide detailed, bid ready design documents for your home technology. FIND OUT MORE CONSULTING If design or design-build services don’t quite fit your needs, but you are still seeking guidance on your home technology, we offer home technology consulting services. FIND OUT MORE
+
+Design-Build WHC Admin 2017-10-13T16:58:44+00:00 DESIGN-BUILD Let Whole Home Control be your one stop shop to take your home technology from concept to completion with our design-build service. We begin with a robust process of learning about your requirements while at the same providing the information you need to navigate the myriad options and arrive at a suitable system for your needs. GET IN TOUCH
+<END OF CONTEXT>
+
+Assistant: Hello, can I help youx
+
+User: yes
+Assistant: What can I do for you?
+
+User: I don't feel fulfilled
+Assistant: How long have you felt that way
+
+User: What business are you in?
+Assistant: 
+2023-03-14 19:45:53,074  INFO - 127.0.0.1 - - [14/Mar/2023 19:45:53] "POST /conversation HTTP/1.1" 200 -

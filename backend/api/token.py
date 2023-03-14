@@ -1,5 +1,5 @@
 from db import local_db as db
-from utils import check_password, make_jwt, decode_token
+from utils.utils import check_password, make_jwt, decode_token
 
 
 def get_token(username, password):

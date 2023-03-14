@@ -17,7 +17,7 @@ accept: application/json
 
 ###
 
-POST http://127.0.0.1:5000
+POST http://127.0.0.1:5000/auth/token
 content-type: application/json
 accept: application/json
 
@@ -34,7 +34,7 @@ accept: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywidXNlcm5hbWUiOiJwb2MiLCJleHAiOjE2NzkzMzkxNDl9.EiTEeWsQISYseQ-sr8-iBInayPR9KLWhvRZ_RJFXv8Q
 
 {
-    "promptHeader": "Please answer this question honestly",
+    "promptHeader": "Please act as a coach and help this client",
     "initialMessage": "Hello, can i help you",
     "userRoleName": "Patient",
     "botRoleName": "Nurse",
@@ -42,17 +42,17 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
         {
             "userMessage": "yes", 
             "userMessageTimeStamp": 1,
-            "response": "Are you older than 12 years of ag?",
+            "response": "What can I do for you?",
             "responseTimeStamp": 2
         },
         {
-            "userMessage": "yes", 
+            "userMessage": "I don't feel fulfilled", 
             "userMessageTimeStamp": 3,
-            "response": "Are you in good health?",
+            "response": "How long have you felt that way",
             "responseTimeStamp": 4
         }
     ],
-    "userMessage": "Yes",
+    "userMessage": "Most of my life",
     "max_tokens": 3000,
     "temperature": 0.4
 }

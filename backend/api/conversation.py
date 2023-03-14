@@ -1,18 +1,26 @@
-from flask import current_app
+import pinecone
 import openai
 from openai.embeddings_utils import get_embedding
 import logging
 import traceback
 from db import local_db as db
 import local_secrets as secrets
-from utils import make_new_conversation_id
+from utils.utils import make_new_conversation_id
 
 logger = logging.getLogger()
 
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
 TEMPERATURE=.4
+PINECONE_API_KEY = secrets.PINECONE_API_KEY
+OPENAI_API_KEY = secrets.OPENAI_API_KEY
+MODEL = "text-embedding-ada-002"
+INDEX_NAME = "main-index-2"
+TEMPERATURE=.4
+TOP_K=10
 
-print("conversation initing openai")
+print("conversation initing AI and vector db")
+pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
+index = pinecone.Index(INDEX_NAME)
 openai.api_key = OPENAI_API_KEY
 
 
@@ -37,7 +45,7 @@ def create_prompt(
 
         prompt = prompt_header.strip() + '\n\n' \
             + bot_role_name + ': ' + initial_message.strip() + '\n\n' \
-            + conversation_history_text.strip() \
+            + conversation_history_text.strip() + '\n\n' \
             + user_role_name + ': ' + user_message.strip() + '\n'\
             + bot_role_name + ': '
     except Exception as e:

@@ -2,7 +2,7 @@ from flask import Flask, request
 from flask_restful import Resource, Api, reqparse, abort
 from flask_cors import CORS
 from api import login, domain, prompt, answer, conversation, token
-from utils import decode_token
+from utils.utils import decode_token
 import logging
 
 LOG_LEVEL = logging.INFO

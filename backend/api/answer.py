@@ -1,4 +1,3 @@
-import pinecone
 import openai
 from openai.embeddings_utils import get_embedding
 from db import local_db as db

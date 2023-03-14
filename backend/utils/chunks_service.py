@@ -14,9 +14,9 @@ TOP_K=10
 MAX_WORD_COUNT = 2000
 
 
+print("chunk_service initing AI and vector db")
 pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
 index = pinecone.Index(INDEX_NAME)
-print("answer initing openai")
 openai.api_key = OPENAI_API_KEY
 
 

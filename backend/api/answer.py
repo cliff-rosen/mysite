@@ -20,19 +20,6 @@ def get_conversation_history_text(conversation_history):
     return conversation_text
 
 
-def get_context_for_prompt(chunks_with_text):
-    context = ""
-
-    if chunks_with_text:
-        ids = list(chunks_with_text.keys())
-        chunks_text_arr = [chunks_with_text[str(id)] for id in ids]
-        context = "\n\n".join(chunks_text_arr)
-
-    if context:
-        return '<START OF CONTEXT>\n' + context + '\n<END OF CONTEXT>'
-    else:
-        return ''
-
 
 def create_prompt_1(conversation_history, initial_message,
                     query, initial_prompt, chunks_with_text):
@@ -43,7 +30,7 @@ def create_prompt_1(conversation_history, initial_message,
     conversation_history_text = ""
     prompt = ""
 
-    context_for_prompt = get_context_for_prompt(chunks_with_text)
+    context_for_prompt = chunk.get_context_for_prompt(chunks_with_text)
 
     conversation_history_text = get_conversation_history_text(conversation_history)
 
@@ -85,7 +72,7 @@ def create_prompt_2(conversation_history, initial_message, query,
     messages = []
 
     # add system message
-    context_for_prompt = get_context_for_prompt(chunks_with_text)
+    context_for_prompt = chunk.get_context_for_prompt(chunks_with_text)
     if context_for_prompt:
         initial_prompt += '\n\n' + context_for_prompt
     messages.append({"role": "system", "content": initial_prompt})
@@ -172,7 +159,6 @@ def get_answer(conversation_id, domain_id, query,
     use_context = False
     chunks = {}
     chunks_with_text = {}
-    use_context = False
     initial_message = conf.DEFAULT_INITIAL_MESSAGE
     conversation_history = []
 

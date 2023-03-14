@@ -34,11 +34,20 @@ accept: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywidXNlcm5hbWUiOiJwb2MiLCJleHAiOjE2NzkzMzkxNDl9.EiTEeWsQISYseQ-sr8-iBInayPR9KLWhvRZ_RJFXv8Q
 
 {
-    "promptHeader": "Please act as a coach and help this client",
-    "initialMessage": "Hello, can i help you",
-    "userRoleName": "Patient",
-    "botRoleName": "Nurse",
+    "promptHeader": "You are a customer service chatbot.  Answer the following question using only the provided context:",
+    "initialMessage": "Hello, can I help you",
+    "userRoleName": "User",
+    "botRoleName": "Assistant",
     "conversationHistory": [
+    ],
+    "userMessage": "What business are you in?",
+    "max_tokens": 500,
+    "temperature": 0.4,
+    "domain_id": 1
+}
+
+###
+
         {
             "userMessage": "yes", 
             "userMessageTimeStamp": 1,
@@ -51,13 +60,6 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
             "response": "How long have you felt that way",
             "responseTimeStamp": 4
         }
-    ],
-    "userMessage": "Most of my life",
-    "max_tokens": 3000,
-    "temperature": 0.4
-}
-
-###
 
 GET http://127.0.0.1:5000/login?username=cliff&password=cmr
 accept: application/json

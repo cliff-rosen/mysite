@@ -77,3 +77,17 @@ def get_chunk_text_from_ids(chunks):
 
     print('word count', word_count)
     return chunks_with_text
+
+
+def get_context_for_prompt(chunks_with_text):
+    context = ""
+
+    if chunks_with_text:
+        ids = list(chunks_with_text.keys())
+        chunks_text_arr = [chunks_with_text[str(id)] for id in ids]
+        context = "\n\n".join(chunks_text_arr)
+
+    if context:
+        return '<START OF CONTEXT>\n' + context + '\n<END OF CONTEXT>'
+    else:
+        return ''

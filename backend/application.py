@@ -59,6 +59,7 @@ class Conversation(Resource):
             user_message = data['userMessage']
             max_tokens = data.get('max_tokens', 4000)
             temperature = data.get('temperature', .4)
+            domain_id = data.get('domain_id', 0)
 
         except Exception as e:
             if data:
@@ -69,6 +70,7 @@ class Conversation(Resource):
             abort(400)
 
         res = conversation.get_response(
+            domain_id,
             prompt_header,
             initial_message,
             user_role_name,

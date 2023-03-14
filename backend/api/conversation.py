@@ -6,6 +6,7 @@ import traceback
 from db import local_db as db
 import local_secrets as secrets
 from utils.utils import make_new_conversation_id
+import utils.chunks_service as chunk
 
 logger = logging.getLogger()
 
@@ -30,9 +31,11 @@ def create_prompt(
         user_role_name,
         bot_role_name,
         conversation_history,
-        user_message    
+        user_message,
+        chunks_with_text    
     ):
     prompt=""
+    context_for_prompt = chunk.get_context_for_prompt(chunks_with_text)
 
     try:
         conversation_history = sorted(conversation_history, key=lambda item: item["userMessageTimeStamp"])
@@ -44,6 +47,7 @@ def create_prompt(
                 + bot_role_name + ': ' + entry['response'] + '\n\n'
 
         prompt = prompt_header.strip() + '\n\n' \
+            + context_for_prompt + '\n\n' \
             + bot_role_name + ': ' + initial_message.strip() + '\n\n' \
             + conversation_history_text.strip() + '\n\n' \
             + user_role_name + ': ' + user_message.strip() + '\n'\
@@ -53,6 +57,7 @@ def create_prompt(
         logger.error('create_prompt: ' + err_message)
         #raise(e)
 
+    logger.info('prompt: ' + prompt)
     return prompt
 
 
@@ -84,6 +89,7 @@ def insert_conversation(conversation_id, user_id, domain_id, conversation_text):
 
 
 def get_response(
+        domain_id,
         prompt_header,
         initial_message,
         user_role_name,
@@ -91,9 +97,32 @@ def get_response(
         conversation_history,
         user_message,
         max_tokens,
-        temperature    
+        temperature
     ):
     logger.info('conversation.get_response')
+
+    use_context = False
+    chunks = {}
+    chunks_with_text = {}
+    conversation_history = []
+
+    print("getting domain settings")
+    res = db.get_domain(domain_id)
+    if res['use_context']:
+        use_context = True
+
+    print("handling chunk retrieval")
+    if use_context:
+        print("getting query embedding")
+        query_embedding = chunk.ge(user_message)
+
+        print("getting chunks ids")
+        chunks = chunk.get_chunks_from_embedding(domain_id, query_embedding)
+        if not chunks:
+            # FIX ME: reply doesn't include converation_id and conv tables not updated
+            return {"answer": "No data found for query", "chunks": {}, "chunks_used_count": 0 }
+        print("getting chunk text from ids")
+        chunks_with_text = chunk.get_chunk_text_from_ids(chunks)
 
     print("creating prompt")
     prompt = create_prompt(
@@ -102,7 +131,8 @@ def get_response(
         user_role_name,
         bot_role_name,
         conversation_history,
-        user_message
+        user_message,
+        chunks_with_text
     )
     logger.debug('Prompt:\n' + prompt)
     if not prompt:

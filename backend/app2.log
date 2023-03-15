@@ -1,3 +1,15 @@
-2023-03-15 09:41:43,242  INFO - Initializing application...
-2023-03-15 09:41:43,271  WARNING -  * Debugger is active!
-2023-03-15 09:41:43,285  INFO -  * Debugger PIN: 901-032-737
+2023-03-15 09:45:20,505  INFO - Initializing application...
+2023-03-15 09:45:20,516  WARNING -  * Debugger is active!
+2023-03-15 09:45:20,524  INFO -  * Debugger PIN: 901-032-737
+2023-03-15 09:45:33,422  INFO - conversation.get_response: Who is eligible for this study?
+2023-03-15 09:45:45,528  INFO - 127.0.0.1 - - [15/Mar/2023 09:45:45] "POST /conversation HTTP/1.1" 200 -
+2023-03-15 10:03:48,293  INFO - conversation.get_response: Who is eligible for this study?
+2023-03-15 10:03:50,982  INFO - 127.0.0.1 - - [15/Mar/2023 10:03:50] "POST /conversation HTTP/1.1" 200 -
+2023-03-15 10:04:42,665  INFO - conversation.get_response: Who is eligible for this study?
+2023-03-15 10:04:45,592  INFO - 127.0.0.1 - - [15/Mar/2023 10:04:45] "POST /conversation HTTP/1.1" 200 -
+2023-03-15 10:05:57,082  INFO - conversation.get_response: Where is it located?
+2023-03-15 10:05:58,321  INFO - 127.0.0.1 - - [15/Mar/2023 10:05:58] "POST /conversation HTTP/1.1" 200 -
+2023-03-15 10:07:06,207  INFO - conversation.get_response: Where is it located?
+2023-03-15 10:07:09,030  INFO - 127.0.0.1 - - [15/Mar/2023 10:07:09] "POST /conversation HTTP/1.1" 200 -
+2023-03-15 10:08:18,380  INFO - conversation.get_response: Where is it located?
+2023-03-15 10:08:21,160  INFO - 127.0.0.1 - - [15/Mar/2023 10:08:21] "POST /conversation HTTP/1.1" 200 -

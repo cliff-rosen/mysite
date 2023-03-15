@@ -108,7 +108,7 @@ def get_response(
         max_tokens,
         temperature
     ):
-    logger.info('conversation.get_response')
+    logger.info('conversation.get_response: ' + user_message)
 
     use_context = False
     chunks = {}

@@ -43,7 +43,7 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
     ],
     "userMessage": "Who is eligible for this study?",
     "max_tokens": 200,
-    "temperature": 0.2,
+    "temperature": 0.5,
     "domain_id": 27
 }
 
@@ -91,3 +91,76 @@ accept: application/json
     "temp": 0.4
 }
 
+############################
+
+POST http://127.0.0.1:5000/conversation
+content-type: application/json
+accept: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywidXNlcm5hbWUiOiJwb2MiLCJleHAiOjE2NzkzMzkxNDl9.EiTEeWsQISYseQ-sr8-iBInayPR9KLWhvRZ_RJFXv8Q
+
+{
+    "promptHeader": "You are a clinical trial assistant.  Answer the following question as honestly as possible based on the below context:",
+    "initialMessage": "How can I help you?",
+    "userRoleName": "User",
+    "botRoleName": "Assistant",
+    "conversationHistory": [
+
+    ],
+    "userMessage": "Who is eligible for this study?",
+    "max_tokens": 200,
+    "temperature": 0.5,
+    "domain_id": 30
+}
+
+
+###
+
+POST http://127.0.0.1:5000/conversation
+content-type: application/json
+accept: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywidXNlcm5hbWUiOiJwb2MiLCJleHAiOjE2NzkzMzkxNDl9.EiTEeWsQISYseQ-sr8-iBInayPR9KLWhvRZ_RJFXv8Q
+
+{
+    "promptHeader": "You are a clinical trial assistant.  Answer the following question as honestly as possible:",
+    "initialMessage": "How can I help you?",
+    "userRoleName": "User",
+    "botRoleName": "Assistant",
+    "conversationHistory": [
+        {
+            "userMessage": "Who is eligible for this study?", 
+            "userMessageTimeStamp": 1,
+            "response": "Anyone who is 18 years of age or older.",
+            "responseTimeStamp": 2
+        }
+    ],
+    "userMessage": "Where is it located?",
+    "max_tokens": 200,
+    "temperature": 0.5,
+    "domain_id": 30
+}
+
+###
+
+POST http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com/conversation
+content-type: application/json
+accept: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywidXNlcm5hbWUiOiJwb2MiLCJleHAiOjE2NzkzMzkxNDl9.EiTEeWsQISYseQ-sr8-iBInayPR9KLWhvRZ_RJFXv8Q
+
+{
+    "promptHeader": "You are a clinical trial assistant.  Answer the following question as honestly as possible:",
+    "initialMessage": "How can I help you?",
+    "userRoleName": "User",
+    "botRoleName": "Assistant",
+    "conversationHistory": [
+        {
+            "userMessage": "Who is eligible for this study?", 
+            "userMessageTimeStamp": 1,
+            "response": "Anyone who is 18 years of age or older.",
+            "responseTimeStamp": 2
+        }
+    ],
+    "userMessage": "Where is it located?",
+    "max_tokens": 200,
+    "temperature": 0.5,
+    "domain_id": 27
+}

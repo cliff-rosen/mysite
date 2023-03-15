@@ -11,7 +11,7 @@ MODEL = "text-embedding-ada-002"
 INDEX_NAME = "main-index-2"
 TEMPERATURE=.4
 TOP_K=10
-MAX_CHUNKS_WORD_COUNT = 2200
+MAX_CHUNKS_WORD_COUNT = 2500
 
 
 print("chunk_service initing AI and vector db")

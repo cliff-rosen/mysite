@@ -39,21 +39,21 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
     "userRoleName": "User",
     "botRoleName": "Assistant",
     "conversationHistory": [
-        {
-            "userMessage": "Where is this study located?", 
-            "userMessageTimeStamp": 1,
-            "response": "The United States.",
-            "responseTimeStamp": 2
-        }
+
     ],
-    "userMessage": "What is the name of this study?",
+    "userMessage": "Who is eligible for this study?",
     "max_tokens": 200,
     "temperature": 0.2,
     "domain_id": 27
 }
 
 ###
-
+        {
+            "userMessage": "Who is eligible for this study?", 
+            "userMessageTimeStamp": 1,
+            "response": "The United States.",
+            "responseTimeStamp": 2
+        }
         {
             "userMessage": "yes", 
             "userMessageTimeStamp": 1,

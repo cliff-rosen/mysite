@@ -67,7 +67,6 @@ def create_prompt(
     prompt = build_prompt(prompt_header, context_for_prompt, bot_role_name, initial_message,
                 conversation_history_text, user_role_name, user_message)
 
-    logger.info('prompt: ' + prompt)
     return prompt
 
 
@@ -132,7 +131,7 @@ def get_response(
             return {"answer": "No data found for query", "chunks": {}, "chunks_used_count": 0 }
         print("getting chunk text from ids")
         chunk.get_chunk_text_from_ids(chunks)
-        logger.info("chunks with text: " + str(chunks))
+        logger.debug("chunks with text: " + str(chunks))
 
     print("creating prompt")
     prompt = create_prompt(
@@ -151,6 +150,7 @@ def get_response(
     print("querying model")
     response = query_model(prompt, user_role_name + ':', max_tokens, temperature)
 
+    print("storing conversation")
     conversation_text = prompt + response
     insert_conversation('NA', 1, 30, conversation_text)
 

@@ -47,14 +47,17 @@ def write_text_to_db(uri, text):
     return    
 
 filedir = 'inputs/'
-filename = 'protocol.pdf'
 domain_id = 33
 
 print('Starting job')
-doc_text = read_text_from_pdf(filedir + filename)
-#write_to_file(doc_text)
 
+files = os.listdir(filedir)
 conn = db.get_connection()
-write_text_to_db(filename, doc_text)
+for file in files:
+    print(file)
+    print('------------')
+    doc_text = read_text_from_pdf(filedir + file)
+    write_text_to_db(file, doc_text)
 db.close_connection(conn)
+
 print('Complete')

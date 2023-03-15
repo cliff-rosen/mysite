@@ -40,7 +40,7 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
     "botRoleName": "Assistant",
     "conversationHistory": [],
     "userMessage": "What are the objectives & endpoints of the study?",
-    "max_tokens": 400,
+    "max_tokens": 200,
     "temperature": 0.4,
     "domain_id": 33
 }

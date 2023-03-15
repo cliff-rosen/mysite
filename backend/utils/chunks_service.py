@@ -84,6 +84,6 @@ def get_context_for_prompt(chunks, max_chunks_word_count = MAX_CHUNKS_WORD_COUNT
     print('chunks used:', chunks_used_count)
 
     if context:
-        return '<START OF CONTEXT>\n' + context + '\n<END OF CONTEXT>'
+        return '<START OF CONTEXT>\n' + context.strip() + '\n<END OF CONTEXT>'
     else:
         return ''

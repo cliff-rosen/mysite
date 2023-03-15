@@ -27,8 +27,11 @@ openai.api_key = OPENAI_API_KEY
 
 def build_prompt(prompt_header, context_for_prompt, bot_role_name, initial_message,
                 conversation_history_text, user_role_name, user_message):
+    if context_for_prompt:
+        context_for_prompt = context_for_prompt + '\n\n'
+
     prompt = prompt_header.strip() + '\n\n' \
-    + context_for_prompt + '\n\n' \
+    + context_for_prompt \
     + bot_role_name + ': ' + initial_message.strip() + '\n\n' \
     + conversation_history_text \
     + user_role_name + ': ' + user_message.strip() + '\n'\
@@ -91,7 +94,7 @@ def query_model(prompt, stop_token, max_tokens, temperature):
 def insert_conversation(conversation_id, user_id, domain_id, conversation_text):
     conversation_id = 'NA'
     try:
-        db.insert_conversation(conversation_id, 1, 30, conversation_text)
+        db.insert_conversation(conversation_id, 1, domain_id, conversation_text)
     except Exception as e:
         print('insert_conversation error: ', e)
         logger.error('insert_conversation error: ' + str(e))
@@ -152,7 +155,7 @@ def get_response(
 
     print("storing conversation")
     conversation_text = prompt + response
-    insert_conversation('NA', 1, 30, conversation_text)
+    insert_conversation('NA', 1, domain_id, conversation_text)
 
     return {"status": "SUCCESS", "response": response }
 

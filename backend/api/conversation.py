@@ -35,27 +35,29 @@ def create_prompt(
         chunks_with_text    
     ):
     prompt=""
-    context_for_prompt = chunk.get_context_for_prompt(chunks_with_text)
+    conversation_history_text = ""
+    context_for_prompt = ""
 
     try:
         conversation_history = sorted(conversation_history, key=lambda item: item["userMessageTimeStamp"])
-        conversation_history_text = ""
         for entry in conversation_history:
             print("message", user_role_name + ': ' + entry['userMessage'])
             conversation_history_text += \
                 user_role_name + ': ' + entry['userMessage'] + '\n' \
                 + bot_role_name + ': ' + entry['response'] + '\n\n'
-
-        prompt = prompt_header.strip() + '\n\n' \
-            + context_for_prompt + '\n\n' \
-            + bot_role_name + ': ' + initial_message.strip() + '\n\n' \
-            + conversation_history_text \
-            + user_role_name + ': ' + user_message.strip() + '\n'\
-            + bot_role_name + ': '
     except Exception as e:
         err_message = traceback.format_exc()
         logger.error('create_prompt: ' + err_message)
         #raise(e)
+
+    context_for_prompt = chunk.get_context_for_prompt(chunks_with_text)
+
+    prompt = prompt_header.strip() + '\n\n' \
+        + context_for_prompt + '\n\n' \
+        + bot_role_name + ': ' + initial_message.strip() + '\n\n' \
+        + conversation_history_text \
+        + user_role_name + ': ' + user_message.strip() + '\n'\
+        + bot_role_name + ': '
 
     logger.info('prompt: ' + prompt)
     return prompt

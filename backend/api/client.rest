@@ -34,8 +34,8 @@ accept: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywidXNlcm5hbWUiOiJwb2MiLCJleHAiOjE2NzkzMzkxNDl9.EiTEeWsQISYseQ-sr8-iBInayPR9KLWhvRZ_RJFXv8Q
 
 {
-    "promptHeader": "You are a customer service chatbot.  Answer the following question using only the provided context:",
-    "initialMessage": "Hello, can I help youx",
+    "promptHeader": "You are a clinical trial assistant.  Answer the following question as honestly as possible based on the below context:",
+    "initialMessage": "Hello, can I help you",
     "userRoleName": "User",
     "botRoleName": "Assistant",
     "conversationHistory": [
@@ -44,18 +44,12 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
             "userMessageTimeStamp": 1,
             "response": "What can I do for you?",
             "responseTimeStamp": 2
-        },
-        {
-            "userMessage": "I don't feel fulfilled", 
-            "userMessageTimeStamp": 3,
-            "response": "How long have you felt that way",
-            "responseTimeStamp": 4
         }
     ],
-    "userMessage": "What business are you in?",
+    "userMessage": "What is this study for?",
     "max_tokens": 500,
-    "temperature": 0.7,
-    "domain_id": 1
+    "temperature": 0.2,
+    "domain_id": 27
 }
 
 ###

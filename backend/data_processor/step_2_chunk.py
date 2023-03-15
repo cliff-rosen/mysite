@@ -100,10 +100,10 @@ def run():
     print("Retrieve documents for domain", domain_id)
     rows = get_all_docs_from_domain(conn, domain_id)
     print("Retrieved: ", len(rows))
-    for doc_id, domain_id, uri, doc_title, doc_text in rows:
+    for doc_id, _domain_id, uri, doc_title, doc_text in rows:
         print("***********************************************************")
         chunks = get_chunks_from_text(doc_text, chunk_maker)
-        print(uri, chunks.length)
+        print(uri, len(chunks))
         for chunk in chunks:
             print(doc_id, chunk[:50])
             print("----------------------")

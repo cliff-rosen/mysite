@@ -35,16 +35,14 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
 
 {
     "promptHeader": "You are a clinical trial assistant.  Answer the following question as honestly as possible based on the below context:",
-    "initialMessage": "How may I help you?",
+    "initialMessage": "",
     "userRoleName": "User",
     "botRoleName": "Assistant",
-    "conversationHistory": [
-
-    ],
-    "userMessage": "Who is eligible for this study?",
-    "max_tokens": 200,
+    "conversationHistory": [],
+    "userMessage": "What are the objectives & endpoints of the study?",
+    "max_tokens": 400,
     "temperature": 0.4,
-    "domain_id": 27
+    "domain_id": 33
 }
 
 ###

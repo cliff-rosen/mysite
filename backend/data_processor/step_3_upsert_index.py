@@ -66,7 +66,7 @@ def fetch():
 
 # runtime settings
 ALL_DOMAINS = 1000000
-g_domain_id = 31
+g_domain_id = 33
 
 print(index.describe_index_stats())
 run()

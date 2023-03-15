@@ -33,7 +33,7 @@ def get_openai_embedding(text):
         engine="text-embedding-ada-002"
     )
 
-def get_all_docs_from_domain(domain_id):
+def get_all_docs_from_domain(conn, domain_id):
     return db.get_all_docs_from_domain(conn, domain_id)
 
 def get_chunks_from_text(text, maker_type):
@@ -41,8 +41,10 @@ def get_chunks_from_text(text, maker_type):
         return get_chunks_from_text_2(text)
 
     if maker_type == "CHAR":
+        print('chunking with CharacterTextSplitter')
         chunks_splitter = CharacterTextSplitter(        
-            separator = "\n\n",
+            #separator = "\n\n",
+            separator = "\n",
             chunk_size = 1000,
             chunk_overlap  = 200,
             length_function = len,
@@ -85,29 +87,53 @@ def get_chunks_from_text_2(text):
     return chunks
 
 # runtime settings
-chunk_maker = "MAKER_2"
-domain_id = 31
+#chunk_maker = "MAKER_2"
+chunk_maker = "CHAR"
+domain_id = 33
 
-# init
-conn = db.get_connection()
+def run():
+    # init
+    conn = db.get_connection()
 
-# one to one creation of chunks with embeddings
-# FIX ME: should be upsertChunk() and not insertChunk()
-print("Retrieve documents for domain", domain_id)
-rows = get_all_docs_from_domain(domain_id)
-print("Retrieved: ", len(rows))
-for doc_id, domain_id, uri, doc_title, doc_text in rows:
-    print("***********************************************************")
-    print(uri)
-    chunks = get_chunks_from_text(doc_text, chunk_maker)
-    for chunk in chunks:
-        print(doc_id, chunk[:50])
-        print("----------------------")
-        embedding = get_openai_embedding(chunk[:1200])
-        db.insert_document_chunk(conn, doc_id, chunk, embedding)
+    # one to one creation of chunks with embeddings
+    # FIX ME: should be upsertChunk() and not insertChunk()
+    print("Retrieve documents for domain", domain_id)
+    rows = get_all_docs_from_domain(conn, domain_id)
+    print("Retrieved: ", len(rows))
+    for doc_id, domain_id, uri, doc_title, doc_text in rows:
+        print("***********************************************************")
+        chunks = get_chunks_from_text(doc_text, chunk_maker)
+        print(uri, chunks.length)
+        for chunk in chunks:
+            print(doc_id, chunk[:50])
+            print("----------------------")
+            embedding = get_openai_embedding(chunk[:MAX_CHUNK_LENGTH])
+            db.insert_document_chunk(conn, doc_id, chunk, embedding)
 
-# cleanup
-db.close_connection(conn)
+    # cleanup
+    db.close_connection(conn)
+
+def write_to_file(text):
+    directory = 'outputs'
+    dest = 'chunks.txt'
+    with open(os.path.join(directory, dest), 'a') as new_file:
+        new_file.write(text)
+
+def test_chunker():
+    print("TEST: Retrieve documents for domain", domain_id)
+    conn = db.get_connection()
+    rows = get_all_docs_from_domain(conn, domain_id)
+    db.close_connection(conn)
+
+    for _doc_id, _domain_id, uri, _doc_title, doc_text in rows:
+        print("***********************************************************")
+        print(uri)
+        chunks = get_chunks_from_text(doc_text, chunk_maker)
+        for chunk in chunks:
+            write_to_file(chunk + '\n==============\n')
+            
+#test_chunker()
+run()
 
 #####################################################
 #clean_chunk = re.sub('\s+', ' ', chunk)

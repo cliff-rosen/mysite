@@ -1,9 +1,12 @@
-2023-03-15 10:54:16,296  INFO - Initializing application...
-2023-03-15 10:54:16,307  WARNING -  * Debugger is active!
-2023-03-15 10:54:16,313  INFO -  * Debugger PIN: 901-032-737
-2023-03-15 10:54:16,333  INFO - conversation.get_response: Who is eligible for this study?
-2023-03-15 10:54:18,166  INFO - 127.0.0.1 - - [15/Mar/2023 10:54:18] "POST /conversation HTTP/1.1" 200 -
-2023-03-15 10:54:39,100  INFO - conversation.get_response: Who is eligible for this study?
-2023-03-15 10:54:44,330  INFO - 127.0.0.1 - - [15/Mar/2023 10:54:44] "POST /conversation HTTP/1.1" 200 -
-2023-03-15 10:55:27,459  INFO - conversation.get_response: Who is eligible for this study?
-2023-03-15 10:55:37,220  INFO - 127.0.0.1 - - [15/Mar/2023 10:55:37] "POST /conversation HTTP/1.1" 200 -
+2023-03-15 18:01:47,889  INFO - Initializing application...
+2023-03-15 18:01:47,899  WARNING -  * Debugger is active!
+2023-03-15 18:01:47,906  INFO -  * Debugger PIN: 901-032-737
+2023-03-15 18:02:54,442  INFO - 127.0.0.1 - - [15/Mar/2023 18:02:54] "POST /auth/token HTTP/1.1" 200 -
+2023-03-15 18:03:03,851  INFO - conversation.get_response: Who is eligible for this study?
+2023-03-15 18:03:11,164  INFO - 127.0.0.1 - - [15/Mar/2023 18:03:11] "POST /conversation HTTP/1.1" 200 -
+2023-03-15 18:03:27,812  INFO - conversation.get_response: Who is eligible for this study?
+2023-03-15 18:03:29,099  INFO - error_code=None error_message="4 is greater than the maximum of 2 - 'temperature'" error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2023-03-15 18:03:29,099  ERROR - conversation.query_model: 4 is greater than the maximum of 2 - 'temperature'
+2023-03-15 18:03:29,335  INFO - 127.0.0.1 - - [15/Mar/2023 18:03:29] "POST /conversation HTTP/1.1" 200 -
+2023-03-15 18:03:55,878  INFO - conversation.get_response: Who is eligible for this study?
+2023-03-15 18:04:06,693  INFO - 127.0.0.1 - - [15/Mar/2023 18:04:06] "POST /conversation HTTP/1.1" 200 -

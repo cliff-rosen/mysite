@@ -17,7 +17,7 @@ OPENAI_API_KEY = secrets.OPENAI_API_KEY
 MODEL = "text-embedding-ada-002"
 INDEX_NAME = "main-index-2"
 TEMPERATURE=.4
-TOP_K=10
+TOP_K=15
 MAX_WORD_COUNT=3000
 
 print("conversation initing AI and vector db")
@@ -128,12 +128,12 @@ def get_response(
         query_embedding = chunk.ge(user_message)
 
         print("getting chunks ids")
-        chunks = chunk.get_chunks_from_embedding(domain_id, query_embedding)
+        chunks = chunk.get_chunks_from_embedding(domain_id, query_embedding, TOP_K)
         if not chunks:
             # FIX ME: reply doesn't include converation_id and conv tables not updated
             return {"answer": "No data found for query", "chunks": {}, "chunks_used_count": 0 }
         print("getting chunk text from ids")
-        chunk.get_chunk_text_from_ids(chunks)
+        chunk.set_chunk_text_from_ids(chunks)
         logger.debug("chunks with text: " + str(chunks))
 
     print("creating prompt")

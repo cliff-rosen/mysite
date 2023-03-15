@@ -29,10 +29,10 @@ def ge(text):
 
 # retrieve TOP_K embedding matches to query embedding
 # return as dict {id: {"id": id, "score": score, "metadata": metadata}}
-def get_chunks_from_embedding(domain_id, query_embedding):
+def get_chunks_from_embedding(domain_id, query_embedding, top_k=TOP_K):
     print("getting matches")
     matches = index.query(
-        top_k=TOP_K,
+        top_k=top_k,
         include_values=True,
         include_metadata=True,
         vector=query_embedding,
@@ -48,7 +48,7 @@ def get_chunks_from_embedding(domain_id, query_embedding):
 # mutate chunks by adding {"uri": uri, "text", text} to each value dict
 # chunks is dict where
 #   key is chunk_id, and value is obj with score, text
-def get_chunk_text_from_ids(chunks):
+def set_chunk_text_from_ids(chunks):
     print("getting chunk text")
 
     ids = list(chunks.keys())

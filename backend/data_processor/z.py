@@ -1,32 +1,37 @@
-    def _merge_splits(self, splits: Iterable[str], separator: str) -> List[str]:
-        # We now want to combine these smaller pieces into medium size
-        # chunks to send to the LLM.
-        docs = []
-        current_doc: List[str] = []
-        total = 0
-        for d in splits:
-            _len = self._length_function(d)
-            if total + _len >= self._chunk_size:
-                if total > self._chunk_size:
-                    logger.warning(
-                        f"Created a chunk of size {total}, "
-                        f"which is longer than the specified {self._chunk_size}"
-                    )
-                if len(current_doc) > 0:
-                    doc = self._join_docs(current_doc, separator)
-                    if doc is not None:
-                        docs.append(doc)
-                    # Keep on popping if:
-                    # - we have a larger chunk than in the chunk overlap
-                    # - or if we still have any chunks and the length is long
-                    while total > self._chunk_overlap or (
-                        total + _len > self._chunk_size and total > 0
-                    ):
-                        total -= self._length_function(current_doc[0])
-                        current_doc = current_doc[1:]
-            current_doc.append(d)
-            total += _len
-        doc = self._join_docs(current_doc, separator)
-        if doc is not None:
-            docs.append(doc)
-        return docs
+import os
+import re
+from PyPDF2 import PdfReader
+
+directory = 'outputs'
+dest = 'pages.txt'
+
+def write(text):
+    with open(os.path.join(directory, dest), 'a') as new_file:
+        new_file.write(text)
+
+reader = PdfReader("inputs\protocol.pdf")
+number_of_pages = len(reader.pages)
+page = reader.pages[1]
+
+def visitor_body(text, cm, tm, font_dict, font_size):
+
+    pattern = r'^\s*$'
+    if bool(re.match(pattern, text)):
+        return
+    
+    write(text.strip() + ' ' )
+
+page.extract_text(visitor_text=visitor_body)
+
+
+'''
+for page in reader.pages:
+    text = page.extract_text()
+    #text = text.encode(encoding='ASCII',errors='ignore').decode()
+    text = text.encode(encoding='ASCII',errors='ignore').decode()
+    try:
+        write(text)
+    except Exception as e:
+        print('Couldnt read page: ', str(e))
+              
+'''

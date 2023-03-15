@@ -43,7 +43,7 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
     ],
     "userMessage": "Who is eligible for this study?",
     "max_tokens": 200,
-    "temperature": 0.5,
+    "temperature": 0.4,
     "domain_id": 27
 }
 

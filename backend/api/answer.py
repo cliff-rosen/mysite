@@ -181,7 +181,7 @@ def get_answer(conversation_id, domain_id, query,
             # FIX ME: reply doesn't include converation_id and conv tables not updated
             return {"answer": "No data found for query", "chunks": {}, "chunks_used_count": 0 }
         print("getting chunk text from ids")
-        chunk.get_chunk_text_from_ids(chunks)
+        chunk.set_chunk_text_from_ids(chunks)
 
     if use_new_model:
         print("answering with new model")

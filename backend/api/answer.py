@@ -19,9 +19,8 @@ def get_conversation_history_text(conversation_history):
     return conversation_text
 
 
-
 def create_prompt_1(conversation_history, initial_message,
-                    query, initial_prompt, chunks_with_text):
+                    query, initial_prompt, chunks):
     user_role = 'User: '
     bot_role = 'Assistant: '
 
@@ -29,7 +28,7 @@ def create_prompt_1(conversation_history, initial_message,
     conversation_history_text = ""
     prompt = ""
 
-    context_for_prompt = chunk.get_context_for_prompt(chunks_with_text)
+    context_for_prompt = chunk.get_context_for_prompt(chunks)
 
     conversation_history_text = get_conversation_history_text(conversation_history)
 
@@ -67,11 +66,11 @@ def query_model_1(prompt, temp):
 
 
 def create_prompt_2(conversation_history, initial_message, query,
-                    initial_prompt, chunks_with_text):
+                    initial_prompt, chunks):
     messages = []
 
     # add system message
-    context_for_prompt = chunk.get_context_for_prompt(chunks_with_text)
+    context_for_prompt = chunk.get_context_for_prompt(chunks)
     if context_for_prompt:
         initial_prompt += '\n\n' + context_for_prompt
     messages.append({"role": "system", "content": initial_prompt})
@@ -101,22 +100,22 @@ def query_model_2(messages):
 
 
 def query_1(conversation_history, initial_message,
-            query, initial_prompt, chunks_with_text, temp):
+            query, initial_prompt, chunks, temp):
 
     print("creating prompt")
     prompt = create_prompt_1(conversation_history, initial_message, query, 
-                             initial_prompt, chunks_with_text)
+                             initial_prompt, chunks)
 
     print("querying model")
     return query_model_1(prompt, temp)
 
 
 def query_2(conversation_history, initial_message,
-            query, initial_prompt, chunks_with_text):
+            query, initial_prompt, chunks):
 
     print("creating prompt")
     messages = create_prompt_2(conversation_history, initial_message, 
-                               query, initial_prompt, chunks_with_text)
+                               query, initial_prompt, chunks)
 
     print("querying model")
     return query_model_2(messages)
@@ -125,11 +124,11 @@ def query_2(conversation_history, initial_message,
 def update_conversation_tables(domain_id, query,
                 initial_prompt, initial_message,
                 query_temp, conversation_id, conversation_history,
-                response_text, chunks_with_text, chunks,
+                response_text, chunks,
                 user_id, use_new_model):
     
     prompt = create_prompt_1(conversation_history, initial_message,
-                             query, initial_prompt, chunks_with_text)
+                             query, initial_prompt, chunks)
     if use_new_model:
         prompt = 'NEW MODEL\n' + prompt
     else:
@@ -157,7 +156,6 @@ def get_answer(conversation_id, domain_id, query,
                initial_prompt, temp, user_id, use_new_model):
     use_context = False
     chunks = {}
-    chunks_with_text = {}
     initial_message = conf.DEFAULT_INITIAL_MESSAGE
     conversation_history = []
 
@@ -183,24 +181,24 @@ def get_answer(conversation_id, domain_id, query,
             # FIX ME: reply doesn't include converation_id and conv tables not updated
             return {"answer": "No data found for query", "chunks": {}, "chunks_used_count": 0 }
         print("getting chunk text from ids")
-        chunks_with_text = chunk.get_chunk_text_from_ids(chunks)
+        chunk.get_chunk_text_from_ids(chunks)
 
     if use_new_model:
         print("answering with new model")
         response = query_2(conversation_history, initial_message, 
-                       query, initial_prompt, chunks_with_text)
+                       query, initial_prompt, chunks)
     else:
         print("answering with old model")
         response = query_1(conversation_history, initial_message,
-                           query, initial_prompt, chunks_with_text, temp)
+                           query, initial_prompt, chunks, temp)
 
     print("updating conversation tables")
     conversation_id = update_conversation_tables(domain_id, query, 
                                                 initial_prompt, initial_message,
                                                 temp, conversation_id, conversation_history,
-                                                response, chunks_with_text, chunks,
+                                                response, chunks,
                                                 user_id, use_new_model)
 
-    return {"conversation_id": conversation_id, "answer": response, "chunks": chunks, "chunks_used_count": len(list(chunks_with_text.keys())) }
+    return {"conversation_id": conversation_id, "answer": response, "chunks": chunks, "chunks_used_count": len(list(chunks.keys())) }
 
 

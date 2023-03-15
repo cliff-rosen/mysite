@@ -69,6 +69,8 @@ def get_chunk_text_from_ids(chunks):
 def get_context_for_prompt(chunks, max_chunks_word_count = MAX_CHUNKS_WORD_COUNT):
     context = ""
     chunks_word_count = 0
+    chunks_used_count = 0
+
     print('max', max_chunks_word_count)
 
     for id, chunk in sorted(chunks.items(), key=lambda item: item[1]["score"], reverse = True):
@@ -77,7 +79,9 @@ def get_context_for_prompt(chunks, max_chunks_word_count = MAX_CHUNKS_WORD_COUNT
             print('context max size reached', id, chunks_word_count)
             break
         context = context + chunk['text'] + '\n\n'
-        chunks_word_count = chunks_word_count + words_in_chunk
+        chunks_used_count += 1
+        chunks_word_count += words_in_chunk
+    print('chunks used:', chunks_used_count)
 
     if context:
         return '<START OF CONTEXT>\n' + context + '\n<END OF CONTEXT>'

@@ -35,19 +35,19 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
 
 {
     "promptHeader": "You are a clinical trial assistant.  Answer the following question as honestly as possible based on the below context:",
-    "initialMessage": "Hello, can I help you",
+    "initialMessage": "",
     "userRoleName": "User",
     "botRoleName": "Assistant",
     "conversationHistory": [
         {
-            "userMessage": "yes", 
+            "userMessage": "Where is this study located?", 
             "userMessageTimeStamp": 1,
-            "response": "What can I do for you?",
+            "response": "The United States.",
             "responseTimeStamp": 2
         }
     ],
-    "userMessage": "What is this study for?",
-    "max_tokens": 500,
+    "userMessage": "What is the name of this study?",
+    "max_tokens": 200,
     "temperature": 0.2,
     "domain_id": 27
 }

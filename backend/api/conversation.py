@@ -18,12 +18,23 @@ MODEL = "text-embedding-ada-002"
 INDEX_NAME = "main-index-2"
 TEMPERATURE=.4
 TOP_K=10
+MAX_WORD_COUNT=3000
 
 print("conversation initing AI and vector db")
 pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
 index = pinecone.Index(INDEX_NAME)
 openai.api_key = OPENAI_API_KEY
 
+def build_prompt(prompt_header, context_for_prompt, bot_role_name, initial_message,
+                conversation_history_text, user_role_name, user_message):
+    prompt = prompt_header.strip() + '\n\n' \
+    + context_for_prompt + '\n\n' \
+    + bot_role_name + ': ' + initial_message.strip() + '\n\n' \
+    + conversation_history_text \
+    + user_role_name + ': ' + user_message.strip() + '\n'\
+    + bot_role_name + ': '
+
+    return prompt
 
 def create_prompt(
         prompt_header,
@@ -32,7 +43,7 @@ def create_prompt(
         bot_role_name,
         conversation_history,
         user_message,
-        chunks_with_text    
+        chunks  
     ):
     prompt=""
     conversation_history_text = ""
@@ -50,14 +61,11 @@ def create_prompt(
         logger.error('create_prompt: ' + err_message)
         #raise(e)
 
-    context_for_prompt = chunk.get_context_for_prompt(chunks_with_text)
+    max_context_word_count = MAX_WORD_COUNT - len(conversation_history_text.split()) - 500
+    context_for_prompt = chunk.get_context_for_prompt(chunks, max_context_word_count)
 
-    prompt = prompt_header.strip() + '\n\n' \
-        + context_for_prompt + '\n\n' \
-        + bot_role_name + ': ' + initial_message.strip() + '\n\n' \
-        + conversation_history_text \
-        + user_role_name + ': ' + user_message.strip() + '\n'\
-        + bot_role_name + ': '
+    prompt = build_prompt(prompt_header, context_for_prompt, bot_role_name, initial_message,
+                conversation_history_text, user_role_name, user_message)
 
     logger.info('prompt: ' + prompt)
     return prompt
@@ -105,7 +113,6 @@ def get_response(
 
     use_context = False
     chunks = {}
-    chunks_with_text = {}
 
     print("getting domain settings")
     if domain_id != 0:
@@ -124,7 +131,8 @@ def get_response(
             # FIX ME: reply doesn't include converation_id and conv tables not updated
             return {"answer": "No data found for query", "chunks": {}, "chunks_used_count": 0 }
         print("getting chunk text from ids")
-        chunks_with_text = chunk.get_chunk_text_from_ids(chunks)
+        chunk.get_chunk_text_from_ids(chunks)
+        logger.info("chunks with text: " + str(chunks))
 
     print("creating prompt")
     prompt = create_prompt(
@@ -134,7 +142,7 @@ def get_response(
         bot_role_name,
         conversation_history,
         user_message,
-        chunks_with_text
+        chunks
     )
     logger.debug('Prompt:\n' + prompt)
     if not prompt:

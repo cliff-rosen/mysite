@@ -5,6 +5,9 @@ from api import login, domain, prompt, answer, conversation, token
 from utils.utils import decode_token
 import logging
 
+MAX_TOKENS_DEFAULT = 200
+TEMPERATURE_DEFAULT = .4
+
 LOG_LEVEL = logging.INFO
 logging.basicConfig(format='%(asctime)s  %(levelname)s - %(message)s', level=LOG_LEVEL, filename='app2.log', filemode='w')
 logger = logging.getLogger()
@@ -57,15 +60,12 @@ class Conversation(Resource):
             bot_role_name = data['botRoleName']
             conversation_history = data['conversationHistory']
             user_message = data['userMessage']
-            max_tokens = data.get('max_tokens', 4000)
-            temperature = data.get('temperature', .4)
+            max_tokens = data.get('max_tokens', MAX_TOKENS_DEFAULT)
+            temperature = data.get('temperature', TEMPERATURE_DEFAULT)
             domain_id = data.get('domain_id', 0)
 
         except Exception as e:
-            if data:
-                data_str = str(data)
-            else:
-                data_str = 'NO_DATA_PARSED'
+            data_str = str(data) if data else 'NO_DATA_PARSED'
             logger.warning('Conversation - Error parsing body: ' + data_str)
             abort(400)
 

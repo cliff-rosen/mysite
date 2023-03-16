@@ -1,11 +1,10 @@
 import pinecone
 import openai
-from openai.embeddings_utils import get_embedding
 import logging
 import traceback
 from db import local_db as db
 import local_secrets as secrets
-from utils.utils import make_new_conversation_id
+from utils.utils import make_new_conversation_id, num_tokens_from_string
 import utils.chunks_service as chunk
 from api.errors import InputError
 
@@ -15,10 +14,10 @@ OPENAI_API_KEY = secrets.OPENAI_API_KEY
 TEMPERATURE=.4
 PINECONE_API_KEY = secrets.PINECONE_API_KEY
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
-MODEL = "text-embedding-ada-002"
 INDEX_NAME = "main-index-2"
 TEMPERATURE = .4
 TOP_K = 20
+COMPLETION_MODEL = 'text-davinci-003'
 MAX_TOKEN_COUNT = 4000
 WORDS_TO_TOKENS = 1 / .7
 
@@ -43,9 +42,10 @@ def build_prompt(prompt_header, context_for_prompt, bot_role_name, initial_messa
 
 def num_tokens(*args):
     token_count = 0
+    text = ''
     for arg in args:
-        token_count += len(arg.split()) * WORDS_TO_TOKENS
-    print('num_tokens before context', int(token_count))
+        text += arg
+    token_count += num_tokens_from_string(text, COMPLETION_MODEL)
     return int(token_count)
 
 def create_prompt(
@@ -76,6 +76,7 @@ def create_prompt(
         raise(InputError('Invalid input to create_prompt.  Suspect bad input JSON'))
 
     prompt_token_count = num_tokens(prompt_header, initial_message, conversation_history_text, user_message)
+    print('tokens used by pre-context prompt: %s' % (prompt_token_count))
     max_context_token_count = MAX_TOKEN_COUNT - prompt_token_count - max_tokens
     context_for_prompt = chunk.get_context_for_prompt(chunks, max_context_token_count)
 
@@ -89,12 +90,10 @@ def create_prompt(
 
 
 def query_model(prompt, stop_token, max_tokens, temperature):
-    #model = 'gpt-3.5-turbo'
-    model = 'text-davinci-003'
-    print("prompt char count: %s, token count: %s " % (len(prompt), int(len(prompt.split()) * WORDS_TO_TOKENS)))
+    print("prompt token count: %s" % (num_tokens(prompt)))
     try:
         response = openai.Completion.create(
-            model=model,
+            model=COMPLETION_MODEL,
             prompt=prompt,
             max_tokens=max_tokens,
             temperature=temperature,
@@ -134,20 +133,15 @@ def get_response(
     print("getting domain settings")
     if domain_id != 0:
         res = db.get_domain(domain_id)
+        if not res:
+            logger.warning('get_response got bad domain_id: ' + str(domain_id))
+            raise InputError('Bad domain_id: ' + str(domain_id))
         if res['use_context']:
             use_context = True
 
     print("handling chunk retrieval")
     if use_context:
-        print("getting query embedding")
-        query_embedding = chunk.ge(user_message)
-
-        print("getting chunks ids")
-        chunks = chunk.get_chunks_from_embedding(domain_id, query_embedding, TOP_K)
-        if not chunks:
-            raise Exception('No chunks found - check index')
-        print("getting chunk text from ids")
-        chunk.set_chunk_text_from_ids(chunks)
+        chunk.set_chunks_from_query(domain_id, chunks, user_message)
         logger.debug("chunks with text: " + str(chunks))
 
     print("creating prompt")
@@ -172,6 +166,6 @@ def get_response(
     conversation_text = prompt + response
     insert_conversation('NA', 1, domain_id, conversation_text)
 
-    return {"status": "SUCCESS", "response": response, "context": chunks }
+    return {"status": "SUCCESS", "response": response, "prompt": prompt, "context": chunks }
 
 

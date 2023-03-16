@@ -205,7 +205,7 @@ def get_domain(domain_id):
                 """, (domain_id,))
     rows = cur.fetchall()
     close_connection(conn)    
-    return rows[0]
+    return rows[0] if rows else []
 
 
 ##### CONVERSATION #####

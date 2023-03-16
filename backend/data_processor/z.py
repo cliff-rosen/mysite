@@ -14,7 +14,6 @@ number_of_pages = len(reader.pages)
 page = reader.pages[1]
 
 def visitor_body(text, cm, tm, font_dict, font_size):
-
     pattern = r'^\s*$'
     if bool(re.match(pattern, text)):
         return

@@ -1,3 +1,7 @@
-2023-03-16 07:36:07,075  INFO - Initializing application...
-2023-03-16 07:36:07,085  WARNING -  * Debugger is active!
-2023-03-16 07:36:07,092  INFO -  * Debugger PIN: 901-032-737
+2023-03-16 10:23:26,275  INFO - Initializing application...
+2023-03-16 10:23:26,285  WARNING -  * Debugger is active!
+2023-03-16 10:23:26,292  INFO -  * Debugger PIN: 901-032-737
+2023-03-16 10:23:29,360  INFO - conversation.get_response: What is the name of this study?
+2023-03-16 10:23:29,541  WARNING - get_response got bad domain_id: 225
+2023-03-16 10:23:29,542  WARNING - InputError in Conversation: Bad domain_id: 225
+2023-03-16 10:23:29,543  INFO - 127.0.0.1 - - [16/Mar/2023 10:23:29] "[31m[1mPOST /conversation HTTP/1.1[0m" 400 -

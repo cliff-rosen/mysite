@@ -7,6 +7,7 @@ from db import local_db as db
 import local_secrets as secrets
 from utils.utils import make_new_conversation_id
 import utils.chunks_service as chunk
+from api.errors import InputError
 
 logger = logging.getLogger()
 
@@ -70,8 +71,9 @@ def create_prompt(
                 + bot_role_name + ': ' + entry['response'] + '\n\n'
     except Exception as e:
         err_message = traceback.format_exc()
-        logger.error('create_prompt: ' + err_message)
-        #raise(e)
+        logger.warning('create_prompt error reading conversation history: ' + err_message)
+        logger.warning('JSON: ' + str(conversation_history) )
+        raise(InputError('Invalid input to create_prompt.  Suspect bad input JSON'))
 
     max_context_token_count = MAX_TOKEN_COUNT - num_tokens(prompt_header, initial_message, 
                                                            conversation_history_text, user_message) - max_tokens
@@ -140,8 +142,7 @@ def get_response(
         print("getting chunks ids")
         chunks = chunk.get_chunks_from_embedding(domain_id, query_embedding, TOP_K)
         if not chunks:
-            # FIX ME: reply doesn't include converation_id and conv tables not updated
-            return {"answer": "No data found for query", "chunks": {}, "chunks_used_count": 0 }
+            raise Exception('No chunks found - check index')
         print("getting chunk text from ids")
         chunk.set_chunk_text_from_ids(chunks)
         logger.debug("chunks with text: " + str(chunks))

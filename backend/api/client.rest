@@ -41,7 +41,7 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
     "userRoleName": "User",
     "botRoleName": "Assistant",
     "conversationHistory": [],
-    "userMessage": "Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study? Who can enroll in the study?",
+    "userMessage": "Who can enroll in the study?",
     "max_tokens": 400,
     "temperature": 0.1,
     "domain_id": 33

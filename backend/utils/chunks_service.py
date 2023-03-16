@@ -72,6 +72,7 @@ def get_context_for_prompt(chunks, max_chunks_token_count = MAX_CHUNKS_TOKEN_COU
     chunks_used_count = 0
 
     print('get_context_for_prompt using max token count of', max_chunks_token_count)
+    print(' number of chunks to check: ', len(chunks))
 
     for id, chunk in sorted(chunks.items(), key=lambda item: item[1]["score"], reverse = True):
         tokens_in_chunk = len(chunk['text'].split()) * WORDS_TO_TOKENS

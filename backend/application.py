@@ -2,6 +2,7 @@ from flask import Flask, request
 from flask_restful import Resource, Api, reqparse, abort
 from flask_cors import CORS
 from api import login, domain, prompt, answer, conversation, token
+from api.errors import InputError
 from utils.utils import decode_token
 import logging
 
@@ -81,8 +82,8 @@ class Conversation(Resource):
                 max_tokens,
                 temperature
             )
-            if res["status"] == "BAD_REQUEST":
-                abort(400)
+        except InputError as e:
+            abort(400)
         except Exception as e:
             logger.error('Uncaught exception in Conversation.post: %s', e)
             abort(500)

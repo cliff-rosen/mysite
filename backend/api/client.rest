@@ -46,10 +46,10 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
             "response": "The United States.",
             "responseTimeStamp": 2
         }],
-    "userMessage": "Who can enroll in the study?",
-    "max_tokens": 200,
+    "userMessage": "What is the name of this study?",
+    "max_tokens": 100,
     "temperature": 0.1,
-    "domain_id": 30
+    "domain_id": 33
 }
 
 ###

@@ -12,7 +12,7 @@ INDEX_NAME = "main-index-2"
 TEMPERATURE = .4
 TOP_K = 15
 MAX_CHUNKS_TOKEN_COUNT = 2500
-WORDS_TO_TOKENS = 1 / .7
+WORDS_TO_TOKENS = 1.6
 
 print("chunk_service initing AI and vector db")
 pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
@@ -71,8 +71,11 @@ def get_context_for_prompt(chunks, max_chunks_token_count = MAX_CHUNKS_TOKEN_COU
     for id, chunk in sorted(chunks.items(), key=lambda item: item[1]["score"], reverse = True):
         tokens_in_chunk = len(chunk['text'].split()) * WORDS_TO_TOKENS
         if chunks_token_count + tokens_in_chunk > max_chunks_token_count:
-            break
+            print(' chunk too long to fit.  moving on.')
+            chunks[id]['used'] = False
+            continue
         context = context + chunk['text'] + '\n\n'
+        chunks[id]['used'] = True
         chunks_used_count += 1
         chunks_token_count += tokens_in_chunk
     print('chunks provided: %s, chunks used: %s, tokens used: %s' % (len(chunks), chunks_used_count, int(chunks_token_count)))

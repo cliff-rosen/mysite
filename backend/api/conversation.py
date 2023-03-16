@@ -172,6 +172,6 @@ def get_response(
     conversation_text = prompt + response
     insert_conversation('NA', 1, domain_id, conversation_text)
 
-    return {"status": "SUCCESS", "response": response }
+    return {"status": "SUCCESS", "response": response, "context": chunks }
 
 

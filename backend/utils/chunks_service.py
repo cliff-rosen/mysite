@@ -49,12 +49,7 @@ def get_chunks_from_embedding(domain_id, query_embedding, top_k=TOP_K):
 # chunks is dict where
 #   key is chunk_id, and value is obj with score, text
 def set_chunk_text_from_ids(chunks):
-    print("getting chunk text")
-
     ids = list(chunks.keys())
-    print("-----------")
-    print("chunk ids:", ", ".join(ids))
-    print("-----------")
     rows = db.get_document_chunks_from_ids(ids)
     for row in rows:
         doc_chunk_id = row["doc_chunk_id"]
@@ -72,17 +67,15 @@ def get_context_for_prompt(chunks, max_chunks_token_count = MAX_CHUNKS_TOKEN_COU
     chunks_used_count = 0
 
     print('get_context_for_prompt using max token count of', max_chunks_token_count)
-    print(' number of chunks to check: ', len(chunks))
 
     for id, chunk in sorted(chunks.items(), key=lambda item: item[1]["score"], reverse = True):
         tokens_in_chunk = len(chunk['text'].split()) * WORDS_TO_TOKENS
         if chunks_token_count + tokens_in_chunk > max_chunks_token_count:
-            print('context max size reached', id, chunks_token_count)
             break
         context = context + chunk['text'] + '\n\n'
         chunks_used_count += 1
         chunks_token_count += tokens_in_chunk
-    print('chunks used:', chunks_used_count)
+    print('chunks provided: %s, chunks used: %s, tokens used: %s' % (len(chunks), chunks_used_count, int(chunks_token_count)))
 
     if context:
         return '<START OF CONTEXT>\n' + context.strip() + '\n<END OF CONTEXT>'

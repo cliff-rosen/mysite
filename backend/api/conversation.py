@@ -18,7 +18,7 @@ OPENAI_API_KEY = secrets.OPENAI_API_KEY
 MODEL = "text-embedding-ada-002"
 INDEX_NAME = "main-index-2"
 TEMPERATURE = .4
-TOP_K = 15
+TOP_K = 20
 MAX_TOKEN_COUNT = 4000
 WORDS_TO_TOKENS = 1 / .7
 
@@ -45,8 +45,8 @@ def num_tokens(*args):
     token_count = 0
     for arg in args:
         token_count += len(arg.split()) * WORDS_TO_TOKENS
-    print('num_tokens', token_count)
-    return token_count
+    print('num_tokens before context', int(token_count))
+    return int(token_count)
 
 def create_prompt(
         prompt_header,
@@ -75,12 +75,15 @@ def create_prompt(
         logger.warning('JSON: ' + str(conversation_history) )
         raise(InputError('Invalid input to create_prompt.  Suspect bad input JSON'))
 
-    max_context_token_count = MAX_TOKEN_COUNT - num_tokens(prompt_header, initial_message, 
-                                                           conversation_history_text, user_message) - max_tokens
+    prompt_token_count = num_tokens(prompt_header, initial_message, conversation_history_text, user_message)
+    max_context_token_count = MAX_TOKEN_COUNT - prompt_token_count - max_tokens
     context_for_prompt = chunk.get_context_for_prompt(chunks, max_context_token_count)
 
-    prompt = build_prompt(prompt_header, context_for_prompt, bot_role_name, initial_message,
-                conversation_history_text, user_role_name, user_message)
+    prompt = build_prompt(
+                prompt_header, context_for_prompt, 
+                bot_role_name, initial_message,
+                conversation_history_text, user_role_name, user_message
+                )
 
     return prompt
 
@@ -88,7 +91,7 @@ def create_prompt(
 def query_model(prompt, stop_token, max_tokens, temperature):
     #model = 'gpt-3.5-turbo'
     model = 'text-davinci-003'
-    print("prompt size: ", len(prompt), len(prompt.split()) )
+    print("prompt char count: %s, token count: %s " % (len(prompt), int(len(prompt.split()) * WORDS_TO_TOKENS)))
     try:
         response = openai.Completion.create(
             model=model,
@@ -124,7 +127,7 @@ def get_response(
         temperature
     ):
     logger.info('conversation.get_response: ' + user_message)
-
+    print('get_response -------------------------------->')
     use_context = False
     chunks = {}
 

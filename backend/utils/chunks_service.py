@@ -71,7 +71,7 @@ def get_context_for_prompt(chunks, max_chunks_word_count = MAX_CHUNKS_WORD_COUNT
     chunks_word_count = 0
     chunks_used_count = 0
 
-    print('max', max_chunks_word_count)
+    print('get_context_for_prompt max word count:', max_chunks_word_count)
 
     for id, chunk in sorted(chunks.items(), key=lambda item: item[1]["score"], reverse = True):
         words_in_chunk = len(chunk['text'].split())

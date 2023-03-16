@@ -28,6 +28,7 @@ accept: application/json
 
 ###
 
+#POST http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com/conversation
 POST http://127.0.0.1:5000/conversation
 content-type: application/json
 accept: application/json
@@ -40,7 +41,7 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
     "botRoleName": "Assistant",
     "conversationHistory": [],
     "userMessage": "What are the objectives & endpoints of the study?",
-    "max_tokens": 200,
+    "max_tokens": 400,
     "temperature": 0.4,
     "domain_id": 33
 }

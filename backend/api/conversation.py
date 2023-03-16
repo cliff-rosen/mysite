@@ -46,7 +46,8 @@ def create_prompt(
         bot_role_name,
         conversation_history,
         user_message,
-        chunks  
+        chunks,
+        max_tokens  
     ):
     prompt=""
     conversation_history_text = ""
@@ -64,7 +65,7 @@ def create_prompt(
         logger.error('create_prompt: ' + err_message)
         #raise(e)
 
-    max_context_word_count = MAX_WORD_COUNT - len(conversation_history_text.split()) - 500
+    max_context_word_count = MAX_WORD_COUNT - len(conversation_history_text.split()) - max_tokens - 200
     context_for_prompt = chunk.get_context_for_prompt(chunks, max_context_word_count)
 
     prompt = build_prompt(prompt_header, context_for_prompt, bot_role_name, initial_message,
@@ -144,7 +145,8 @@ def get_response(
         bot_role_name,
         conversation_history,
         user_message,
-        chunks
+        chunks,
+        max_tokens
     )
     logger.debug('Prompt:\n' + prompt)
     if not prompt:

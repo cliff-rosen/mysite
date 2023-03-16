@@ -12,7 +12,7 @@ EMBEDDING_MODEL = "text-embedding-ada-002"
 COMPLETION_MODEL = 'text-davinci-003'
 INDEX_NAME = "main-index-2"
 TEMPERATURE = .4
-TOP_K = 15
+TOP_K = 20
 MAX_CHUNKS_TOKEN_COUNT = 2500
 
 
@@ -91,7 +91,7 @@ def set_chunks_from_query(domain_id, chunks, user_message, top_k=TOP_K):
     query_embedding = ge(user_message)
 
     print("getting chunks ids")
-    chunks = get_chunks_from_embedding(domain_id, query_embedding, top_k)
+    chunks.update(get_chunks_from_embedding(domain_id, query_embedding, top_k))
     if not chunks:
         raise Exception('No chunks found - check index')
     print("getting chunk text from ids")

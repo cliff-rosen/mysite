@@ -83,7 +83,7 @@ class Conversation(Resource):
             )
         except InputError as e:
             logger.warning('InputError in Conversation: %s', e)
-            abort(400)
+            abort(400, message=str(e))
         except Exception as e:
             logger.error('Uncaught exception in Conversation.post: %s', e)
             abort(500)

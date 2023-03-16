@@ -1,7 +1,14 @@
-2023-03-16 10:23:26,275  INFO - Initializing application...
-2023-03-16 10:23:26,285  WARNING -  * Debugger is active!
-2023-03-16 10:23:26,292  INFO -  * Debugger PIN: 901-032-737
-2023-03-16 10:23:29,360  INFO - conversation.get_response: What is the name of this study?
-2023-03-16 10:23:29,541  WARNING - get_response got bad domain_id: 225
-2023-03-16 10:23:29,542  WARNING - InputError in Conversation: Bad domain_id: 225
-2023-03-16 10:23:29,543  INFO - 127.0.0.1 - - [16/Mar/2023 10:23:29] "[31m[1mPOST /conversation HTTP/1.1[0m" 400 -
+2023-03-16 10:33:28,545  INFO - Initializing application...
+2023-03-16 10:33:28,555  WARNING -  * Debugger is active!
+2023-03-16 10:33:28,562  INFO -  * Debugger PIN: 901-032-737
+2023-03-16 10:33:31,049  INFO - conversation.get_response: What is the name of this study?
+2023-03-16 10:33:42,370  INFO - 127.0.0.1 - - [16/Mar/2023 10:33:42] "POST /conversation HTTP/1.1" 200 -
+2023-03-16 10:34:31,018  INFO - 127.0.0.1 - - [16/Mar/2023 10:34:31] "POST /auth/token HTTP/1.1" 200 -
+2023-03-16 10:34:39,138  INFO - conversation.get_response: What is the name of this study?
+2023-03-16 10:34:40,221  INFO - 127.0.0.1 - - [16/Mar/2023 10:34:40] "POST /conversation HTTP/1.1" 200 -
+2023-03-16 10:34:50,460  INFO - conversation.get_response: What is the name of this study?
+2023-03-16 10:34:50,632  WARNING - get_response got bad domain_id: 301
+2023-03-16 10:34:50,632  WARNING - InputError in Conversation: Bad domain_id: 301
+2023-03-16 10:34:50,633  INFO - 127.0.0.1 - - [16/Mar/2023 10:34:50] "[31m[1mPOST /conversation HTTP/1.1[0m" 400 -
+2023-03-16 10:34:58,715  WARNING - Conversation - Error parsing body: NO_DATA_PARSED
+2023-03-16 10:34:58,717  INFO - 127.0.0.1 - - [16/Mar/2023 10:34:58] "[31m[1mPOST /conversation HTTP/1.1[0m" 400 -

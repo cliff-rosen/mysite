@@ -26,7 +26,16 @@ pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
 index = pinecone.Index(INDEX_NAME)
 openai.api_key = OPENAI_API_KEY
 
-def build_prompt(prompt_header, context_for_prompt, bot_role_name, initial_message,
+def num_tokens(*args):
+    token_count = 0
+    text = ''
+    for arg in args:
+        text += arg
+    token_count += num_tokens_from_string(text, COMPLETION_MODEL)
+    return int(token_count)
+
+
+def build_prompt_OLD(prompt_header, context_for_prompt, bot_role_name, initial_message,
                 conversation_history_text, user_role_name, user_message):
     if context_for_prompt:
         context_for_prompt = context_for_prompt + '\n\n'
@@ -40,15 +49,7 @@ def build_prompt(prompt_header, context_for_prompt, bot_role_name, initial_messa
 
     return prompt
 
-def num_tokens(*args):
-    token_count = 0
-    text = ''
-    for arg in args:
-        text += arg
-    token_count += num_tokens_from_string(text, COMPLETION_MODEL)
-    return int(token_count)
-
-def create_prompt(
+def create_prompt_OLD(
         prompt_header,
         initial_message,
         user_role_name,
@@ -89,7 +90,7 @@ def create_prompt(
     return prompt
 
 
-def query_model(prompt, stop_token, max_tokens, temperature):
+def query_model_OLD(prompt, stop_token, max_tokens, temperature):
     print("prompt token count: %s" % (num_tokens(prompt)))
     try:
         response = openai.Completion.create(
@@ -112,6 +113,56 @@ def insert_conversation(conversation_id, user_id, domain_id, conversation_text):
     except Exception as e:
         print('insert_conversation error: ', e)
         logger.error('insert_conversation error: ' + str(e))
+
+
+def create_prompt_messages(
+                        conversation_history, initial_message, query,
+                        initial_prompt, chunks, max_tokens
+                        ):
+    messages = []
+
+    # get context
+    if chunks:
+        context_for_prompt = ""        
+        conversation_history_text = ""
+        for entry in conversation_history:
+            conversation_history_text += \
+                'User: ' + entry['userMessage'] + '\n' \
+                + 'Assistant:' + entry['response'] + '\n\n'
+        prompt_token_count = num_tokens(initial_prompt, conversation_history_text, initial_message, query)
+        print('tokens used by pre-context prompt: %s' % (prompt_token_count))
+        max_context_token_count = MAX_TOKEN_COUNT - prompt_token_count - max_tokens
+        context_for_prompt = chunk.get_context_for_prompt(chunks, max_context_token_count)
+        if context_for_prompt:
+            initial_prompt += '\n\n' + context_for_prompt
+
+    # add system message
+    messages.append({"role": "system", "content": initial_prompt})
+
+    # add initial assistant message
+    messages.append({"role": "assistant", "content": initial_message})
+
+    # add user and assistant messages from history
+    conversation_history = sorted(conversation_history, key=lambda item: item["userMessageTimeStamp"])    
+    for row in conversation_history:
+        messages.append({"role": "user", "content": row['userMessage']})        
+        messages.append({"role": "assistant", "content": row['response']})   
+
+    # add new user message
+    messages.append({"role": "user", "content": query})
+
+    return messages
+
+
+def query_model(messages, max_tokens, temperature):
+    completion = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=messages,
+        max_tokens=max_tokens,
+        temperature=temperature
+        )
+
+    return completion.choices[0].message.content
 
 
 def get_response(
@@ -145,27 +196,25 @@ def get_response(
         logger.debug("chunks with text: " + str(chunks))
 
     print("creating prompt")
-    prompt = create_prompt(
-        prompt_header,
-        initial_message,
-        user_role_name,
-        bot_role_name,
+    prompt_messages = create_prompt_messages(
         conversation_history,
+        initial_message,
         user_message,
+        prompt_header,
         chunks,
         max_tokens
     )
-    logger.debug('Prompt:\n' + prompt)
-    if not prompt:
+    logger.debug('Prompt:\n' + str(prompt_messages))
+    if not prompt_messages:
         return {"status": "BAD_REQUEST"}
 
     print("querying model")
-    response = query_model(prompt, user_role_name + ':', max_tokens, temperature)
+    response = query_model(prompt_messages, max_tokens, temperature)
 
     print("storing conversation")
-    conversation_text = prompt + response
-    insert_conversation('NA', 1, domain_id, conversation_text)
+    #conversation_text = prompt + response
+    #insert_conversation('NA', 1, domain_id, conversation_text)
 
-    return {"status": "SUCCESS", "response": response, "prompt": prompt, "context": chunks }
+    return {"status": "SUCCESS", "response": response, "prompt": "TBD", "context": chunks }
 
 

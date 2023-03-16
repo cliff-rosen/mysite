@@ -40,16 +40,12 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
     "initialMessage": "",
     "userRoleName": "User",
     "botRoleName": "Assistant",
-    "conversationHistory": [        {
-            "userMessage": "Who is eligible for this study?", 
-            "userMessageTimeStamp": 1,
-            "response": "The United States.",
-            "responseTimeStamp": 2
-        }],
-    "userMessage": "What is the name of this study?",
+    "conversationHistory": [ 
+        ],
+    "userMessage": "What is the title of this study?",
     "max_tokens": 200,
     "temperature": 0.1,
-    "domain_id": 33
+    "domain_id": 37
 }
 
 ###

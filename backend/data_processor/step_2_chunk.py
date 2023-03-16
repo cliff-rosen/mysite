@@ -89,7 +89,7 @@ def get_chunks_from_text_2(text):
 # runtime settings
 #chunk_maker = "MAKER_2"
 chunk_maker = "CHAR"
-domain_id = 33
+domain_id = 37
 
 def run():
     # init

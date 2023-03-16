@@ -36,84 +36,39 @@ def num_tokens(*args):
     return int(token_count)
 
 
-def build_prompt_OLD(prompt_header, context_for_prompt, bot_role_name, initial_message,
-                conversation_history_text, user_role_name, user_message):
-    if context_for_prompt:
-        context_for_prompt = context_for_prompt + '\n\n'
+def get_conversation_history_text(conversation_history):
+    conversation_text = ""
+    user = 'User'
+    ai = 'Assistant'
+    try:
+        for row in conversation_history:
+            conversation_text += f"{user}: {row['userMessage']}\n{ai}: {row['response']}\n\n"
+    except Exception as e:
+        raise InputError('Bad conversationHistory record:' + str(conversation_history))
+    return conversation_text
 
-    prompt = prompt_header.strip() + '\n\n' \
-        + context_for_prompt \
-        + bot_role_name + ': ' + initial_message.strip() + '\n\n' \
-        + conversation_history_text \
-        + user_role_name + ': ' + user_message.strip() + '\n'\
-        + bot_role_name + ': '
 
-    return prompt
+def create_prompt_text(conversation_history, initial_message,
+                    query, initial_prompt, chunks):
+    user_role = 'User: '
+    bot_role = 'Assistant: '
 
-def create_prompt_OLD(
-        prompt_header,
-        initial_message,
-        user_role_name,
-        bot_role_name,
-        conversation_history,
-        user_message,
-        chunks,
-        max_tokens  
-    ):
-    prompt=""
-    conversation_history_text = ""
     context_for_prompt = ""
+    conversation_history_text = ""
+    prompt = ""
 
-    try:
-        conversation_history = sorted(conversation_history, key=lambda item: item["userMessageTimeStamp"])
-        for entry in conversation_history:
-            print("message", user_role_name + ': ' + entry['userMessage'])
-            conversation_history_text += \
-                user_role_name + ': ' + entry['userMessage'] + '\n' \
-                + bot_role_name + ': ' + entry['response'] + '\n\n'
-    except Exception as e:
-        err_message = traceback.format_exc()
-        logger.warning('create_prompt error reading conversation history: ' + err_message)
-        logger.warning('JSON: ' + str(conversation_history) )
-        raise(InputError('Invalid input to create_prompt.  Suspect bad input JSON'))
+    context_for_prompt = chunk.get_context_for_prompt(chunks, MAX_TOKEN_COUNT)
 
-    prompt_token_count = num_tokens(prompt_header, initial_message, conversation_history_text, user_message)
-    print('tokens used by pre-context prompt: %s' % (prompt_token_count))
-    max_context_token_count = MAX_TOKEN_COUNT - prompt_token_count - max_tokens
-    context_for_prompt = chunk.get_context_for_prompt(chunks, max_context_token_count)
+    conversation_history_text = get_conversation_history_text(conversation_history)
 
-    prompt = build_prompt(
-                prompt_header, context_for_prompt, 
-                bot_role_name, initial_message,
-                conversation_history_text, user_role_name, user_message
-                )
+    prompt = initial_prompt.strip() + '\n\n' \
+        + context_for_prompt + '\n\n' \
+        + bot_role + initial_message + '\n\n' \
+        + conversation_history_text  \
+        + user_role + query + '\n' \
+        + bot_role
 
     return prompt
-
-
-def query_model_OLD(prompt, stop_token, max_tokens, temperature):
-    print("prompt token count: %s" % (num_tokens(prompt)))
-    try:
-        response = openai.Completion.create(
-            model=COMPLETION_MODEL,
-            prompt=prompt,
-            max_tokens=max_tokens,
-            temperature=temperature,
-            stop=stop_token
-        )
-        return response["choices"][0]["text"].strip(" \n")
-    except Exception as e:
-        logger.error('conversation.query_model: ' + str(e))
-        return("Sorry, an unexpected error occured.  Please try again.")
-
-
-def insert_conversation(conversation_id, user_id, domain_id, conversation_text):
-    conversation_id = 'NA'
-    try:
-        db.insert_conversation(conversation_id, 1, domain_id, conversation_text)
-    except Exception as e:
-        print('insert_conversation error: ', e)
-        logger.error('insert_conversation error: ' + str(e))
 
 
 def create_prompt_messages(
@@ -125,11 +80,7 @@ def create_prompt_messages(
     # get context
     if chunks:
         context_for_prompt = ""        
-        conversation_history_text = ""
-        for entry in conversation_history:
-            conversation_history_text += \
-                'User: ' + entry['userMessage'] + '\n' \
-                + 'Assistant:' + entry['response'] + '\n\n'
+        conversation_history_text = get_conversation_history_text(conversation_history)
         prompt_token_count = num_tokens(initial_prompt, conversation_history_text, initial_message, query)
         print('tokens used by pre-context prompt: %s' % (prompt_token_count))
         max_context_token_count = MAX_TOKEN_COUNT - prompt_token_count - max_tokens
@@ -164,6 +115,15 @@ def query_model(messages, max_tokens, temperature):
         )
 
     return completion.choices[0].message.content
+
+
+def insert_conversation(conversation_id, user_id, domain_id, conversation_text):
+    conversation_id = 'NA'
+    try:
+        db.insert_conversation(conversation_id, 1, domain_id, conversation_text)
+    except Exception as e:
+        print('insert_conversation error: ', e)
+        logger.error('insert_conversation error: ' + str(e))
 
 
 def get_response(
@@ -213,9 +173,11 @@ def get_response(
     response = query_model(prompt_messages, max_tokens, temperature)
 
     print("storing conversation")
-    #conversation_text = prompt + response
-    #insert_conversation('NA', 1, domain_id, conversation_text)
+    prompt_text = create_prompt_text(conversation_history, initial_message,
+                             user_message, prompt_header, chunks)
+    conversation_text = prompt_text + response
+    insert_conversation('NA', 1, domain_id, conversation_text)
 
-    return {"status": "SUCCESS", "response": response, "prompt": "TBD", "context": chunks }
+    return {"status": "SUCCESS", "response": response, "prompt": prompt_text, "context": chunks }
 
 

@@ -28,8 +28,8 @@ accept: application/json
 
 ###
 
-#POST http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com/conversation
-POST http://127.0.0.1:5000/conversation
+#POST http://127.0.0.1:5000/conversation
+POST http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com/conversation
 content-type: application/json
 accept: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywidXNlcm5hbWUiOiJwb2MiLCJleHAiOjE2NzkzMzkxNDl9.EiTEeWsQISYseQ-sr8-iBInayPR9KLWhvRZ_RJFXv8Q
@@ -40,8 +40,8 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
     "userRoleName": "User",
     "botRoleName": "Assistant",
     "conversationHistory": [],
-    "userMessage": "What are the objectives & endpoints of the study?",
-    "max_tokens": 400,
+    "userMessage": "How is the trial designed?",
+    "max_tokens": 200,
     "temperature": 0.4,
     "domain_id": 33
 }

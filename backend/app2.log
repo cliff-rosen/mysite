@@ -1,7 +1,5 @@
-2023-03-15 20:12:54,213  INFO - Initializing application...
-2023-03-15 20:12:54,224  WARNING -  * Debugger is active!
-2023-03-15 20:12:54,230  INFO -  * Debugger PIN: 901-032-737
-2023-03-15 20:13:27,375  INFO - conversation.get_response: What are the objectives & endpoints of the study?
-2023-03-15 20:13:35,196  INFO - 127.0.0.1 - - [15/Mar/2023 20:13:35] "POST /conversation HTTP/1.1" 200 -
-2023-03-15 20:13:55,185  INFO - conversation.get_response: What are the objectives & endpoints of the study?
-2023-03-15 20:14:04,233  INFO - 127.0.0.1 - - [15/Mar/2023 20:14:04] "POST /conversation HTTP/1.1" 200 -
+2023-03-15 20:19:49,086  INFO - Initializing application...
+2023-03-15 20:19:49,097  WARNING -  * Debugger is active!
+2023-03-15 20:19:49,104  INFO -  * Debugger PIN: 901-032-737
+2023-03-15 20:19:49,122  INFO - conversation.get_response: How is the trial designed?
+2023-03-15 20:20:00,416  INFO - 127.0.0.1 - - [15/Mar/2023 20:20:00] "POST /conversation HTTP/1.1" 200 -

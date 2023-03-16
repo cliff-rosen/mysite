@@ -65,7 +65,7 @@ def create_prompt(
         logger.error('create_prompt: ' + err_message)
         #raise(e)
 
-    max_context_word_count = MAX_WORD_COUNT - len(conversation_history_text.split()) - max_tokens - 200
+    max_context_word_count = MAX_WORD_COUNT - len(conversation_history_text.split()) - max_tokens - 400
     context_for_prompt = chunk.get_context_for_prompt(chunks, max_context_word_count)
 
     prompt = build_prompt(prompt_header, context_for_prompt, bot_role_name, initial_message,

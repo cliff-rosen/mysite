@@ -10,7 +10,7 @@ OPENAI_API_KEY = secrets.OPENAI_API_KEY
 MODEL = "text-embedding-ada-002"
 INDEX_NAME = "main-index-2"
 TEMPERATURE = .4
-TOP_K = 10
+TOP_K = 15
 MAX_CHUNKS_TOKEN_COUNT = 2500
 WORDS_TO_TOKENS = 1 / .7
 

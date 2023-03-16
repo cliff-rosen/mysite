@@ -37,7 +37,7 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
 
 {
     "promptHeader": "You are a clinical trial assistant.  Answer the following question as honestly as possible based on the below context and using simple language that a child could understand and if you don't know the answer say I don't know:",
-    "initialMessage": "",
+    "initialMessage": "How may I help you?",
     "userRoleName": "User",
     "botRoleName": "Assistant",
     "conversationHistory": [ 

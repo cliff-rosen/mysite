@@ -16,22 +16,23 @@ PINECONE_API_KEY = secrets.PINECONE_API_KEY
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
 INDEX_NAME = "main-index-2"
 TEMPERATURE = .4
-TOP_K = 20
-COMPLETION_MODEL = 'text-davinci-003'
-MAX_TOKEN_COUNT = 4000
-WORDS_TO_TOKENS = 1 / .7
+TOP_K = 40
+COMPLETION_MODEL = 'gpt-4' #'text-davinci-003'
+COMPLETION_MODEL_TIKTOKEN = 'text-davinci-003'
+MAX_TOKEN_COUNT = 8000
 
 print("conversation initing AI and vector db")
 pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
 index = pinecone.Index(INDEX_NAME)
 openai.api_key = OPENAI_API_KEY
 
+
 def num_tokens(*args):
     token_count = 0
     text = ''
     for arg in args:
         text += arg
-    token_count += num_tokens_from_string(text, COMPLETION_MODEL)
+    token_count += num_tokens_from_string(text, COMPLETION_MODEL_TIKTOKEN)
     return int(token_count)
 
 
@@ -156,7 +157,7 @@ def create_prompt_messages(
 
 def query_model(messages, max_tokens, temperature):
     completion = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model=COMPLETION_MODEL,
         messages=messages,
         max_tokens=max_tokens,
         temperature=temperature
@@ -192,7 +193,7 @@ def get_response(
 
     print("handling chunk retrieval")
     if use_context:
-        chunk.set_chunks_from_query(domain_id, chunks, user_message)
+        chunk.set_chunks_from_query(domain_id, chunks, user_message, TOP_K)
         logger.debug("chunks with text: " + str(chunks))
 
     print("creating prompt")
@@ -204,7 +205,7 @@ def get_response(
         chunks,
         max_tokens
     )
-    logger.debug('Prompt:\n' + str(prompt_messages))
+    logger.info('Prompt:\n' + str(prompt_messages))
     if not prompt_messages:
         return {"status": "BAD_REQUEST"}
 

@@ -51,7 +51,6 @@ class Conversation(Resource):
             abort(401)
             #return {"status": "INVALID_TOKEN"}
 
-        # retrieve inputs
         try:
             data = None
             data = request.get_json()

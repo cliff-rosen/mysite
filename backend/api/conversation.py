@@ -16,9 +16,10 @@ PINECONE_API_KEY = secrets.PINECONE_API_KEY
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
 MODEL = "text-embedding-ada-002"
 INDEX_NAME = "main-index-2"
-TEMPERATURE=.4
-TOP_K=15
-MAX_WORD_COUNT=3000
+TEMPERATURE = .4
+TOP_K = 15
+MAX_TOKEN_COUNT = 4000
+WORDS_TO_TOKENS = 1 / .7
 
 print("conversation initing AI and vector db")
 pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
@@ -38,6 +39,13 @@ def build_prompt(prompt_header, context_for_prompt, bot_role_name, initial_messa
     + bot_role_name + ': '
 
     return prompt
+
+def num_tokens(*args):
+    token_count = 0
+    for arg in args:
+        token_count += len(arg.split()) * WORDS_TO_TOKENS
+    print('num_tokens', token_count)
+    return token_count
 
 def create_prompt(
         prompt_header,
@@ -65,8 +73,9 @@ def create_prompt(
         logger.error('create_prompt: ' + err_message)
         #raise(e)
 
-    max_context_word_count = MAX_WORD_COUNT - len(conversation_history_text.split()) - max_tokens - 400
-    context_for_prompt = chunk.get_context_for_prompt(chunks, max_context_word_count)
+    max_context_token_count = MAX_TOKEN_COUNT - num_tokens(prompt_header, initial_message, 
+                                                           conversation_history_text, user_message) - max_tokens
+    context_for_prompt = chunk.get_context_for_prompt(chunks, max_context_token_count)
 
     prompt = build_prompt(prompt_header, context_for_prompt, bot_role_name, initial_message,
                 conversation_history_text, user_role_name, user_message)

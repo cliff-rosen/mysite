@@ -1,5 +1,3 @@
-2023-03-15 20:19:49,086  INFO - Initializing application...
-2023-03-15 20:19:49,097  WARNING -  * Debugger is active!
-2023-03-15 20:19:49,104  INFO -  * Debugger PIN: 901-032-737
-2023-03-15 20:19:49,122  INFO - conversation.get_response: How is the trial designed?
-2023-03-15 20:20:00,416  INFO - 127.0.0.1 - - [15/Mar/2023 20:20:00] "POST /conversation HTTP/1.1" 200 -
+2023-03-16 04:55:21,156  INFO - Initializing application...
+2023-03-16 04:55:21,166  WARNING -  * Debugger is active!
+2023-03-16 04:55:21,173  INFO -  * Debugger PIN: 901-032-737

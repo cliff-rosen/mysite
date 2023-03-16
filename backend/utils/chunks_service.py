@@ -9,10 +9,10 @@ PINECONE_API_KEY = secrets.PINECONE_API_KEY
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
 MODEL = "text-embedding-ada-002"
 INDEX_NAME = "main-index-2"
-TEMPERATURE=.4
-TOP_K=10
-MAX_CHUNKS_WORD_COUNT = 2500
-
+TEMPERATURE = .4
+TOP_K = 10
+MAX_CHUNKS_TOKEN_COUNT = 2500
+WORDS_TO_TOKENS = 1 / .7
 
 print("chunk_service initing AI and vector db")
 pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
@@ -66,21 +66,21 @@ def set_chunk_text_from_ids(chunks):
 
 
 # chunks dict: {id: {"id": id, "score": score, "text", text}}
-def get_context_for_prompt(chunks, max_chunks_word_count = MAX_CHUNKS_WORD_COUNT):
+def get_context_for_prompt(chunks, max_chunks_token_count = MAX_CHUNKS_TOKEN_COUNT):
     context = ""
-    chunks_word_count = 0
+    chunks_token_count = 0
     chunks_used_count = 0
 
-    print('get_context_for_prompt max word count:', max_chunks_word_count)
+    print('get_context_for_prompt using max token count of', max_chunks_token_count)
 
     for id, chunk in sorted(chunks.items(), key=lambda item: item[1]["score"], reverse = True):
-        words_in_chunk = len(chunk['text'].split())
-        if chunks_word_count + words_in_chunk > max_chunks_word_count:
-            print('context max size reached', id, chunks_word_count)
+        tokens_in_chunk = len(chunk['text'].split()) * WORDS_TO_TOKENS
+        if chunks_token_count + tokens_in_chunk > max_chunks_token_count:
+            print('context max size reached', id, chunks_token_count)
             break
         context = context + chunk['text'] + '\n\n'
         chunks_used_count += 1
-        chunks_word_count += words_in_chunk
+        chunks_token_count += tokens_in_chunk
     print('chunks used:', chunks_used_count)
 
     if context:

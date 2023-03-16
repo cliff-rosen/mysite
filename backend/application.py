@@ -69,19 +69,24 @@ class Conversation(Resource):
             logger.warning('Conversation - Error parsing body: ' + data_str)
             abort(400)
 
-        res = conversation.get_response(
-            domain_id,
-            prompt_header,
-            initial_message,
-            user_role_name,
-            bot_role_name,
-            conversation_history,
-            user_message,
-            max_tokens,
-            temperature
-           )
-        if res["status"] == "BAD_REQUEST":
-            abort(400)
+        try:
+            res = conversation.get_response(
+                domain_id,
+                prompt_header,
+                initial_message,
+                user_role_name,
+                bot_role_name,
+                conversation_history,
+                user_message,
+                max_tokens,
+                temperature
+            )
+            if res["status"] == "BAD_REQUEST":
+                abort(400)
+        except Exception as e:
+            logger.error('Uncaught exception in Conversation.post: %s', e)
+            abort(500)
+
         return res
 
 class Token(Resource):

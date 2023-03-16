@@ -1,12 +1,13 @@
 from db import local_db as db
 
 
+def f1():
+    print('f1 says hello')
+    f2()
 
-chunks = {
-    'a': {'x': 5, 'y': 7},
-    'b': {'x': 8, 'y': 10}
-}
 
-items = chunks.items()
-for item in items:
-    print(item[1])
+def f2():
+    print('f2 says hello')
+    
+
+f1()

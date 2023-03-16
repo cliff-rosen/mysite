@@ -32,11 +32,11 @@ def build_prompt(prompt_header, context_for_prompt, bot_role_name, initial_messa
         context_for_prompt = context_for_prompt + '\n\n'
 
     prompt = prompt_header.strip() + '\n\n' \
-    + context_for_prompt \
-    + bot_role_name + ': ' + initial_message.strip() + '\n\n' \
-    + conversation_history_text \
-    + user_role_name + ': ' + user_message.strip() + '\n'\
-    + bot_role_name + ': '
+        + context_for_prompt \
+        + bot_role_name + ': ' + initial_message.strip() + '\n\n' \
+        + conversation_history_text \
+        + user_role_name + ': ' + user_message.strip() + '\n'\
+        + bot_role_name + ': '
 
     return prompt
 

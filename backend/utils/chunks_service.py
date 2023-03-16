@@ -30,14 +30,14 @@ def ge(text):
 # retrieve TOP_K embedding matches to query embedding
 # return as dict {id: {"id": id, "score": score, "metadata": metadata}}
 def get_chunks_from_embedding(domain_id, query_embedding, top_k=TOP_K):
-    print("getting matches")
+    print("querying index")
     matches = index.query(
         top_k=top_k,
         include_values=True,
         include_metadata=True,
         vector=query_embedding,
            filter={'domain_id': domain_id}).matches
-    print('length:', len(matches))
+    print('  query retrieved %s results' % (len(matches)))
     if len(matches) > 0:
         res = {matches[i].id : {"id" : int(matches[i].id), "score" : matches[i].score, "metadata": matches[i].metadata} for i in range(len(matches))}
     else:

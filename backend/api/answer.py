@@ -154,6 +154,7 @@ def update_conversation_tables(domain_id, query,
 
 def get_answer(conversation_id, domain_id, query, 
                initial_prompt, temp, user_id, use_new_model):
+    print('get_answer -------------------------------->')
     use_context = False
     chunks = {}
     initial_message = conf.DEFAULT_INITIAL_MESSAGE
@@ -199,6 +200,7 @@ def get_answer(conversation_id, domain_id, query,
                                                 response, chunks,
                                                 user_id, use_new_model)
 
+    print('get_answer completed')
     return {"conversation_id": conversation_id, "answer": response, "chunks": chunks, "chunks_used_count": len(list(chunks.keys())) }
 
 

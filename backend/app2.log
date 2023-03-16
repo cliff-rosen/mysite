@@ -1,5 +1,3 @@
-2023-03-16 07:06:32,080  INFO - Initializing application...
-2023-03-16 07:06:32,090  WARNING -  * Debugger is active!
-2023-03-16 07:06:32,097  INFO -  * Debugger PIN: 901-032-737
-2023-03-16 07:06:39,686  INFO - 127.0.0.1 - - [16/Mar/2023 07:06:39] "OPTIONS /answer HTTP/1.1" 200 -
-2023-03-16 07:06:42,391  INFO - 127.0.0.1 - - [16/Mar/2023 07:06:42] "POST /answer HTTP/1.1" 200 -
+2023-03-16 07:14:27,782  INFO - Initializing application...
+2023-03-16 07:14:27,793  WARNING -  * Debugger is active!
+2023-03-16 07:14:27,799  INFO -  * Debugger PIN: 901-032-737

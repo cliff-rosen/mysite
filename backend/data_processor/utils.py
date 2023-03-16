@@ -30,13 +30,13 @@ def ge(text):
     )
 
 def query(q):
-    print("getting matches")
+    print("querying index")
     matches = index.query(
         top_k=5,
         include_values=True,
         include_metadata=True,
         vector=q).matches
-    print('length:', len(matches))
+    print(' matches retrieved:', len(matches))
     for i in range(len(matches)):
         print(matches[i].metadata, matches[i].id, matches[i].score)
 

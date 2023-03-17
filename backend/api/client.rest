@@ -42,10 +42,10 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
     "conversationHistory": [ 
 
         ],
-    "userMessage": "What is the title of this study",
+    "userMessage": "What business is this",
     "max_tokens": 200,
     "temperature": 0.1,
-    "domain_id": 34,
+    "domain_id": 2,
     "model_id": 2
 }
 

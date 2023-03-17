@@ -51,7 +51,8 @@ def get_conversation_history_text(conversation_history):
 
 
 def create_prompt_text(conversation_history, initial_message,
-                    query, initial_prompt, chunks):
+                    query, initial_prompt, chunks, model_id):
+    max_token_count = MAX_TOKEN_COUNT_2 if model_id == 2 else MAX_TOKEN_COUNT_1
     user_role = 'User: '
     bot_role = 'Assistant: '
 
@@ -59,7 +60,7 @@ def create_prompt_text(conversation_history, initial_message,
     conversation_history_text = ""
     prompt = ""
 
-    context_for_prompt = chunk.get_context_for_prompt(chunks, MAX_TOKEN_COUNT_1)
+    context_for_prompt = chunk.get_context_for_prompt(chunks, max_token_count)
 
     conversation_history_text = get_conversation_history_text(conversation_history)
 
@@ -181,7 +182,7 @@ def get_response(
 
     print("storing conversation")
     prompt_text = create_prompt_text(conversation_history, initial_message,
-                             user_message, prompt_header, chunks)
+                             user_message, prompt_header, chunks, model_id)
     conversation_text = prompt_text + response
     insert_conversation('NA', 1, domain_id, conversation_text)
 

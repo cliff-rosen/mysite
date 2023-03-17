@@ -63,6 +63,7 @@ class Conversation(Resource):
             max_tokens = data.get('max_tokens', MAX_TOKENS_DEFAULT)
             temperature = data.get('temperature', TEMPERATURE_DEFAULT)
             domain_id = data.get('domain_id', 0)
+            model_id = data.get('model_id', 1)
         except Exception as e:
             data_str = str(data) if data else 'NO_DATA_PARSED'
             logger.warning('Conversation - Error parsing body: ' + data_str)
@@ -78,7 +79,8 @@ class Conversation(Resource):
                 conversation_history,
                 user_message,
                 max_tokens,
-                temperature
+                temperature,
+                model_id
             )
         except InputError as e:
             logger.warning('InputError in Conversation: %s', e)

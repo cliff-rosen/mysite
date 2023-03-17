@@ -45,7 +45,8 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
     "userMessage": "What is the title of this study",
     "max_tokens": 200,
     "temperature": 0.1,
-    "domain_id": 34
+    "domain_id": 34,
+    "model_id": 2
 }
 
 ###

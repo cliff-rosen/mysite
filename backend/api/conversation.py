@@ -17,9 +17,11 @@ OPENAI_API_KEY = secrets.OPENAI_API_KEY
 INDEX_NAME = "main-index-2"
 TEMPERATURE = .4
 TOP_K = 40
-COMPLETION_MODEL = 'gpt-4' #'text-davinci-003'
+COMPLETION_MODEL_1 = 'gpt-3.5-turbo' #'text-davinci-003'
+COMPLETION_MODEL_2 = 'gpt-4'
 COMPLETION_MODEL_TIKTOKEN = 'text-davinci-003'
-MAX_TOKEN_COUNT = 8000
+MAX_TOKEN_COUNT_1 = 3900
+MAX_TOKEN_COUNT_2 = 8000
 
 print("conversation initing AI and vector db")
 pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
@@ -57,7 +59,7 @@ def create_prompt_text(conversation_history, initial_message,
     conversation_history_text = ""
     prompt = ""
 
-    context_for_prompt = chunk.get_context_for_prompt(chunks, MAX_TOKEN_COUNT)
+    context_for_prompt = chunk.get_context_for_prompt(chunks, MAX_TOKEN_COUNT_1)
 
     conversation_history_text = get_conversation_history_text(conversation_history)
 
@@ -73,9 +75,10 @@ def create_prompt_text(conversation_history, initial_message,
 
 def create_prompt_messages(
                         conversation_history, initial_message, query,
-                        initial_prompt, chunks, max_tokens
+                        initial_prompt, chunks, max_tokens, model_id
                         ):
     messages = []
+    max_token_count = MAX_TOKEN_COUNT_2 if model_id == 2 else MAX_TOKEN_COUNT_1
 
     # get context
     if chunks:
@@ -83,7 +86,7 @@ def create_prompt_messages(
         conversation_history_text = get_conversation_history_text(conversation_history)
         prompt_token_count = num_tokens(initial_prompt, conversation_history_text, initial_message, query)
         print('tokens used by pre-context prompt: %s' % (prompt_token_count))
-        max_context_token_count = MAX_TOKEN_COUNT - prompt_token_count - max_tokens
+        max_context_token_count = max_token_count - prompt_token_count - max_tokens
         context_for_prompt = chunk.get_context_for_prompt(chunks, max_context_token_count)
         if context_for_prompt:
             initial_prompt += '\n\n' + context_for_prompt
@@ -106,9 +109,11 @@ def create_prompt_messages(
     return messages
 
 
-def query_model(messages, max_tokens, temperature):
+def query_model(messages, max_tokens, temperature, model_id):
+    model = COMPLETION_MODEL_2 if model_id == 2 else COMPLETION_MODEL_1
+
     completion = openai.ChatCompletion.create(
-        model=COMPLETION_MODEL,
+        model=model,
         messages=messages,
         max_tokens=max_tokens,
         temperature=temperature
@@ -135,7 +140,8 @@ def get_response(
         conversation_history,
         user_message,
         max_tokens,
-        temperature
+        temperature,
+        model_id
     ):
     logger.info('conversation.get_response: ' + user_message)
     print('get_response -------------------------------->')
@@ -163,14 +169,15 @@ def get_response(
         user_message,
         prompt_header,
         chunks,
-        max_tokens
+        max_tokens,
+        model_id
     )
     logger.info('Prompt:\n' + str(prompt_messages))
     if not prompt_messages:
         return {"status": "BAD_REQUEST"}
 
     print("querying model")
-    response = query_model(prompt_messages, max_tokens, temperature)
+    response = query_model(prompt_messages, max_tokens, temperature, model_id)
 
     print("storing conversation")
     prompt_text = create_prompt_text(conversation_history, initial_message,

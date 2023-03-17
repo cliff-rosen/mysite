@@ -40,13 +40,24 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
     "userRoleName": "User",
     "botRoleName": "Assistant",
     "conversationHistory": [ 
-
-        ],
-    "userMessage": "What business is this",
+        {
+            "userMessage": "What is today's date?", 
+            "userMessageTimeStamp": 1,
+            "response": "3/17/23",
+            "responseTimeStamp": 2
+        },
+        {
+            "userMessage": "Where is this study?", 
+            "userMessageTimeStamp": 1,
+            "response": "The United States.",
+            "responseTimeStamp": 2
+        }
+                ],
+    "userMessage": "Who is eligible for this study",
     "max_tokens": 200,
     "temperature": 0.1,
-    "domain_id": 2,
-    "model_id": 2
+    "domain_id": 37,
+    "model_id": 1
 }
 
 ###
@@ -108,10 +119,11 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
     "conversationHistory": [
 
     ],
-    "userMessage": "Who is eligible for this study?",
+    "userMessage": "What is the study title?",
     "max_tokens": 200,
     "temperature": 0.5,
-    "domain_id": 30
+    "domain_id": 35
+ 
 }
 
 

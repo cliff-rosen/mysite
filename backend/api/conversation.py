@@ -10,7 +10,6 @@ from api.errors import InputError
 
 logger = logging.getLogger()
 
-OPENAI_API_KEY = secrets.OPENAI_API_KEY
 TEMPERATURE=.4
 PINECONE_API_KEY = secrets.PINECONE_API_KEY
 OPENAI_API_KEY = secrets.OPENAI_API_KEY
@@ -162,7 +161,7 @@ def get_response(
 
     print("handling chunk retrieval")
     if use_context:
-        chunk.set_chunks_from_query(domain_id, chunks, user_message, TOP_K)
+        chunks = chunk.get_chunks_from_query(domain_id, user_message, TOP_K)
         logger.debug("chunks with text: " + str(chunks))
 
     print("creating prompt")

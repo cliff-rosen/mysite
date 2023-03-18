@@ -12,7 +12,7 @@ EMBEDDING_MODEL = "text-embedding-ada-002"
 COMPLETION_MODEL = 'text-davinci-003'
 INDEX_NAME = "main-index-2"
 TEMPERATURE = .4
-TOP_K = 20
+TOP_K = 40
 MAX_CHUNKS_TOKEN_COUNT = 2500
 
 
@@ -61,18 +61,33 @@ def set_chunk_text_from_ids(chunks):
         chunks[str(doc_chunk_id)]["text"] = chunk_text
 
 
+def get_chunks_from_query(domain_id, user_message, top_k=TOP_K):
+    chunks = {}
+
+    print("getting query embedding")
+    query_embedding = ge(user_message)
+
+    print("getting chunks ids")
+    chunks = get_chunks_from_embedding(domain_id, query_embedding, top_k)
+    if not chunks:
+        raise Exception('No chunks found - check index')
+
+    print("getting chunk text from ids")
+    set_chunk_text_from_ids(chunks)
+
+    return chunks
+
 # chunks dict: {id: {"id": id, "score": score, "text", text}}
 def get_context_for_prompt(chunks, max_chunks_token_count = MAX_CHUNKS_TOKEN_COUNT):
+    print('get_context_for_prompt using max token count of', max_chunks_token_count)
     context = ""
     chunks_token_count = 0
     chunks_used_count = 0
 
-    print('get_context_for_prompt using max token count of', max_chunks_token_count)
-
-    for id, chunk in sorted(chunks.items(), key=lambda item: item[1]["score"], reverse = True):
+    for id, chunk in sorted(chunks.items(), key=lambda item: item[1]["score"], reverse=True):
         tokens_in_chunk = num_tokens_from_string(chunk['text'], COMPLETION_MODEL)
         if chunks_token_count + tokens_in_chunk > max_chunks_token_count:
-            print(' chunk too long to fit.  moving on.')
+            print(' chunk', id, 'too long to fit.  moving on.')
             chunks[id]['used'] = False
             continue
         context = context + chunk['text'] + '\n\n'
@@ -85,14 +100,3 @@ def get_context_for_prompt(chunks, max_chunks_token_count = MAX_CHUNKS_TOKEN_COU
         return '<START OF CONTEXT>\n' + context.strip() + '\n<END OF CONTEXT>'
     else:
         return ''
-
-def set_chunks_from_query(domain_id, chunks, user_message, top_k=TOP_K):
-    print("getting query embedding")
-    query_embedding = ge(user_message)
-
-    print("getting chunks ids")
-    chunks.update(get_chunks_from_embedding(domain_id, query_embedding, top_k))
-    if not chunks:
-        raise Exception('No chunks found - check index')
-    print("getting chunk text from ids")
-    set_chunk_text_from_ids(chunks)

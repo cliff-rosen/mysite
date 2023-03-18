@@ -118,10 +118,6 @@ class Login(Resource):
                 return(res, 500)
         return res
 
-class Hello(Resource):
-    def get(self):
-        return "hello"
-
 class Domain(Resource):
     def get(self, domain_id=None):
         print("domain_id", domain_id)
@@ -157,14 +153,18 @@ class Answer(Resource):
         res = answer.get_answer(conversation_id, domain_id, query, prompt_template, temp, user_id, use_new_model)
         return res
 
+class Hello(Resource):
+    def get(self):
+        return "hello"
+
 api = Api(application)
 api.add_resource(Token, '/auth/token')
 api.add_resource(Conversation, '/conversation')
+api.add_resource(Login, '/login')
 api.add_resource(Domain, '/domain', '/domain/<int:domain_id>')
 api.add_resource(Prompt, '/prompt')
 api.add_resource(Answer, '/answer')
 api.add_resource(Hello, '/hello')
-api.add_resource(Login, '/login')
 
 if __name__ == '__main__':
     application.run(debug=True)

@@ -2,38 +2,58 @@ import openai
 from openai.embeddings_utils import get_embedding
 from db import local_db as db
 import local_secrets as secrets
-from utils.utils import make_new_conversation_id
+from utils.utils import make_new_conversation_id, num_tokens_from_string
 import conf
 import utils.chunks_service as chunk
+from api.errors import InputError
+
+#COMPLETION_MODEL = 'gpt-4'
+COMPLETION_MODEL = 'gpt-3.5-turbo' #'text-davinci-003'
+COMPLETION_MODEL_TIKTOKEN = 'text-davinci-003'
+MAX_TOKEN_COUNT = 3900
+TOP_K = 40
+MAX_TOKENS = 200
 
 
-STOP_TOKEN = "User:"
+def num_tokens(*args):
+    token_count = 0
+    text = ''
+    for arg in args:
+        text += arg
+    token_count += num_tokens_from_string(text, COMPLETION_MODEL_TIKTOKEN)
+    return int(token_count)
 
 
-def get_conversation_history_text(conversation_history):
+def create_conversation_history_text(conversation_history):
     conversation_text = ""
     user = 'User'
-    ai = 'Chatbot'
-    for row in conversation_history:
-        conversation_text += f"{user}: {row['query_text']}\n{ai}: {row['response_text']}\n\n"
+    ai = 'Assistant'
+    user_key = 'query_text'
+    assistant_key = 'response_text'
+
+    try:
+        for row in conversation_history:
+            conversation_text += f"{user}: {row[user_key]}\n{ai}: {row[assistant_key]}\n\n"
+    except Exception as e:
+        raise InputError('Bad conversationHistory record:' + str(conversation_history))
     return conversation_text
 
 
-def create_prompt_1(conversation_history, initial_message,
-                    query, initial_prompt, chunks):
+def create_prompt_text(
+                        initial_prompt,
+                        initial_message,
+                        conversation_history,
+                        query
+                    ):
     user_role = 'User: '
     bot_role = 'Assistant: '
 
-    context_for_prompt = ""
     conversation_history_text = ""
     prompt = ""
 
-    context_for_prompt = chunk.get_context_for_prompt(chunks)
-
-    conversation_history_text = get_conversation_history_text(conversation_history)
+    conversation_history_text = create_conversation_history_text(conversation_history)
 
     prompt = initial_prompt.strip() + '\n\n' \
-        + context_for_prompt + '\n\n' \
         + bot_role + initial_message + '\n\n' \
         + conversation_history_text  \
         + user_role + query + '\n' \
@@ -42,46 +62,47 @@ def create_prompt_1(conversation_history, initial_message,
     return prompt
 
 
-def query_model_1(prompt, temp):
-    model = 'text-davinci-003'
-    words_to_avoid = ["13681", "1049", "30932", "6275"]
-    logit_bias = {}
-    for word in words_to_avoid:
-        logit_bias[word] = -100
+def get_prompt_context(
+        initial_prompt,
+        initial_message,
+        conversation_history,
+        user_message,
+        chunks,
+        max_tokens
+        ):
+    context_for_prompt = ''
+    max_token_count = MAX_TOKEN_COUNT
 
-    print("prompt size: ", len(prompt), len(prompt.split()) )
-    try:
-        response = openai.Completion.create(
-            model=model,
-            prompt=prompt,
-            max_tokens=500,
-            temperature=temp,
-            logit_bias = {13681: -90},
-            stop=STOP_TOKEN
-        )
-        return response["choices"][0]["text"].strip(" \n")
-    except Exception as e:
-        print("query_model ERROR: " + str(e))
-        return("Sorry, an unexpected error occured.  Please try again.")
+    if chunks:
+        conversation_history_text = create_conversation_history_text(conversation_history)
+        prompt_token_count = num_tokens(initial_prompt, conversation_history_text, initial_message, user_message)
+        print('tokens used by pre-context prompt: %s' % (prompt_token_count))
+        max_context_token_count = max_token_count - prompt_token_count - max_tokens
+        context_for_prompt = chunk.get_context_for_prompt(chunks, max_context_token_count)
+
+    return context_for_prompt
 
 
-def create_prompt_2(conversation_history, initial_message, query,
-                    initial_prompt, chunks):
+def create_prompt_messages(
+                            initial_prompt,
+                            initial_message,
+                            conversation_history,
+                            query
+                        ):
     messages = []
 
     # add system message
-    context_for_prompt = chunk.get_context_for_prompt(chunks)
-    if context_for_prompt:
-        initial_prompt += '\n\n' + context_for_prompt
     messages.append({"role": "system", "content": initial_prompt})
 
     # add initial assistant message
     messages.append({"role": "assistant", "content": initial_message})
 
     # add user and assistant messages from history
+    user_key = 'query_text'
+    assistant_key = 'response_text'
     for row in conversation_history:
-        messages.append({"role": "user", "content": row['query_text']})        
-        messages.append({"role": "assistant", "content": row['response_text']})   
+        messages.append({"role": "user", "content": row[user_key]})        
+        messages.append({"role": "assistant", "content": row[assistant_key]})   
 
     # add new user message
     messages.append({"role": "user", "content": query})
@@ -89,71 +110,76 @@ def create_prompt_2(conversation_history, initial_message, query,
     return messages
 
 
-def query_model_2(messages):
+def query_model(messages, temperature):
+
     completion = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model=COMPLETION_MODEL,
         messages=messages,
-        logit_bias = {13681: -90}
+        max_tokens=MAX_TOKENS,
+        temperature=temperature
         )
 
     return completion.choices[0].message.content
 
 
-def query_1(conversation_history, initial_message,
-            query, initial_prompt, chunks, temp):
-
-    print("creating prompt")
-    prompt = create_prompt_1(conversation_history, initial_message, query, 
-                             initial_prompt, chunks)
-
-    print("querying model")
-    return query_model_1(prompt, temp)
-
-
-def query_2(conversation_history, initial_message,
-            query, initial_prompt, chunks):
-
-    print("creating prompt")
-    messages = create_prompt_2(conversation_history, initial_message, 
-                               query, initial_prompt, chunks)
-
-    print("querying model")
-    return query_model_2(messages)
-
-
-def update_conversation_tables(domain_id, query,
-                initial_prompt, initial_message,
-                query_temp, conversation_id, conversation_history,
-                response_text, chunks,
-                user_id, use_new_model):
+def update_conversation_tables(
+                        domain_id,
+                        query,
+                        initial_prompt,
+                        initial_message,
+                        query_temp,
+                        conversation_id,
+                        conversation_history,
+                        response_text, 
+                        chunks,
+                        user_id
+                    ):
     
-    prompt = create_prompt_1(conversation_history, initial_message,
-                             query, initial_prompt, chunks)
-    if use_new_model:
-        prompt = 'NEW MODEL\n' + prompt
-    else:
-        prompt = 'OLD MODEL\n' + prompt
+    prompt_text = create_prompt_text(
+                                initial_prompt,
+                                initial_message,
+                                conversation_history,
+                                query,
+                                )
 
-    conversation_text = prompt + response_text + '\n'
+    conversation_text = prompt_text + response_text
 
     if conversation_id == 'NEW':
         conversation_id = make_new_conversation_id()
-        db.insert_conversation(conversation_id, user_id, 
-                               domain_id, conversation_text)
+        db.insert_conversation(
+                                conversation_id,
+                                user_id, 
+                                domain_id,
+                                conversation_text
+                            )
     else:
         db.update_conversation(conversation_id, conversation_text)
 
     response_chunk_ids = ', '.join(list(chunks.keys()))
-    db.insert_query_log(domain_id, query, prompt, query_temp, response_text,
-                        response_chunk_ids, user_id, conversation_id)
-
+    db.insert_query_log(
+                        domain_id,
+                        query,
+                        prompt_text,
+                        query_temp,
+                        response_text,
+                        response_chunk_ids,
+                        user_id,
+                        conversation_id
+                    )
     #logger.log('Conversation:\n' + conversation_text)
 
     return conversation_id
 
 
-def get_answer(conversation_id, domain_id, query, 
-               initial_prompt, temp, user_id, use_new_model):
+def get_answer(
+                conversation_id,
+                domain_id,
+                query, 
+                initial_prompt,
+                temperature,
+                user_id,
+                use_new_model
+            ):
     print('get_answer -------------------------------->')
     use_context = False
     chunks = {}
@@ -174,28 +200,52 @@ def get_answer(conversation_id, domain_id, query,
     print("handling chunk retrieval")
     if use_context:
         chunks = chunk.get_chunks_from_query(domain_id, query)
-        if not chunks:
-            # FIX ME: reply doesn't include converation_id and conv tables not updated
-            return {"answer": "No data found for query", "chunks": {}, "chunks_used_count": 0 }
-        print("getting chunk text from ids")
 
-    if use_new_model:
-        print("answering with new model")
-        response = query_2(conversation_history, initial_message, 
-                       query, initial_prompt, chunks)
-    else:
-        print("answering with old model")
-        response = query_1(conversation_history, initial_message,
-                           query, initial_prompt, chunks, temp)
+    print('getting prompt context')
+    prompt_context = get_prompt_context(
+            initial_prompt,
+            initial_message,
+            conversation_history,
+            query,
+            chunks,
+            MAX_TOKENS
+        )
+    if prompt_context:
+        initial_prompt += '\n\n' + prompt_context
+
+    print("creating prompt")
+    messages = create_prompt_messages(
+        initial_prompt,
+        initial_message,
+        conversation_history,
+        query,
+    )
+    #logger.debug('Prompt:\n' + str(prompt_messages))
+    if not messages:
+        return {"status": "BAD_REQUEST"}
+    print("querying model")
+    response = query_model(messages, temperature)
 
     print("updating conversation tables")
-    conversation_id = update_conversation_tables(domain_id, query, 
-                                                initial_prompt, initial_message,
-                                                temp, conversation_id, conversation_history,
-                                                response, chunks,
-                                                user_id, use_new_model)
+    conversation_id = update_conversation_tables(
+                            domain_id,
+                            query, 
+                            initial_prompt,
+                            initial_message,
+                            temperature,
+                            conversation_id,
+                            conversation_history,
+                            response,
+                            chunks,
+                            user_id
+                        )
 
     print('get_answer completed')
-    return {"conversation_id": conversation_id, "answer": response, "chunks": chunks, "chunks_used_count": len(list(chunks.keys())) }
+    return {
+            "conversation_id": conversation_id,
+            "answer": response,
+            "chunks": chunks,
+            "chunks_used_count": len(list(chunks.keys())) 
+        }
 
 

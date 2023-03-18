@@ -179,11 +179,11 @@ def get_response(
 
     print("creating prompt")
     prompt_messages = create_prompt_messages(
-        prompt_header,
-        initial_message,
-        conversation_history,
-        user_message,
-    )
+                                prompt_header,
+                                initial_message,
+                                conversation_history,
+                                user_message,
+                            )
     logger.debug('Prompt:\n' + str(prompt_messages))
     if not prompt_messages:
         return {"status": "BAD_REQUEST"}
@@ -201,6 +201,7 @@ def get_response(
     conversation_text = 'MODEL ID: ' + str(model_id) + '\n\n' + prompt_text + response
     insert_conversation('NA', 1, domain_id, conversation_text)
 
+    print('done - SUCCESS')
     return {"status": "SUCCESS", "response": response, "prompt": prompt_text, "context": chunks }
 
 

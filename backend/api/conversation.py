@@ -37,7 +37,7 @@ def num_tokens(*args):
     return int(token_count)
 
 
-def get_conversation_history_text(conversation_history):
+def create_conversation_history_text(conversation_history):
     conversation_text = ""
     user = 'User'
     ai = 'Assistant'
@@ -49,24 +49,16 @@ def get_conversation_history_text(conversation_history):
     return conversation_text
 
 
-def create_prompt_text(conversation_history, initial_message,
-                    query, initial_prompt, chunks, model_id, max_tokens):
-    max_token_count = MAX_TOKEN_COUNT_2 if model_id == 2 else MAX_TOKEN_COUNT_1
+def create_prompt_text(initial_prompt, initial_message, conversation_history, query):
     user_role = 'User: '
     bot_role = 'Assistant: '
 
     conversation_history_text = ""
-    context_for_prompt = ""
     prompt = ""
 
-    conversation_history_text = get_conversation_history_text(conversation_history)
-    prompt_token_count = num_tokens(initial_prompt, conversation_history_text, initial_message, query)
-    max_context_token_count = max_token_count - prompt_token_count - max_tokens
-
-    context_for_prompt = chunk.get_context_for_prompt(chunks, max_context_token_count)
+    conversation_history_text = create_conversation_history_text(conversation_history)
 
     prompt = initial_prompt.strip() + '\n\n' \
-        + context_for_prompt + '\n\n' \
         + bot_role + initial_message + '\n\n' \
         + conversation_history_text  \
         + user_role + query + '\n' \
@@ -75,23 +67,30 @@ def create_prompt_text(conversation_history, initial_message,
     return prompt
 
 
-def create_prompt_messages(
-                        conversation_history, initial_message, query,
-                        initial_prompt, chunks, max_tokens, model_id
-                        ):
-    messages = []
+def get_prompt_context(
+        initial_prompt,
+        initial_message,
+        conversation_history,
+        user_message,
+        chunks,
+        max_tokens,
+        model_id
+        ):
+    context_for_prompt = ''
     max_token_count = MAX_TOKEN_COUNT_2 if model_id == 2 else MAX_TOKEN_COUNT_1
 
-    # get context
     if chunks:
-        context_for_prompt = ""        
-        conversation_history_text = get_conversation_history_text(conversation_history)
-        prompt_token_count = num_tokens(initial_prompt, conversation_history_text, initial_message, query)
+        conversation_history_text = create_conversation_history_text(conversation_history)
+        prompt_token_count = num_tokens(initial_prompt, conversation_history_text, initial_message, user_message)
         print('tokens used by pre-context prompt: %s' % (prompt_token_count))
         max_context_token_count = max_token_count - prompt_token_count - max_tokens
         context_for_prompt = chunk.get_context_for_prompt(chunks, max_context_token_count)
-        if context_for_prompt:
-            initial_prompt += '\n\n' + context_for_prompt
+
+    return context_for_prompt
+
+
+def create_prompt_messages(initial_prompt, initial_message, conversation_history, query):
+    messages = []
 
     # add system message
     messages.append({"role": "system", "content": initial_prompt})
@@ -149,6 +148,7 @@ def get_response(
     print('get_response -------------------------------->')
     use_context = False
     chunks = {}
+    prompt_context = ''
 
     print("getting domain settings")
     if domain_id != 0:
@@ -164,17 +164,27 @@ def get_response(
         chunks = chunk.get_chunks_from_query(domain_id, user_message, TOP_K)
         logger.debug("chunks with text: " + str(chunks))
 
-    print("creating prompt")
-    prompt_messages = create_prompt_messages(
-        conversation_history,
-        initial_message,
-        user_message,
+    print('getting prompt context')
+    prompt_context = get_prompt_context(
         prompt_header,
+        initial_message,
+        conversation_history,
+        user_message,
         chunks,
         max_tokens,
         model_id
+        )
+    if prompt_context:
+        prompt_header += '\n\n' + prompt_context
+
+    print("creating prompt")
+    prompt_messages = create_prompt_messages(
+        prompt_header,
+        initial_message,
+        conversation_history,
+        user_message,
     )
-    logger.info('Prompt:\n' + str(prompt_messages))
+    logger.debug('Prompt:\n' + str(prompt_messages))
     if not prompt_messages:
         return {"status": "BAD_REQUEST"}
 
@@ -182,8 +192,12 @@ def get_response(
     response = query_model(prompt_messages, max_tokens, temperature, model_id)
 
     print("storing conversation")
-    prompt_text = create_prompt_text(conversation_history, initial_message,
-                             user_message, prompt_header, chunks, model_id, max_tokens)
+    prompt_text = create_prompt_text(
+                                prompt_header,
+                                initial_message,
+                                conversation_history,
+                                user_message,
+                                )
     conversation_text = 'MODEL ID: ' + str(model_id) + '\n\n' + prompt_text + response
     insert_conversation('NA', 1, domain_id, conversation_text)
 

@@ -21,6 +21,22 @@ pinecone.init(api_key=PINECONE_API_KEY, environment="us-east1-gcp")
 index = pinecone.Index(INDEX_NAME)
 openai.api_key = OPENAI_API_KEY
 
+'''
+chunks dict: 
+    {
+        "ID":  {
+            "id": ID as int,
+            "score": score as float,
+            "text": text,
+            "metadata": {
+                "doc_chunk_id": 44743.0,
+                "doc_id": 20657.0,
+                "domain_id": 27.0                
+            }
+            "uri": uri
+        }
+    }
+'''
 
 def ge(text):
     return get_embedding(
@@ -77,7 +93,7 @@ def get_chunks_from_query(domain_id, user_message, top_k=TOP_K):
 
     return chunks
 
-# chunks dict: {id: {"id": id, "score": score, "text", text}}
+
 def get_context_for_prompt(chunks, max_chunks_token_count = MAX_CHUNKS_TOKEN_COUNT):
     print('get_context_for_prompt using max token count of', max_chunks_token_count)
     context = ""

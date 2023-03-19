@@ -134,17 +134,24 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywid
             "userMessageTimeStamp": 1,
             "response": "Anyone who is 18 years of age or older.",
             "responseTimeStamp": 2
+        },
+        {
+            "userMessage": "Who are you?", 
+            "userMessageTimeStamp": 3,
+            "response": "I am here to help you with information about this trial.",
+            "responseTimeStamp": 4
         }
     ],
-    "userMessage": "Where is it located?",
+    "userMessage": "What is the study for?",
     "max_tokens": 200,
     "temperature": 0.5,
-    "domain_id": 37,
-    "model_id": 2
+    "domain_id": 36,
+    "model_id": 1
 }
 
 ###
 
+        
 POST http://xogene-01.eba-zdq22h3k.us-east-1.elasticbeanstalk.com/conversation
 content-type: application/json
 accept: application/json

@@ -81,7 +81,12 @@ def get_prompt_context(
 
     if chunks:
         conversation_history_text = create_conversation_history_text(conversation_history)
-        prompt_token_count = num_tokens(initial_prompt, conversation_history_text, initial_message, user_message)
+        prompt_token_count = num_tokens(
+                                    initial_prompt,
+                                    conversation_history_text,
+                                    initial_message, 
+                                    user_message
+                                )
         print('tokens used by pre-context prompt: %s' % (prompt_token_count))
         max_context_token_count = max_token_count - prompt_token_count - max_tokens
         context_for_prompt = chunk.get_context_for_prompt(chunks, max_context_token_count)

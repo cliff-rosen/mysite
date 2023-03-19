@@ -62,7 +62,7 @@ def create_prompt_text(
     return prompt
 
 
-def get_prompt_context(
+def create_prompt_context(
         initial_prompt,
         initial_message,
         conversation_history,
@@ -197,12 +197,12 @@ def get_answer(
     if conversation_id != 'NEW':
         conversation_history = db.get_conversation_history(conversation_id)
     
-    print("handling chunk retrieval")
+    print("getting context chunks")
     if use_context:
         chunks = chunk.get_chunks_from_query(domain_id, query)
 
-    print('getting prompt context')
-    prompt_context = get_prompt_context(
+    print('creating context from chunks')
+    prompt_context = create_prompt_context(
             initial_prompt,
             initial_message,
             conversation_history,
@@ -213,7 +213,7 @@ def get_answer(
     if prompt_context:
         initial_prompt += '\n\n' + prompt_context
 
-    print("creating prompt")
+    print("creating prompt messages")
     messages = create_prompt_messages(
         initial_prompt,
         initial_message,

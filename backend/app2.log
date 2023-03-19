@@ -1,3 +1,64 @@
-2023-03-18 10:19:26,785  INFO - Initializing application...
-2023-03-18 10:19:26,815  WARNING -  * Debugger is active!
-2023-03-18 10:19:26,830  INFO -  * Debugger PIN: 901-032-737
+2023-03-19 08:22:45,160  INFO - Initializing application...
+2023-03-19 08:22:45,193  WARNING -  * Debugger is active!
+2023-03-19 08:22:45,199  INFO -  * Debugger PIN: 901-032-737
+2023-03-19 08:22:45,220  INFO - conversation.get_response: Where is it located?
+2023-03-19 08:22:50,725  INFO - 127.0.0.1 - - [19/Mar/2023 08:22:50] "POST /conversation HTTP/1.1" 200 -
+2023-03-19 08:23:03,340  INFO - conversation.get_response: Where is it located?
+2023-03-19 08:23:06,353  INFO - 127.0.0.1 - - [19/Mar/2023 08:23:06] "POST /conversation HTTP/1.1" 200 -
+2023-03-19 08:23:24,280  INFO - conversation.get_response: Where is it located?
+2023-03-19 08:23:26,080  INFO - error_code=model_not_found error_message='The model: `gpt-4` does not exist' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2023-03-19 08:23:26,081  ERROR - Uncaught exception in Conversation.post: The model: `gpt-4` does not exist
+2023-03-19 08:23:26,083  ERROR - Exception on /conversation [POST]
+Traceback (most recent call last):
+  File "c:\Code\_dag_poc\backend\application.py", line 73, in post
+    res = conversation.get_response(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Code\_dag_poc\backend\api\conversation.py", line 197, in get_response
+    response = query_model(prompt_messages, max_tokens, temperature, model_id)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Code\_dag_poc\backend\api\conversation.py", line 121, in query_model
+    completion = openai.ChatCompletion.create(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Cliff\AppData\Local\Programs\Python\Python311\Lib\site-packages\openai\api_resources\chat_completion.py", line 25, in create
+    return super().create(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Cliff\AppData\Local\Programs\Python\Python311\Lib\site-packages\openai\api_resources\abstract\engine_api_resource.py", line 153, in create
+    response, _, api_key = requestor.request(
+                           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Cliff\AppData\Local\Programs\Python\Python311\Lib\site-packages\openai\api_requestor.py", line 226, in request
+    resp, got_stream = self._interpret_response(result, stream)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Cliff\AppData\Local\Programs\Python\Python311\Lib\site-packages\openai\api_requestor.py", line 619, in _interpret_response
+    self._interpret_response_line(
+  File "C:\Users\Cliff\AppData\Local\Programs\Python\Python311\Lib\site-packages\openai\api_requestor.py", line 679, in _interpret_response_line
+    raise self.handle_error_response(
+openai.error.InvalidRequestError: The model: `gpt-4` does not exist
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Cliff\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Cliff\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Cliff\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_restful\__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Cliff\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\views.py", line 107, in view
+    return current_app.ensure_sync(self.dispatch_request)(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Cliff\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_restful\__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Code\_dag_poc\backend\application.py", line 90, in post
+    abort(500)
+  File "C:\Users\Cliff\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_restful\__init__.py", line 31, in abort
+    original_flask_abort(http_status_code)
+  File "C:\Users\Cliff\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\helpers.py", line 310, in abort
+    current_app.aborter(code, *args, **kwargs)
+  File "C:\Users\Cliff\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\exceptions.py", line 864, in __call__
+    raise self.mapping[code](*args, **kwargs)
+werkzeug.exceptions.InternalServerError: 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+2023-03-19 08:23:26,451  INFO - 127.0.0.1 - - [19/Mar/2023 08:23:26] "[35m[1mPOST /conversation HTTP/1.1[0m" 500 -

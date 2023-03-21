@@ -126,8 +126,9 @@ def query_model(messages, temperature):
             )
         response = completion.choices[0].message.content
     except Exception as e:
+        print('query_model error: ', str(e))
         logger.warning('get_answer.query_model error:' + str(e))
-        response = "We're sorry, the server was too busy to handle this repsonse.  Please try again."
+        response = "We're sorry, the server was too busy to handle this response.  Please try again."
 
     return response
 

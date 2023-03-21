@@ -32,7 +32,7 @@ accept: application/json
 POST http://127.0.0.1:5000/conversation
 content-type: application/json
 accept: application/json
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywidXNlcm5hbWUiOiJwb2MiLCJleHAiOjE2NzkzMzkxNDl9.EiTEeWsQISYseQ-sr8-iBInayPR9KLWhvRZ_RJFXv8Q
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywidXNlcm5hbWUiOiJwb2MiLCJleHAiOjE2Nzk5OTU0ODR9.XVOZXc-vZqvAaAJTJbDqlRK98FP4c-edgLmNv_QfKwM
 
 {
     "promptHeader": "You are a clinical trial assistant.  Answer the following question as honestly as possible based on the below context and using simple language that a child could understand and if you don't know the answer say I don't know:",

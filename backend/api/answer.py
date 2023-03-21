@@ -6,11 +6,14 @@ from utils.utils import make_new_conversation_id, num_tokens_from_string
 import conf
 import utils.chunks_service as chunk
 from api.errors import InputError
+import logging
 
-#COMPLETION_MODEL = 'gpt-4'
-COMPLETION_MODEL = 'gpt-3.5-turbo' #'text-davinci-003'
+logger = logging.getLogger()
+
+#COMPLETION_MODEL = 'gpt-3.5-turbo' #'text-davinci-003'
+COMPLETION_MODEL = 'gpt-4'
 COMPLETION_MODEL_TIKTOKEN = 'text-davinci-003'
-MAX_TOKEN_COUNT = 3900
+MAX_TOKEN_COUNT = 8000
 TOP_K = 40
 MAX_TOKENS = 200
 
@@ -112,15 +115,21 @@ def create_prompt_messages(
 
 def query_model(messages, temperature):
 
-    completion = openai.ChatCompletion.create(
-        model=COMPLETION_MODEL,
-        messages=messages,
-        max_tokens=MAX_TOKENS,
-        temperature=temperature
-        )
+    response =''
 
-    return completion.choices[0].message.content
+    try:
+        completion = openai.ChatCompletion.create(
+            model=COMPLETION_MODEL,
+            messages=messages,
+            max_tokens=MAX_TOKENS,
+            temperature=temperature
+            )
+        response = completion.choices[0].message.content
+    except Exception as e:
+        logger.warning('get_answer.query_model error:' + str(e))
+        response = "We're sorry, the server was too busy to handle this repsonse.  Please try again."
 
+    return response
 
 def update_conversation_tables(
                         domain_id,

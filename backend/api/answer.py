@@ -145,10 +145,10 @@ def update_conversation_tables(
                     ):
     
     prompt_text = create_prompt_text(
-                                initial_prompt,
-                                initial_message,
-                                conversation_history,
-                                query,
+                                    initial_prompt,
+                                    initial_message,
+                                    conversation_history,
+                                    query
                                 )
 
     conversation_text = prompt_text + response_text
@@ -165,6 +165,7 @@ def update_conversation_tables(
         db.update_conversation(conversation_id, conversation_text)
 
     response_chunk_ids = ', '.join(list(chunks.keys()))
+
     db.insert_query_log(
                         domain_id,
                         query,
@@ -175,7 +176,7 @@ def update_conversation_tables(
                         user_id,
                         conversation_id
                     )
-    #logger.log('Conversation:\n' + conversation_text)
+    #logger.info('Conversation:\n' + conversation_text)
 
     return conversation_id
 
@@ -205,7 +206,8 @@ def get_answer(
     print("getting conversation history")
     if conversation_id != 'NEW':
         conversation_history = db.get_conversation_history(conversation_id)
-    
+        print('  conversation_id: ', conversation_id, 'length', len(conversation_history))
+
     print("getting context chunks")
     if use_context:
         chunks = chunk.get_chunks_from_query(domain_id, query)

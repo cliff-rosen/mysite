@@ -49,7 +49,12 @@ def create_conversation_history_text(conversation_history):
     return conversation_text
 
 
-def create_prompt_text(initial_prompt, initial_message, conversation_history, query):
+def create_prompt_text(
+                        initial_prompt,
+                        initial_message, 
+                        conversation_history, 
+                        query
+                    ):
     user_role = 'User: '
     bot_role = 'Assistant: '
 
